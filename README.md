@@ -14,6 +14,10 @@ Use this sales hub to prepare customer conversations, sharpen competitive positi
 
 Use this presentation to prepare for and run the weekly team meeting. It is updated weekly with the latest agenda and team information.
 
+### [Team dashboard on SFDC](https://github.lightning.force.com/lightning/r/Dashboard/01ZhR000002iWz7UAE/view)
+
+Use this dashboard to review the team's current Salesforce activity and performance in one place.
+
 ## Onboarding & Enablement
 
 ### [Octodash Complete Guide](docs/assets/Octodash_Complete_Guide.pdf)

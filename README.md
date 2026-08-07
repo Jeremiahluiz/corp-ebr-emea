@@ -35,7 +35,7 @@ Use this dashboard to review the team's current Salesforce activity and performa
 - Alex — 18 May
 - Jeremie Ruiz — 13 June
 - Illane Hamache — missing
-- Bouke Kingma — missing
+- Bouke Kingma — 8 December
 
 ### Gift guidelines
 

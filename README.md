@@ -18,6 +18,26 @@ Use this presentation to prepare for and run the weekly team meeting. It is upda
 
 Use this dashboard to review the team's current Salesforce activity and performance in one place.
 
+## Culture
+
+### Birthdays
+
+- Renato Taramona — 23 November
+- Tommy Hirvonen — 23 November
+- Daniel Spanjaard — 23 November
+- Renata Zhupanyn — 7 July
+- Anna Sobala — 16 October
+- Alex — 18 May
+- Jeremie Ruiz — 13 June
+- Illane Hamache — missing
+- Bouke Kingma — missing
+
+### Gift guidelines
+
+- Maximum contribution: EUR 10 per person per gift.
+- Contributions are voluntary and not mandatory.
+- A wishlist can be used.
+
 ## Onboarding & Enablement
 
 ### [Octodash Complete Guide](docs/assets/Octodash_Complete_Guide.pdf)

@@ -23,6 +23,7 @@ Use this dashboard to review the team's current Salesforce activity and performa
 ### Chief Culture Officer
 
 - Status: OPEN
+- The team’s official happiness architect: keep birthdays on the radar, organise events and celebrations, create excuses for cake, and make sure the team culture stays stronger than our coffee.
 - Apply for the role if interested!
 
 ### Birthdays

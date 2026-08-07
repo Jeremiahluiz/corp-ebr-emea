@@ -38,11 +38,12 @@ Use this dashboard to review the team's current Salesforce activity and performa
 - Illane Hamache — 19 January
 - Bouke Kingma — 8 December
 
-### Gift guidelines
+### Birthday guidelines
 
 - Maximum contribution: EUR 10 per person per gift.
 - Contributions are voluntary and not mandatory.
 - A wishlist can be used.
+- We will organise a team lunch to celebrate the person whose birthday it is.
 
 ## Onboarding & Enablement
 

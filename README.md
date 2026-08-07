@@ -20,6 +20,11 @@ Use this dashboard to review the team's current Salesforce activity and performa
 
 ## Culture
 
+### Chief Culture Officer
+
+- Status: OPEN
+- Apply for the role if interested!
+
 ### Birthdays
 
 - Renato Taramona — 23 November

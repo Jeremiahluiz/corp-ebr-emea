@@ -35,7 +35,7 @@ Use this dashboard to review the team's current Salesforce activity and performa
 - Anna Sobala — 16 October
 - Alex — 18 May
 - Jeremie Ruiz — 13 June
-- Illane Hamache — missing
+- Illane Hamache — 19 January
 - Bouke Kingma — 8 December
 
 ### Gift guidelines

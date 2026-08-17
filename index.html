@@ -945,33 +945,43 @@ body {
             <strong>Commercials:</strong> Two separate products. Licensed (per-committer, annual) or metered (pay per active committer/month, 90-day rolling window) — metered is the low-friction landing. Can scope to specific repos. Can split purchases (just code scanning OR just secret scanning). Microsoft enterprise discounts apply.
           </div>
 
+          <h3 style="font-size:14px;font-weight:600;margin:20px 0 12px;color:var(--text-muted);">🧭 Adjacent offering: GitHub Code Quality</h3>
+          <div class="product-pitch" style="border-left:3px solid var(--accent-blue);">
+            <strong>What it is:</strong> GitHub Code Quality is a <strong>standalone paid product that complements GHAS</strong> — it is not bundled with Code Security or Secret Protection. It helps engineering teams prevent maintainability, reliability, and coverage issues from reaching the default branch.<br><br>
+            <strong>How it is used:</strong> Deterministic CodeQL analysis posts quality findings directly on pull requests and scans the default branch for existing quality debt. Developers can apply one-click Copilot Autofix suggestions, batch multiple fixes, or assign eligible remediation work to Copilot cloud agent. Teams can upload Cobertura XML reports to show coverage changes in the PR and use GitHub rulesets — including evaluate mode — to enforce quality and coverage thresholds before merge.<br><br>
+            <strong>Why customers buy it:</strong> It closes the quality loop where developers already work: detect → understand → fix → enforce. Organization-wide dashboards give engineering leaders a common view of maintainability and reliability across repositories, while APIs support scaled enablement and findings management. GitHub's own engineering teams resolved <strong>67.3% of Code Quality findings before merge</strong> — reducing downstream rework as AI increases code volume.<br><br>
+            <strong>Coverage and fit:</strong> Rule-based CodeQL analysis currently supports C#, Go, Java, JavaScript, Python, Ruby, and TypeScript. AI-powered analysis can identify issues in recently changed code beyond those rule-based languages. Available on GitHub Enterprise Cloud and GitHub Team; not available on GitHub Enterprise Server at launch.<br><br>
+            <span style="font-size:12px;color:var(--text-muted);">Sources: <a href="https://docs.github.com/en/enterprise-cloud@latest/code-security/concepts/code-quality/code-quality" target="_blank" rel="noopener" style="color:var(--accent-blue);">GitHub Code Quality documentation</a> · <a href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available" target="_blank" rel="noopener" style="color:var(--accent-blue);">GA announcement</a></span>
+          </div>
+
           <h3 style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-muted);">⚔️ Competitors</h3>
 
           <div class="competitor-block">
             <div class="competitor-block-header">
               <span style="font-size:16px;">🎯</span>
               <span class="competitor-name">SonarQube / SonarCloud</span>
-              <span class="competitor-tagline">— code quality pioneer, 35+ languages</span>
+              <span class="competitor-tagline">— mature code quality platform, 35+ languages</span>
               <span class="expand-icon">+</span>
             </div>
             <div class="competitor-block-body">
               <div class="comp-label them">What they win</div>
-              <div class="comp-text">35+ languages (broader than GHAS in raw language count). Mature quality gates and technical debt tracking. Strong code smell / maintainability analysis. Well-known in Java/C# enterprise shops. Established developer habit of checking quality gates.</div>
+              <div class="comp-text">35+ languages — materially broader than GitHub's current seven-language rule-based coverage. Mature quality gates, technical debt analytics, IDE feedback, and extensive rule customization. Long-established enterprise footprint, especially in Java and C# environments. Be candid: Sonar currently leads in language breadth and depth of legacy quality analytics.</div>
               <div class="comp-divider"></div>
               <div class="comp-label us">Where we win</div>
               <div class="comp-text">
-                <strong>Native PR integration:</strong> GHAS findings appear directly in the pull request — developers never leave GitHub. SonarQube findings live in a separate portal that most developers don't check daily.<br>
-                <strong>AI-powered fix:</strong> Copilot Autofix generates remediation code with one click. SonarQube's AI fixes are manual/limited — no comparable auto-remediation engine.<br>
-                <strong>CodeQL depth:</strong> Semantic dataflow analysis across compiled code — not just pattern matching. Catches complex vulnerabilities (injection chains, tainted data paths) that pattern-based tools miss.<br>
-                <strong>Secret Scanning + Push Protection:</strong> SonarQube has no secret detection layer at all — a major gap for teams worried about credential leaks.<br>
-                <strong>No separate IDE plugin needed:</strong> SonarQube requires SonarLint IDE plugins + server connection for real-time feedback. GHAS works natively in GitHub without extra tooling.<br>
-                <strong>Single platform:</strong> Code, security, AI, and CI/CD in one place vs code here, quality there, security somewhere else.
+                <strong>Native path from finding to fix:</strong> GitHub Code Quality places deterministic findings, explanations, and one-click Copilot Autofix suggestions in the pull request. Developers can batch fixes without leaving the review workflow.<br>
+                <strong>Deterministic analysis + AI breadth:</strong> CodeQL rules provide predictable checks for known maintainability and reliability anti-patterns, while AI-powered analysis can flag issues in recently changed code beyond current rules and languages.<br>
+                <strong>Quality and coverage policy in GitHub:</strong> Cobertura coverage metrics appear on pull requests, and rulesets can block merges on maintainability, reliability, or coverage thresholds. Evaluate mode lets customers measure impact before enforcing.<br>
+                <strong>Organization-wide governance:</strong> Central enablement, quality dashboards, scoring, APIs, and standard GitHub audit controls give engineering leaders visibility across repositories without building another governance layer.<br>
+                <strong>Faster time to value and lower toolchain overhead:</strong> Enable Code Quality where the repositories, pull requests, identity, policies, and CI already live — reducing separate infrastructure, administration, and developer handoffs.<br>
+                <strong>Broader platform outcome:</strong> Pair Code Quality with GHAS to manage quality, code security, dependencies, and secrets in one developer experience. This is consolidation with a shared remediation workflow, not just another scanner.
               </div>
               <div class="comp-divider"></div>
               <div class="comp-label questions">Counter questions</div>
-              <div class="counter-q">"What's your current time-to-remediation for SonarQube findings — from detection to merged fix? What if that could drop to minutes with AI-generated fixes?"</div>
-              <div class="counter-q">"How many developers log into SonarQube weekly vs how many would see security findings if they appeared in the PR they're already reviewing?"</div>
-              <div class="counter-q">"How are you handling secret detection and push prevention today — is SonarQube covering that, or is it a separate tool?"</div>
+              <div class="counter-q">"What percentage of quality findings are fixed before merge today — and how many become backlog items after developers have already changed context?"</div>
+              <div class="counter-q">"How long does it take to enable a new repository, connect coverage data, and enforce a quality gate with your current platform?"</div>
+              <div class="counter-q">"Which languages and custom rules are genuinely decision-critical for you? Sonar is broader today; where GitHub wins is the native finding-to-fix workflow for supported stacks."</div>
+              <div class="counter-q">"Would one policy layer for source, pull requests, quality, coverage, and security reduce administration — or is the team committed to operating a separate quality platform?"</div>
             </div>
           </div>
 

@@ -952,6 +952,57 @@
       gap: 10px;
     }
 
+    .spin-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .spin-stage {
+      position: relative;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(13, 17, 23, 0.58);
+    }
+
+    .spin-stage:not(:last-child)::after {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      right: -8px;
+      width: 8px;
+      height: 1px;
+      background: var(--border-strong);
+      content: "";
+    }
+
+    .spin-letter {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      margin-bottom: 8px;
+      place-items: center;
+      border: 1px solid rgba(88, 166, 255, 0.42);
+      border-radius: 7px;
+      color: #79c0ff;
+      background: rgba(88, 166, 255, 0.1);
+      font: 800 0.75rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .spin-stage strong {
+      display: block;
+      font-size: 0.82rem;
+    }
+
+    .spin-stage span:last-child {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
     .question-group {
       border: 1px solid var(--border);
       border-radius: 11px;
@@ -977,6 +1028,34 @@
       margin: 0 0 12px;
       color: var(--muted);
       font-size: 0.82rem;
+    }
+
+    .question-guidance {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .question-guidance-item {
+      padding: 10px 11px;
+      border: 1px solid rgba(48, 54, 61, 0.8);
+      border-radius: 8px;
+      background: rgba(22, 27, 34, 0.56);
+    }
+
+    .question-guidance-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: #b1bac4;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .question-guidance-item span {
+      color: #c9d1d9;
+      font-size: 0.78rem;
     }
 
     .qualification-grid {
@@ -1353,8 +1432,14 @@
 
       .brief-grid,
       .checkbox-grid,
-      .qualification-grid {
+      .qualification-grid,
+      .spin-flow,
+      .question-guidance {
         grid-template-columns: 1fr;
+      }
+
+      .spin-stage:not(:last-child)::after {
+        display: none;
       }
 
       .brief-block,
@@ -1667,9 +1752,31 @@
             <section class="panel guide-section" aria-labelledby="qualification-title">
               <div class="guide-section-heading">
                 <div>
-                  <p class="card-kicker">Qualification discovery</p>
-                  <h2 id="qualification-title">Question bank</h2>
-                  <p>Move from the customer’s goal and current state to measurable impact, urgency, ownership, and explicit need.</p>
+                  <p class="card-kicker">SPIN discovery</p>
+                  <h2 id="qualification-title">Qualification flow and question bank</h2>
+                  <p>Follow the presentation’s sequence. Build the current-state picture, uncover the problem, quantify its impact, then help the customer state an explicit need.</p>
+                </div>
+              </div>
+              <div class="spin-flow" aria-label="SPIN discovery flow: Situation, Problem, Impact, Need">
+                <div class="spin-stage">
+                  <span class="spin-letter">S</span>
+                  <strong>Situation</strong>
+                  <span>Goals and current state</span>
+                </div>
+                <div class="spin-stage">
+                  <span class="spin-letter">P</span>
+                  <strong>Problem</strong>
+                  <span>Pain and root causes</span>
+                </div>
+                <div class="spin-stage">
+                  <span class="spin-letter">I</span>
+                  <strong>Impact</strong>
+                  <span>Consequences and cost</span>
+                </div>
+                <div class="spin-stage">
+                  <span class="spin-letter">N</span>
+                  <strong>Need</strong>
+                  <span>Customer-stated outcome</span>
                 </div>
               </div>
               <div class="question-groups" id="guide-question-groups"></div>
@@ -1684,7 +1791,7 @@
               </div>
               <div class="qualification-grid">
                 <article class="qualification-card">
-                  <strong>Why change?</strong>
+                  <strong>Why Anything?</strong>
                   <p>Confirm what is not working, who feels it, and the measurable consequence.</p>
                 </article>
                 <article class="qualification-card">
@@ -1892,63 +1999,66 @@
 
       function makeDefaultGuide() {
         return {
+          methodology: "SPIN",
+          methodologyVersion: 1,
           opening: "To make this useful, I would like to start with the outcome you are working toward. What is driving it, how will you measure success, and what timing are you working to?",
-          leading: "I will ask a few questions about how things work today, where friction or risk shows up, and the impact. Then we can agree whether it makes sense to explore how GitHub could help.",
+          leading: "I will start with how things work today, then explore the challenges and their impact before asking what outcome you need. If there is a meaningful gap, we can decide whether GitHub is relevant.",
           closing: "Let me play back what I heard: your goal is [goal]. Today, [current state]. The main challenges are [problems], creating [impact]. What would the right outcome look like, and what would you need from GitHub?",
           qualificationSections: [
             {
-              id: "goal-situation",
-              name: "Goal and current situation",
-              purpose: "Understand the intended business result, success measures, timing, and how the customer works today.",
+              id: "situation",
+              name: "Situation",
+              purpose: "Create a clear, validated picture of the customer’s goal and current way of working across process, people, technology, strategy, and plans.",
+              transition: "Once the goal, measures, timing, and current operating model are clear, move from facts to the challenges preventing success.",
+              exitCondition: "You can explain the goal, how success is measured, the timeline, and how the customer works today.",
               questions: [
-                "What outcome are you working toward?",
-                "What business driver sits behind that goal?",
-                "How will you measure success?",
-                "What is your current plan for getting there?"
+                "Tell me more about your goal.",
+                "What is the business driver behind this goal?",
+                "What metrics are you using to measure success?",
+                "What are the timelines?",
+                "What is your current plan or strategy for achieving this goal?"
               ]
             },
             {
-              id: "problem-root-cause",
-              name: "Problems and root causes",
-              purpose: "Surface what is preventing progress, why the issue persists, and what has already been tried.",
+              id: "problem",
+              name: "Problem",
+              purpose: "Uncover the customer’s challenges, pressures, performance issues, frustrations, root causes, and previous attempts to improve.",
+              transition: "When the customer recognizes a meaningful problem, explore the consequences rather than moving directly to a solution.",
+              exitCondition: "You understand the primary pain, its root cause, what makes it worse, and what the customer has already tried.",
               questions: [
-                "Where does the current approach create the most friction, risk, or delay?",
-                "What is causing that problem?",
-                "Which working practices or tools make it harder?",
-                "What have you already tried to improve it?"
+                "What challenges are you anticipating as you work toward this goal?",
+                "Where do you see performance issues in the current approach?",
+                "Why are you having this problem or issue?",
+                "What working practices or processes are making the problem worse?",
+                "What have you tried already?"
               ]
             },
             {
               id: "impact",
-              name: "Impact and quantification",
-              purpose: "Translate operational issues into consequences for the business, teams, customers, and individuals.",
+              name: "Impact",
+              purpose: "Explore and quantify the consequences for the business, teams, individuals, customers, productivity, profitability, cost, risk, and efficiency.",
+              transition: "Summarize the goal, current state, problem, and consequences before asking the customer to describe the desired solution.",
+              exitCondition: "You can state who is affected, how they are affected, and the measurable cost or risk of doing nothing.",
               questions: [
-                "Who is most affected by this today?",
-                "What is the impact on time, cost, risk, or delivery?",
-                "What does this prevent the team or business from doing?",
+                "What will be the implications of not resolving these issues for the business as a whole?",
+                "What will be the implications for the teams involved?",
+                "What will be the implications for you personally?",
+                "What is this costing you today?",
                 "What happens if nothing changes?"
               ]
             },
             {
-              id: "urgency-ownership",
-              name: "Urgency, ownership, and motivation",
-              purpose: "Identify the compelling event, deadline, owner, and personal reason to act.",
+              id: "need",
+              name: "Need",
+              purpose: "Convert implicit need into explicit need by having the customer state the desired solution, outcome, benefits, and GitHub’s role in their own words.",
+              transition: "Use the customer’s explicit need to test Why Anything, Why Now, and Why GitHub before positioning a solution.",
+              exitCondition: "The customer has clearly stated what they need and the business outcome they expect.",
               questions: [
-                "What is driving the timing?",
-                "Is there a deadline, renewal, audit, launch, or budget event?",
-                "Who owns the change?",
-                "What would a successful outcome mean for that person?"
-              ]
-            },
-            {
-              id: "need-fit",
-              name: "Explicit need and GitHub fit",
-              purpose: "Have the customer describe the required outcome and the criteria they will use to evaluate GitHub.",
-              questions: [
-                "What would the right solution need to change?",
-                "Which capabilities or guardrails are non-negotiable?",
-                "What proof would give you confidence to move forward?",
-                "What would you need from GitHub to achieve the outcome?"
+                "What do you see the solution to this problem or challenge being?",
+                "What do you hope GitHub will be able to do for you?",
+                "What would help you achieve your goal and overcome these challenges?",
+                "What do you need from a tool to hit that outcome?",
+                "What benefits would solving this problem create for the business?"
               ]
             }
           ]
@@ -2007,12 +2117,20 @@
           return false;
         }
 
+        if (guide.methodology !== undefined && !isNonEmptyText(guide.methodology)) return false;
+        if (guide.methodologyVersion !== undefined &&
+            (!Number.isInteger(guide.methodologyVersion) || guide.methodologyVersion < 1)) {
+          return false;
+        }
+
         const ids = guide.qualificationSections.map((section) => section?.id);
         return ids.every(isNonEmptyText) &&
           new Set(ids).size === ids.length &&
           guide.qualificationSections.every((section) =>
             isNonEmptyText(section.name) &&
             isNonEmptyText(section.purpose) &&
+            (section.transition === undefined || isNonEmptyText(section.transition)) &&
+            (section.exitCondition === undefined || isNonEmptyText(section.exitCondition)) &&
             Array.isArray(section.questions) &&
             section.questions.length > 0 &&
             section.questions.every(isNonEmptyText)
@@ -2072,7 +2190,20 @@
 
       function normalizeData(value) {
         const normalized = clone(value);
-        if (!normalized.guide) normalized.guide = makeDefaultGuide();
+        const defaultGuide = makeDefaultGuide();
+        if (!normalized.guide) {
+          normalized.guide = defaultGuide;
+        } else if (
+          normalized.guide.methodology !== defaultGuide.methodology ||
+          normalized.guide.methodologyVersion !== defaultGuide.methodologyVersion
+        ) {
+          normalized.guide = {
+            ...normalized.guide,
+            methodology: defaultGuide.methodology,
+            methodologyVersion: defaultGuide.methodologyVersion,
+            qualificationSections: defaultGuide.qualificationSections
+          };
+        }
         return normalized;
       }
 
@@ -2479,12 +2610,28 @@
           details.className = "question-group";
           details.open = index === 0;
           const summary = document.createElement("summary");
-          summary.textContent = section.name;
+          summary.textContent = `${section.name.charAt(0)} · ${section.name}`;
           const content = document.createElement("div");
           content.className = "question-group-content";
           const purpose = document.createElement("p");
           purpose.className = "question-purpose";
           purpose.textContent = section.purpose;
+          const guidance = document.createElement("div");
+          guidance.className = "question-guidance";
+          [
+            ["Move on when", section.exitCondition],
+            ["Transition", section.transition]
+          ].forEach(([label, value]) => {
+            if (!value) return;
+            const item = document.createElement("div");
+            item.className = "question-guidance-item";
+            const title = document.createElement("strong");
+            title.textContent = label;
+            const text = document.createElement("span");
+            text.textContent = value;
+            item.append(title, text);
+            guidance.append(item);
+          });
           const list = document.createElement("ol");
           list.className = "prompt-list";
           section.questions.forEach((question) => {
@@ -2492,7 +2639,9 @@
             item.textContent = question;
             list.append(item);
           });
-          content.append(purpose, list);
+          content.append(purpose);
+          if (guidance.childElementCount) content.append(guidance);
+          content.append(list);
           details.append(summary, content);
           elements.guideQuestionGroups.append(details);
         });
@@ -2511,7 +2660,7 @@
           const title = document.createElement("h3");
           title.textContent = "Call script and qualification questions";
           const detail = document.createElement("p");
-          detail.textContent = `3 call stages · ${data.guide.qualificationSections.length} qualification sections`;
+          detail.textContent = `3 call stages · ${data.guide.qualificationSections.length} SPIN stages`;
           text.append(title, detail);
           const actions = document.createElement("div");
           actions.className = "item-actions";
@@ -2811,6 +2960,8 @@
             return;
           }
           data.guide = {
+            methodology: data.guide.methodology,
+            methodologyVersion: data.guide.methodologyVersion,
             opening: formValue(formData, "opening"),
             leading: formValue(formData, "leading"),
             closing: formValue(formData, "closing"),

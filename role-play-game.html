@@ -1284,7 +1284,7 @@
         <div class="editor-header">
           <div>
             <h2 id="editor-title">Scenario editor</h2>
-            <p>Changes save on this device. Export and import JSON to move a draft between laptops; published app updates load automatically.</p>
+            <p>Open the hosted app in multiple tabs to sync edits and the active scenario live within the same browser. Separate browsers or laptops still require JSON export/import.</p>
           </div>
           <div class="editor-actions">
             <button class="button button-small" id="export-button" type="button">Export JSON</button>
@@ -1330,6 +1330,8 @@
       "use strict";
 
       const STORAGE_KEY = "github-scenario-lab-v6";
+      const VIEW_STATE_KEY = `${STORAGE_KEY}-view`;
+      const SYNC_CHANNEL_NAME = `${STORAGE_KEY}-sync`;
       const TIMER_SECONDS = 300;
       const SHARED_APP_URL = "https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html";
 
@@ -1532,6 +1534,10 @@
         return JSON.parse(JSON.stringify(value));
       }
 
+      function isNonEmptyText(value) {
+        return typeof value === "string" && value.trim().length > 0;
+      }
+
       function validData(value) {
         if (!value || value.version !== 2 ||
             !Array.isArray(value.products) ||
@@ -1540,7 +1546,7 @@
           return false;
         }
 
-        const isText = (item) => typeof item === "string" && item.trim().length > 0;
+        const isText = isNonEmptyText;
         const isTextArray = (items) => Array.isArray(items) && items.every(isText);
         const hasUniqueIds = (items) => {
           const ids = items.map((item) => item?.id);
@@ -1594,18 +1600,46 @@
         }
       }
 
+      function loadViewState() {
+        try {
+          const stored = localStorage.getItem(VIEW_STATE_KEY);
+          if (!stored) return null;
+          const parsed = JSON.parse(stored);
+          if (
+            !parsed ||
+            typeof parsed !== "object" ||
+            !isNonEmptyText(parsed.productId) ||
+            !isNonEmptyText(parsed.personaId)
+          ) {
+            return null;
+          }
+          return parsed;
+        } catch (error) {
+          console.warn("Could not load the shared scenario selection.", error);
+          return null;
+        }
+      }
+
       let data = loadData();
+      const storedViewState = loadViewState();
       let selection = {
-        productId: data.products[0]?.id || "",
-        personaId: ""
+        productId: storedViewState?.productId || data.products[0]?.id || "",
+        personaId: storedViewState?.personaId || ""
       };
-      let round = 1;
+      let round = Number.isInteger(storedViewState?.round) && storedViewState.round > 0
+        ? storedViewState.round
+        : 1;
       let activeTab = "products";
       let editingId = null;
       let toastTimer;
       let timerRemaining = TIMER_SECONDS;
       let timerHandle = null;
       let installPrompt = null;
+      const instanceId = globalThis.crypto?.randomUUID?.() ||
+        `window-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const syncChannel = "BroadcastChannel" in window
+        ? new BroadcastChannel(SYNC_CHANNEL_NAME)
+        : null;
 
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -1650,11 +1684,69 @@
         return `${prefix}-${Date.now().toString(36)}-${random}`;
       }
 
-      function saveData(message = "Changes saved locally.") {
+      function publishSyncMessage(message) {
+        syncChannel?.postMessage({ ...message, sourceId: instanceId });
+      }
+
+      function saveData(message = "Changes saved and synced.") {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        publishSyncMessage({ type: "data", data });
         ensureSelection();
         renderAll();
         showToast(message);
+      }
+
+      function publishViewState() {
+        const viewState = {
+          productId: selection.productId,
+          personaId: selection.personaId,
+          round
+        };
+        localStorage.setItem(VIEW_STATE_KEY, JSON.stringify(viewState));
+        publishSyncMessage({ type: "view", viewState });
+      }
+
+      function applySyncedData(nextData) {
+        if (!validData(nextData) || JSON.stringify(nextData) === JSON.stringify(data)) return;
+        data = clone(nextData);
+        ensureSelection();
+        renderAll();
+        showToast("Changes synced from another window.");
+      }
+
+      function applySyncedViewState(viewState) {
+        if (
+          !viewState ||
+          typeof viewState !== "object" ||
+          !isNonEmptyText(viewState.productId) ||
+          !isNonEmptyText(viewState.personaId)
+        ) {
+          return;
+        }
+        const nextRound = Number.isInteger(viewState.round) && viewState.round > 0
+          ? viewState.round
+          : round;
+        if (
+          selection.productId === viewState.productId &&
+          selection.personaId === viewState.personaId &&
+          round === nextRound
+        ) {
+          return;
+        }
+        selection = {
+          productId: viewState.productId,
+          personaId: viewState.personaId
+        };
+        round = nextRound;
+        ensureSelection();
+        renderScenario();
+        showToast("Scenario synced from another window.");
+      }
+
+      function handleSyncMessage(message) {
+        if (!message || message.sourceId === instanceId) return;
+        if (message.type === "data") applySyncedData(message.data);
+        if (message.type === "view") applySyncedViewState(message.viewState);
       }
 
       function showToast(message) {
@@ -1724,6 +1816,7 @@
           ensureSelection();
           round += 1;
           renderScenario();
+          publishViewState();
           setSpinning(dimensions, false);
         }, delay);
       }
@@ -2312,9 +2405,18 @@
           randomizeAll();
         }
       });
+      syncChannel?.addEventListener("message", (event) => handleSyncMessage(event.data));
+      window.addEventListener("storage", (event) => {
+        if (!event.newValue) return;
+        try {
+          if (event.key === STORAGE_KEY) applySyncedData(JSON.parse(event.newValue));
+          if (event.key === VIEW_STATE_KEY) applySyncedViewState(JSON.parse(event.newValue));
+        } catch (error) {
+          console.warn("Could not apply a synchronized Scenario Lab update.", error);
+        }
+      });
 
       ensureSelection();
-      selection.personaId = compatiblePersonas(selection.productId)[0]?.id || "";
       renderAll();
       renderTimer();
 

@@ -922,77 +922,16 @@
       text-transform: none;
     }
 
-    .script-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 6px;
-    }
-
-    .script-metrics span {
-      padding: 4px 7px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--muted);
-      background: #0d1117;
-      font-size: 0.69rem;
-      font-weight: 700;
-    }
-
-    .script-metrics .on-target {
-      border-color: rgba(63, 185, 80, 0.5);
-      color: #7ee787;
-      background: rgba(63, 185, 80, 0.1);
-    }
-
-    .script-metrics .needs-work {
-      border-color: rgba(210, 153, 34, 0.5);
-      color: #e3b341;
-      background: rgba(210, 153, 34, 0.1);
-    }
-
-    #cold-call-script {
-      margin: 18px 0 14px;
-      padding: 0;
-      border: 0;
-      color: #f0f6fc;
-      font-size: clamp(1rem, 2vw, 1.16rem);
-      line-height: 1.65;
-    }
-
-    .duration-track {
-      height: 6px;
-      border-radius: 999px;
-      background: #21262d;
-      overflow: hidden;
-    }
-
-    .duration-track span {
-      display: block;
-      width: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--green));
-      transition: width 180ms ease;
-    }
-
     .pause-cue {
-      margin: 10px 0 0;
+      margin: 14px 0 0;
       color: #79c0ff;
       font-size: 0.78rem;
       font-weight: 750;
     }
 
-    .script-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
     .call-structure {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       margin-top: 14px;
     }
@@ -1019,13 +958,14 @@
 
     .call-step strong {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.86rem;
     }
 
     .call-step p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.73rem;
+      margin: 8px 0 0;
+      color: #f0f6fc;
+      font-size: 0.84rem;
+      line-height: 1.55;
     }
 
     .readiness-list {
@@ -1477,10 +1417,6 @@
         flex-direction: column;
       }
 
-      .script-metrics {
-        justify-content: flex-start;
-      }
-
       .brief-block,
       .prompts-block {
         grid-column: 1;
@@ -1765,44 +1701,27 @@
                 <div class="script-preview-heading">
                   <div>
                     <p class="card-kicker">Scenario call track</p>
-                    <h3>Your opening</h3>
-                  </div>
-                  <div class="script-metrics" aria-live="polite">
-                    <span id="cold-call-word-count">0 words</span>
-                    <span id="cold-call-duration">0 sec</span>
-                    <span id="cold-call-status">Ready to practice</span>
+                    <h3>Your three-part opening</h3>
                   </div>
                 </div>
-                <blockquote id="cold-call-script"></blockquote>
-                <div class="duration-track" aria-hidden="true">
-                  <span id="cold-call-duration-fill"></span>
+                <div class="call-structure" aria-label="Three-part cold call script" aria-live="polite">
+                  <article class="call-step">
+                    <span>1</span>
+                    <strong>Opener</strong>
+                    <p id="cold-call-opener"></p>
+                  </article>
+                  <article class="call-step">
+                    <span>2</span>
+                    <strong>Reason for calling</strong>
+                    <p id="cold-call-reason"></p>
+                  </article>
+                  <article class="call-step">
+                    <span>3</span>
+                    <strong>Poke the bear question</strong>
+                    <p id="cold-call-question"></p>
+                  </article>
                 </div>
                 <p class="pause-cue">Pause. Let the customer speak next.</p>
-                <div class="script-actions">
-                  <button class="button" id="copy-cold-call" type="button">Copy script</button>
-                </div>
-              </div>
-              <div class="call-structure" aria-label="Cold call structure">
-                <article class="call-step">
-                  <span>1</span>
-                  <strong>Recognize</strong>
-                  <p>Acknowledge the existing GitHub relationship.</p>
-                </article>
-                <article class="call-step">
-                  <span>2</span>
-                  <strong>Poke the bear</strong>
-                  <p>Surface one plausible outcome gap without claiming it exists.</p>
-                </article>
-                <article class="call-step">
-                  <span>3</span>
-                  <strong>Invite perspective</strong>
-                  <p>Ask a neutral question the customer can correct or reject.</p>
-                </article>
-                <article class="call-step">
-                  <span>4</span>
-                  <strong>Pause</strong>
-                  <p>Stop explaining and let the customer shape the conversation.</p>
-                </article>
               </div>
             </section>
 
@@ -2401,11 +2320,9 @@
         guidePersonaTitles: $("#guide-persona-titles"),
         guideProductFeatures: $("#guide-product-features"),
         guideQuestionGroups: $("#guide-question-groups"),
-        coldCallScript: $("#cold-call-script"),
-        coldCallWordCount: $("#cold-call-word-count"),
-        coldCallDuration: $("#cold-call-duration"),
-        coldCallStatus: $("#cold-call-status"),
-        coldCallDurationFill: $("#cold-call-duration-fill"),
+        coldCallOpener: $("#cold-call-opener"),
+        coldCallReason: $("#cold-call-reason"),
+        coldCallQuestion: $("#cold-call-question"),
         deliveryCues: $("#delivery-cues"),
         timerDisplay: $("#timer-display"),
         timerToggle: $("#timer-toggle")
@@ -2668,39 +2585,28 @@
         return String(value || "").trim().replace(/[.!?]+$/, "");
       }
 
-      function buildColdCallScript(coldCall, guide = data.guide) {
-        const parts = [
+      function buildColdCallSections(coldCall, guide = data.guide) {
+        const openerParts = [
           "Hi [first name], it’s [your name] from GitHub.",
           `${stripTrailingPunctuation(coldCall.existingUse)}.`
         ];
         if (coldCall.usePermission) {
-          parts.push(guide.microPermission);
+          openerParts.push(guide.microPermission);
         }
-        parts.push(
-          `${stripTrailingPunctuation(guide.uncertaintyPhrase)} ${stripTrailingPunctuation(coldCall.potentialGap)}, which can make it harder to ${stripTrailingPunctuation(coldCall.desiredOutcome)}.`,
-          /[?]$/.test(coldCall.perspectiveQuestion)
+        return {
+          opener: openerParts.filter(Boolean).join(" "),
+          reason: `${stripTrailingPunctuation(guide.uncertaintyPhrase)} ${stripTrailingPunctuation(coldCall.potentialGap)}, which can make it harder to ${stripTrailingPunctuation(coldCall.desiredOutcome)}.`,
+          question: /[?]$/.test(coldCall.perspectiveQuestion)
             ? coldCall.perspectiveQuestion
             : `${stripTrailingPunctuation(coldCall.perspectiveQuestion)}?`
-        );
-        return parts.filter(Boolean).join(" ");
+        };
       }
 
       function updateColdCallPreview(coldCall) {
-        const script = buildColdCallScript(coldCall);
-        const words = script.match(/\b[\w’'-]+\b/g)?.length || 0;
-        const seconds = Math.max(1, Math.round(words / 2.25));
-        const onTarget = seconds >= 20 && seconds <= 30;
-        elements.coldCallScript.textContent = script;
-        elements.coldCallWordCount.textContent = `${words} words`;
-        elements.coldCallDuration.textContent = `~${seconds} sec`;
-        elements.coldCallStatus.textContent = onTarget
-          ? "On target"
-          : seconds < 20
-            ? "Add relevance"
-            : "Trim the opening";
-        elements.coldCallStatus.classList.toggle("on-target", onTarget);
-        elements.coldCallStatus.classList.toggle("needs-work", !onTarget);
-        elements.coldCallDurationFill.style.width = `${Math.min(100, (seconds / 35) * 100)}%`;
+        const sections = buildColdCallSections(coldCall);
+        elements.coldCallOpener.textContent = sections.opener;
+        elements.coldCallReason.textContent = sections.reason;
+        elements.coldCallQuestion.textContent = sections.question;
       }
 
       function renderSellerGuide() {
@@ -3247,20 +3153,6 @@
         saveData("Default scenario data restored.");
       }
 
-      async function copyColdCall() {
-        const script = elements.coldCallScript.textContent.trim();
-        try {
-          if (navigator.clipboard) {
-            await navigator.clipboard.writeText(script);
-            showToast("Cold call script copied.");
-          } else {
-            window.prompt("Copy this cold call script:", script);
-          }
-        } catch (error) {
-          showToast("Could not copy the script. Select the text manually.");
-        }
-      }
-
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
         const remainder = seconds % 60;
@@ -3343,7 +3235,6 @@
       elements.shareButton.addEventListener("click", shareApp);
       elements.randomize.addEventListener("click", randomizeAll);
       elements.openGuideButton.addEventListener("click", () => setAppView("guide", true));
-      $("#copy-cold-call").addEventListener("click", copyColdCall);
       $("#product-reel").addEventListener("click", rerollProduct);
       $("#persona-reel").addEventListener("click", rerollPersona);
       elements.editToggle.addEventListener("click", () => {

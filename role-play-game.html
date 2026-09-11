@@ -1694,7 +1694,7 @@
                 <div>
                   <p class="card-kicker">20–30 second opener</p>
                   <h2 id="cold-call-script-title">Practice script</h2>
-                  <p>This is a hypothesis, not a diagnosis. Sound natural, keep the gap tentative, and give the customer room to disagree.</p>
+                  <p>This is a hypothesis, not a diagnosis. The final question should surface a specific blind spot and make the customer think, not steer them toward a rehearsed answer.</p>
                 </div>
               </div>
               <div class="script-preview">
@@ -1737,7 +1737,7 @@
                 <li class="ready">Recognize what the customer already uses</li>
                 <li class="ready">Use one specific, plausible gap</li>
                 <li class="ready">Stay neutral and easy to disagree with</li>
-                <li class="ready">End with a perspective question</li>
+                <li class="ready">End with a specific “How do you know?” question</li>
                 <li class="ready">Deliver slowly enough to sound conversational</li>
               </ul>
               <div class="delivery-cues" id="delivery-cues"></div>
@@ -1757,9 +1757,11 @@
             <details class="panel about">
               <summary>Cold-call approach and sources</summary>
               <div class="about-content">
-                <p>This builder synthesizes public guidance from Josh Braun and Benjamin Dennehy for practice. The default favors Braun’s neutral “poke the bear” approach because these calls are mainly to existing GitHub customers. Dennehy’s emphasis on brevity, confidence, and practice informs the delivery coaching. The wording in this app is original and configurable.</p>
+                <p>This builder synthesizes public guidance from Josh Braun and Benjamin Dennehy for practice. The default questions follow Braun’s “poke the bear” principle: surface a specific risk the customer may not have considered, avoid a leading answer, and let them examine how they know the current approach is working. Dennehy’s emphasis on brevity, confidence, and practice informs the delivery coaching. The wording in this app is original and configurable.</p>
                 <ul class="source-list">
                   <li><a href="https://joshbraun.com/" target="_blank" rel="noreferrer">Josh Braun</a></li>
+                  <li><a href="https://joshbraun.com/how-to-poke-the-bear/" target="_blank" rel="noreferrer">Josh Braun: how to poke the bear</a></li>
+                  <li><a href="https://joshbraun.com/poke-the-bear-cold-call-script/" target="_blank" rel="noreferrer">Josh Braun: poke-the-bear call example</a></li>
                   <li><a href="https://www.youtube.com/watch?v=Nz9XRvIB7TU" target="_blank" rel="noreferrer">Josh Braun: lowering resistance</a></li>
                   <li><a href="https://www.youtube.com/watch?v=EKr0bYFsNrU" target="_blank" rel="noreferrer">Josh Braun: first 30 seconds</a></li>
                   <li><a href="https://joshbraun.com/do-your-cold-calls-feel-like-an-interrogation/" target="_blank" rel="noreferrer">Josh Braun: conversational questions</a></li>
@@ -1898,8 +1900,12 @@
           coldCall: {
             existingUse: "I know your team already uses GitHub Copilot in parts of the software development workflow",
             potentialGap: "adoption and measurable value can still vary between teams",
-            desiredOutcome: "scale AI-assisted development responsibly",
-            perspectiveQuestion: "How does that compare with what you are seeing?"
+            desiredOutcome: "scale AI-assisted development responsibly"
+          },
+          pokeQuestions: {
+            "Practitioner / IC": "When developers use Copilot, how do you know it is removing work rather than shifting more work into review and rework?",
+            "Mid-management / Team Lead": "How do you know the teams using Copilot most are improving cycle time and quality, rather than simply producing more code?",
+            "Higher Management / C-suite": "How do you know your Copilot investment is changing business outcomes, rather than only increasing individual activity?"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences how AI-assisted coding, review, and agentic workflows are adopted, governed, measured, or used in day-to-day engineering.",
@@ -1918,8 +1924,12 @@
           coldCall: {
             existingUse: "I know your team already uses GitHub in its application security workflow",
             potentialGap: "security findings can still compete with delivery work and slow remediation",
-            desiredOutcome: "reduce software risk without creating a developer bottleneck",
-            perspectiveQuestion: "How are you handling that balance today?"
+            desiredOutcome: "reduce software risk without creating a developer bottleneck"
+          },
+          pokeQuestions: {
+            "Practitioner / IC": "How do you know the finding at the top of a developer’s queue is the one most likely to reduce real risk?",
+            "Mid-management / Team Lead": "How do you know the vulnerabilities teams defer today are not becoming tomorrow’s accepted risk?",
+            "Higher Management / C-suite": "How do you know your application security investment is reducing exploitable risk, rather than only increasing the number of findings reported?"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "security-executive"],
           why: "This role shapes how code risk is identified, prioritized, governed, or fixed within the software delivery lifecycle.",
@@ -1938,8 +1948,12 @@
           coldCall: {
             existingUse: "I know your team already uses GitHub to help identify exposed credentials",
             potentialGap: "ownership and response can become inconsistent after a secret is detected",
-            desiredOutcome: "prevent exposure and shorten remediation time",
-            perspectiveQuestion: "How does that process work across your teams today?"
+            desiredOutcome: "prevent exposure and shorten remediation time"
+          },
+          pokeQuestions: {
+            "Practitioner / IC": "When a secret is removed from a repository, how do you know the credential is no longer usable anywhere else?",
+            "Mid-management / Team Lead": "How do you know an exposed secret reaches someone who can revoke it before it is used outside your environment?",
+            "Higher Management / C-suite": "How do you know credential exposure is shrinking across the organization, rather than response teams simply getting faster at cleaning it up?"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "security-risk-leader", "security-executive"],
           why: "This role helps prevent, detect, govern, or respond to credential exposure across the software lifecycle.",
@@ -1958,8 +1972,12 @@
           coldCall: {
             existingUse: "I know your teams already use GitHub as part of the developer platform",
             potentialGap: "governance and developer workflows can still vary across teams or business units",
-            desiredOutcome: "standardize the platform without adding developer friction",
-            perspectiveQuestion: "How consistent does that experience feel today?"
+            desiredOutcome: "standardize the platform without adding developer friction"
+          },
+          pokeQuestions: {
+            "Practitioner / IC": "If teams create workarounds around platform policy, how do you know which ones are solving friction and which ones are creating risk?",
+            "Mid-management / Team Lead": "How do you know the standards defined centrally are actually experienced consistently by every engineering team?",
+            "Higher Management / C-suite": "How do you know platform consolidation is reducing total operating complexity, rather than moving it into local exceptions?"
           },
           personas: ["platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences platform strategy, governance, security, administration, adoption, or investment.",
@@ -1978,8 +1996,12 @@
           coldCall: {
             existingUse: "I know your developers already use GitHub pull request workflows",
             potentialGap: "quality findings can still arrive too late or lack clear ownership",
-            desiredOutcome: "improve code health before changes are merged",
-            perspectiveQuestion: "How are teams handling that today?"
+            desiredOutcome: "improve code health before changes are merged"
+          },
+          pokeQuestions: {
+            "Practitioner / IC": "How do you know a pull request that passes review today is not adding maintainability work the team will pay for six months from now?",
+            "Mid-management / Team Lead": "How do you know faster delivery is not being funded by quality debt that will slow the team next quarter?",
+            "Higher Management / C-suite": "How do you know engineering speed is sustainable when the cost of poor code quality rarely appears in delivery metrics?"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive"],
           why: "This role creates, reviews, governs, or measures code quality and the long-term health of the software estate.",
@@ -1990,6 +2012,20 @@
           ]
         }
       ];
+
+      const LEGACY_PERSPECTIVE_QUESTIONS = new Set([
+        "How does that compare with what you are seeing?",
+        "How are you handling that balance today?",
+        "How does that process work across your teams today?",
+        "How consistent does that experience feel today?",
+        "How are teams handling that today?"
+      ]);
+
+      function defaultPokeQuestion(product, persona) {
+        const seeded = products.find((item) => item.id === product?.id);
+        return seeded?.pokeQuestions?.[persona?.seniority] ||
+          "How do you know the current approach is producing the outcome you expect across every team?";
+      }
 
       function makeDefaultGuide() {
         return {
@@ -2066,6 +2102,7 @@
 
         products.forEach((product) => {
           product.personas.forEach((personaId) => {
+            const persona = personas.find((item) => item.id === personaId);
             mappings.push({
               id: `${product.id}__${personaId}`,
               productId: product.id,
@@ -2074,6 +2111,7 @@
               prompts: [...product.prompts],
               coldCall: {
                 ...product.coldCall,
+                perspectiveQuestion: defaultPokeQuestion(product, persona),
                 usePermission: false
               }
             });
@@ -2091,13 +2129,13 @@
         return typeof value === "string" && value.trim().length > 0;
       }
 
-      function makeDefaultColdCall(product) {
+      function makeDefaultColdCall(product, persona) {
         const seeded = products.find((item) => item.id === product?.id)?.coldCall;
         return {
           existingUse: seeded?.existingUse || `I know your team already uses ${product?.name || "GitHub"}`,
           potentialGap: seeded?.potentialGap || "some parts of the workflow may still be harder to scale consistently",
           desiredOutcome: seeded?.desiredOutcome || "improve the outcome across more teams",
-          perspectiveQuestion: seeded?.perspectiveQuestion || "How does that compare with what you are seeing?",
+          perspectiveQuestion: defaultPokeQuestion(product, persona),
           usePermission: false
         };
       }
@@ -2212,9 +2250,12 @@
           normalized.guide = defaultGuide;
         }
         normalized.mappings.forEach((mapping) => {
+          const product = normalized.products.find((item) => item.id === mapping.productId);
+          const persona = normalized.personas.find((item) => item.id === mapping.personaId);
           if (!validColdCall(mapping.coldCall)) {
-            const product = normalized.products.find((item) => item.id === mapping.productId);
-            mapping.coldCall = makeDefaultColdCall(product);
+            mapping.coldCall = makeDefaultColdCall(product, persona);
+          } else if (LEGACY_PERSPECTIVE_QUESTIONS.has(mapping.coldCall.perspectiveQuestion)) {
+            mapping.coldCall.perspectiveQuestion = defaultPokeQuestion(product, persona);
           }
         });
         return normalized;
@@ -2614,7 +2655,7 @@
         const persona = personaById(selection.personaId);
         const mapping = mappingFor(selection.productId, selection.personaId);
         const guide = data.guide || makeDefaultGuide();
-        const coldCall = mapping?.coldCall || makeDefaultColdCall(product);
+        const coldCall = mapping?.coldCall || makeDefaultColdCall(product, persona);
 
         elements.guideRoundBadge.textContent = `Round ${String(round).padStart(2, "0")}`;
         elements.guideProduct.textContent = product?.name || "Add a product";
@@ -2942,7 +2983,9 @@
             showToast("Add a product and persona before creating a mapping.");
             return;
           }
-          const coldCall = item?.coldCall || makeDefaultColdCall(productById(item?.productId || data.products[0].id));
+          const product = productById(item?.productId || data.products[0].id);
+          const persona = personaById(item?.personaId || data.personas[0].id);
+          const coldCall = item?.coldCall || makeDefaultColdCall(product, persona);
           elements.formFields.append(
             selectField("productId", "Product", data.products, item?.productId),
             selectField("personaId", "Persona", data.personas, item?.personaId),
@@ -2960,8 +3003,9 @@
               multiline: true,
               help: "Use customer-outcome language rather than a feature description."
             }),
-            textField("coldCallQuestion", "Cold call: perspective question", coldCall.perspectiveQuestion, {
-              help: "End with a neutral question the customer can correct or reject."
+            textField("coldCallQuestion", "Cold call: poke the bear question", coldCall.perspectiveQuestion, {
+              multiline: true,
+              help: "Surface one specific blind spot. Prefer a neutral “How do you know?” question that makes the customer examine the current approach."
             })
           );
         }

@@ -8,6 +8,10 @@ Use this repository as the central index for team documentation, recurring opera
 
 Use this sales hub to prepare customer conversations, sharpen competitive positioning, and build a clear GitHub product narrative.
 
+### [GitHub Scenario Lab](role-play-game.html)
+
+Open the sales role-play trainer at [jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html](https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html). It can be installed as an app, receives published updates automatically, and includes offline fallback. Use the editor to tailor cards and discovery prompts locally, then export/import JSON to move a draft between laptops.
+
 ## Team Operations & Weekly Cadence
 
 ### [Weekly team meeting presentation (PowerPoint)](https://onedrive.cloud.microsoft/:p:/a@dz2y5vs2/r/_layouts/15/Doc.aspx?sourcedoc=%7B76EEE691-DE61-4FD2-A535-7AAEF3334CFF%7D&file=EMEA%20CORP%20EBR.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1&ocdi=noRedirect)

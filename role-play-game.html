@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Scenario Lab">
+  <title>GitHub Scenario Lab</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/scenario-lab-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/scenario-lab-192.png">
+  <style>
+    :root {
+      --bg: #080c12;
+      --surface: #0d1117;
+      --surface-raised: #161b22;
+      --surface-soft: #1c2128;
+      --border: #30363d;
+      --border-strong: #484f58;
+      --text: #f0f6fc;
+      --muted: #8b949e;
+      --blue: #58a6ff;
+      --green: #3fb950;
+      --purple: #bc8cff;
+      --orange: #d29922;
+      --danger: #f85149;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(88, 166, 255, 0.12), transparent 28rem),
+        radial-gradient(circle at 90% 18%, rgba(188, 140, 255, 0.1), transparent 25rem),
+        linear-gradient(180deg, #080c12 0%, #0d1117 48%, #080c12 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    a:hover {
+      color: #79c0ff;
+    }
+
+    :focus-visible {
+      outline: 3px solid #79c0ff;
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      transform: translateY(-150%);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #0d1117;
+      background: #f0f6fc;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .app-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding-bottom: 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: linear-gradient(145deg, #21262d, #0d1117);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+      flex: 0 0 auto;
+    }
+
+    .brand-mark svg {
+      width: 25px;
+      height: 25px;
+      fill: currentColor;
+    }
+
+    .brand-name {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-subtitle {
+      margin: 1px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border: 1px solid var(--border-strong);
+      border-radius: 9px;
+      color: var(--text);
+      background: var(--surface-raised);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      font-weight: 650;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    .button:hover {
+      border-color: #6e7681;
+      background: #21262d;
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .button-primary {
+      border-color: rgba(46, 160, 67, 0.55);
+      color: #fff;
+      background: linear-gradient(180deg, #2ea043, #238636);
+      box-shadow: 0 10px 30px rgba(35, 134, 54, 0.22), inset 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .button-primary:hover {
+      border-color: #3fb950;
+      background: linear-gradient(180deg, #3aab4e, #2b9140);
+    }
+
+    .button-danger {
+      color: #ffb8b4;
+    }
+
+    .button-small {
+      min-height: 34px;
+      padding: 6px 10px;
+      font-size: 0.82rem;
+    }
+
+    .mode-toggle[aria-pressed="true"] {
+      border-color: rgba(188, 140, 255, 0.7);
+      color: #d8b9ff;
+      background: rgba(188, 140, 255, 0.12);
+    }
+
+    .button[hidden] {
+      display: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 28px;
+      padding: 48px 0 30px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 12px;
+      color: #79c0ff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 18px 0 0;
+      color: #b1bac4;
+      font-size: clamp(1rem, 1.7vw, 1.16rem);
+    }
+
+    .round-badge {
+      align-self: center;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(22, 27, 34, 0.78);
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .machine {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--border-strong);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 34%),
+        var(--surface);
+      box-shadow: var(--shadow), inset 0 1px rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .machine::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--green));
+      content: "";
+    }
+
+    .machine-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .machine-title {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .machine-hint {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .status-lights {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .status-light {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      box-shadow: 0 0 0 3px rgba(72, 79, 88, 0.16);
+    }
+
+    .status-light.active {
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.16), 0 0 12px rgba(63, 185, 80, 0.5);
+    }
+
+    .reels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .reel {
+      position: relative;
+      min-height: 245px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      color: inherit;
+      background: #090d13;
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: inset 0 14px 30px rgba(0, 0, 0, 0.42), 0 8px 20px rgba(0, 0, 0, 0.16);
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .reel:hover {
+      border-color: #6e7681;
+      transform: translateY(-2px);
+    }
+
+    .reel::before,
+    .reel::after {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      left: 0;
+      height: 42px;
+      pointer-events: none;
+      content: "";
+    }
+
+    .reel::before {
+      top: 0;
+      background: linear-gradient(#090d13, transparent);
+    }
+
+    .reel::after {
+      bottom: 0;
+      background: linear-gradient(transparent, #090d13);
+    }
+
+    .reel-label {
+      position: absolute;
+      z-index: 3;
+      top: 14px;
+      left: 14px;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 999px;
+      color: #b1bac4;
+      background: rgba(13, 17, 23, 0.78);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .reel-content {
+      display: flex;
+      min-height: 245px;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px 18px 22px;
+      transition: filter 180ms ease, transform 180ms ease;
+    }
+
+    .reel[data-dimension="product"] .reel-content {
+      background: radial-gradient(circle at 80% 20%, rgba(88, 166, 255, 0.17), transparent 50%);
+    }
+
+    .reel[data-dimension="persona"] .reel-content {
+      background: radial-gradient(circle at 80% 20%, rgba(188, 140, 255, 0.17), transparent 50%);
+    }
+
+    .reel-code {
+      margin-bottom: auto;
+      color: var(--muted);
+      font: 600 0.72rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .reel-value {
+      display: block;
+      margin-top: 24px;
+      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+      font-weight: 800;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+    }
+
+    .persona-title-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .persona-title-row .reel-value {
+      margin-top: 0;
+    }
+
+    .level-badge {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: flex-end;
+      gap: 7px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .level-badge[data-level="1"] {
+      border-color: rgba(88, 166, 255, 0.48);
+      color: #79c0ff;
+      background: rgba(88, 166, 255, 0.12);
+    }
+
+    .level-badge[data-level="2"] {
+      border-color: rgba(210, 153, 34, 0.55);
+      color: #e3b341;
+      background: rgba(210, 153, 34, 0.13);
+    }
+
+    .level-badge[data-level="3"] {
+      border-color: rgba(188, 140, 255, 0.55);
+      color: #d2a8ff;
+      background: rgba(188, 140, 255, 0.13);
+    }
+
+    .level-bars {
+      display: inline-flex;
+      height: 18px;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .level-bar {
+      width: 4px;
+      border-radius: 2px 2px 0 0;
+      background: #484f58;
+    }
+
+    .level-bar:nth-child(1) { height: 7px; }
+    .level-bar:nth-child(2) { height: 12px; }
+    .level-bar:nth-child(3) { height: 17px; }
+    .level-badge[data-level="1"] .level-bar:nth-child(1),
+    .level-badge[data-level="2"] .level-bar:nth-child(-n+2),
+    .level-badge[data-level="3"] .level-bar {
+      background: currentColor;
+      box-shadow: 0 0 7px currentColor;
+    }
+
+    .level-label {
+      font: 750 0.68rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .persona-examples {
+      display: block;
+      margin-top: 10px;
+      color: #b1bac4;
+      font-size: 0.76rem;
+      line-height: 1.4;
+    }
+
+    .reel-meta {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .reel.spinning .reel-content {
+      animation: reel-spin 120ms linear infinite;
+      filter: blur(2px);
+    }
+
+    @keyframes reel-spin {
+      0% { transform: translateY(-8px); opacity: 0.62; }
+      50% { transform: translateY(9px); opacity: 0.9; }
+      100% { transform: translateY(-8px); opacity: 0.62; }
+    }
+
+    .machine-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 20px;
+    }
+
+    .randomize-button {
+      min-width: min(100%, 280px);
+      min-height: 52px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+
+    .shortcut {
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    kbd {
+      padding: 2px 5px;
+      border: 1px solid var(--border-strong);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      color: #b1bac4;
+      background: #161b22;
+      font: 600 0.68rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .scenario {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(22, 27, 34, 0.78);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.17);
+    }
+
+    .brief {
+      padding: 26px;
+    }
+
+    .brief-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brief-heading h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .brief-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .scenario-id {
+      padding: 5px 8px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--muted);
+      background: #0d1117;
+      font: 600 0.7rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .brief-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      padding-top: 22px;
+    }
+
+    .brief-block h3 {
+      margin: 0 0 8px;
+      color: #b1bac4;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .brief-block p {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .prompts-block {
+      grid-column: 1 / -1;
+    }
+
+    .prompt-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: prompt;
+    }
+
+    .prompt-list li {
+      position: relative;
+      min-height: 42px;
+      padding: 10px 12px 10px 43px;
+      border: 1px solid rgba(48, 54, 61, 0.8);
+      border-radius: 9px;
+      background: rgba(13, 17, 23, 0.52);
+      counter-increment: prompt;
+    }
+
+    .prompt-list li::before {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      display: grid;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      border-radius: 6px;
+      color: #79c0ff;
+      background: rgba(88, 166, 255, 0.12);
+      content: counter(prompt);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 6px 9px;
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 999px;
+      color: #b9d8ff;
+      background: rgba(88, 166, 255, 0.08);
+      font-size: 0.78rem;
+      font-weight: 650;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timer-card,
+    .objection-card {
+      padding: 22px;
+    }
+
+    .card-kicker {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .timer-display {
+      margin: 0;
+      font: 750 clamp(1.8rem, 5vw, 2.65rem) ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: -0.05em;
+    }
+
+    .timer-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .objection-card {
+      position: relative;
+      min-height: 150px;
+      color: var(--muted);
+      background:
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.012) 0 8px, transparent 8px 16px),
+        rgba(22, 27, 34, 0.5);
+    }
+
+    .coming-next {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #b1bac4;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .about {
+      margin-top: 22px;
+      overflow: hidden;
+    }
+
+    .about summary {
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .about summary:hover {
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .about-content {
+      padding: 0 22px 22px;
+      color: #b1bac4;
+      font-size: 0.88rem;
+    }
+
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+      margin: 16px 0 0;
+      padding-left: 18px;
+    }
+
+    .editor {
+      margin-top: 22px;
+      padding: 24px;
+    }
+
+    .editor[hidden] {
+      display: none;
+    }
+
+    .editor-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .editor-header h2 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .editor-header p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .editor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .editor-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #0d1117;
+      overflow-x: auto;
+    }
+
+    .tab {
+      flex: 1 0 auto;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 7px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--text);
+      background: #21262d;
+    }
+
+    .editor-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 18px 0 12px;
+    }
+
+    .editor-count {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .editor-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .editor-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: rgba(13, 17, 23, 0.62);
+    }
+
+    .editor-item h3 {
+      margin: 0;
+      font-size: 0.91rem;
+    }
+
+    .editor-item p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .empty-state {
+      padding: 30px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 10px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    dialog {
+      width: min(650px, calc(100% - 28px));
+      max-height: calc(100vh - 40px);
+      padding: 0;
+      border: 1px solid var(--border-strong);
+      border-radius: 15px;
+      color: var(--text);
+      background: var(--surface-raised);
+      box-shadow: var(--shadow);
+      overflow: auto;
+    }
+
+    dialog::backdrop {
+      background: rgba(1, 4, 9, 0.76);
+      backdrop-filter: blur(4px);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 19px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dialog-header h2 {
+      margin: 0;
+      font-size: 1.16rem;
+    }
+
+    .icon-button {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.15rem;
+    }
+
+    .form-body {
+      display: grid;
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label,
+    .field legend {
+      color: #b1bac4;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 10px 11px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--text);
+      background: #0d1117;
+    }
+
+    .field textarea {
+      min-height: 86px;
+      resize: vertical;
+    }
+
+    .field-help {
+      margin: -2px 0 0;
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    fieldset.field {
+      margin: 0;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      max-height: 220px;
+      overflow: auto;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .checkbox-label input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    .prompt-fields {
+      display: grid;
+      gap: 8px;
+    }
+
+    .prompt-field {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 7px;
+    }
+
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+      padding: 16px 22px;
+      border-top: 1px solid var(--border);
+      background: rgba(13, 17, 23, 0.48);
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 1000;
+      right: 20px;
+      bottom: 20px;
+      max-width: min(370px, calc(100% - 40px));
+      padding: 12px 15px;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      color: var(--text);
+      background: #21262d;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .scenario {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .round-badge {
+        justify-self: start;
+      }
+
+      .reels {
+        grid-template-columns: 1fr;
+      }
+
+      .reel,
+      .reel-content {
+        min-height: 185px;
+      }
+
+      .source-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app-shell {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand-subtitle,
+      .shortcut {
+        display: none;
+      }
+
+      .topbar-actions {
+        align-items: stretch;
+      }
+
+      .mode-toggle {
+        min-width: 42px;
+        padding: 9px;
+        font-size: 0;
+      }
+
+      .mode-toggle::after {
+        content: "Edit";
+        font-size: 0.8rem;
+      }
+
+      .machine {
+        padding: 16px;
+      }
+
+      .brief-grid,
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brief-block,
+      .prompts-block {
+        grid-column: 1;
+      }
+
+      .editor-header,
+      .editor-toolbar,
+      .editor-item {
+        align-items: stretch;
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .editor-actions,
+      .item-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#scenario-machine">Skip to scenario machine</a>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="GitHub Scenario Lab">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img">
+            <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.18a10.96 10.96 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.78 1.06.78 2.14v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/>
+          </svg>
+        </span>
+        <div>
+          <p class="brand-name">Scenario Lab</p>
+          <p class="brand-subtitle">GitHub sales role-play trainer</p>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="shortcut">Randomize with <kbd>R</kbd></span>
+        <button class="button" id="install-button" type="button" hidden>Install app</button>
+        <button class="button" id="share-button" type="button">Share app</button>
+        <button class="button mode-toggle" id="edit-mode-toggle" type="button" aria-controls="editor-panel">
+          Edit scenarios
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Practice with intent</p>
+          <h1 id="page-title">Draw a scenario.<br>Sharpen the conversation.</h1>
+          <p class="hero-copy">Match a GitHub product to a relevant customer persona. Use the brief to run a focused discovery role-play.</p>
+        </div>
+        <span class="round-badge" id="round-badge">Round 01</span>
+      </section>
+
+      <section class="machine" id="scenario-machine" aria-labelledby="machine-title">
+        <div class="machine-header">
+          <div>
+            <h2 class="machine-title" id="machine-title">Scenario machine</h2>
+            <p class="machine-hint">Select a card to reroll only that dimension.</p>
+          </div>
+          <div class="status-lights" aria-label="Machine ready">
+            <span class="status-light active"></span>
+            <span class="status-light active"></span>
+            <span class="status-light active"></span>
+          </div>
+        </div>
+
+        <div class="reels" aria-live="polite">
+          <button class="reel" id="product-reel" data-dimension="product" type="button" aria-label="Reroll product">
+            <span class="reel-label">Product</span>
+            <span class="reel-content">
+              <span class="reel-code">PRODUCT_01</span>
+              <span class="reel-value" id="product-value"></span>
+              <span class="reel-meta">Click to reroll product</span>
+            </span>
+          </button>
+
+          <button class="reel" id="persona-reel" data-dimension="persona" type="button" aria-label="Reroll customer persona">
+            <span class="reel-label">Customer persona</span>
+            <span class="reel-content">
+              <span class="reel-code">PERSONA_01</span>
+              <span class="persona-title-row">
+                <span class="reel-value" id="persona-value"></span>
+                <span class="level-badge" id="persona-level" data-level="1">
+                  <span class="level-bars" aria-hidden="true">
+                    <span class="level-bar"></span>
+                    <span class="level-bar"></span>
+                    <span class="level-bar"></span>
+                  </span>
+                  <span class="level-label" id="persona-level-label">Level 1</span>
+                </span>
+              </span>
+              <span class="persona-examples" id="persona-examples"></span>
+              <span class="reel-meta" id="persona-meta">Compatible personas only</span>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="machine-controls">
+          <button class="button button-primary randomize-button" id="randomize-button" type="button">
+            Randomize scenario
+          </button>
+        </div>
+      </section>
+
+      <section class="scenario" aria-label="Selected role-play scenario">
+        <article class="panel brief">
+          <div class="brief-heading">
+            <div>
+              <h2 id="scenario-title">Scenario brief</h2>
+              <p id="scenario-subtitle"></p>
+            </div>
+            <span class="scenario-id" id="scenario-id">SCN-001</span>
+          </div>
+
+          <div class="brief-grid">
+            <section class="brief-block">
+              <h3>Seller goal</h3>
+              <p id="seller-goal"></p>
+            </section>
+            <section class="brief-block">
+              <h3>Customer role</h3>
+              <p id="customer-role"></p>
+              <p id="customer-role-meta" style="margin-top:6px;color:var(--muted);font-size:0.8rem;"></p>
+              <p id="customer-role-titles" style="margin-top:6px;color:var(--muted);font-size:0.8rem;"></p>
+            </section>
+            <section class="brief-block">
+              <h3>Why this persona cares</h3>
+              <p id="persona-care"></p>
+            </section>
+            <section class="brief-block prompts-block">
+              <h3>Product scope</h3>
+              <ul class="feature-list" id="product-features"></ul>
+            </section>
+            <section class="brief-block prompts-block">
+              <h3>Discovery prompts</h3>
+              <ol class="prompt-list" id="prompt-list"></ol>
+            </section>
+          </div>
+        </article>
+
+        <aside class="side-stack" aria-label="Role-play tools">
+          <section class="panel timer-card">
+            <p class="card-kicker">Practice timer</p>
+            <div class="timer-row">
+              <p class="timer-display" id="timer-display" aria-live="off">05:00</p>
+              <div class="timer-actions">
+                <button class="button button-small" id="timer-toggle" type="button">Start</button>
+                <button class="button button-small" id="timer-reset" type="button">Reset</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel objection-card" aria-labelledby="objection-title" aria-disabled="true">
+            <p class="card-kicker">Objection slot</p>
+            <h2 id="objection-title" style="margin:0;font-size:1.05rem;color:#b1bac4;">Reserved for a future round</h2>
+            <span class="coming-next">Coming next</span>
+          </section>
+        </aside>
+      </section>
+
+      <details class="panel about">
+        <summary>Sources and about this mapping</summary>
+        <div class="about-content">
+          <p>The starter mappings are role-play guidance based on documented GitHub product capabilities and the responsibilities of common customer roles. Each persona has one primary team and hierarchy level to keep scenarios easy to navigate, even when the role works across functions. These mappings are not pricing, licensing, or roadmap claims. Edit mode lets your team tailor every scenario locally.</p>
+          <ul class="source-list">
+            <li><a href="https://github.com/features/copilot" target="_blank" rel="noreferrer">GitHub Copilot</a></li>
+            <li><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/code-review" target="_blank" rel="noreferrer">Copilot code review</a></li>
+            <li><a href="https://docs.github.com/en/enterprise-cloud@latest/get-started/learning-about-github/about-github-advanced-security" target="_blank" rel="noreferrer">GitHub Advanced Security</a></li>
+            <li><a href="https://docs.github.com/en/enterprise-cloud@latest/code-security/secret-scanning/introduction/about-secret-scanning" target="_blank" rel="noreferrer">Secret scanning</a></li>
+            <li><a href="https://github.com/enterprise" target="_blank" rel="noreferrer">GitHub Enterprise</a></li>
+            <li><a href="https://docs.github.com/en/enterprise-cloud@latest/code-security/how-tos/maintain-quality-code/fix-findings-on-a-pr" target="_blank" rel="noreferrer">GitHub Code Quality</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <section class="panel editor" id="editor-panel" aria-labelledby="editor-title">
+        <div class="editor-header">
+          <div>
+            <h2 id="editor-title">Scenario editor</h2>
+            <p>Changes save on this device. Export and import JSON to move a draft between laptops; published app updates load automatically.</p>
+          </div>
+          <div class="editor-actions">
+            <button class="button button-small" id="export-button" type="button">Export JSON</button>
+            <button class="button button-small" id="import-button" type="button">Import JSON</button>
+            <input id="import-file" type="file" accept="application/json,.json" hidden>
+            <button class="button button-small button-danger" id="reset-defaults" type="button">Reset defaults</button>
+          </div>
+        </div>
+
+        <div class="editor-tabs" role="tablist" aria-label="Editable scenario data">
+          <button class="tab" id="tab-products" type="button" role="tab" aria-selected="true" aria-controls="editor-list" data-tab="products">Products</button>
+          <button class="tab" id="tab-personas" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="personas">Personas</button>
+          <button class="tab" id="tab-mappings" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="mappings">Scenarios and prompts</button>
+        </div>
+
+        <div class="editor-toolbar">
+          <span class="editor-count" id="editor-count"></span>
+          <button class="button button-small" id="add-item" type="button">Add product</button>
+        </div>
+        <div class="editor-list" id="editor-list" role="tabpanel" aria-labelledby="tab-products"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="item-dialog" aria-labelledby="dialog-title">
+    <form id="item-form" method="dialog">
+      <div class="dialog-header">
+        <h2 id="dialog-title">Edit item</h2>
+        <button class="icon-button" id="dialog-close" type="button" aria-label="Close editor">x</button>
+      </div>
+      <div class="form-body" id="form-fields"></div>
+      <div class="dialog-footer">
+        <button class="button" id="dialog-cancel" type="button">Cancel</button>
+        <button class="button button-primary" type="submit">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "github-scenario-lab-v6";
+      const TIMER_SECONDS = 300;
+      const SHARED_APP_URL = "https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html";
+
+      const TEAM_OPTIONS = [
+        "Software Engineering & Product",
+        "Platform, DevOps & Enablement",
+        "Security & Risk",
+        "Enterprise IT & GitHub Administration"
+      ];
+
+      const LEVEL_OPTIONS = [
+        "Practitioner / IC",
+        "Mid-management / Team Lead",
+        "Higher Management / C-suite"
+      ];
+
+      const personaSeeds = [
+        [
+          "developer-enablement-practitioner",
+          "Developer & Enablement Practitioner",
+          "Wants useful assistance, fast feedback, clear guidance, and less friction while creating or learning software.",
+          "Software Engineering & Product",
+          "Practitioner / IC",
+          ["Software Developer", "Educator"]
+        ],
+        [
+          "platform-operations-practitioner",
+          "Platform Operations & Administration Practitioner",
+          "Builds and operates consistent developer workflows while balancing reliability, governance, support effort, and platform cost.",
+          "Platform, DevOps & Enablement",
+          "Practitioner / IC",
+          ["Platform Engineer", "DevOps Engineer", "Release Engineer", "GitHub Enterprise Administrator"]
+        ],
+        [
+          "security-practitioner",
+          "Security Practitioner",
+          "Finds, prevents, investigates, and helps remediate software risk without becoming a delivery bottleneck.",
+          "Security & Risk",
+          "Practitioner / IC",
+          ["Application Security Engineer", "DevSecOps Engineer", "Security Operations / Incident Response", "On-call Engineer"]
+        ],
+        [
+          "engineering-product-leader",
+          "Engineering & Product Leader",
+          "Balances product priorities, delivery predictability, engineering quality, team productivity, and sustainable execution.",
+          "Software Engineering & Product",
+          "Mid-management / Team Lead",
+          ["Technical Lead", "Engineering Manager", "Product Manager", "Program Manager"]
+        ],
+        [
+          "platform-enablement-leader",
+          "Platform & Enablement Leader",
+          "Reduces developer friction, standardizes engineering paths, improves onboarding, and drives platform adoption.",
+          "Platform, DevOps & Enablement",
+          "Mid-management / Team Lead",
+          ["Developer Experience / Platform Lead", "Onboarding or Enablement Lead"]
+        ],
+        [
+          "security-risk-leader",
+          "Security & Risk Leader",
+          "Improves security posture, policy alignment, measurable risk reduction, and coordination between security and engineering.",
+          "Security & Risk",
+          "Mid-management / Team Lead",
+          ["Security Manager", "Security or Legal Stakeholder"]
+        ],
+        [
+          "engineering-technology-executive",
+          "Engineering & Technology Executive",
+          "Owns engineering outcomes, technology strategy, platform direction, delivery speed, and investment decisions.",
+          "Software Engineering & Product",
+          "Higher Management / C-suite",
+          ["VP Engineering", "CTO", "Head of Platform / Developer Experience"]
+        ],
+        [
+          "security-executive",
+          "Security Executive",
+          "Owns enterprise security strategy, governance, auditability, and executive software risk decisions.",
+          "Security & Risk",
+          "Higher Management / C-suite",
+          ["CISO / Security and Compliance Leader"]
+        ],
+        [
+          "it-executive",
+          "IT Executive",
+          "Connects enterprise technology investment to business outcomes, governance, operating cost, and organizational scale.",
+          "Enterprise IT & GitHub Administration",
+          "Higher Management / C-suite",
+          ["CIO"]
+        ]
+      ];
+
+      const products = [
+        {
+          id: "copilot",
+          name: "GitHub Copilot",
+          summary: "AI assistance across the software development lifecycle",
+          goal: "Understand where AI assistance can improve coding, review, and delegated development work while meeting the customer's governance and adoption needs.",
+          features: ["Copilot Code Completion", "Copilot Code Review", "Agentic use"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
+          why: "This role influences how AI-assisted coding, review, and agentic workflows are adopted, governed, measured, or used in day-to-day engineering.",
+          prompts: [
+            "Where do developers lose the most time across coding, review, and routine implementation work?",
+            "Which tasks would you keep human-led, and which would you delegate to an agent?",
+            "How would you measure productivity, quality, and responsible adoption across the organization?"
+          ]
+        },
+        {
+          id: "code-security",
+          name: "GitHub Code Security",
+          summary: "Application security in the developer workflow",
+          goal: "Connect application security priorities to developer workflows, remediation capacity, and measurable risk reduction.",
+          features: ["Code scanning", "CodeQL analysis", "Copilot Autofix"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "security-executive"],
+          why: "This role shapes how code risk is identified, prioritized, governed, or fixed within the software delivery lifecycle.",
+          prompts: [
+            "How are application security findings discovered, prioritized, and routed to development teams today?",
+            "Where does remediation slow down or compete with planned engineering work?",
+            "What security posture or governance outcome matters most over the next two quarters?"
+          ]
+        },
+        {
+          id: "secret-protection",
+          name: "GitHub Secret Protection",
+          summary: "Credential exposure prevention and response",
+          goal: "Explore how the customer prevents exposed credentials and coordinates fast remediation when exposure occurs.",
+          features: ["Secret scanning", "Push protection", "Security campaigns"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "security-risk-leader", "security-executive"],
+          why: "This role helps prevent, detect, govern, or respond to credential exposure across the software lifecycle.",
+          prompts: [
+            "How do you learn that a credential has been committed, and who owns the response?",
+            "What is the operational cost of validating, revoking, and replacing exposed secrets?",
+            "Where could earlier feedback reduce both developer disruption and security response time?"
+          ]
+        },
+        {
+          id: "github-enterprise",
+          name: "GitHub Enterprise",
+          summary: "Enterprise developer platform",
+          goal: "Clarify the strategic, governance, security, and operating outcomes the customer expects from its developer platform.",
+          features: ["Enterprise governance", "Identity and access", "Platform administration"],
+          personas: ["platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
+          why: "This role influences platform strategy, governance, security, administration, adoption, or investment.",
+          prompts: [
+            "What business or engineering outcomes are driving your developer platform strategy?",
+            "Where do fragmented tools or policies create cost, risk, or developer friction?",
+            "Which decision criteria will determine whether a platform change is successful?"
+          ]
+        },
+        {
+          id: "code-quality",
+          name: "GitHub Code Quality",
+          summary: "Maintainability, reliability, and coverage checks",
+          goal: "Understand how the customer can identify and resolve quality issues in pull requests before changes reach the default branch.",
+          features: ["Maintainability findings", "Reliability findings", "Code coverage checks", "Copilot-powered autofixes"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive"],
+          why: "This role creates, reviews, governs, or measures code quality and the long-term health of the software estate.",
+          prompts: [
+            "How do teams identify maintainability and reliability issues before merge today?",
+            "Which quality signals or coverage expectations should block a change from reaching the default branch?",
+            "How much developer time is spent understanding and remediating quality findings after review?"
+          ]
+        }
+      ];
+
+      function makeDefaultData() {
+        const personas = personaSeeds.map(([id, name, care, primaryTeam, seniority, representedRoles]) => ({
+          id,
+          name,
+          care,
+          primaryTeam,
+          seniority,
+          representedRoles: [...representedRoles]
+        }));
+        const productData = products.map(({ id, name, summary, goal, features, personas: compatiblePersonaIds }) => ({
+          id,
+          name,
+          summary,
+          goal,
+          features: [...features],
+          compatiblePersonaIds: [...compatiblePersonaIds]
+        }));
+        const mappings = [];
+
+        products.forEach((product) => {
+          product.personas.forEach((personaId) => {
+            mappings.push({
+              id: `${product.id}__${personaId}`,
+              productId: product.id,
+              personaId,
+              why: product.why,
+              prompts: [...product.prompts]
+            });
+          });
+        });
+
+        return { version: 2, products: productData, personas, mappings };
+      }
+
+      function clone(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      function validData(value) {
+        if (!value || value.version !== 2 ||
+            !Array.isArray(value.products) ||
+            !Array.isArray(value.personas) ||
+            !Array.isArray(value.mappings)) {
+          return false;
+        }
+
+        const isText = (item) => typeof item === "string" && item.trim().length > 0;
+        const isTextArray = (items) => Array.isArray(items) && items.every(isText);
+        const hasUniqueIds = (items) => {
+          const ids = items.map((item) => item?.id);
+          return ids.every(isText) && new Set(ids).size === ids.length;
+        };
+
+        if (!hasUniqueIds(value.products) ||
+            !hasUniqueIds(value.personas) ||
+            !hasUniqueIds(value.mappings)) {
+          return false;
+        }
+
+        const personaIds = new Set(value.personas.map((persona) => persona.id));
+        const productIds = new Set(value.products.map((product) => product.id));
+        const validPersonas = value.personas.every((persona) =>
+          isText(persona.name) &&
+          isText(persona.care) &&
+          TEAM_OPTIONS.includes(persona.primaryTeam) &&
+          LEVEL_OPTIONS.includes(persona.seniority) &&
+          isTextArray(persona.representedRoles)
+        );
+        const validProducts = value.products.every((product) =>
+          isText(product.name) &&
+          isText(product.summary) &&
+          isText(product.goal) &&
+          isTextArray(product.features) &&
+          isTextArray(product.compatiblePersonaIds) &&
+          product.compatiblePersonaIds.every((id) => personaIds.has(id))
+        );
+        const validMappings = value.mappings.every((mapping) =>
+          isText(mapping.productId) &&
+          productIds.has(mapping.productId) &&
+          isText(mapping.personaId) &&
+          personaIds.has(mapping.personaId) &&
+          isText(mapping.why) &&
+          isTextArray(mapping.prompts)
+        );
+
+        return validPersonas && validProducts && validMappings;
+      }
+
+      function loadData() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (!stored) return makeDefaultData();
+          const parsed = JSON.parse(stored);
+          return validData(parsed) ? parsed : makeDefaultData();
+        } catch (error) {
+          console.warn("Could not load saved scenario data.", error);
+          return makeDefaultData();
+        }
+      }
+
+      let data = loadData();
+      let selection = {
+        productId: data.products[0]?.id || "",
+        personaId: ""
+      };
+      let round = 1;
+      let activeTab = "products";
+      let editingId = null;
+      let toastTimer;
+      let timerRemaining = TIMER_SECONDS;
+      let timerHandle = null;
+      let installPrompt = null;
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+      const elements = {
+        editToggle: $("#edit-mode-toggle"),
+        editor: $("#editor-panel"),
+        editorList: $("#editor-list"),
+        editorCount: $("#editor-count"),
+        addItem: $("#add-item"),
+        installButton: $("#install-button"),
+        shareButton: $("#share-button"),
+        dialog: $("#item-dialog"),
+        dialogTitle: $("#dialog-title"),
+        form: $("#item-form"),
+        formFields: $("#form-fields"),
+        toast: $("#toast"),
+        randomize: $("#randomize-button"),
+        productValue: $("#product-value"),
+        personaValue: $("#persona-value"),
+        personaMeta: $("#persona-meta"),
+        personaExamples: $("#persona-examples"),
+        personaLevel: $("#persona-level"),
+        personaLevelLabel: $("#persona-level-label"),
+        scenarioTitle: $("#scenario-title"),
+        scenarioSubtitle: $("#scenario-subtitle"),
+        scenarioId: $("#scenario-id"),
+        sellerGoal: $("#seller-goal"),
+        customerRole: $("#customer-role"),
+        customerRoleMeta: $("#customer-role-meta"),
+        customerRoleTitles: $("#customer-role-titles"),
+        personaCare: $("#persona-care"),
+        productFeatures: $("#product-features"),
+        promptList: $("#prompt-list"),
+        roundBadge: $("#round-badge"),
+        timerDisplay: $("#timer-display"),
+        timerToggle: $("#timer-toggle")
+      };
+
+      function uid(prefix) {
+        const random = Math.random().toString(36).slice(2, 8);
+        return `${prefix}-${Date.now().toString(36)}-${random}`;
+      }
+
+      function saveData(message = "Changes saved locally.") {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        ensureSelection();
+        renderAll();
+        showToast(message);
+      }
+
+      function showToast(message) {
+        clearTimeout(toastTimer);
+        elements.toast.textContent = message;
+        elements.toast.classList.add("show");
+        toastTimer = setTimeout(() => elements.toast.classList.remove("show"), 2600);
+      }
+
+      function pick(list, excludedId = "") {
+        if (!list.length) return null;
+        const candidates = list.length > 1 ? list.filter((item) => item.id !== excludedId) : list;
+        return candidates[Math.floor(Math.random() * candidates.length)] || list[0];
+      }
+
+      function productById(id) {
+        return data.products.find((item) => item.id === id);
+      }
+
+      function personaById(id) {
+        return data.personas.find((item) => item.id === id);
+      }
+
+      function mappingFor(productId, personaId) {
+        return data.mappings.find((item) => item.productId === productId && item.personaId === personaId);
+      }
+
+      function personaLevel(persona) {
+        if (persona?.seniority === "Higher Management / C-suite") return 3;
+        if (persona?.seniority === "Mid-management / Team Lead") return 2;
+        return 1;
+      }
+
+      function compatiblePersonas(productId) {
+        const mappedIds = new Set(
+          data.mappings
+            .filter((mapping) => mapping.productId === productId)
+            .map((mapping) => mapping.personaId)
+        );
+        const product = productById(productId);
+        (product?.compatiblePersonaIds || []).forEach((id) => mappedIds.add(id));
+        return data.personas.filter((persona) => mappedIds.has(persona.id));
+      }
+
+      function ensureSelection() {
+        if (!productById(selection.productId)) {
+          selection.productId = data.products[0]?.id || "";
+        }
+        const compatible = compatiblePersonas(selection.productId);
+        if (!compatible.some((item) => item.id === selection.personaId)) {
+          selection.personaId = compatible[0]?.id || "";
+        }
+      }
+
+      function setSpinning(dimensions, spinning) {
+        dimensions.forEach((dimension) => {
+          $(`.reel[data-dimension="${dimension}"]`)?.classList.toggle("spinning", spinning);
+        });
+      }
+
+      function animateSelection(dimensions, update) {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        setSpinning(dimensions, true);
+        const delay = reducedMotion ? 0 : 520;
+        window.setTimeout(() => {
+          update();
+          ensureSelection();
+          round += 1;
+          renderScenario();
+          setSpinning(dimensions, false);
+        }, delay);
+      }
+
+      function randomizeAll() {
+        if (!data.products.length || !data.personas.length) {
+          showToast("Add at least one product and compatible persona.");
+          return;
+        }
+        const viableProducts = data.products.filter((product) => compatiblePersonas(product.id).length);
+        if (!viableProducts.length) {
+          showToast("Add a product-to-persona mapping before randomizing.");
+          return;
+        }
+
+        animateSelection(["product", "persona"], () => {
+          const product = pick(viableProducts, selection.productId);
+          selection.productId = product.id;
+          selection.personaId = pick(compatiblePersonas(product.id), selection.personaId).id;
+        });
+      }
+
+      function rerollProduct() {
+        const viableProducts = data.products.filter((product) => compatiblePersonas(product.id).length);
+        if (!viableProducts.length) {
+          showToast("Add a compatible mapping first.");
+          return;
+        }
+        animateSelection(["product", "persona"], () => {
+          const product = pick(viableProducts, selection.productId);
+          selection.productId = product.id;
+          selection.personaId = pick(compatiblePersonas(product.id)).id;
+        });
+      }
+
+      function rerollPersona() {
+        const compatible = compatiblePersonas(selection.productId);
+        if (!compatible.length) {
+          showToast("This product has no compatible personas.");
+          return;
+        }
+        animateSelection(["persona"], () => {
+          selection.personaId = pick(compatible, selection.personaId).id;
+        });
+      }
+
+      function renderScenario() {
+        ensureSelection();
+        const product = productById(selection.productId);
+        const persona = personaById(selection.personaId);
+        const mapping = mappingFor(selection.productId, selection.personaId);
+
+        elements.productValue.textContent = product?.name || "Add a product";
+        elements.personaValue.textContent = persona?.name || "Add a compatible persona";
+        const level = personaLevel(persona);
+        elements.personaLevel.dataset.level = String(level);
+        elements.personaLevelLabel.textContent = `Level ${level}`;
+        elements.personaLevel.setAttribute("aria-label", `Level ${level}: ${persona?.seniority || "Practitioner / IC"}`);
+        elements.personaExamples.textContent = persona?.representedRoles?.length
+          ? `Examples: ${persona.representedRoles.join(", ")}`
+          : "Add example titles in Edit mode";
+        elements.personaMeta.textContent = persona
+          ? `${persona.primaryTeam || "Unassigned team"} · ${persona.seniority || "Unassigned level"}`
+          : "Compatible personas only";
+        $("#persona-reel").setAttribute(
+          "aria-label",
+          persona
+            ? `Reroll customer persona. Current persona: ${persona.name}, level ${level}.`
+            : "Reroll customer persona"
+        );
+        elements.scenarioTitle.textContent = product && persona ? `${product.name} with a ${persona.name}` : "Scenario needs configuration";
+        elements.scenarioSubtitle.textContent = persona ? `${persona.primaryTeam} role-play` : "Select a customer persona";
+        elements.scenarioId.textContent = `SCN-${String(round).padStart(3, "0")}`;
+        elements.roundBadge.textContent = `Round ${String(round).padStart(2, "0")}`;
+        elements.sellerGoal.textContent = product?.goal || "Add a seller goal in Edit mode.";
+        elements.customerRole.textContent = persona?.name || "Add a compatible persona in Edit mode.";
+        elements.customerRoleMeta.textContent = persona
+          ? `${persona.primaryTeam || "Unassigned team"} · ${persona.seniority || "Unassigned level"}`
+          : "";
+        elements.customerRoleTitles.textContent = persona?.representedRoles?.length
+          ? `Represents: ${persona.representedRoles.join(", ")}`
+          : "";
+        elements.personaCare.textContent = mapping?.why || persona?.care || "Add a relevance statement in Edit mode.";
+        elements.productFeatures.replaceChildren();
+        (product?.features?.length ? product.features : ["Add product scope in Edit mode."]).forEach((feature) => {
+          const item = document.createElement("li");
+          item.textContent = feature;
+          elements.productFeatures.append(item);
+        });
+
+        const prompts = mapping?.prompts?.filter(Boolean).slice(0, 3) || [];
+        elements.promptList.replaceChildren();
+        (prompts.length ? prompts : ["Add discovery prompts to this mapping in Edit mode."]).forEach((prompt) => {
+          const item = document.createElement("li");
+          item.textContent = prompt;
+          elements.promptList.append(item);
+        });
+      }
+
+      function renderEditor() {
+        const collection = data[activeTab] || [];
+        const labels = {
+          products: ["product", "products"],
+          personas: ["persona", "personas"],
+          mappings: ["scenario mapping", "scenario mappings"]
+        };
+        const [singular, plural] = labels[activeTab];
+        elements.editorCount.textContent = `${collection.length} ${collection.length === 1 ? singular : plural}`;
+        elements.addItem.textContent = `Add ${singular}`;
+        elements.editorList.setAttribute("aria-labelledby", `tab-${activeTab}`);
+        elements.editorList.replaceChildren();
+
+        if (!collection.length) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.textContent = `No ${plural} yet. Add one to continue.`;
+          elements.editorList.append(empty);
+          return;
+        }
+
+        collection.forEach((item) => {
+          const row = document.createElement("article");
+          row.className = "editor-item";
+          const text = document.createElement("div");
+          const title = document.createElement("h3");
+          const detail = document.createElement("p");
+          title.textContent = itemTitle(activeTab, item);
+          detail.textContent = itemDetail(activeTab, item);
+          text.append(title, detail);
+
+          const actions = document.createElement("div");
+          actions.className = "item-actions";
+          const edit = document.createElement("button");
+          edit.className = "button button-small";
+          edit.type = "button";
+          edit.textContent = "Edit";
+          edit.addEventListener("click", () => openItemDialog(item.id));
+          const remove = document.createElement("button");
+          remove.className = "button button-small button-danger";
+          remove.type = "button";
+          remove.textContent = "Delete";
+          remove.addEventListener("click", () => deleteItem(item.id));
+          actions.append(edit, remove);
+          row.append(text, actions);
+          elements.editorList.append(row);
+        });
+      }
+
+      function itemTitle(type, item) {
+        if (type === "mappings") {
+          const product = productById(item.productId)?.name || "Missing product";
+          const persona = personaById(item.personaId)?.name || "Missing persona";
+          return `${product} -> ${persona}`;
+        }
+        return item.name;
+      }
+
+      function itemDetail(type, item) {
+        if (type === "products") {
+          return `${item.compatiblePersonaIds?.length || 0} compatible personas · ${item.features?.length || 0} focus areas`;
+        }
+        if (type === "personas") {
+          return `${item.primaryTeam || "Unassigned team"} · ${item.seniority || "Unassigned level"} · ${item.representedRoles?.length || 0} titles`;
+        }
+        return `${item.prompts?.length || 0} discovery prompts`;
+      }
+
+      function renderAll() {
+        renderScenario();
+        renderEditor();
+      }
+
+      function textField(name, label, value = "", options = {}) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "field";
+        const labelNode = document.createElement("label");
+        labelNode.htmlFor = `field-${name}`;
+        labelNode.textContent = label;
+        const input = options.multiline ? document.createElement("textarea") : document.createElement("input");
+        input.id = `field-${name}`;
+        input.name = name;
+        input.value = value;
+        input.required = options.required !== false;
+        if (options.placeholder) input.placeholder = options.placeholder;
+        wrapper.append(labelNode, input);
+        if (options.help) {
+          const help = document.createElement("p");
+          help.className = "field-help";
+          help.textContent = options.help;
+          wrapper.append(help);
+        }
+        return wrapper;
+      }
+
+      function selectField(name, label, options, value) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "field";
+        const labelNode = document.createElement("label");
+        labelNode.htmlFor = `field-${name}`;
+        labelNode.textContent = label;
+        const select = document.createElement("select");
+        select.id = `field-${name}`;
+        select.name = name;
+        select.required = true;
+        options.forEach((option) => {
+          const node = document.createElement("option");
+          node.value = option.id;
+          node.textContent = option.name;
+          node.selected = option.id === value;
+          select.append(node);
+        });
+        wrapper.append(labelNode, select);
+        return wrapper;
+      }
+
+      function compatibilityField(selectedIds = []) {
+        const fieldset = document.createElement("fieldset");
+        fieldset.className = "field";
+        const legend = document.createElement("legend");
+        legend.textContent = "Compatible personas";
+        const grid = document.createElement("div");
+        grid.className = "checkbox-grid";
+
+        data.personas.forEach((persona) => {
+          const label = document.createElement("label");
+          label.className = "checkbox-label";
+          const input = document.createElement("input");
+          input.type = "checkbox";
+          input.name = "compatiblePersonaIds";
+          input.value = persona.id;
+          input.checked = selectedIds.includes(persona.id);
+          label.append(input, document.createTextNode(persona.name));
+          grid.append(label);
+        });
+        fieldset.append(legend, grid);
+        return fieldset;
+      }
+
+      function promptEditor(prompts = []) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "field";
+        const label = document.createElement("label");
+        label.textContent = "Discovery prompts";
+        const fields = document.createElement("div");
+        fields.className = "prompt-fields";
+        fields.id = "prompt-fields";
+
+        const addPromptRow = (value = "") => {
+          const row = document.createElement("div");
+          row.className = "prompt-field";
+          const input = document.createElement("input");
+          input.type = "text";
+          input.name = "prompts";
+          input.value = value;
+          input.required = true;
+          input.setAttribute("aria-label", "Discovery prompt");
+          const remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "button button-small button-danger";
+          remove.textContent = "Remove";
+          remove.addEventListener("click", () => row.remove());
+          row.append(input, remove);
+          fields.append(row);
+        };
+
+        (prompts.length ? prompts : [""]).forEach(addPromptRow);
+        const add = document.createElement("button");
+        add.type = "button";
+        add.className = "button button-small";
+        add.textContent = "Add prompt";
+        add.addEventListener("click", () => addPromptRow());
+        wrapper.append(label, fields, add);
+        return wrapper;
+      }
+
+      function openItemDialog(id = null) {
+        editingId = id;
+        const item = id ? data[activeTab].find((entry) => entry.id === id) : null;
+        const singular = activeTab === "mappings" ? "scenario mapping" : activeTab.slice(0, -1);
+        elements.dialogTitle.textContent = `${item ? "Edit" : "Add"} ${singular}`;
+        elements.formFields.replaceChildren();
+
+        if (activeTab === "products") {
+          elements.formFields.append(
+            textField("name", "Product name", item?.name),
+            textField("summary", "Card summary", item?.summary, { help: "Short descriptor shown in Edit mode." }),
+            textField("goal", "Seller goal", item?.goal, { multiline: true }),
+            textField("features", "Product scope", item?.features?.join("\n"), {
+              multiline: true,
+              help: "Enter one capability or focus area per line."
+            }),
+            compatibilityField(item?.compatiblePersonaIds || [])
+          );
+        } else if (activeTab === "personas") {
+          elements.formFields.append(
+            textField("name", "Persona name", item?.name),
+            selectField(
+              "primaryTeam",
+              "Primary team",
+              TEAM_OPTIONS.map((name) => ({ id: name, name })),
+              item?.primaryTeam || TEAM_OPTIONS[0]
+            ),
+            selectField(
+              "seniority",
+              "Hierarchy level",
+              LEVEL_OPTIONS.map((name) => ({ id: name, name })),
+              item?.seniority || LEVEL_OPTIONS[0]
+            ),
+            textField("representedRoles", "Titles represented", item?.representedRoles?.join("\n"), {
+              multiline: true,
+              help: "Enter one underlying job title per line."
+            }),
+            textField("care", "Outcome focus", item?.care, { multiline: true, help: "Describe what this role is accountable for." })
+          );
+        } else {
+          if (!data.products.length || !data.personas.length) {
+            showToast("Add a product and persona before creating a mapping.");
+            return;
+          }
+          elements.formFields.append(
+            selectField("productId", "Product", data.products, item?.productId),
+            selectField("personaId", "Persona", data.personas, item?.personaId),
+            textField("why", "Why this persona cares", item?.why, { multiline: true }),
+            promptEditor(item?.prompts || [])
+          );
+        }
+        elements.dialog.showModal();
+        window.setTimeout(() => $("input, select, textarea", elements.formFields)?.focus(), 0);
+      }
+
+      function formValue(formData, key) {
+        return String(formData.get(key) || "").trim();
+      }
+
+      function submitItem(event) {
+        event.preventDefault();
+        const formData = new FormData(elements.form);
+        const existing = editingId ? data[activeTab].find((item) => item.id === editingId) : null;
+
+        if (activeTab === "products") {
+          const item = {
+            id: existing?.id || uid("product"),
+            name: formValue(formData, "name"),
+            summary: formValue(formData, "summary"),
+            goal: formValue(formData, "goal"),
+            features: formValue(formData, "features").split("\n").map((value) => value.trim()).filter(Boolean),
+            compatiblePersonaIds: formData.getAll("compatiblePersonaIds").map(String)
+          };
+          upsert(activeTab, item);
+        } else if (activeTab === "personas") {
+          upsert(activeTab, {
+            id: existing?.id || uid("persona"),
+            name: formValue(formData, "name"),
+            primaryTeam: formValue(formData, "primaryTeam"),
+            seniority: formValue(formData, "seniority"),
+            representedRoles: formValue(formData, "representedRoles").split("\n").map((value) => value.trim()).filter(Boolean),
+            care: formValue(formData, "care")
+          });
+        } else {
+          const productId = formValue(formData, "productId");
+          const personaId = formValue(formData, "personaId");
+          const duplicate = data.mappings.find((mapping) =>
+            mapping.productId === productId &&
+            mapping.personaId === personaId &&
+            mapping.id !== existing?.id
+          );
+          if (duplicate) {
+            showToast("That product and persona mapping already exists.");
+            return;
+          }
+          const prompts = formData.getAll("prompts").map((value) => String(value).trim()).filter(Boolean);
+          if (!prompts.length) {
+            showToast("Add at least one discovery prompt.");
+            return;
+          }
+          const item = {
+            id: existing?.id || uid("mapping"),
+            productId,
+            personaId,
+            why: formValue(formData, "why"),
+            prompts
+          };
+          upsert(activeTab, item);
+          const product = productById(productId);
+          if (product && !product.compatiblePersonaIds.includes(personaId)) {
+            product.compatiblePersonaIds.push(personaId);
+          }
+        }
+
+        elements.dialog.close();
+        saveData(editingId ? "Item updated." : "Item added.");
+      }
+
+      function upsert(type, item) {
+        const index = data[type].findIndex((entry) => entry.id === item.id);
+        if (index >= 0) data[type][index] = item;
+        else data[type].push(item);
+      }
+
+      function deleteItem(id) {
+        const item = data[activeTab].find((entry) => entry.id === id);
+        if (!item) return;
+        if (!window.confirm(`Delete "${itemTitle(activeTab, item)}"? This cannot be undone.`)) return;
+
+        data[activeTab] = data[activeTab].filter((entry) => entry.id !== id);
+        if (activeTab === "products") {
+          data.mappings = data.mappings.filter((mapping) => mapping.productId !== id);
+        } else if (activeTab === "personas") {
+          data.mappings = data.mappings.filter((mapping) => mapping.personaId !== id);
+          data.products.forEach((product) => {
+            product.compatiblePersonaIds = product.compatiblePersonaIds.filter((personaId) => personaId !== id);
+          });
+        } else if (activeTab === "mappings") {
+          const product = productById(item.productId);
+          if (product) {
+            const stillMapped = data.mappings.some((mapping) =>
+              mapping.id !== id &&
+              mapping.productId === item.productId &&
+              mapping.personaId === item.personaId
+            );
+            if (!stillMapped) {
+              product.compatiblePersonaIds = product.compatiblePersonaIds.filter((personaId) => personaId !== item.personaId);
+            }
+          }
+        }
+        saveData("Item deleted.");
+      }
+
+      function setActiveTab(tab) {
+        activeTab = tab;
+        $$(".tab").forEach((button) => {
+          button.setAttribute("aria-selected", String(button.dataset.tab === tab));
+        });
+        renderEditor();
+      }
+
+      function exportData() {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "github-scenario-lab-data.json";
+        document.body.append(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast("Scenario data exported.");
+      }
+
+      function importData(file) {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          try {
+            const parsed = JSON.parse(String(reader.result));
+            if (!validData(parsed)) throw new Error("Missing required collections.");
+            data = clone(parsed);
+            saveData("Scenario data imported.");
+          } catch (error) {
+            console.warn("Invalid scenario import.", error);
+            showToast("Import failed. Choose a valid Scenario Lab JSON file.");
+          }
+        });
+        reader.readAsText(file);
+      }
+
+      function resetDefaults() {
+        if (!window.confirm("Reset all products, personas, mappings, and prompts to defaults?")) return;
+        data = makeDefaultData();
+        selection = {
+          productId: data.products[0].id,
+          personaId: data.products[0].compatiblePersonaIds[0]
+        };
+        saveData("Default scenario data restored.");
+      }
+
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainder = seconds % 60;
+        return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+      }
+
+      function renderTimer() {
+        elements.timerDisplay.textContent = formatTime(timerRemaining);
+        elements.timerToggle.textContent = timerHandle ? "Pause" : (timerRemaining === TIMER_SECONDS ? "Start" : "Resume");
+      }
+
+      function toggleTimer() {
+        if (timerHandle) {
+          clearInterval(timerHandle);
+          timerHandle = null;
+          renderTimer();
+          return;
+        }
+        if (timerRemaining <= 0) timerRemaining = TIMER_SECONDS;
+        timerHandle = setInterval(() => {
+          timerRemaining -= 1;
+          renderTimer();
+          if (timerRemaining <= 0) {
+            clearInterval(timerHandle);
+            timerHandle = null;
+            renderTimer();
+            showToast("Role-play time is up.");
+          }
+        }, 1000);
+        renderTimer();
+      }
+
+      function resetTimer() {
+        if (timerHandle) clearInterval(timerHandle);
+        timerHandle = null;
+        timerRemaining = TIMER_SECONDS;
+        renderTimer();
+      }
+
+      async function shareApp() {
+        const shareData = {
+          title: "GitHub Scenario Lab",
+          text: "Practice GitHub product discovery with randomized customer personas.",
+          url: location.protocol === "file:" ? SHARED_APP_URL : location.href.split("#")[0]
+        };
+
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+          } else if (navigator.clipboard) {
+            await navigator.clipboard.writeText(shareData.url);
+            showToast("Share link copied.");
+          } else {
+            window.prompt("Copy this link:", shareData.url);
+          }
+        } catch (error) {
+          if (error?.name !== "AbortError") showToast("Could not open sharing. Copy the page URL instead.");
+        }
+      }
+
+      window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        installPrompt = event;
+        elements.installButton.hidden = false;
+      });
+
+      window.addEventListener("appinstalled", () => {
+        installPrompt = null;
+        elements.installButton.hidden = true;
+        showToast("Scenario Lab installed.");
+      });
+
+      elements.installButton.addEventListener("click", async () => {
+        if (!installPrompt) return;
+        installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt = null;
+        elements.installButton.hidden = true;
+      });
+      elements.shareButton.addEventListener("click", shareApp);
+      elements.randomize.addEventListener("click", randomizeAll);
+      $("#product-reel").addEventListener("click", rerollProduct);
+      $("#persona-reel").addEventListener("click", rerollPersona);
+      elements.editToggle.addEventListener("click", () => {
+        renderEditor();
+        elements.editor.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      $$(".tab").forEach((button) => button.addEventListener("click", () => setActiveTab(button.dataset.tab)));
+      elements.addItem.addEventListener("click", () => openItemDialog());
+      elements.form.addEventListener("submit", submitItem);
+      $("#dialog-close").addEventListener("click", () => elements.dialog.close());
+      $("#dialog-cancel").addEventListener("click", () => elements.dialog.close());
+      $("#export-button").addEventListener("click", exportData);
+      $("#import-button").addEventListener("click", () => $("#import-file").click());
+      $("#import-file").addEventListener("change", (event) => {
+        const [file] = event.target.files;
+        if (file) importData(file);
+        event.target.value = "";
+      });
+      $("#reset-defaults").addEventListener("click", resetDefaults);
+      $("#timer-toggle").addEventListener("click", toggleTimer);
+      $("#timer-reset").addEventListener("click", resetTimer);
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const isTyping = target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement ||
+          target instanceof HTMLSelectElement ||
+          target?.isContentEditable;
+        if (!isTyping && !elements.dialog.open && event.key.toLowerCase() === "r") {
+          event.preventDefault();
+          randomizeAll();
+        }
+      });
+
+      ensureSelection();
+      selection.personaId = compatiblePersonas(selection.productId)[0]?.id || "";
+      renderAll();
+      renderTimer();
+
+      if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+        navigator.serviceWorker.register("./service-worker.js").then((registration) => {
+          registration.update();
+        }).catch((error) => {
+          console.warn("Offline support could not be enabled.", error);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

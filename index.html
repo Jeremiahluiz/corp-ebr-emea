@@ -86,7 +86,8 @@ body {
   border: 1px solid var(--border);
 }
 
-.nav-btn {
+.nav-btn,
+.nav-link {
   padding: 8px 16px;
   border: none;
   background: transparent;
@@ -98,9 +99,11 @@ body {
   transition: var(--transition);
   font-family: inherit;
   white-space: nowrap;
+  text-decoration: none;
 }
 
-.nav-btn:hover { color: var(--text); background: var(--surface-hover); }
+.nav-btn:hover,
+.nav-link:hover { color: var(--text); background: var(--surface-hover); }
 .nav-btn.active { color: white; background: var(--accent-blue); }
 
 /* Main content */
@@ -677,6 +680,7 @@ body {
     <nav class="nav">
       <button class="nav-btn active" data-section="products">Products & Intel</button>
       <button class="nav-btn" data-section="discovery">Discovery</button>
+      <a class="nav-link" href="role-play-game.html">Scenario Lab</a>
     </nav>
   </div>
 </header>

@@ -1,0 +1,23 @@
+{
+  "name": "GitHub Scenario Lab",
+  "short_name": "Scenario Lab",
+  "description": "A GitHub sales role-play trainer for practicing product and persona discovery conversations.",
+  "start_url": "./role-play-game.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080c12",
+  "theme_color": "#0d1117",
+  "icons": [
+    {
+      "src": "./icons/scenario-lab-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/scenario-lab-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -898,109 +898,200 @@
       font-size: 0.84rem;
     }
 
-    .conversation-flow {
-      display: grid;
-      gap: 10px;
+    .script-preview {
+      padding: 18px;
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(88, 166, 255, 0.1), transparent 45%),
+        rgba(13, 17, 23, 0.72);
+    }
+
+    .script-preview-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .script-preview-heading h3 {
       margin: 0;
-      padding: 0;
-      list-style: none;
-      counter-reset: call-stage;
-    }
-
-    .conversation-stage {
-      position: relative;
-      padding: 15px 16px 15px 54px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: rgba(13, 17, 23, 0.58);
-      counter-increment: call-stage;
-    }
-
-    .conversation-stage::before {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      display: grid;
-      width: 26px;
-      height: 26px;
-      place-items: center;
-      border: 1px solid rgba(88, 166, 255, 0.4);
-      border-radius: 7px;
-      color: #79c0ff;
-      background: rgba(88, 166, 255, 0.1);
-      content: counter(call-stage);
-      font: 800 0.72rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .conversation-stage h3 {
-      margin-bottom: 5px;
       color: var(--text);
-      font-size: 0.84rem;
-      letter-spacing: 0;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
       text-transform: none;
     }
 
-    .conversation-stage p {
+    .script-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .script-metrics span {
+      padding: 4px 7px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: #0d1117;
+      font-size: 0.69rem;
+      font-weight: 700;
+    }
+
+    .script-metrics .on-target {
+      border-color: rgba(63, 185, 80, 0.5);
+      color: #7ee787;
+      background: rgba(63, 185, 80, 0.1);
+    }
+
+    .script-metrics .needs-work {
+      border-color: rgba(210, 153, 34, 0.5);
+      color: #e3b341;
+      background: rgba(210, 153, 34, 0.1);
+    }
+
+    #cold-call-script {
+      margin: 18px 0 14px;
+      padding: 0;
+      border: 0;
+      color: #f0f6fc;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.65;
+    }
+
+    .duration-track {
+      height: 6px;
+      border-radius: 999px;
+      background: #21262d;
+      overflow: hidden;
+    }
+
+    .duration-track span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      transition: width 180ms ease;
+    }
+
+    .pause-cue {
+      margin: 10px 0 0;
+      color: #79c0ff;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .script-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .call-structure {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .call-step {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(13, 17, 23, 0.5);
+    }
+
+    .call-step > span {
+      display: grid;
+      width: 23px;
+      height: 23px;
+      margin-bottom: 8px;
+      place-items: center;
+      border: 1px solid rgba(88, 166, 255, 0.42);
+      border-radius: 6px;
+      color: #79c0ff;
+      background: rgba(88, 166, 255, 0.1);
+      font: 800 0.7rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .call-step strong {
+      display: block;
+      font-size: 0.8rem;
+    }
+
+    .call-step p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    .readiness-list {
+      display: grid;
+      gap: 8px;
       margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .readiness-list li {
+      position: relative;
+      padding: 11px 12px 11px 38px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--muted);
+      background: rgba(13, 17, 23, 0.5);
+      font-size: 0.82rem;
+    }
+
+    .readiness-list li::before {
+      position: absolute;
+      top: 10px;
+      left: 11px;
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      content: "·";
+      font-weight: 900;
+    }
+
+    .readiness-list li.ready {
+      border-color: rgba(63, 185, 80, 0.35);
       color: #c9d1d9;
-      font-size: 0.92rem;
-      white-space: pre-line;
+    }
+
+    .readiness-list li.ready::before {
+      border-color: rgba(63, 185, 80, 0.55);
+      color: #7ee787;
+      background: rgba(63, 185, 80, 0.1);
+      content: "✓";
+    }
+
+    .delivery-cues {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .delivery-cue {
+      padding: 6px 9px;
+      border: 1px solid rgba(188, 140, 255, 0.3);
+      border-radius: 999px;
+      color: #d2a8ff;
+      background: rgba(188, 140, 255, 0.08);
+      font-size: 0.75rem;
+      font-weight: 650;
     }
 
     .question-groups {
       display: grid;
       gap: 10px;
-    }
-
-    .spin-flow {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .spin-stage {
-      position: relative;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(13, 17, 23, 0.58);
-    }
-
-    .spin-stage:not(:last-child)::after {
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      right: -8px;
-      width: 8px;
-      height: 1px;
-      background: var(--border-strong);
-      content: "";
-    }
-
-    .spin-letter {
-      display: grid;
-      width: 25px;
-      height: 25px;
-      margin-bottom: 8px;
-      place-items: center;
-      border: 1px solid rgba(88, 166, 255, 0.42);
-      border-radius: 7px;
-      color: #79c0ff;
-      background: rgba(88, 166, 255, 0.1);
-      font: 800 0.75rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .spin-stage strong {
-      display: block;
-      font-size: 0.82rem;
-    }
-
-    .spin-stage span:last-child {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 0.72rem;
     }
 
     .question-group {
@@ -1027,60 +1118,6 @@
     .question-purpose {
       margin: 0 0 12px;
       color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .question-guidance {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .question-guidance-item {
-      padding: 10px 11px;
-      border: 1px solid rgba(48, 54, 61, 0.8);
-      border-radius: 8px;
-      background: rgba(22, 27, 34, 0.56);
-    }
-
-    .question-guidance-item strong {
-      display: block;
-      margin-bottom: 3px;
-      color: #b1bac4;
-      font-size: 0.68rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-
-    .question-guidance-item span {
-      color: #c9d1d9;
-      font-size: 0.78rem;
-    }
-
-    .qualification-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .qualification-card {
-      padding: 15px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: rgba(13, 17, 23, 0.52);
-    }
-
-    .qualification-card strong {
-      display: block;
-      margin-bottom: 5px;
-      color: #79c0ff;
-      font-size: 0.86rem;
-    }
-
-    .qualification-card p {
-      margin: 0;
-      color: #b1bac4;
       font-size: 0.82rem;
     }
 
@@ -1432,14 +1469,16 @@
 
       .brief-grid,
       .checkbox-grid,
-      .qualification-grid,
-      .spin-flow,
-      .question-guidance {
+      .call-structure {
         grid-template-columns: 1fr;
       }
 
-      .spin-stage:not(:last-child)::after {
-        display: none;
+      .script-preview-heading {
+        flex-direction: column;
+      }
+
+      .script-metrics {
+        justify-content: flex-start;
       }
 
       .brief-block,
@@ -1505,7 +1544,7 @@
         Scenario Builder
       </button>
       <button class="workspace-tab" id="view-tab-guide" type="button" role="tab" aria-selected="false" aria-controls="seller-guide-view" data-view="guide">
-        Seller Guide
+        Cold Call Guide
       </button>
     </nav>
 
@@ -1570,7 +1609,7 @@
             Randomize scenario
           </button>
           <button class="button" id="open-guide-button" type="button">
-            Open seller guide
+            Open cold call guide
           </button>
         </div>
       </section>
@@ -1664,7 +1703,7 @@
           <button class="tab" id="tab-products" type="button" role="tab" aria-selected="true" aria-controls="editor-list" data-tab="products">Products</button>
           <button class="tab" id="tab-personas" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="personas">Personas</button>
           <button class="tab" id="tab-mappings" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="mappings">Scenarios and prompts</button>
-          <button class="tab" id="tab-guide" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="guide">Seller guide</button>
+          <button class="tab" id="tab-guide" type="button" role="tab" aria-selected="false" aria-controls="editor-list" data-tab="guide">Cold call coaching</button>
         </div>
 
         <div class="editor-toolbar">
@@ -1678,27 +1717,27 @@
       <section class="app-view" id="seller-guide-view" role="tabpanel" aria-labelledby="view-tab-guide" hidden>
         <section class="guide-hero" aria-labelledby="guide-page-title">
           <div>
-            <p class="eyebrow">Seller view</p>
-            <h1 id="guide-page-title">Prepare the call.<br>Lead the discovery.</h1>
-            <p class="guide-hero-copy">Use the live scenario summary, conversation flow, and qualification questions while you prepare and run the role-play.</p>
+            <p class="eyebrow">Existing-customer cold call</p>
+            <h1 id="guide-page-title">Practice the opener.<br>Start a conversation.</h1>
+            <p class="guide-hero-copy">Use a calm, relevant 20–30 second opening. Recognize the customer’s existing GitHub use, surface one possible gap, ask for their perspective, then stop talking.</p>
           </div>
           <span class="round-badge" id="guide-round-badge">Round 01</span>
         </section>
 
-        <section class="guide-layout" aria-label="Seller role-play guide">
+        <section class="guide-layout" aria-label="Cold call role-play guide">
           <aside class="panel guide-summary" aria-label="Selected scenario summary">
-            <p class="card-kicker">Live scenario</p>
+            <p class="card-kicker">Call context</p>
             <h2 id="guide-product">GitHub product</h2>
             <p class="guide-persona" id="guide-persona">Customer persona</p>
             <p class="guide-meta" id="guide-persona-meta"></p>
 
             <section class="guide-summary-block">
-              <h3>Seller objective</h3>
+              <h3>Customer outcome</h3>
               <p id="guide-seller-goal"></p>
             </section>
 
             <section class="guide-summary-block">
-              <h3>Customer perspective</h3>
+              <h3>Why this role may care</h3>
               <p id="guide-persona-care"></p>
             </section>
 
@@ -1714,94 +1753,100 @@
           </aside>
 
           <div class="guide-content">
-            <section class="panel guide-section" aria-labelledby="conversation-guide-title">
+            <section class="panel guide-section" aria-labelledby="cold-call-script-title">
               <div class="guide-section-heading">
                 <div>
-                  <p class="card-kicker">Run the call</p>
-                  <h2 id="conversation-guide-title">Conversation guide</h2>
-                  <p>Starter wording to structure the role-play. Replace it with your approved call script in the editor when ready.</p>
+                  <p class="card-kicker">20–30 second opener</p>
+                  <h2 id="cold-call-script-title">Practice script</h2>
+                  <p>This is a hypothesis, not a diagnosis. Sound natural, keep the gap tentative, and give the customer room to disagree.</p>
                 </div>
               </div>
-              <ol class="conversation-flow">
-                <li class="conversation-stage">
-                  <h3>Open and align</h3>
-                  <p id="guide-opening-script"></p>
-                </li>
-                <li class="conversation-stage">
-                  <h3>Lead the discovery</h3>
-                  <p id="guide-leading-script"></p>
-                </li>
-                <li class="conversation-stage">
-                  <h3>Summarize and advance</h3>
-                  <p id="guide-closing-script"></p>
-                </li>
-              </ol>
+              <div class="script-preview">
+                <div class="script-preview-heading">
+                  <div>
+                    <p class="card-kicker">Scenario call track</p>
+                    <h3>Your opening</h3>
+                  </div>
+                  <div class="script-metrics" aria-live="polite">
+                    <span id="cold-call-word-count">0 words</span>
+                    <span id="cold-call-duration">0 sec</span>
+                    <span id="cold-call-status">Ready to practice</span>
+                  </div>
+                </div>
+                <blockquote id="cold-call-script"></blockquote>
+                <div class="duration-track" aria-hidden="true">
+                  <span id="cold-call-duration-fill"></span>
+                </div>
+                <p class="pause-cue">Pause. Let the customer speak next.</p>
+                <div class="script-actions">
+                  <button class="button" id="copy-cold-call" type="button">Copy script</button>
+                </div>
+              </div>
+              <div class="call-structure" aria-label="Cold call structure">
+                <article class="call-step">
+                  <span>1</span>
+                  <strong>Recognize</strong>
+                  <p>Acknowledge the existing GitHub relationship.</p>
+                </article>
+                <article class="call-step">
+                  <span>2</span>
+                  <strong>Poke the bear</strong>
+                  <p>Surface one plausible outcome gap without claiming it exists.</p>
+                </article>
+                <article class="call-step">
+                  <span>3</span>
+                  <strong>Invite perspective</strong>
+                  <p>Ask a neutral question the customer can correct or reject.</p>
+                </article>
+                <article class="call-step">
+                  <span>4</span>
+                  <strong>Pause</strong>
+                  <p>Stop explaining and let the customer shape the conversation.</p>
+                </article>
+              </div>
             </section>
 
-            <section class="panel guide-section" aria-labelledby="scenario-questions-title">
+            <section class="panel guide-section" aria-labelledby="readiness-title">
               <div class="guide-section-heading">
                 <div>
-                  <p class="card-kicker">Scenario discovery</p>
-                  <h2 id="scenario-questions-title">Questions for this product and persona</h2>
-                  <p>Start with these scenario-specific prompts, then follow the customer’s answer rather than reading every question.</p>
+                  <p class="card-kicker">Practice focus</p>
+                  <h2 id="readiness-title">Opening readiness</h2>
+                  <p>The goal is not to pitch or force a meeting. Earn enough relevance to start a useful customer conversation.</p>
                 </div>
               </div>
-              <ol class="prompt-list" id="guide-scenario-prompts"></ol>
+              <ul class="readiness-list">
+                <li class="ready">Recognize what the customer already uses</li>
+                <li class="ready">Use one specific, plausible gap</li>
+                <li class="ready">Stay neutral and easy to disagree with</li>
+                <li class="ready">End with a perspective question</li>
+                <li class="ready">Deliver slowly enough to sound conversational</li>
+              </ul>
+              <div class="delivery-cues" id="delivery-cues"></div>
             </section>
 
-            <section class="panel guide-section" aria-labelledby="qualification-title">
+            <section class="panel guide-section" aria-labelledby="follow-up-title">
               <div class="guide-section-heading">
                 <div>
-                  <p class="card-kicker">SPIN discovery</p>
-                  <h2 id="qualification-title">Qualification flow and question bank</h2>
-                  <p>Follow the presentation’s sequence. Build the current-state picture, uncover the problem, quantify its impact, then help the customer state an explicit need.</p>
-                </div>
-              </div>
-              <div class="spin-flow" aria-label="SPIN discovery flow: Situation, Problem, Impact, Need">
-                <div class="spin-stage">
-                  <span class="spin-letter">S</span>
-                  <strong>Situation</strong>
-                  <span>Goals and current state</span>
-                </div>
-                <div class="spin-stage">
-                  <span class="spin-letter">P</span>
-                  <strong>Problem</strong>
-                  <span>Pain and root causes</span>
-                </div>
-                <div class="spin-stage">
-                  <span class="spin-letter">I</span>
-                  <strong>Impact</strong>
-                  <span>Consequences and cost</span>
-                </div>
-                <div class="spin-stage">
-                  <span class="spin-letter">N</span>
-                  <strong>Need</strong>
-                  <span>Customer-stated outcome</span>
+                  <p class="card-kicker">If they engage</p>
+                  <h2 id="follow-up-title">Light SPIN follow-ups</h2>
+                  <p>Do not turn the opener into a full discovery call. Ask one relevant follow-up, listen, and agree a customer-led next step only when useful.</p>
                 </div>
               </div>
               <div class="question-groups" id="guide-question-groups"></div>
             </section>
 
-            <section class="panel guide-section" aria-labelledby="qualification-check-title">
-              <div class="guide-section-heading">
-                <div>
-                  <p class="card-kicker">Before you position</p>
-                  <h2 id="qualification-check-title">Qualification check</h2>
-                </div>
-              </div>
-              <div class="qualification-grid">
-                <article class="qualification-card">
-                  <strong>Why Anything?</strong>
-                  <p>Confirm what is not working, who feels it, and the measurable consequence.</p>
-                </article>
-                <article class="qualification-card">
-                  <strong>Why now?</strong>
-                  <p>Confirm the deadline, compelling event, owner, and cost of waiting.</p>
-                </article>
-                <article class="qualification-card">
-                  <strong>Why GitHub?</strong>
-                  <p>Connect required capabilities and proof criteria to the customer’s desired outcome.</p>
-                </article>
+            <details class="panel about">
+              <summary>Cold-call approach and sources</summary>
+              <div class="about-content">
+                <p>This builder synthesizes public guidance from Josh Braun and Benjamin Dennehy for practice. The default favors Braun’s neutral “poke the bear” approach because these calls are mainly to existing GitHub customers. Dennehy’s emphasis on brevity, confidence, and practice informs the delivery coaching. The wording in this app is original and configurable.</p>
+                <ul class="source-list">
+                  <li><a href="https://joshbraun.com/" target="_blank" rel="noreferrer">Josh Braun</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=Nz9XRvIB7TU" target="_blank" rel="noreferrer">Josh Braun: lowering resistance</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=EKr0bYFsNrU" target="_blank" rel="noreferrer">Josh Braun: first 30 seconds</a></li>
+                  <li><a href="https://joshbraun.com/do-your-cold-calls-feel-like-an-interrogation/" target="_blank" rel="noreferrer">Josh Braun: conversational questions</a></li>
+                  <li><a href="https://www.youtube.com/channel/UC50DMoaZxVftPQ14kLHpVMg" target="_blank" rel="noreferrer">The UK’s Most Hated Sales Trainer</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=90oCUL6-zZQ" target="_blank" rel="noreferrer">Benjamin Dennehy: cold-call delivery</a></li>
+                </ul>
               </div>
             </section>
           </div>
@@ -1931,6 +1976,12 @@
           summary: "AI assistance across the software development lifecycle",
           goal: "Understand where AI assistance can improve coding, review, and delegated development work while meeting the customer's governance and adoption needs.",
           features: ["Copilot Code Completion", "Copilot Code Review", "Agentic use"],
+          coldCall: {
+            existingUse: "I know your team already uses GitHub Copilot in parts of the software development workflow",
+            potentialGap: "adoption and measurable value can still vary between teams",
+            desiredOutcome: "scale AI-assisted development responsibly",
+            perspectiveQuestion: "How does that compare with what you are seeing?"
+          },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences how AI-assisted coding, review, and agentic workflows are adopted, governed, measured, or used in day-to-day engineering.",
           prompts: [
@@ -1945,6 +1996,12 @@
           summary: "Application security in the developer workflow",
           goal: "Connect application security priorities to developer workflows, remediation capacity, and measurable risk reduction.",
           features: ["Code scanning", "CodeQL analysis", "Copilot Autofix"],
+          coldCall: {
+            existingUse: "I know your team already uses GitHub in its application security workflow",
+            potentialGap: "security findings can still compete with delivery work and slow remediation",
+            desiredOutcome: "reduce software risk without creating a developer bottleneck",
+            perspectiveQuestion: "How are you handling that balance today?"
+          },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "security-executive"],
           why: "This role shapes how code risk is identified, prioritized, governed, or fixed within the software delivery lifecycle.",
           prompts: [
@@ -1959,6 +2016,12 @@
           summary: "Credential exposure prevention and response",
           goal: "Explore how the customer prevents exposed credentials and coordinates fast remediation when exposure occurs.",
           features: ["Secret scanning", "Push protection", "Security campaigns"],
+          coldCall: {
+            existingUse: "I know your team already uses GitHub to help identify exposed credentials",
+            potentialGap: "ownership and response can become inconsistent after a secret is detected",
+            desiredOutcome: "prevent exposure and shorten remediation time",
+            perspectiveQuestion: "How does that process work across your teams today?"
+          },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "security-risk-leader", "security-executive"],
           why: "This role helps prevent, detect, govern, or respond to credential exposure across the software lifecycle.",
           prompts: [
@@ -1973,6 +2036,12 @@
           summary: "Enterprise developer platform",
           goal: "Clarify the strategic, governance, security, and operating outcomes the customer expects from its developer platform.",
           features: ["Enterprise governance", "Identity and access", "Platform administration"],
+          coldCall: {
+            existingUse: "I know your teams already use GitHub as part of the developer platform",
+            potentialGap: "governance and developer workflows can still vary across teams or business units",
+            desiredOutcome: "standardize the platform without adding developer friction",
+            perspectiveQuestion: "How consistent does that experience feel today?"
+          },
           personas: ["platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences platform strategy, governance, security, administration, adoption, or investment.",
           prompts: [
@@ -1987,6 +2056,12 @@
           summary: "Maintainability, reliability, and coverage checks",
           goal: "Understand how the customer can identify and resolve quality issues in pull requests before changes reach the default branch.",
           features: ["Maintainability findings", "Reliability findings", "Code coverage checks", "Copilot-powered autofixes"],
+          coldCall: {
+            existingUse: "I know your developers already use GitHub pull request workflows",
+            potentialGap: "quality findings can still arrive too late or lack clear ownership",
+            desiredOutcome: "improve code health before changes are merged",
+            perspectiveQuestion: "How are teams handling that today?"
+          },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive"],
           why: "This role creates, reviews, governs, or measures code quality and the long-term health of the software estate.",
           prompts: [
@@ -1999,66 +2074,52 @@
 
       function makeDefaultGuide() {
         return {
-          methodology: "SPIN",
-          methodologyVersion: 1,
-          opening: "To make this useful, I would like to start with the outcome you are working toward. What is driving it, how will you measure success, and what timing are you working to?",
-          leading: "I will start with how things work today, then explore the challenges and their impact before asking what outcome you need. If there is a meaningful gap, we can decide whether GitHub is relevant.",
-          closing: "Let me play back what I heard: your goal is [goal]. Today, [current state]. The main challenges are [problems], creating [impact]. What would the right outcome look like, and what would you need from GitHub?",
+          mode: "cold-call-guide",
+          coldCallVersion: 1,
+          uncertaintyPhrase: "I may be off, but",
+          microPermission: "Can I ask one brief question?",
+          deliveryCues: [
+            "Calm and matter-of-fact",
+            "One gap, not a list",
+            "Customer language, no jargon",
+            "Pause after the question",
+            "A genuine no is a valid outcome"
+          ],
           qualificationSections: [
             {
               id: "situation",
               name: "Situation",
-              purpose: "Create a clear, validated picture of the customer’s goal and current way of working across process, people, technology, strategy, and plans.",
-              transition: "Once the goal, measures, timing, and current operating model are clear, move from facts to the challenges preventing success.",
-              exitCondition: "You can explain the goal, how success is measured, the timeline, and how the customer works today.",
+              purpose: "Clarify how the customer handles the workflow today.",
               questions: [
-                "Tell me more about your goal.",
-                "What is the business driver behind this goal?",
-                "What metrics are you using to measure success?",
-                "What are the timelines?",
-                "What is your current plan or strategy for achieving this goal?"
+                "How are you handling that today?",
+                "What does the current process look like across the teams involved?"
               ]
             },
             {
               id: "problem",
               name: "Problem",
-              purpose: "Uncover the customer’s challenges, pressures, performance issues, frustrations, root causes, and previous attempts to improve.",
-              transition: "When the customer recognizes a meaningful problem, explore the consequences rather than moving directly to a solution.",
-              exitCondition: "You understand the primary pain, its root cause, what makes it worse, and what the customer has already tried.",
+              purpose: "Explore only the limitation or gap the customer confirms.",
               questions: [
-                "What challenges are you anticipating as you work toward this goal?",
-                "Where do you see performance issues in the current approach?",
-                "Why are you having this problem or issue?",
-                "What working practices or processes are making the problem worse?",
-                "What have you tried already?"
+                "What, if anything, remains difficult about that workflow?",
+                "Can you give me an example of where that creates friction?"
               ]
             },
             {
               id: "impact",
               name: "Impact",
-              purpose: "Explore and quantify the consequences for the business, teams, individuals, customers, productivity, profitability, cost, risk, and efficiency.",
-              transition: "Summarize the goal, current state, problem, and consequences before asking the customer to describe the desired solution.",
-              exitCondition: "You can state who is affected, how they are affected, and the measurable cost or risk of doing nothing.",
+              purpose: "Understand who or what is affected before discussing a next step.",
               questions: [
-                "What will be the implications of not resolving these issues for the business as a whole?",
-                "What will be the implications for the teams involved?",
-                "What will be the implications for you personally?",
-                "What is this costing you today?",
-                "What happens if nothing changes?"
+                "Who or what is most affected when that happens?",
+                "What does that mean for time, risk, cost, or delivery?"
               ]
             },
             {
               id: "need",
               name: "Need",
-              purpose: "Convert implicit need into explicit need by having the customer state the desired solution, outcome, benefits, and GitHub’s role in their own words.",
-              transition: "Use the customer’s explicit need to test Why Anything, Why Now, and Why GitHub before positioning a solution.",
-              exitCondition: "The customer has clearly stated what they need and the business outcome they expect.",
+              purpose: "Let the customer define what useful help or a better outcome would look like.",
               questions: [
-                "What do you see the solution to this problem or challenge being?",
-                "What do you hope GitHub will be able to do for you?",
-                "What would help you achieve your goal and overcome these challenges?",
-                "What do you need from a tool to hit that outcome?",
-                "What benefits would solving this problem create for the business?"
+                "What would a better outcome look like?",
+                "Would information, a specialist, or a short working session be most useful?"
               ]
             }
           ]
@@ -2091,7 +2152,11 @@
               productId: product.id,
               personaId,
               why: product.why,
-              prompts: [...product.prompts]
+              prompts: [...product.prompts],
+              coldCall: {
+                ...product.coldCall,
+                usePermission: false
+              }
             });
           });
         });
@@ -2107,19 +2172,49 @@
         return typeof value === "string" && value.trim().length > 0;
       }
 
+      function makeDefaultColdCall(product) {
+        const seeded = products.find((item) => item.id === product?.id)?.coldCall;
+        return {
+          existingUse: seeded?.existingUse || `I know your team already uses ${product?.name || "GitHub"}`,
+          potentialGap: seeded?.potentialGap || "some parts of the workflow may still be harder to scale consistently",
+          desiredOutcome: seeded?.desiredOutcome || "improve the outcome across more teams",
+          perspectiveQuestion: seeded?.perspectiveQuestion || "How does that compare with what you are seeing?",
+          usePermission: false
+        };
+      }
+
+      function validColdCall(coldCall) {
+        return Boolean(
+          coldCall &&
+          typeof coldCall === "object" &&
+          isNonEmptyText(coldCall.existingUse) &&
+          isNonEmptyText(coldCall.potentialGap) &&
+          isNonEmptyText(coldCall.desiredOutcome) &&
+          isNonEmptyText(coldCall.perspectiveQuestion) &&
+          typeof coldCall.usePermission === "boolean"
+        );
+      }
+
       function validGuide(guide) {
         if (!guide || typeof guide !== "object" ||
-            !isNonEmptyText(guide.opening) ||
-            !isNonEmptyText(guide.leading) ||
-            !isNonEmptyText(guide.closing) ||
             !Array.isArray(guide.qualificationSections) ||
             !guide.qualificationSections.length) {
           return false;
         }
 
-        if (guide.methodology !== undefined && !isNonEmptyText(guide.methodology)) return false;
-        if (guide.methodologyVersion !== undefined &&
-            (!Number.isInteger(guide.methodologyVersion) || guide.methodologyVersion < 1)) {
+        const validColdCallGuide = guide.mode === "cold-call-guide" &&
+          Number.isInteger(guide.coldCallVersion) &&
+          guide.coldCallVersion > 0 &&
+          isNonEmptyText(guide.uncertaintyPhrase) &&
+          isNonEmptyText(guide.microPermission) &&
+          Array.isArray(guide.deliveryCues) &&
+          guide.deliveryCues.length > 0 &&
+          guide.deliveryCues.every(isNonEmptyText);
+        const validLegacyGuide =
+          isNonEmptyText(guide.opening) &&
+          isNonEmptyText(guide.leading) &&
+          isNonEmptyText(guide.closing);
+        if (!validColdCallGuide && !validLegacyGuide) {
           return false;
         }
 
@@ -2129,8 +2224,6 @@
           guide.qualificationSections.every((section) =>
             isNonEmptyText(section.name) &&
             isNonEmptyText(section.purpose) &&
-            (section.transition === undefined || isNonEmptyText(section.transition)) &&
-            (section.exitCondition === undefined || isNonEmptyText(section.exitCondition)) &&
             Array.isArray(section.questions) &&
             section.questions.length > 0 &&
             section.questions.every(isNonEmptyText)
@@ -2181,7 +2274,8 @@
           isText(mapping.personaId) &&
           personaIds.has(mapping.personaId) &&
           isText(mapping.why) &&
-          isTextArray(mapping.prompts)
+          isTextArray(mapping.prompts) &&
+          (mapping.coldCall === undefined || validColdCall(mapping.coldCall))
         );
 
         const validGuideData = value.guide === undefined || validGuide(value.guide);
@@ -2191,19 +2285,19 @@
       function normalizeData(value) {
         const normalized = clone(value);
         const defaultGuide = makeDefaultGuide();
-        if (!normalized.guide) {
-          normalized.guide = defaultGuide;
-        } else if (
-          normalized.guide.methodology !== defaultGuide.methodology ||
-          normalized.guide.methodologyVersion !== defaultGuide.methodologyVersion
+        if (
+          !normalized.guide ||
+          normalized.guide.mode !== defaultGuide.mode ||
+          normalized.guide.coldCallVersion !== defaultGuide.coldCallVersion
         ) {
-          normalized.guide = {
-            ...normalized.guide,
-            methodology: defaultGuide.methodology,
-            methodologyVersion: defaultGuide.methodologyVersion,
-            qualificationSections: defaultGuide.qualificationSections
-          };
+          normalized.guide = defaultGuide;
         }
+        normalized.mappings.forEach((mapping) => {
+          if (!validColdCall(mapping.coldCall)) {
+            const product = normalized.products.find((item) => item.id === mapping.productId);
+            mapping.coldCall = makeDefaultColdCall(product);
+          }
+        });
         return normalized;
       }
 
@@ -2306,11 +2400,13 @@
         guidePersonaCare: $("#guide-persona-care"),
         guidePersonaTitles: $("#guide-persona-titles"),
         guideProductFeatures: $("#guide-product-features"),
-        guideOpeningScript: $("#guide-opening-script"),
-        guideLeadingScript: $("#guide-leading-script"),
-        guideClosingScript: $("#guide-closing-script"),
-        guideScenarioPrompts: $("#guide-scenario-prompts"),
         guideQuestionGroups: $("#guide-question-groups"),
+        coldCallScript: $("#cold-call-script"),
+        coldCallWordCount: $("#cold-call-word-count"),
+        coldCallDuration: $("#cold-call-duration"),
+        coldCallStatus: $("#cold-call-status"),
+        coldCallDurationFill: $("#cold-call-duration-fill"),
+        deliveryCues: $("#delivery-cues"),
         timerDisplay: $("#timer-display"),
         timerToggle: $("#timer-toggle")
       };
@@ -2568,11 +2664,51 @@
         renderSellerGuide();
       }
 
+      function stripTrailingPunctuation(value) {
+        return String(value || "").trim().replace(/[.!?]+$/, "");
+      }
+
+      function buildColdCallScript(coldCall, guide = data.guide) {
+        const parts = [
+          "Hi [first name], it’s [your name] from GitHub.",
+          `${stripTrailingPunctuation(coldCall.existingUse)}.`
+        ];
+        if (coldCall.usePermission) {
+          parts.push(guide.microPermission);
+        }
+        parts.push(
+          `${stripTrailingPunctuation(guide.uncertaintyPhrase)} ${stripTrailingPunctuation(coldCall.potentialGap)}, which can make it harder to ${stripTrailingPunctuation(coldCall.desiredOutcome)}.`,
+          /[?]$/.test(coldCall.perspectiveQuestion)
+            ? coldCall.perspectiveQuestion
+            : `${stripTrailingPunctuation(coldCall.perspectiveQuestion)}?`
+        );
+        return parts.filter(Boolean).join(" ");
+      }
+
+      function updateColdCallPreview(coldCall) {
+        const script = buildColdCallScript(coldCall);
+        const words = script.match(/\b[\w’'-]+\b/g)?.length || 0;
+        const seconds = Math.max(1, Math.round(words / 2.25));
+        const onTarget = seconds >= 20 && seconds <= 30;
+        elements.coldCallScript.textContent = script;
+        elements.coldCallWordCount.textContent = `${words} words`;
+        elements.coldCallDuration.textContent = `~${seconds} sec`;
+        elements.coldCallStatus.textContent = onTarget
+          ? "On target"
+          : seconds < 20
+            ? "Add relevance"
+            : "Trim the opening";
+        elements.coldCallStatus.classList.toggle("on-target", onTarget);
+        elements.coldCallStatus.classList.toggle("needs-work", !onTarget);
+        elements.coldCallDurationFill.style.width = `${Math.min(100, (seconds / 35) * 100)}%`;
+      }
+
       function renderSellerGuide() {
         const product = productById(selection.productId);
         const persona = personaById(selection.personaId);
         const mapping = mappingFor(selection.productId, selection.personaId);
         const guide = data.guide || makeDefaultGuide();
+        const coldCall = mapping?.coldCall || makeDefaultColdCall(product);
 
         elements.guideRoundBadge.textContent = `Round ${String(round).padStart(2, "0")}`;
         elements.guideProduct.textContent = product?.name || "Add a product";
@@ -2585,10 +2721,6 @@
         elements.guidePersonaTitles.textContent = persona?.representedRoles?.length
           ? persona.representedRoles.join(", ")
           : "Add represented titles in Edit mode.";
-        elements.guideOpeningScript.textContent = guide.opening;
-        elements.guideLeadingScript.textContent = guide.leading;
-        elements.guideClosingScript.textContent = guide.closing;
-
         elements.guideProductFeatures.replaceChildren();
         (product?.features?.length ? product.features : ["Add product scope in Edit mode."]).forEach((feature) => {
           const item = document.createElement("li");
@@ -2596,12 +2728,12 @@
           elements.guideProductFeatures.append(item);
         });
 
-        const prompts = mapping?.prompts?.filter(Boolean) || [];
-        elements.guideScenarioPrompts.replaceChildren();
-        (prompts.length ? prompts : ["Add discovery prompts to this scenario mapping in Edit mode."]).forEach((prompt) => {
-          const item = document.createElement("li");
-          item.textContent = prompt;
-          elements.guideScenarioPrompts.append(item);
+        elements.deliveryCues.replaceChildren();
+        guide.deliveryCues.forEach((cue) => {
+          const item = document.createElement("span");
+          item.className = "delivery-cue";
+          item.textContent = cue;
+          elements.deliveryCues.append(item);
         });
 
         elements.guideQuestionGroups.replaceChildren();
@@ -2616,22 +2748,6 @@
           const purpose = document.createElement("p");
           purpose.className = "question-purpose";
           purpose.textContent = section.purpose;
-          const guidance = document.createElement("div");
-          guidance.className = "question-guidance";
-          [
-            ["Move on when", section.exitCondition],
-            ["Transition", section.transition]
-          ].forEach(([label, value]) => {
-            if (!value) return;
-            const item = document.createElement("div");
-            item.className = "question-guidance-item";
-            const title = document.createElement("strong");
-            title.textContent = label;
-            const text = document.createElement("span");
-            text.textContent = value;
-            item.append(title, text);
-            guidance.append(item);
-          });
           const list = document.createElement("ol");
           list.className = "prompt-list";
           section.questions.forEach((question) => {
@@ -2639,12 +2755,11 @@
             item.textContent = question;
             list.append(item);
           });
-          content.append(purpose);
-          if (guidance.childElementCount) content.append(guidance);
-          content.append(list);
+          content.append(purpose, list);
           details.append(summary, content);
           elements.guideQuestionGroups.append(details);
         });
+        updateColdCallPreview(coldCall);
       }
 
       function renderEditor() {
@@ -2653,14 +2768,14 @@
         elements.addItem.hidden = activeTab === "guide";
 
         if (activeTab === "guide") {
-          elements.editorCount.textContent = "1 seller guide";
+          elements.editorCount.textContent = "1 coaching preset";
           const row = document.createElement("article");
           row.className = "editor-item";
           const text = document.createElement("div");
           const title = document.createElement("h3");
-          title.textContent = "Call script and qualification questions";
+          title.textContent = "Cold call coaching defaults";
           const detail = document.createElement("p");
-          detail.textContent = `3 call stages · ${data.guide.qualificationSections.length} SPIN stages`;
+          detail.textContent = `Uncertainty and permission language · ${data.guide.deliveryCues.length} delivery cues · ${data.guide.qualificationSections.length} SPIN follow-up stages`;
           text.append(title, detail);
           const actions = document.createElement("div");
           actions.className = "item-actions";
@@ -2858,24 +2973,22 @@
         const singular = activeTab === "mappings"
           ? "scenario mapping"
           : activeTab === "guide"
-            ? "seller guide"
+            ? "cold call coaching"
             : activeTab.slice(0, -1);
         elements.dialogTitle.textContent = `${item ? "Edit" : "Add"} ${singular}`;
         elements.formFields.replaceChildren();
 
         if (activeTab === "guide") {
           elements.formFields.append(
-            textField("opening", "Opening script", item.opening, {
-              multiline: true,
-              help: "Opening wording for establishing the customer goal, success measures, and timing."
+            textField("uncertaintyPhrase", "Uncertainty phrase", item.uncertaintyPhrase, {
+              help: "Keep the poke-the-bear statement tentative so the customer can comfortably disagree."
             }),
-            textField("leading", "Conversation lead-in", item.leading, {
-              multiline: true,
-              help: "Explain how you will explore the current state, challenges, and impact before positioning."
+            textField("microPermission", "Optional permission line", item.microPermission, {
+              help: "Representatives can enable this in the builder when it helps them sound more natural."
             }),
-            textField("closing", "Summary and advance script", item.closing, {
+            textField("deliveryCues", "Delivery coaching", item.deliveryCues.join("\n"), {
               multiline: true,
-              help: "Use placeholders such as [goal], [current state], [problems], and [impact]."
+              help: "Enter one short coaching cue per line."
             })
           );
           item.qualificationSections.forEach((section) => {
@@ -2923,11 +3036,27 @@
             showToast("Add a product and persona before creating a mapping.");
             return;
           }
+          const coldCall = item?.coldCall || makeDefaultColdCall(productById(item?.productId || data.products[0].id));
           elements.formFields.append(
             selectField("productId", "Product", data.products, item?.productId),
             selectField("personaId", "Persona", data.personas, item?.personaId),
             textField("why", "Why this persona cares", item?.why, { multiline: true }),
-            promptEditor(item?.prompts || [])
+            promptEditor(item?.prompts || []),
+            textField("coldCallExistingUse", "Cold call: recognize existing use", coldCall.existingUse, {
+              multiline: true,
+              help: "Acknowledge verified GitHub use without introducing the platform as if it were new."
+            }),
+            textField("coldCallGap", "Cold call: potential gap", coldCall.potentialGap, {
+              multiline: true,
+              help: "One plausible gap only. The guide frames it with tentative language."
+            }),
+            textField("coldCallOutcome", "Cold call: desired outcome", coldCall.desiredOutcome, {
+              multiline: true,
+              help: "Use customer-outcome language rather than a feature description."
+            }),
+            textField("coldCallQuestion", "Cold call: perspective question", coldCall.perspectiveQuestion, {
+              help: "End with a neutral question the customer can correct or reject."
+            })
           );
         }
         elements.dialog.showModal();
@@ -2959,12 +3088,20 @@
             showToast("Add at least one question to every qualification section.");
             return;
           }
+          const deliveryCues = formValue(formData, "deliveryCues")
+            .split("\n")
+            .map((value) => value.trim())
+            .filter(Boolean);
+          if (!deliveryCues.length) {
+            showToast("Add at least one delivery coaching cue.");
+            return;
+          }
           data.guide = {
-            methodology: data.guide.methodology,
-            methodologyVersion: data.guide.methodologyVersion,
-            opening: formValue(formData, "opening"),
-            leading: formValue(formData, "leading"),
-            closing: formValue(formData, "closing"),
+            mode: data.guide.mode,
+            coldCallVersion: data.guide.coldCallVersion,
+            uncertaintyPhrase: formValue(formData, "uncertaintyPhrase"),
+            microPermission: formValue(formData, "microPermission"),
+            deliveryCues,
             qualificationSections
           };
         } else if (activeTab === "products") {
@@ -3003,15 +3140,22 @@
             showToast("Add at least one discovery prompt.");
             return;
           }
+          const product = productById(productId);
           const item = {
             id: existing?.id || uid("mapping"),
             productId,
             personaId,
             why: formValue(formData, "why"),
-            prompts
+            prompts,
+            coldCall: {
+              existingUse: formValue(formData, "coldCallExistingUse"),
+              potentialGap: formValue(formData, "coldCallGap"),
+              desiredOutcome: formValue(formData, "coldCallOutcome"),
+              perspectiveQuestion: formValue(formData, "coldCallQuestion"),
+              usePermission: existing?.coldCall?.usePermission || false
+            }
           };
           upsert(activeTab, item);
-          const product = productById(productId);
           if (product && !product.compatiblePersonaIds.includes(personaId)) {
             product.compatiblePersonaIds.push(personaId);
           }
@@ -3094,13 +3238,27 @@
       }
 
       function resetDefaults() {
-        if (!window.confirm("Reset all products, personas, scenarios, prompts, and seller guide content to defaults?")) return;
+        if (!window.confirm("Reset all products, personas, scenarios, prompts, and cold call coaching to defaults?")) return;
         data = makeDefaultData();
         selection = {
           productId: data.products[0].id,
           personaId: data.products[0].compatiblePersonaIds[0]
         };
         saveData("Default scenario data restored.");
+      }
+
+      async function copyColdCall() {
+        const script = elements.coldCallScript.textContent.trim();
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(script);
+            showToast("Cold call script copied.");
+          } else {
+            window.prompt("Copy this cold call script:", script);
+          }
+        } catch (error) {
+          showToast("Could not copy the script. Select the text manually.");
+        }
       }
 
       function formatTime(seconds) {
@@ -3185,6 +3343,7 @@
       elements.shareButton.addEventListener("click", shareApp);
       elements.randomize.addEventListener("click", randomizeAll);
       elements.openGuideButton.addEventListener("click", () => setAppView("guide", true));
+      $("#copy-cold-call").addEventListener("click", copyColdCall);
       $("#product-reel").addEventListener("click", rerollProduct);
       $("#persona-reel").addEventListener("click", rerollPersona);
       elements.editToggle.addEventListener("click", () => {

@@ -1799,6 +1799,7 @@
       const STORAGE_KEY = "github-scenario-lab-v6";
       const VIEW_STATE_KEY = `${STORAGE_KEY}-view`;
       const SYNC_CHANNEL_NAME = `${STORAGE_KEY}-sync`;
+      const DEFAULT_DATA_REVISION = 1;
       const TIMER_SECONDS = 300;
       const SHARED_APP_URL = "https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html";
 
@@ -1975,7 +1976,7 @@
           coldCall: {
             existingUse: "I know your developers already use GitHub pull requests"
           },
-          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive", "it-executive"],
           why: "This role creates, reviews, governs, or measures code quality and the long-term health of the software estate.",
           prompts: [
             "How do teams identify maintainability and reliability issues before merge today?",
@@ -2133,6 +2134,13 @@
         }
 
         if (product?.id === "code-quality") {
+          if (personaId === "it-executive") {
+            return {
+              potentialGap: "maintainability debt accumulating across critical applications",
+              desiredOutcome: "That makes delivery cost and release predictability harder to manage",
+              perspectiveQuestion: "How much of your current engineering cost and delivery variance can you trace back to maintainability debt?"
+            };
+          }
           if (level === "Practitioner / IC") {
             return {
               potentialGap: "review bottlenecks delaying feedback on maintainability issues",
@@ -2248,7 +2256,14 @@
           });
         });
 
-        return { version: 2, products: productData, personas, mappings, guide: makeDefaultGuide() };
+        return {
+          version: 2,
+          dataRevision: DEFAULT_DATA_REVISION,
+          products: productData,
+          personas,
+          mappings,
+          guide: makeDefaultGuide()
+        };
       }
 
       function clone(value) {
@@ -2341,6 +2356,12 @@
             !Array.isArray(value.mappings)) {
           return false;
         }
+        if (
+          value.dataRevision !== undefined &&
+          (!Number.isInteger(value.dataRevision) || value.dataRevision < 0)
+        ) {
+          return false;
+        }
 
         const isText = isNonEmptyText;
         const isTextArray = (items) => Array.isArray(items) && items.every(isText);
@@ -2405,6 +2426,30 @@
         normalized.mappings = normalized.mappings.filter((mapping) =>
           !isForbiddenProductPersona(mapping.productId, mapping.personaId, normalized.personas)
         );
+        if ((normalized.dataRevision || 0) < DEFAULT_DATA_REVISION) {
+          const product = normalized.products.find((item) => item.id === "code-quality");
+          const persona = normalized.personas.find((item) => item.id === "it-executive");
+          if (product && persona) {
+            if (!product.compatiblePersonaIds.includes(persona.id)) {
+              product.compatiblePersonaIds.push(persona.id);
+            }
+            const hasMapping = normalized.mappings.some((mapping) =>
+              mapping.productId === product.id && mapping.personaId === persona.id
+            );
+            if (!hasMapping) {
+              const seededProduct = products.find((item) => item.id === product.id);
+              normalized.mappings.push({
+                id: `${product.id}__${persona.id}`,
+                productId: product.id,
+                personaId: persona.id,
+                why: seededProduct.why,
+                prompts: [...seededProduct.prompts],
+                coldCall: makeDefaultColdCall(product, persona)
+              });
+            }
+          }
+          normalized.dataRevision = DEFAULT_DATA_REVISION;
+        }
         normalized.mappings.forEach((mapping) => {
           const product = normalized.products.find((item) => item.id === mapping.productId);
           const persona = normalized.personas.find((item) => item.id === mapping.personaId);

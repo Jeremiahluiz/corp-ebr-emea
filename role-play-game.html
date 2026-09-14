@@ -1066,6 +1066,36 @@
       font-style: italic;
     }
 
+    .conversation-invitation {
+      font-weight: 700;
+    }
+
+    .no-response-path {
+      margin-top: 14px;
+      padding: 11px;
+      border: 1px solid rgba(210, 153, 34, 0.38);
+      border-radius: 8px;
+      background: rgba(210, 153, 34, 0.07);
+    }
+
+    .no-response-path > strong {
+      color: #e3b341;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .no-response-path p {
+      margin-top: 7px;
+      font-size: 0.78rem;
+    }
+
+    .no-response-path .response-route-cue {
+      color: #e3b341;
+      font-size: 0.72rem;
+      font-style: italic;
+    }
+
     .readiness-list {
       display: grid;
       gap: 8px;
@@ -1818,7 +1848,7 @@
                         <input type="radio" name="opener-style" value="direct" checked>
                         <span class="opener-option-heading">
                           <span>Option A · Direct</span>
-                          <span class="opener-duration" id="direct-opener-duration"></span>
+                          <span class="opener-duration" id="direct-opener-duration" title="Estimated spoken time for the main path. Conditional no-response coaching is excluded."></span>
                         </span>
                         <p id="cold-call-direct-opener"></p>
                       </label>
@@ -1826,7 +1856,7 @@
                         <input type="radio" name="opener-style" value="permission">
                         <span class="opener-option-heading">
                           <span>Option B · Permission-based</span>
-                          <span class="opener-duration" id="permission-opener-duration"></span>
+                          <span class="opener-duration" id="permission-opener-duration" title="Estimated spoken time for the main path. Conditional no-response coaching is excluded."></span>
                         </span>
                         <p id="cold-call-permission-greeting"></p>
                         <p class="opener-delivery-cue" id="cold-call-permission-cue"></p>
@@ -1838,6 +1868,12 @@
                     <span>2</span>
                     <strong>Reason for calling</strong>
                     <p id="cold-call-reason"></p>
+                    <p class="conversation-invitation" id="cold-call-invitation"></p>
+                    <div class="no-response-path">
+                      <strong>If they say no</strong>
+                      <p id="cold-call-no-response"></p>
+                      <p class="response-route-cue" id="cold-call-no-response-cue"></p>
+                    </div>
                   </article>
                   <article class="call-step">
                     <span>3</span>
@@ -2299,6 +2335,9 @@
           permissionOpenerGreeting: "Hi [first name], it’s [your name] from GitHub. I’m part of the account team for [account name]. How are you?",
           permissionOpenerCue: "[Pause and respond to their greeting.]",
           permissionOpenerRequest: "I know you weren’t expecting my call, but do you have a few seconds to discuss why I’m calling?",
+          conversationInvitation: "So I wanted to see whether you’d be open to a brief conversation about it.",
+          noResponsePermission: "Understood. Before I let you go, may I ask one quick question?",
+          noResponseCue: "[If they agree, continue to step 3. If not, thank them and end the call.]",
           deliveryCues: [
             "Calm and matter-of-fact",
             "One gap, not a list",
@@ -2459,7 +2498,10 @@
             guide.directOpener,
             guide.permissionOpenerGreeting,
             guide.permissionOpenerCue,
-            guide.permissionOpenerRequest
+            guide.permissionOpenerRequest,
+            guide.conversationInvitation,
+            guide.noResponsePermission,
+            guide.noResponseCue
           ].every((value) => value === undefined || isNonEmptyText(value)) &&
           Array.isArray(guide.deliveryCues) &&
           guide.deliveryCues.length > 0 &&
@@ -2724,6 +2766,9 @@
         directOpenerDuration: $("#direct-opener-duration"),
         permissionOpenerDuration: $("#permission-opener-duration"),
         coldCallReason: $("#cold-call-reason"),
+        coldCallInvitation: $("#cold-call-invitation"),
+        coldCallNoResponse: $("#cold-call-no-response"),
+        coldCallNoResponseCue: $("#cold-call-no-response-cue"),
         coldCallQuestion: $("#cold-call-question"),
         deliveryCues: $("#delivery-cues"),
         timerDisplay: $("#timer-display"),
@@ -3028,6 +3073,9 @@
           permissionOpenerGreeting: guide.permissionOpenerGreeting,
           permissionOpenerCue: guide.permissionOpenerCue,
           permissionOpenerRequest: guide.permissionOpenerRequest,
+          conversationInvitation: guide.conversationInvitation,
+          noResponsePermission: guide.noResponsePermission,
+          noResponseCue: guide.noResponseCue,
           reason: `The reason I’m calling is that many conversations with ${stripTrailingPunctuation(coldCall.peerGroup)} surface challenges with ${stripTrailingPunctuation(coldCall.potentialGap)}. ${sentence(coldCall.desiredOutcome)}`,
           question: /[?]$/.test(coldCall.perspectiveQuestion)
             ? coldCall.perspectiveQuestion
@@ -3050,14 +3098,23 @@
         elements.coldCallPermissionCue.textContent = sections.permissionOpenerCue;
         elements.coldCallPermissionRequest.textContent = sections.permissionOpenerRequest;
         elements.coldCallReason.textContent = sections.reason;
+        elements.coldCallInvitation.textContent = sections.conversationInvitation;
+        elements.coldCallNoResponse.textContent = sections.noResponsePermission;
+        elements.coldCallNoResponseCue.textContent = sections.noResponseCue;
         elements.coldCallQuestion.textContent = sections.question;
         elements.directOpenerDuration.textContent =
-          `~${estimatedSpokenSeconds([sections.directOpener, sections.reason, sections.question])} sec`;
+          `~${estimatedSpokenSeconds([
+            sections.directOpener,
+            sections.reason,
+            sections.conversationInvitation,
+            sections.question
+          ])} sec`;
         elements.permissionOpenerDuration.textContent =
           `~${estimatedSpokenSeconds([
             sections.permissionOpenerGreeting,
             sections.permissionOpenerRequest,
             sections.reason,
+            sections.conversationInvitation,
             sections.question
           ])} sec`;
         $$('input[name="opener-style"]').forEach((input) => {
@@ -3361,6 +3418,18 @@
               multiline: true,
               help: "Second spoken segment after the customer responds."
             }),
+            textField("conversationInvitation", "Reason for calling: conversation invitation", item.conversationInvitation, {
+              multiline: true,
+              help: "Shared sentence that asks whether the customer is open to discussing the topic."
+            }),
+            textField("noResponsePermission", "If they say no: permission question", item.noResponsePermission, {
+              multiline: true,
+              help: "Spoken line that asks permission for one final question before moving to step 3."
+            }),
+            textField("noResponseCue", "If they say no: routing cue", item.noResponseCue, {
+              multiline: true,
+              help: "Non-spoken coaching. Continue to step 3 only if the customer agrees."
+            }),
             textField("uncertaintyPhrase", "Uncertainty phrase", item.uncertaintyPhrase, {
               help: "Keep the poke-the-bear statement tentative so the customer can comfortably disagree."
             }),
@@ -3504,20 +3573,23 @@
             showToast("Add at least one delivery coaching cue.");
             return;
           }
-          const sharedOpeners = {
+          const sharedScriptComponents = {
             directOpener: formValue(formData, "directOpener"),
             permissionOpenerGreeting: formValue(formData, "permissionOpenerGreeting"),
             permissionOpenerCue: formValue(formData, "permissionOpenerCue"),
-            permissionOpenerRequest: formValue(formData, "permissionOpenerRequest")
+            permissionOpenerRequest: formValue(formData, "permissionOpenerRequest"),
+            conversationInvitation: formValue(formData, "conversationInvitation"),
+            noResponsePermission: formValue(formData, "noResponsePermission"),
+            noResponseCue: formValue(formData, "noResponseCue")
           };
-          if (Object.values(sharedOpeners).some((value) => !value)) {
-            showToast("Complete both shared opener options and the delivery cue.");
+          if (Object.values(sharedScriptComponents).some((value) => !value)) {
+            showToast("Complete the shared opener and conversation-path fields.");
             return;
           }
           data.guide = {
             mode: data.guide.mode,
             coldCallVersion: data.guide.coldCallVersion,
-            ...sharedOpeners,
+            ...sharedScriptComponents,
             uncertaintyPhrase: formValue(formData, "uncertaintyPhrase"),
             microPermission: formValue(formData, "microPermission"),
             deliveryCues,

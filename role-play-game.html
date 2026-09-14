@@ -1815,6 +1815,13 @@
         "Higher Management / C-suite"
       ];
 
+      const SECURITY_TEAM = "Security & Risk";
+      const SECURITY_PERSONA_IDS = new Set([
+        "security-practitioner",
+        "security-risk-leader",
+        "security-executive"
+      ]);
+
       const personaSeeds = [
         [
           "developer-enablement-practitioner",
@@ -1900,7 +1907,7 @@
           coldCall: {
             existingUse: "I know your team already uses GitHub Copilot"
           },
-          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
+          personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive", "it-executive"],
           why: "This role influences how AI-assisted coding, review, and agentic workflows are adopted, governed, measured, or used in day-to-day engineering.",
           prompts: [
             "Where do developers lose the most time across coding, review, and routine implementation work?",
@@ -2252,6 +2259,22 @@
         return typeof value === "string" && value.trim().length > 0;
       }
 
+      function isSecurityPersona(persona) {
+        return Boolean(
+          persona &&
+          (persona.primaryTeam === SECURITY_TEAM || SECURITY_PERSONA_IDS.has(persona.id))
+        );
+      }
+
+      function isForbiddenProductPersona(productId, personaId, personas = data?.personas || []) {
+        if (productId !== "copilot") return false;
+        return isSecurityPersona(personas.find((persona) => persona.id === personaId));
+      }
+
+      function personasAllowedForProduct(productId, personas = data?.personas || []) {
+        return personas.filter((persona) => !isForbiddenProductPersona(productId, persona.id, personas));
+      }
+
       function makeDefaultColdCall(product, persona) {
         const seeded = products.find((item) => item.id === product?.id)?.coldCall;
         const profile = defaultCallProfile(product, persona);
@@ -2373,6 +2396,15 @@
         ) {
           normalized.guide = defaultGuide;
         }
+        const copilot = normalized.products.find((product) => product.id === "copilot");
+        if (copilot) {
+          copilot.compatiblePersonaIds = copilot.compatiblePersonaIds.filter((personaId) =>
+            !isForbiddenProductPersona("copilot", personaId, normalized.personas)
+          );
+        }
+        normalized.mappings = normalized.mappings.filter((mapping) =>
+          !isForbiddenProductPersona(mapping.productId, mapping.personaId, normalized.personas)
+        );
         normalized.mappings.forEach((mapping) => {
           const product = normalized.products.find((item) => item.id === mapping.productId);
           const persona = normalized.personas.find((item) => item.id === mapping.personaId);
@@ -2519,9 +2551,11 @@
       }
 
       function saveData(message = "Changes saved and synced.") {
+        data = normalizeData(data);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         publishSyncMessage({ type: "data", data });
-        ensureSelection();
+        const selectionChanged = ensureSelection();
+        if (selectionChanged) publishViewState();
         renderAll();
         showToast(message);
       }
@@ -2537,9 +2571,15 @@
       }
 
       function applySyncedData(nextData) {
-        if (!validData(nextData) || JSON.stringify(nextData) === JSON.stringify(data)) return;
-        data = normalizeData(nextData);
-        ensureSelection();
+        if (!validData(nextData)) return;
+        const normalized = normalizeData(nextData);
+        if (JSON.stringify(normalized) === JSON.stringify(data)) return;
+        data = normalized;
+        if (JSON.stringify(normalized) !== JSON.stringify(nextData)) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+        }
+        const selectionChanged = ensureSelection();
+        if (selectionChanged) publishViewState();
         renderAll();
         showToast("Changes synced from another window.");
       }
@@ -2568,7 +2608,8 @@
           personaId: viewState.personaId
         };
         round = nextRound;
-        ensureSelection();
+        const selectionChanged = ensureSelection();
+        if (selectionChanged) publishViewState();
         renderScenario();
         showToast("Scenario synced from another window.");
       }
@@ -2622,6 +2663,8 @@
       }
 
       function ensureSelection() {
+        const previousProductId = selection.productId;
+        const previousPersonaId = selection.personaId;
         if (!productById(selection.productId)) {
           selection.productId = data.products[0]?.id || "";
         }
@@ -2629,6 +2672,7 @@
         if (!compatible.some((item) => item.id === selection.personaId)) {
           selection.personaId = compatible[0]?.id || "";
         }
+        return selection.productId !== previousProductId || selection.personaId !== previousPersonaId;
       }
 
       function setAppView(view, focusTab = false) {
@@ -2995,7 +3039,7 @@
         return wrapper;
       }
 
-      function compatibilityField(selectedIds = []) {
+      function compatibilityField(selectedIds = [], productId = "") {
         const fieldset = document.createElement("fieldset");
         fieldset.className = "field";
         const legend = document.createElement("legend");
@@ -3011,6 +3055,10 @@
           input.name = "compatiblePersonaIds";
           input.value = persona.id;
           input.checked = selectedIds.includes(persona.id);
+          input.disabled = isForbiddenProductPersona(productId, persona.id);
+          if (input.disabled) {
+            label.title = "Security personas are not currently available for GitHub Copilot.";
+          }
           label.append(input, document.createTextNode(persona.name));
           grid.append(label);
         });
@@ -3100,7 +3148,7 @@
               multiline: true,
               help: "Enter one capability or focus area per line."
             }),
-            compatibilityField(item?.compatiblePersonaIds || [])
+            compatibilityField(item?.compatiblePersonaIds || [], item?.id || "")
           );
         } else if (activeTab === "personas") {
           elements.formFields.append(
@@ -3131,9 +3179,34 @@
           const product = productById(item?.productId || data.products[0].id);
           const persona = personaById(item?.personaId || data.personas[0].id);
           const coldCall = item?.coldCall || makeDefaultColdCall(product, persona);
+          const selectedProductId = item?.productId || data.products[0].id;
+          const productField = selectField("productId", "Product", data.products, selectedProductId);
+          const personaField = selectField(
+            "personaId",
+            "Persona",
+            personasAllowedForProduct(selectedProductId),
+            item?.personaId
+          );
+          const productSelect = $("select", productField);
+          const personaSelect = $("select", personaField);
+          productSelect.addEventListener("change", () => {
+            const allowed = personasAllowedForProduct(productSelect.value);
+            const currentPersonaId = personaSelect.value;
+            personaSelect.replaceChildren();
+            allowed.forEach((allowedPersona) => {
+              const option = document.createElement("option");
+              option.value = allowedPersona.id;
+              option.textContent = allowedPersona.name;
+              option.selected = allowedPersona.id === currentPersonaId;
+              personaSelect.append(option);
+            });
+            if (!allowed.some((allowedPersona) => allowedPersona.id === currentPersonaId)) {
+              personaSelect.value = allowed[0]?.id || "";
+            }
+          });
           elements.formFields.append(
-            selectField("productId", "Product", data.products, item?.productId),
-            selectField("personaId", "Persona", data.personas, item?.personaId),
+            productField,
+            personaField,
             textField("why", "Why this persona cares", item?.why, { multiline: true }),
             promptEditor(item?.prompts || []),
             textField("coldCallExistingUse", "Cold call: recognize existing use", coldCall.existingUse, {
@@ -3203,13 +3276,16 @@
             qualificationSections
           };
         } else if (activeTab === "products") {
+          const compatiblePersonaIds = formData.getAll("compatiblePersonaIds").map(String);
           const item = {
             id: existing?.id || uid("product"),
             name: formValue(formData, "name"),
             summary: formValue(formData, "summary"),
             goal: formValue(formData, "goal"),
             features: formValue(formData, "features").split("\n").map((value) => value.trim()).filter(Boolean),
-            compatiblePersonaIds: formData.getAll("compatiblePersonaIds").map(String)
+            compatiblePersonaIds: existing?.id === "copilot"
+              ? compatiblePersonaIds.filter((personaId) => !isForbiddenProductPersona("copilot", personaId))
+              : compatiblePersonaIds
           };
           upsert(activeTab, item);
         } else if (activeTab === "personas") {
@@ -3224,6 +3300,10 @@
         } else {
           const productId = formValue(formData, "productId");
           const personaId = formValue(formData, "personaId");
+          if (isForbiddenProductPersona(productId, personaId)) {
+            showToast("Security personas are not currently available for GitHub Copilot.");
+            return;
+          }
           const duplicate = data.mappings.find((mapping) =>
             mapping.productId === productId &&
             mapping.personaId === personaId &&
@@ -3488,7 +3568,8 @@
         }
       });
 
-      ensureSelection();
+      const initialSelectionChanged = ensureSelection();
+      if (initialSelectionChanged) publishViewState();
       renderAll();
       renderTimer();
 

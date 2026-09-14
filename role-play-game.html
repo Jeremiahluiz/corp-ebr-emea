@@ -1898,14 +1898,7 @@
           goal: "Understand where AI assistance can improve coding, review, and delegated development work while meeting the customer's governance and adoption needs.",
           features: ["Copilot Code Completion", "Copilot Code Review", "Agentic use"],
           coldCall: {
-            existingUse: "I know your team already uses GitHub Copilot in parts of the software development workflow",
-            potentialGap: "adoption and measurable value can still vary between teams",
-            desiredOutcome: "scale AI-assisted development responsibly"
-          },
-          pokeQuestions: {
-            "Practitioner / IC": "When developers use Copilot, how do you know it is removing work rather than shifting more work into review and rework?",
-            "Mid-management / Team Lead": "How do you know the teams using Copilot most are improving cycle time and quality, rather than simply producing more code?",
-            "Higher Management / C-suite": "How do you know your Copilot investment is changing business outcomes, rather than only increasing individual activity?"
+            existingUse: "I know your team already uses GitHub Copilot"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences how AI-assisted coding, review, and agentic workflows are adopted, governed, measured, or used in day-to-day engineering.",
@@ -1922,14 +1915,7 @@
           goal: "Connect application security priorities to developer workflows, remediation capacity, and measurable risk reduction.",
           features: ["Code scanning", "CodeQL analysis", "Copilot Autofix"],
           coldCall: {
-            existingUse: "I know your team already uses GitHub in its application security workflow",
-            potentialGap: "security findings can still compete with delivery work and slow remediation",
-            desiredOutcome: "reduce software risk without creating a developer bottleneck"
-          },
-          pokeQuestions: {
-            "Practitioner / IC": "How do you know the finding at the top of a developer’s queue is the one most likely to reduce real risk?",
-            "Mid-management / Team Lead": "How do you know the vulnerabilities teams defer today are not becoming tomorrow’s accepted risk?",
-            "Higher Management / C-suite": "How do you know your application security investment is reducing exploitable risk, rather than only increasing the number of findings reported?"
+            existingUse: "I know your team already uses GitHub for application security"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "security-executive"],
           why: "This role shapes how code risk is identified, prioritized, governed, or fixed within the software delivery lifecycle.",
@@ -1946,14 +1932,7 @@
           goal: "Explore how the customer prevents exposed credentials and coordinates fast remediation when exposure occurs.",
           features: ["Secret scanning", "Push protection", "Security campaigns"],
           coldCall: {
-            existingUse: "I know your team already uses GitHub to help identify exposed credentials",
-            potentialGap: "ownership and response can become inconsistent after a secret is detected",
-            desiredOutcome: "prevent exposure and shorten remediation time"
-          },
-          pokeQuestions: {
-            "Practitioner / IC": "When a secret is removed from a repository, how do you know the credential is no longer usable anywhere else?",
-            "Mid-management / Team Lead": "How do you know an exposed secret reaches someone who can revoke it before it is used outside your environment?",
-            "Higher Management / C-suite": "How do you know credential exposure is shrinking across the organization, rather than response teams simply getting faster at cleaning it up?"
+            existingUse: "I know your team already uses GitHub to identify exposed credentials"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "security-practitioner", "security-risk-leader", "security-executive"],
           why: "This role helps prevent, detect, govern, or respond to credential exposure across the software lifecycle.",
@@ -1970,14 +1949,7 @@
           goal: "Clarify the strategic, governance, security, and operating outcomes the customer expects from its developer platform.",
           features: ["Enterprise governance", "Identity and access", "Platform administration"],
           coldCall: {
-            existingUse: "I know your teams already use GitHub as part of the developer platform",
-            potentialGap: "governance and developer workflows can still vary across teams or business units",
-            desiredOutcome: "standardize the platform without adding developer friction"
-          },
-          pokeQuestions: {
-            "Practitioner / IC": "If teams create workarounds around platform policy, how do you know which ones are solving friction and which ones are creating risk?",
-            "Mid-management / Team Lead": "How do you know the standards defined centrally are actually experienced consistently by every engineering team?",
-            "Higher Management / C-suite": "How do you know platform consolidation is reducing total operating complexity, rather than moving it into local exceptions?"
+            existingUse: "I know your teams already use GitHub as their developer platform"
           },
           personas: ["platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "security-risk-leader", "engineering-technology-executive", "security-executive", "it-executive"],
           why: "This role influences platform strategy, governance, security, administration, adoption, or investment.",
@@ -1994,14 +1966,7 @@
           goal: "Understand how the customer can identify and resolve quality issues in pull requests before changes reach the default branch.",
           features: ["Maintainability findings", "Reliability findings", "Code coverage checks", "Copilot-powered autofixes"],
           coldCall: {
-            existingUse: "I know your developers already use GitHub pull request workflows",
-            potentialGap: "quality findings can still arrive too late or lack clear ownership",
-            desiredOutcome: "improve code health before changes are merged"
-          },
-          pokeQuestions: {
-            "Practitioner / IC": "How do you know a pull request that passes review today is not adding maintainability work the team will pay for six months from now?",
-            "Mid-management / Team Lead": "How do you know faster delivery is not being funded by quality debt that will slow the team next quarter?",
-            "Higher Management / C-suite": "How do you know engineering speed is sustainable when the cost of poor code quality rarely appears in delivery metrics?"
+            existingUse: "I know your developers already use GitHub pull requests"
           },
           personas: ["developer-enablement-practitioner", "platform-operations-practitioner", "engineering-product-leader", "platform-enablement-leader", "engineering-technology-executive"],
           why: "This role creates, reviews, governs, or measures code quality and the long-term health of the software estate.",
@@ -2013,18 +1978,175 @@
         }
       ];
 
-      const LEGACY_PERSPECTIVE_QUESTIONS = new Set([
+      const PEER_GROUPS = {
+        "developer-enablement-practitioner": "developers and enablement teams",
+        "platform-operations-practitioner": "platform engineers and GitHub administrators",
+        "security-practitioner": "application security and incident response practitioners",
+        "engineering-product-leader": "engineering and product leaders",
+        "platform-enablement-leader": "platform and developer experience leaders",
+        "security-risk-leader": "security and risk leaders",
+        "engineering-technology-executive": "engineering and technology executives",
+        "security-executive": "security executives",
+        "it-executive": "IT executives"
+      };
+
+      const LEGACY_COLD_CALL_DEFAULTS = {
+        existingUse: new Set([
+          "I know your team already uses GitHub Copilot in parts of the software development workflow",
+          "I know your team already uses GitHub in its application security workflow",
+          "I know your team already uses GitHub to help identify exposed credentials",
+          "I know your teams already use GitHub as part of the developer platform",
+          "I know your developers already use GitHub pull request workflows"
+        ]),
+        potentialGap: new Set([
+          "adoption and measurable value can still vary between teams",
+          "security findings can still compete with delivery work and slow remediation",
+          "ownership and response can become inconsistent after a secret is detected",
+          "governance and developer workflows can still vary across teams or business units",
+          "quality findings can still arrive too late or lack clear ownership"
+        ]),
+        desiredOutcome: new Set([
+          "scale AI-assisted development responsibly",
+          "reduce software risk without creating a developer bottleneck",
+          "prevent exposure and shorten remediation time",
+          "standardize the platform without adding developer friction",
+          "improve code health before changes are merged"
+        ]),
+        perspectiveQuestion: new Set([
         "How does that compare with what you are seeing?",
         "How are you handling that balance today?",
         "How does that process work across your teams today?",
         "How consistent does that experience feel today?",
-        "How are teams handling that today?"
-      ]);
+        "How are teams handling that today?",
+        "When developers use Copilot, how do you know it is removing work rather than shifting more work into review and rework?",
+        "How do you know the teams using Copilot most are improving cycle time and quality, rather than simply producing more code?",
+        "How do you know your Copilot investment is changing business outcomes, rather than only increasing individual activity?",
+        "How do you know the finding at the top of a developer’s queue is the one most likely to reduce real risk?",
+        "How do you know the vulnerabilities teams defer today are not becoming tomorrow’s accepted risk?",
+        "How do you know your application security investment is reducing exploitable risk, rather than only increasing the number of findings reported?",
+        "When a secret is removed from a repository, how do you know the credential is no longer usable anywhere else?",
+        "How do you know an exposed secret reaches someone who can revoke it before it is used outside your environment?",
+        "How do you know credential exposure is shrinking across the organization, rather than response teams simply getting faster at cleaning it up?",
+        "If teams create workarounds around platform policy, how do you know which ones are solving friction and which ones are creating risk?",
+        "How do you know the standards defined centrally are actually experienced consistently by every engineering team?",
+        "How do you know platform consolidation is reducing total operating complexity, rather than moving it into local exceptions?",
+        "How do you know a pull request that passes review today is not adding maintainability work the team will pay for six months from now?",
+        "How do you know faster delivery is not being funded by quality debt that will slow the team next quarter?",
+        "How do you know engineering speed is sustainable when the cost of poor code quality rarely appears in delivery metrics?"
+        ])
+      };
 
-      function defaultPokeQuestion(product, persona) {
-        const seeded = products.find((item) => item.id === product?.id);
-        return seeded?.pokeQuestions?.[persona?.seniority] ||
-          "How do you know the current approach is producing the outcome you expect across every team?";
+      function peerGroupFor(persona) {
+        return PEER_GROUPS[persona?.id] || "peers in similar roles";
+      }
+
+      function defaultCallProfile(product, persona) {
+        const level = persona?.seniority;
+        const personaId = persona?.id;
+
+        if (product?.id === "copilot") {
+          if (level === "Practitioner / IC") {
+            return {
+              potentialGap: "repetitive coding and routine implementation work",
+              desiredOutcome: "That leaves less time for complex customer work",
+              perspectiveQuestion: "How much sprint capacity is still consumed by repetitive coding and routine implementation work?"
+            };
+          }
+          if (personaId === "security-risk-leader" || personaId === "security-executive") {
+            return {
+              potentialGap: "inconsistent AI-assisted development practices across teams",
+              desiredOutcome: "That adds review work without clear risk visibility",
+              perspectiveQuestion: "How much review effort is being created by inconsistent Copilot practices?"
+            };
+          }
+          return {
+            potentialGap: "effective Copilot practices not spreading between teams",
+            desiredOutcome: "That makes productivity gains difficult to repeat and measure",
+            perspectiveQuestion: level === "Higher Management / C-suite"
+              ? "How much of your Copilot investment is still concentrated in a small group of advanced users?"
+              : "How much delivery capacity is being lost because effective practices stay within a few teams?"
+          };
+        }
+
+        if (product?.id === "code-security") {
+          return {
+            potentialGap: "adding security checks and remediation into coding workflows",
+            desiredOutcome: "That often creates significant security debt",
+            perspectiveQuestion: level === "Practitioner / IC"
+              ? "How much developer time is your team currently losing to vulnerabilities found late in the delivery cycle?"
+              : level === "Mid-management / Team Lead"
+                ? "How much unplanned engineering capacity is being consumed by vulnerabilities discovered after developers have moved on?"
+                : "How much security debt is accumulating because remediation enters the workflow after delivery priorities are already set?"
+          };
+        }
+
+        if (product?.id === "secret-protection") {
+          return {
+            potentialGap: "exposed credentials reaching repositories",
+            desiredOutcome: level === "Practitioner / IC"
+              ? "That interrupts planned work with urgent validation, revocation, and rotation"
+              : "That increases incident-response work and leaves credentials usable for longer",
+            perspectiveQuestion: level === "Practitioner / IC"
+              ? "How much time is spent validating and rotating credentials after they reach a repository?"
+              : level === "Mid-management / Team Lead"
+                ? "How much incident-response capacity is consumed by credentials addressed only after commit?"
+                : "How much security capacity is spent responding to credentials that could have been stopped before commit?"
+          };
+        }
+
+        if (product?.id === "github-enterprise") {
+          if (personaId === "security-risk-leader" || personaId === "security-executive") {
+            return {
+              potentialGap: "governance being applied inconsistently across teams and business units",
+              desiredOutcome: "That creates policy exceptions and additional audit work",
+              perspectiveQuestion: "How much audit effort is spent reconciling different governance practices across teams?"
+            };
+          }
+          if (level === "Practitioner / IC") {
+            return {
+              potentialGap: "developer workflows being fragmented across organizations, repositories, and local team practices",
+              desiredOutcome: "That creates repeated administration and support work",
+              perspectiveQuestion: "How much platform time is spent supporting different workflows across teams?"
+            };
+          }
+          if (personaId === "it-executive") {
+            return {
+              potentialGap: "developer-platform governance varying across business units",
+              desiredOutcome: "That increases operating overhead and local exceptions",
+              perspectiveQuestion: "How much operating cost is tied to administering local exceptions across the developer platform?"
+            };
+          }
+          return {
+            potentialGap: "developer workflows remaining fragmented between teams",
+            desiredOutcome: "That slows onboarding, cross-team delivery, and platform change",
+            perspectiveQuestion: level === "Higher Management / C-suite"
+              ? "How much delivery friction can you trace back to teams working through different developer workflows?"
+              : "How much team capacity is spent maintaining different workflows across the organization?"
+          };
+        }
+
+        if (product?.id === "code-quality") {
+          if (level === "Practitioner / IC") {
+            return {
+              potentialGap: "review bottlenecks delaying feedback on maintainability issues",
+              desiredOutcome: "That creates waiting time and rework after developers change context",
+              perspectiveQuestion: "How much developer time is lost waiting for review or revisiting quality issues?"
+            };
+          }
+          return {
+            potentialGap: "maintainability issues being discovered after delivery work has moved on",
+            desiredOutcome: "That builds quality debt and displaces planned engineering work",
+            perspectiveQuestion: level === "Higher Management / C-suite"
+              ? "How much of your delivery slowdown can you currently trace back to maintainability debt?"
+              : "How much planned team capacity is being displaced by maintainability work from earlier releases?"
+          };
+        }
+
+        return {
+          potentialGap: "one recurring workflow problem being handled differently across teams",
+          desiredOutcome: "That creates avoidable work and makes the operating impact difficult to measure",
+          perspectiveQuestion: "How much time or capacity is the current problem consuming across your teams?"
+        };
       }
 
       function makeDefaultGuide() {
@@ -2111,7 +2233,8 @@
               prompts: [...product.prompts],
               coldCall: {
                 ...product.coldCall,
-                perspectiveQuestion: defaultPokeQuestion(product, persona),
+                peerGroup: peerGroupFor(persona),
+                ...defaultCallProfile(product, persona),
                 usePermission: false
               }
             });
@@ -2131,11 +2254,11 @@
 
       function makeDefaultColdCall(product, persona) {
         const seeded = products.find((item) => item.id === product?.id)?.coldCall;
+        const profile = defaultCallProfile(product, persona);
         return {
           existingUse: seeded?.existingUse || `I know your team already uses ${product?.name || "GitHub"}`,
-          potentialGap: seeded?.potentialGap || "some parts of the workflow may still be harder to scale consistently",
-          desiredOutcome: seeded?.desiredOutcome || "improve the outcome across more teams",
-          perspectiveQuestion: defaultPokeQuestion(product, persona),
+          peerGroup: peerGroupFor(persona),
+          ...profile,
           usePermission: false
         };
       }
@@ -2145,6 +2268,7 @@
           coldCall &&
           typeof coldCall === "object" &&
           isNonEmptyText(coldCall.existingUse) &&
+          (coldCall.peerGroup === undefined || isNonEmptyText(coldCall.peerGroup)) &&
           isNonEmptyText(coldCall.potentialGap) &&
           isNonEmptyText(coldCall.desiredOutcome) &&
           isNonEmptyText(coldCall.perspectiveQuestion) &&
@@ -2252,10 +2376,21 @@
         normalized.mappings.forEach((mapping) => {
           const product = normalized.products.find((item) => item.id === mapping.productId);
           const persona = normalized.personas.find((item) => item.id === mapping.personaId);
+          const defaults = makeDefaultColdCall(product, persona);
           if (!validColdCall(mapping.coldCall)) {
-            mapping.coldCall = makeDefaultColdCall(product, persona);
-          } else if (LEGACY_PERSPECTIVE_QUESTIONS.has(mapping.coldCall.perspectiveQuestion)) {
-            mapping.coldCall.perspectiveQuestion = defaultPokeQuestion(product, persona);
+            mapping.coldCall = defaults;
+            return;
+          }
+          if (!isNonEmptyText(mapping.coldCall.peerGroup)) {
+            mapping.coldCall.peerGroup = defaults.peerGroup;
+          }
+          ["existingUse", "potentialGap", "desiredOutcome", "perspectiveQuestion"].forEach((field) => {
+            if (LEGACY_COLD_CALL_DEFAULTS[field].has(mapping.coldCall[field])) {
+              mapping.coldCall[field] = defaults[field];
+            }
+          });
+          if (typeof mapping.coldCall.usePermission !== "boolean") {
+            mapping.coldCall.usePermission = false;
           }
         });
         return normalized;
@@ -2266,7 +2401,12 @@
           const stored = localStorage.getItem(STORAGE_KEY);
           if (!stored) return makeDefaultData();
           const parsed = JSON.parse(stored);
-          return validData(parsed) ? normalizeData(parsed) : makeDefaultData();
+          if (!validData(parsed)) return makeDefaultData();
+          const normalized = normalizeData(parsed);
+          if (JSON.stringify(normalized) !== JSON.stringify(parsed)) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+          }
+          return normalized;
         } catch (error) {
           console.warn("Could not load saved scenario data.", error);
           return makeDefaultData();
@@ -2626,6 +2766,11 @@
         return String(value || "").trim().replace(/[.!?]+$/, "");
       }
 
+      function sentence(value) {
+        const clean = stripTrailingPunctuation(value);
+        return clean ? `${clean.charAt(0).toUpperCase()}${clean.slice(1)}.` : "";
+      }
+
       function buildColdCallSections(coldCall, guide = data.guide) {
         const openerParts = [
           "Hi [first name], it’s [your name] from GitHub.",
@@ -2636,7 +2781,7 @@
         }
         return {
           opener: openerParts.filter(Boolean).join(" "),
-          reason: `${stripTrailingPunctuation(guide.uncertaintyPhrase)} ${stripTrailingPunctuation(coldCall.potentialGap)}, which can make it harder to ${stripTrailingPunctuation(coldCall.desiredOutcome)}.`,
+          reason: `The reason I’m calling is that many conversations with ${stripTrailingPunctuation(coldCall.peerGroup)} surface challenges with ${stripTrailingPunctuation(coldCall.potentialGap)}. ${sentence(coldCall.desiredOutcome)}`,
           question: /[?]$/.test(coldCall.perspectiveQuestion)
             ? coldCall.perspectiveQuestion
             : `${stripTrailingPunctuation(coldCall.perspectiveQuestion)}?`
@@ -2995,13 +3140,16 @@
               multiline: true,
               help: "Acknowledge verified GitHub use without introducing the platform as if it were new."
             }),
-            textField("coldCallGap", "Cold call: potential gap", coldCall.potentialGap, {
-              multiline: true,
-              help: "One plausible gap only. The guide frames it with tentative language."
+            textField("coldCallPeerGroup", "Reason for calling: relevant peers", coldCall.peerGroup, {
+              help: "Name the customer’s peer group naturally, for example “application security and engineering leaders.”"
             }),
-            textField("coldCallOutcome", "Cold call: desired outcome", coldCall.desiredOutcome, {
+            textField("coldCallGap", "Reason for calling: one challenge", coldCall.potentialGap, {
               multiline: true,
-              help: "Use customer-outcome language rather than a feature description."
+              help: "Describe one concrete workflow problem. Do not list product capabilities or benefits."
+            }),
+            textField("coldCallOutcome", "Reason for calling: consequence", coldCall.desiredOutcome, {
+              multiline: true,
+              help: "State one tangible business or operational consequence, beginning naturally with “That...”"
             }),
             textField("coldCallQuestion", "Cold call: poke the bear question", coldCall.perspectiveQuestion, {
               multiline: true,
@@ -3099,6 +3247,7 @@
             prompts,
             coldCall: {
               existingUse: formValue(formData, "coldCallExistingUse"),
+              peerGroup: formValue(formData, "coldCallPeerGroup"),
               potentialGap: formValue(formData, "coldCallGap"),
               desiredOutcome: formValue(formData, "coldCallOutcome"),
               perspectiveQuestion: formValue(formData, "coldCallQuestion"),

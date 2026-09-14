@@ -922,36 +922,41 @@
       text-transform: none;
     }
 
-    .opener-selector {
-      display: flex;
-      flex-wrap: wrap;
+    .opener-step {
+      grid-column: 1 / -1;
+    }
+
+    .opener-alternatives {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
-      margin: 14px 0 0;
+      margin: 12px 0 0;
       padding: 0;
       border: 0;
     }
 
-    .opener-selector legend {
-      width: 100%;
-      margin-bottom: 2px;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 750;
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .opener-option {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      padding: 8px 11px;
+      display: block;
+      min-width: 0;
+      padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       color: var(--muted);
       background: rgba(13, 17, 23, 0.72);
       cursor: pointer;
-      font-size: 0.76rem;
-      font-weight: 750;
     }
 
     .opener-option:has(input:checked) {
@@ -973,6 +978,39 @@
       outline-offset: 2px;
     }
 
+    .opener-option-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: #f0f6fc;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .opener-duration {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font: 700 0.66rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .opener-option:has(input:checked) .opener-duration {
+      color: #79c0ff;
+    }
+
+    .opener-option p {
+      margin: 10px 0 0;
+      color: #f0f6fc;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .opener-choice-hint {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.7rem;
+    }
+
     .pause-cue {
       margin: 14px 0 0;
       color: #79c0ff;
@@ -982,7 +1020,7 @@
 
     .call-structure {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
       margin-top: 14px;
     }
@@ -1469,8 +1507,13 @@
 
       .brief-grid,
       .checkbox-grid,
-      .call-structure {
+      .call-structure,
+      .opener-alternatives {
         grid-template-columns: 1fr;
+      }
+
+      .opener-step {
+        grid-column: auto;
       }
 
       .script-preview-heading {
@@ -1764,24 +1807,32 @@
                     <h3>Your three-part opening</h3>
                   </div>
                 </div>
-                <fieldset class="opener-selector">
-                  <legend>Choose your opener</legend>
-                  <label class="opener-option">
-                    <input type="radio" name="opener-style" value="direct" checked>
-                    <span>Direct opener</span>
-                  </label>
-                  <label class="opener-option">
-                    <input type="radio" name="opener-style" value="permission">
-                    <span>Permission-based opener</span>
-                  </label>
-                </fieldset>
                 <div class="call-structure" aria-label="Three-part cold call script" aria-live="polite">
-                  <article class="call-step">
+                  <article class="call-step opener-step">
                     <span>1</span>
-                    <strong>Opener</strong>
-                    <p id="cold-call-opener"></p>
-                    <p class="opener-delivery-cue" id="cold-call-opener-cue" hidden></p>
-                    <p id="cold-call-opener-continuation" hidden></p>
+                    <strong>Choose an opener</strong>
+                    <p class="opener-choice-hint">Select one option to use. Both are shown for practice.</p>
+                    <fieldset class="opener-alternatives">
+                      <legend class="visually-hidden">Choose one opener</legend>
+                      <label class="opener-option">
+                        <input type="radio" name="opener-style" value="direct" checked>
+                        <span class="opener-option-heading">
+                          <span>Option A · Direct</span>
+                          <span class="opener-duration" id="direct-opener-duration"></span>
+                        </span>
+                        <p id="cold-call-direct-opener"></p>
+                      </label>
+                      <label class="opener-option">
+                        <input type="radio" name="opener-style" value="permission">
+                        <span class="opener-option-heading">
+                          <span>Option B · Permission-based</span>
+                          <span class="opener-duration" id="permission-opener-duration"></span>
+                        </span>
+                        <p id="cold-call-permission-greeting"></p>
+                        <p class="opener-delivery-cue" id="cold-call-permission-cue"></p>
+                        <p id="cold-call-permission-request"></p>
+                      </label>
+                    </fieldset>
                   </article>
                   <article class="call-step">
                     <span>2</span>
@@ -2666,9 +2717,12 @@
         guidePersonaTitles: $("#guide-persona-titles"),
         guideProductFeatures: $("#guide-product-features"),
         guideQuestionGroups: $("#guide-question-groups"),
-        coldCallOpener: $("#cold-call-opener"),
-        coldCallOpenerCue: $("#cold-call-opener-cue"),
-        coldCallOpenerContinuation: $("#cold-call-opener-continuation"),
+        coldCallDirectOpener: $("#cold-call-direct-opener"),
+        coldCallPermissionGreeting: $("#cold-call-permission-greeting"),
+        coldCallPermissionCue: $("#cold-call-permission-cue"),
+        coldCallPermissionRequest: $("#cold-call-permission-request"),
+        directOpenerDuration: $("#direct-opener-duration"),
+        permissionOpenerDuration: $("#permission-opener-duration"),
         coldCallReason: $("#cold-call-reason"),
         coldCallQuestion: $("#cold-call-question"),
         deliveryCues: $("#delivery-cues"),
@@ -2970,6 +3024,10 @@
           opener: permissionBased ? guide.permissionOpenerGreeting : guide.directOpener,
           openerCue: permissionBased ? guide.permissionOpenerCue : "",
           openerContinuation: permissionBased ? guide.permissionOpenerRequest : "",
+          directOpener: guide.directOpener,
+          permissionOpenerGreeting: guide.permissionOpenerGreeting,
+          permissionOpenerCue: guide.permissionOpenerCue,
+          permissionOpenerRequest: guide.permissionOpenerRequest,
           reason: `The reason I’m calling is that many conversations with ${stripTrailingPunctuation(coldCall.peerGroup)} surface challenges with ${stripTrailingPunctuation(coldCall.potentialGap)}. ${sentence(coldCall.desiredOutcome)}`,
           question: /[?]$/.test(coldCall.perspectiveQuestion)
             ? coldCall.perspectiveQuestion
@@ -2977,15 +3035,31 @@
         };
       }
 
+      function estimatedSpokenSeconds(parts) {
+        const words = parts
+          .filter(Boolean)
+          .join(" ")
+          .match(/\b[\w’'-]+\b/g)?.length || 0;
+        return Math.max(1, Math.round(words / 2.25));
+      }
+
       function updateColdCallPreview(coldCall) {
         const sections = buildColdCallSections(coldCall);
-        elements.coldCallOpener.textContent = sections.opener;
-        elements.coldCallOpenerCue.textContent = sections.openerCue;
-        elements.coldCallOpenerCue.hidden = !sections.openerCue;
-        elements.coldCallOpenerContinuation.textContent = sections.openerContinuation;
-        elements.coldCallOpenerContinuation.hidden = !sections.openerContinuation;
+        elements.coldCallDirectOpener.textContent = sections.directOpener;
+        elements.coldCallPermissionGreeting.textContent = sections.permissionOpenerGreeting;
+        elements.coldCallPermissionCue.textContent = sections.permissionOpenerCue;
+        elements.coldCallPermissionRequest.textContent = sections.permissionOpenerRequest;
         elements.coldCallReason.textContent = sections.reason;
         elements.coldCallQuestion.textContent = sections.question;
+        elements.directOpenerDuration.textContent =
+          `~${estimatedSpokenSeconds([sections.directOpener, sections.reason, sections.question])} sec`;
+        elements.permissionOpenerDuration.textContent =
+          `~${estimatedSpokenSeconds([
+            sections.permissionOpenerGreeting,
+            sections.permissionOpenerRequest,
+            sections.reason,
+            sections.question
+          ])} sec`;
         $$('input[name="opener-style"]').forEach((input) => {
           input.checked = input.value === openerStyle;
         });

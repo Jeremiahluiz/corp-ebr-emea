@@ -322,6 +322,105 @@
       margin-bottom: 18px;
     }
 
+    .practice-mode {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 18px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(9, 13, 19, 0.7);
+    }
+
+    .practice-mode-heading {
+      padding: 0 4px;
+      color: #b1bac4;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .practice-mode-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .practice-mode-option {
+      position: relative;
+      display: grid;
+      gap: 2px;
+      min-height: 70px;
+      padding: 11px 13px 11px 42px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--muted);
+      background: #0d1117;
+      cursor: pointer;
+    }
+
+    .practice-mode-option:has(input:checked) {
+      border-color: rgba(88, 166, 255, 0.7);
+      color: var(--text);
+      background: rgba(88, 166, 255, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(88, 166, 255, 0.12);
+    }
+
+    .practice-mode-option input {
+      position: absolute;
+      top: 16px;
+      left: 14px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--blue);
+    }
+
+    .practice-mode-option strong {
+      font-size: 0.88rem;
+    }
+
+    .practice-mode-option span {
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .free-play-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 16px;
+      border: 1px solid rgba(188, 140, 255, 0.4);
+      border-radius: 12px;
+      background: rgba(188, 140, 255, 0.07);
+    }
+
+    .free-play-controls[hidden] {
+      display: none;
+    }
+
+    .free-play-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .free-play-field label {
+      color: #d8b9ff;
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .free-play-field select {
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 35px 9px 11px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--text);
+      background: #0d1117;
+    }
+
     .machine-title {
       margin: 0;
       font-size: 0.92rem;
@@ -1479,6 +1578,11 @@
         grid-template-columns: 1fr;
       }
 
+      .practice-mode-options,
+      .free-play-controls {
+        grid-template-columns: 1fr;
+      }
+
       .reel,
       .reel-content {
         min-height: 185px;
@@ -1632,12 +1736,39 @@
         <div class="machine-header">
           <div>
             <h2 class="machine-title" id="machine-title">Scenario machine</h2>
-            <p class="machine-hint">Select a card to reroll only that dimension.</p>
+            <p class="machine-hint" id="machine-hint">Select a card to reroll only that dimension.</p>
           </div>
           <div class="status-lights" aria-label="Machine ready">
             <span class="status-light active"></span>
             <span class="status-light active"></span>
             <span class="status-light active"></span>
+          </div>
+        </div>
+
+        <fieldset class="practice-mode">
+          <legend class="practice-mode-heading">Choose a practice mode</legend>
+          <div class="practice-mode-options">
+            <label class="practice-mode-option">
+              <input type="radio" name="practice-mode" value="random">
+              <strong>Random draw</strong>
+              <span>Shuffle a compatible product and customer persona.</span>
+            </label>
+            <label class="practice-mode-option">
+              <input type="radio" name="practice-mode" value="free-play">
+              <strong>Free play</strong>
+              <span>Choose a specific scenario for focused practice.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="free-play-controls" id="free-play-controls" aria-label="Free play scenario selection" hidden>
+          <div class="free-play-field">
+            <label for="free-play-product">Product</label>
+            <select id="free-play-product"></select>
+          </div>
+          <div class="free-play-field">
+            <label for="free-play-persona">Compatible persona</label>
+            <select id="free-play-persona"></select>
           </div>
         </div>
 
@@ -1647,7 +1778,7 @@
             <span class="reel-content">
               <span class="reel-code">PRODUCT_01</span>
               <span class="reel-value" id="product-value"></span>
-              <span class="reel-meta">Click to reroll product</span>
+              <span class="reel-meta" id="product-meta">Click to reroll product</span>
             </span>
           </button>
 
@@ -1961,6 +2092,7 @@
       const SYNC_CHANNEL_NAME = `${STORAGE_KEY}-sync`;
       const DEFAULT_DATA_REVISION = 1;
       const OPENER_STYLES = new Set(["direct", "permission"]);
+      const PRACTICE_MODES = new Set(["random", "free-play"]);
       const TIMER_SECONDS = 300;
       const SHARED_APP_URL = "https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html";
 
@@ -2693,6 +2825,8 @@
       const storedViewState = loadViewState();
       const storedOpenerStyle = storedViewState?.openerStyle;
       let openerStyle = OPENER_STYLES.has(storedOpenerStyle) ? storedOpenerStyle : "direct";
+      const storedPracticeMode = storedViewState?.practiceMode;
+      let practiceMode = PRACTICE_MODES.has(storedPracticeMode) ? storedPracticeMode : "random";
       let selection = {
         productId: storedViewState?.productId || data.products[0]?.id || "",
         personaId: storedViewState?.personaId || ""
@@ -2733,7 +2867,13 @@
         formFields: $("#form-fields"),
         toast: $("#toast"),
         randomize: $("#randomize-button"),
+        shortcut: $(".shortcut"),
+        machineHint: $("#machine-hint"),
+        freePlayControls: $("#free-play-controls"),
+        freePlayProduct: $("#free-play-product"),
+        freePlayPersona: $("#free-play-persona"),
         productValue: $("#product-value"),
+        productMeta: $("#product-meta"),
         personaValue: $("#persona-value"),
         personaMeta: $("#persona-meta"),
         personaExamples: $("#persona-examples"),
@@ -2799,7 +2939,8 @@
           productId: selection.productId,
           personaId: selection.personaId,
           round,
-          openerStyle
+          openerStyle,
+          practiceMode
         };
         localStorage.setItem(VIEW_STATE_KEY, JSON.stringify(viewState));
         publishSyncMessage({ type: "view", viewState });
@@ -2834,11 +2975,15 @@
         const nextOpenerStyle = OPENER_STYLES.has(viewState.openerStyle)
           ? viewState.openerStyle
           : openerStyle;
+        const nextPracticeMode = PRACTICE_MODES.has(viewState.practiceMode)
+          ? viewState.practiceMode
+          : practiceMode;
         if (
           selection.productId === viewState.productId &&
           selection.personaId === viewState.personaId &&
           round === nextRound &&
-          openerStyle === nextOpenerStyle
+          openerStyle === nextOpenerStyle &&
+          practiceMode === nextPracticeMode
         ) {
           return;
         }
@@ -2848,6 +2993,7 @@
         };
         round = nextRound;
         openerStyle = nextOpenerStyle;
+        practiceMode = nextPracticeMode;
         const selectionChanged = ensureSelection();
         if (selectionChanged) publishViewState();
         renderScenario();
@@ -2938,6 +3084,63 @@
         if (publish) publishViewState();
       }
 
+      function setPracticeMode(mode, publish = true) {
+        const nextMode = PRACTICE_MODES.has(mode) ? mode : "random";
+        if (practiceMode === nextMode) return;
+        practiceMode = nextMode;
+        renderScenario();
+        if (publish) publishViewState();
+        showToast(practiceMode === "free-play"
+          ? "Free Play ready. Choose a product and persona."
+          : "Random draw ready.");
+      }
+
+      function fillSelect(select, options, selectedId) {
+        select.replaceChildren();
+        options.forEach((item) => {
+          const option = document.createElement("option");
+          option.value = item.id;
+          option.textContent = item.name;
+          option.selected = item.id === selectedId;
+          select.append(option);
+        });
+      }
+
+      function renderPracticeMode() {
+        $$('input[name="practice-mode"]').forEach((input) => {
+          input.checked = input.value === practiceMode;
+        });
+        const freePlayActive = practiceMode === "free-play";
+        elements.freePlayControls.hidden = !freePlayActive;
+        elements.randomize.hidden = freePlayActive;
+        elements.shortcut.hidden = freePlayActive;
+        elements.machineHint.textContent = freePlayActive
+          ? "Choose a product and compatible persona. The scenario and cold call guide update immediately."
+          : "Select a card to reroll only that dimension.";
+
+        const viableProducts = data.products.filter((product) => compatiblePersonas(product.id).length);
+        const availablePersonas = compatiblePersonas(selection.productId);
+        fillSelect(elements.freePlayProduct, viableProducts, selection.productId);
+        fillSelect(elements.freePlayPersona, availablePersonas, selection.personaId);
+        elements.freePlayProduct.disabled = !viableProducts.length;
+        elements.freePlayPersona.disabled = !availablePersonas.length;
+
+        const product = productById(selection.productId);
+        const persona = personaById(selection.personaId);
+        $("#product-reel").setAttribute(
+          "aria-label",
+          freePlayActive
+            ? `Choose product. Current product: ${product?.name || "none"}.`
+            : `Reroll product. Current product: ${product?.name || "none"}.`
+        );
+        $("#persona-reel").setAttribute(
+          "aria-label",
+          freePlayActive
+            ? `Choose customer persona. Current persona: ${persona?.name || "none"}.`
+            : `Reroll customer persona. Current persona: ${persona?.name || "none"}.`
+        );
+      }
+
       function setSpinning(dimensions, spinning) {
         dimensions.forEach((dimension) => {
           $(`.reel[data-dimension="${dimension}"]`)?.classList.toggle("spinning", spinning);
@@ -3018,12 +3221,9 @@
         elements.personaMeta.textContent = persona
           ? `${persona.primaryTeam || "Unassigned team"} · ${persona.seniority || "Unassigned level"}`
           : "Compatible personas only";
-        $("#persona-reel").setAttribute(
-          "aria-label",
-          persona
-            ? `Reroll customer persona. Current persona: ${persona.name}, level ${level}.`
-            : "Reroll customer persona"
-        );
+        elements.productMeta.textContent = practiceMode === "free-play"
+          ? "Selected for focused practice"
+          : "Click to reroll product";
         elements.scenarioTitle.textContent = product && persona ? `${product.name} with a ${persona.name}` : "Scenario needs configuration";
         elements.scenarioSubtitle.textContent = persona ? `${persona.primaryTeam} role-play` : "Select a customer persona";
         elements.scenarioId.textContent = `SCN-${String(round).padStart(3, "0")}`;
@@ -3051,6 +3251,7 @@
           item.textContent = prompt;
           elements.promptList.append(item);
         });
+        renderPracticeMode();
         renderSellerGuide();
       }
 
@@ -3830,13 +4031,50 @@
       elements.shareButton.addEventListener("click", shareApp);
       elements.randomize.addEventListener("click", randomizeAll);
       elements.openGuideButton.addEventListener("click", () => setAppView("guide", true));
+      $$('input[name="practice-mode"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) setPracticeMode(input.value);
+        });
+      });
+      elements.freePlayProduct.addEventListener("change", () => {
+        const nextProduct = productById(elements.freePlayProduct.value);
+        if (!nextProduct) return;
+        selection.productId = nextProduct.id;
+        const compatible = compatiblePersonas(nextProduct.id);
+        if (!compatible.some((persona) => persona.id === selection.personaId)) {
+          selection.personaId = compatible[0]?.id || "";
+        }
+        round += 1;
+        renderScenario();
+        publishViewState();
+      });
+      elements.freePlayPersona.addEventListener("change", () => {
+        const compatible = compatiblePersonas(selection.productId);
+        if (!compatible.some((persona) => persona.id === elements.freePlayPersona.value)) return;
+        selection.personaId = elements.freePlayPersona.value;
+        round += 1;
+        renderScenario();
+        publishViewState();
+      });
       $$('input[name="opener-style"]').forEach((input) => {
         input.addEventListener("change", () => {
           if (input.checked) setOpenerStyle(input.value);
         });
       });
-      $("#product-reel").addEventListener("click", rerollProduct);
-      $("#persona-reel").addEventListener("click", rerollPersona);
+      $("#product-reel").addEventListener("click", () => {
+        if (practiceMode === "free-play") {
+          elements.freePlayProduct.focus();
+          return;
+        }
+        rerollProduct();
+      });
+      $("#persona-reel").addEventListener("click", () => {
+        if (practiceMode === "free-play") {
+          elements.freePlayPersona.focus();
+          return;
+        }
+        rerollPersona();
+      });
       elements.editToggle.addEventListener("click", () => {
         setAppView("builder");
         renderEditor();
@@ -3879,7 +4117,7 @@
           target instanceof HTMLTextAreaElement ||
           target instanceof HTMLSelectElement ||
           target?.isContentEditable;
-        if (!isTyping && !elements.dialog.open && event.key.toLowerCase() === "r") {
+        if (!isTyping && !elements.dialog.open && practiceMode === "random" && event.key.toLowerCase() === "r") {
           event.preventDefault();
           randomizeAll();
         }
@@ -3897,7 +4135,8 @@
 
       const initialSelectionChanged = ensureSelection();
       const openerPreferenceNeedsMigration = !OPENER_STYLES.has(storedOpenerStyle);
-      if (initialSelectionChanged || openerPreferenceNeedsMigration) publishViewState();
+      const practiceModeNeedsMigration = !PRACTICE_MODES.has(storedPracticeMode);
+      if (initialSelectionChanged || openerPreferenceNeedsMigration || practiceModeNeedsMigration) publishViewState();
       renderAll();
       renderTimer();
 

@@ -421,6 +421,46 @@
       background: #0d1117;
     }
 
+    .relationship-setup {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.55fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      border: 1px solid rgba(210, 153, 34, 0.34);
+      border-radius: 12px;
+      background: rgba(210, 153, 34, 0.06);
+    }
+
+    .relationship-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .relationship-field label {
+      color: #e3b341;
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .relationship-field select {
+      width: 100%;
+      min-height: 42px;
+      padding: 8px 34px 8px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--text);
+      background: #0d1117;
+    }
+
+    .relationship-help {
+      margin: 0;
+      color: #b1bac4;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
     .machine-title {
       margin: 0;
       font-size: 0.92rem;
@@ -1110,6 +1150,32 @@
       font-size: 0.7rem;
     }
 
+    .relationship-bridge {
+      margin-top: 11px;
+      padding: 10px;
+      border: 1px solid rgba(210, 153, 34, 0.32);
+      border-radius: 8px;
+      background: rgba(210, 153, 34, 0.06);
+    }
+
+    .relationship-bridge strong {
+      color: #e3b341;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .relationship-bridge p {
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+
+    .relationship-bridge .relationship-cue {
+      color: #e3b341;
+      font-size: 0.7rem;
+      font-style: italic;
+    }
+
     .pause-cue {
       margin: 14px 0 0;
       color: #79c0ff;
@@ -1193,6 +1259,60 @@
       color: #e3b341;
       font-size: 0.72rem;
       font-style: italic;
+    }
+
+    .question-alternatives {
+      display: grid;
+      gap: 8px;
+      margin: 11px 0 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .question-option {
+      position: relative;
+      display: grid;
+      gap: 5px;
+      min-height: 92px;
+      padding: 11px 11px 11px 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(9, 13, 19, 0.68);
+      cursor: pointer;
+    }
+
+    .question-option:has(input:checked) {
+      border-color: rgba(188, 140, 255, 0.68);
+      background: rgba(188, 140, 255, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(188, 140, 255, 0.1);
+    }
+
+    .question-option input {
+      position: absolute;
+      top: 14px;
+      left: 12px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--purple);
+    }
+
+    .question-option strong {
+      color: #d2a8ff;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .question-option p {
+      margin: 0;
+      font-size: 0.78rem;
+    }
+
+    .practice-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 14px;
     }
 
     .readiness-list {
@@ -1579,7 +1699,8 @@
       }
 
       .practice-mode-options,
-      .free-play-controls {
+      .free-play-controls,
+      .relationship-setup {
         grid-template-columns: 1fr;
       }
 
@@ -1772,6 +1893,14 @@
           </div>
         </div>
 
+        <div class="relationship-setup">
+          <div class="relationship-field">
+            <label for="relationship-context">Relationship context</label>
+            <select id="relationship-context"></select>
+          </div>
+          <p class="relationship-help" id="relationship-context-help"></p>
+        </div>
+
         <div class="reels" aria-live="polite">
           <button class="reel" id="product-reel" data-dimension="product" type="button" aria-label="Reroll product">
             <span class="reel-label">Product</span>
@@ -1807,6 +1936,9 @@
         <div class="machine-controls">
           <button class="button button-primary randomize-button" id="randomize-button" type="button">
             Randomize scenario
+          </button>
+          <button class="button" id="retry-scenario-button" type="button">
+            Try same scenario
           </button>
           <button class="button" id="open-guide-button" type="button">
             Open cold call guide
@@ -1919,7 +2051,7 @@
           <div>
             <p class="eyebrow">Existing-customer cold call</p>
             <h1 id="guide-page-title">Practice the opener.<br>Start a conversation.</h1>
-            <p class="guide-hero-copy">Use a calm, relevant 20–30 second opening. Recognize the customer’s existing GitHub use, surface one possible gap, ask for their perspective, then stop talking.</p>
+            <p class="guide-hero-copy">Use a calm, relevant opening. Recognize the account relationship, surface one possible gap, ask for their perspective, then stop talking.</p>
           </div>
           <span class="round-badge" id="guide-round-badge">Round 01</span>
         </section>
@@ -1930,6 +2062,14 @@
             <h2 id="guide-product">GitHub product</h2>
             <p class="guide-persona" id="guide-persona">Customer persona</p>
             <p class="guide-meta" id="guide-persona-meta"></p>
+
+            <section class="guide-summary-block">
+              <div class="relationship-field">
+                <label for="guide-relationship-context">Relationship context</label>
+                <select id="guide-relationship-context"></select>
+              </div>
+              <p class="relationship-help" id="guide-relationship-context-help"></p>
+            </section>
 
             <section class="guide-summary-block">
               <h3>Customer outcome</h3>
@@ -1994,6 +2134,11 @@
                         <p id="cold-call-permission-request"></p>
                       </label>
                     </fieldset>
+                    <div class="relationship-bridge">
+                      <strong>Relationship bridge</strong>
+                      <p id="cold-call-relationship-bridge"></p>
+                      <p class="relationship-cue" id="cold-call-relationship-cue"></p>
+                    </div>
                   </article>
                   <article class="call-step">
                     <span>2</span>
@@ -2008,11 +2153,34 @@
                   </article>
                   <article class="call-step">
                     <span>3</span>
-                    <strong>Poke the bear question</strong>
-                    <p id="cold-call-question"></p>
+                    <strong>Choose a poke-the-bear question</strong>
+                    <p class="opener-choice-hint">Choose one angle for this attempt, not all three.</p>
+                    <fieldset class="question-alternatives">
+                      <legend class="visually-hidden">Choose one poke-the-bear question</legend>
+                      <label class="question-option">
+                        <input type="radio" name="question-focus" value="cost">
+                        <strong>Cost</strong>
+                        <p id="cold-call-question-cost"></p>
+                      </label>
+                      <label class="question-option">
+                        <input type="radio" name="question-focus" value="risk">
+                        <strong>Risk</strong>
+                        <p id="cold-call-question-risk"></p>
+                      </label>
+                      <label class="question-option">
+                        <input type="radio" name="question-focus" value="scale">
+                        <strong>Scale</strong>
+                        <p id="cold-call-question-scale"></p>
+                      </label>
+                    </fieldset>
+                    <p class="visually-hidden" id="cold-call-question"></p>
                   </article>
                 </div>
                 <p class="pause-cue">Pause. Let the customer speak next.</p>
+                <div class="practice-actions">
+                  <button class="button button-primary" id="guide-retry-scenario-button" type="button">Try same scenario again</button>
+                  <button class="button" id="guide-new-scenario-button" type="button">New random scenario</button>
+                </div>
               </div>
             </section>
 
@@ -2090,9 +2258,31 @@
       const STORAGE_KEY = "github-scenario-lab-v6";
       const VIEW_STATE_KEY = `${STORAGE_KEY}-view`;
       const SYNC_CHANNEL_NAME = `${STORAGE_KEY}-sync`;
-      const DEFAULT_DATA_REVISION = 1;
+      const DEFAULT_DATA_REVISION = 2;
       const OPENER_STYLES = new Set(["direct", "permission"]);
       const PRACTICE_MODES = new Set(["random", "free-play"]);
+      const QUESTION_FOCUSES = new Set(["cost", "risk", "scale"]);
+      const RELATIONSHIP_CONTEXTS = {
+        "new-contact": {
+          label: "New contact in an existing account",
+          help: "You share an account relationship, but you have not spoken with this person before.",
+          bridge: "",
+          cue: "[Use the standard account-team opener. Do not imply a prior relationship.]"
+        },
+        "known-stakeholder": {
+          label: "Known stakeholder",
+          help: "You have spoken before and can acknowledge the relationship without assuming this topic is already a priority.",
+          bridge: "We’ve spoken before, so I wanted to reconnect briefly on a topic that may be relevant to your team.",
+          cue: "[Keep the reference brief. Move quickly to the reason for calling.]"
+        },
+        "referred-contact": {
+          label: "Referred by another contact",
+          help: "A customer contact has suggested this person may be relevant to the conversation.",
+          bridge: "[Referrer name] suggested I reach out because this topic may be relevant to your team.",
+          cue: "[Use a real referrer only when they have agreed to the introduction.]"
+        }
+      };
+      const RELATIONSHIP_CONTEXT_IDS = new Set(Object.keys(RELATIONSHIP_CONTEXTS));
       const TIMER_SECONDS = 180;
       const SHARED_APP_URL = "https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html";
 
@@ -2457,6 +2647,75 @@
         };
       }
 
+      function defaultQuestionVariants(product, persona, profile = defaultCallProfile(product, persona)) {
+        const level = persona?.seniority;
+        const personaId = persona?.id;
+        const cost = profile.perspectiveQuestion;
+
+        if (product?.id === "copilot") {
+          return {
+            cost,
+            risk: level === "Practitioner / IC"
+              ? "Where is AI-assisted code creating the most additional review or rework risk for your team today?"
+              : "How do you know uneven Copilot practices are not shifting productivity gains into review and rework?",
+            scale: level === "Practitioner / IC"
+              ? "Across how many repositories can developers apply the same effective Copilot practices today?"
+              : "How many teams can currently demonstrate that Copilot is consistently removing work from the delivery cycle?"
+          };
+        }
+
+        if (product?.id === "code-security") {
+          return {
+            cost,
+            risk: level === "Practitioner / IC"
+              ? "How do you know vulnerabilities found late are not becoming accepted risk when delivery deadlines tighten?"
+              : "How much security debt is accumulating because remediation starts after delivery priorities are already set?",
+            scale: level === "Practitioner / IC"
+              ? "Across how many repositories can developers remediate vulnerabilities without leaving their normal coding workflow?"
+              : "How many teams can remediate vulnerabilities inside their normal delivery workflow without a separate escalation?"
+          };
+        }
+
+        if (product?.id === "secret-protection") {
+          return {
+            cost,
+            risk: "When a secret is removed from a repository, how do you know the credential is no longer usable anywhere else?",
+            scale: level === "Practitioner / IC"
+              ? "How many teams must coordinate before an exposed credential can be fully validated, revoked, and rotated?"
+              : "How many exposed credentials require cross-team coordination before the risk is fully contained?"
+          };
+        }
+
+        if (product?.id === "github-enterprise") {
+          const securityPersona = personaId === "security-risk-leader" || personaId === "security-executive";
+          return {
+            cost,
+            risk: securityPersona
+              ? "Where do local governance exceptions create the greatest audit or policy risk today?"
+              : "Where do different developer workflows create the greatest operational or governance risk today?",
+            scale: "How many teams still require different administrative processes to meet the same platform standard?"
+          };
+        }
+
+        if (product?.id === "code-quality") {
+          return {
+            cost,
+            risk: level === "Practitioner / IC"
+              ? "How do you know today’s review speed is not creating maintainability work the team will pay for in a later release?"
+              : "How do you know current delivery speed is not being funded by maintainability debt that will slow a future release?",
+            scale: level === "Practitioner / IC"
+              ? "Across how many teams are review delays forcing developers to switch context before feedback arrives?"
+              : "Across how many applications is maintainability debt affecting delivery cost or predictability?"
+          };
+        }
+
+        return {
+          cost,
+          risk: "Where could this problem create the greatest delivery or operational risk if it continues?",
+          scale: "Across how many teams is this problem currently affecting planned work?"
+        };
+      }
+
       function makeDefaultGuide() {
         return {
           mode: "cold-call-guide",
@@ -2540,6 +2799,7 @@
         products.forEach((product) => {
           product.personas.forEach((personaId) => {
             const persona = personas.find((item) => item.id === personaId);
+            const profile = defaultCallProfile(product, persona);
             mappings.push({
               id: `${product.id}__${personaId}`,
               productId: product.id,
@@ -2549,7 +2809,8 @@
               coldCall: {
                 ...product.coldCall,
                 peerGroup: peerGroupFor(persona),
-                ...defaultCallProfile(product, persona),
+                ...profile,
+                perspectiveQuestions: defaultQuestionVariants(product, persona, profile),
                 usePermission: false
               }
             });
@@ -2597,8 +2858,17 @@
           existingUse: seeded?.existingUse || `I know your team already uses ${product?.name || "GitHub"}`,
           peerGroup: peerGroupFor(persona),
           ...profile,
+          perspectiveQuestions: defaultQuestionVariants(product, persona, profile),
           usePermission: false
         };
+      }
+
+      function validQuestionVariants(questions) {
+        return Boolean(
+          questions &&
+          typeof questions === "object" &&
+          ["cost", "risk", "scale"].every((focus) => isNonEmptyText(questions[focus]))
+        );
       }
 
       function validColdCall(coldCall) {
@@ -2609,7 +2879,8 @@
           (coldCall.peerGroup === undefined || isNonEmptyText(coldCall.peerGroup)) &&
           isNonEmptyText(coldCall.potentialGap) &&
           isNonEmptyText(coldCall.desiredOutcome) &&
-          isNonEmptyText(coldCall.perspectiveQuestion) &&
+          (isNonEmptyText(coldCall.perspectiveQuestion) || validQuestionVariants(coldCall.perspectiveQuestions)) &&
+          (coldCall.perspectiveQuestions === undefined || validQuestionVariants(coldCall.perspectiveQuestions)) &&
           typeof coldCall.usePermission === "boolean"
         );
       }
@@ -2780,6 +3051,16 @@
           if (typeof mapping.coldCall.usePermission !== "boolean") {
             mapping.coldCall.usePermission = false;
           }
+          const existingQuestion = isNonEmptyText(mapping.coldCall.perspectiveQuestion)
+            ? mapping.coldCall.perspectiveQuestion
+            : defaults.perspectiveQuestions.cost;
+          if (!validQuestionVariants(mapping.coldCall.perspectiveQuestions)) {
+            mapping.coldCall.perspectiveQuestions = {
+              ...defaults.perspectiveQuestions,
+              cost: existingQuestion
+            };
+          }
+          mapping.coldCall.perspectiveQuestion = mapping.coldCall.perspectiveQuestions.cost;
         });
         return normalized;
       }
@@ -2827,6 +3108,12 @@
       let openerStyle = OPENER_STYLES.has(storedOpenerStyle) ? storedOpenerStyle : "direct";
       const storedPracticeMode = storedViewState?.practiceMode;
       let practiceMode = PRACTICE_MODES.has(storedPracticeMode) ? storedPracticeMode : "random";
+      const storedQuestionFocus = storedViewState?.questionFocus;
+      let questionFocus = QUESTION_FOCUSES.has(storedQuestionFocus) ? storedQuestionFocus : "cost";
+      const storedRelationshipContext = storedViewState?.relationshipContext;
+      let relationshipContext = RELATIONSHIP_CONTEXT_IDS.has(storedRelationshipContext)
+        ? storedRelationshipContext
+        : "new-contact";
       let selection = {
         productId: storedViewState?.productId || data.products[0]?.id || "",
         personaId: storedViewState?.personaId || ""
@@ -2872,6 +3159,13 @@
         freePlayControls: $("#free-play-controls"),
         freePlayProduct: $("#free-play-product"),
         freePlayPersona: $("#free-play-persona"),
+        relationshipContext: $("#relationship-context"),
+        relationshipContextHelp: $("#relationship-context-help"),
+        guideRelationshipContext: $("#guide-relationship-context"),
+        guideRelationshipContextHelp: $("#guide-relationship-context-help"),
+        retryScenario: $("#retry-scenario-button"),
+        guideRetryScenario: $("#guide-retry-scenario-button"),
+        guideNewScenario: $("#guide-new-scenario-button"),
         productValue: $("#product-value"),
         productMeta: $("#product-meta"),
         personaValue: $("#persona-value"),
@@ -2903,6 +3197,8 @@
         coldCallPermissionGreeting: $("#cold-call-permission-greeting"),
         coldCallPermissionCue: $("#cold-call-permission-cue"),
         coldCallPermissionRequest: $("#cold-call-permission-request"),
+        coldCallRelationshipBridge: $("#cold-call-relationship-bridge"),
+        coldCallRelationshipCue: $("#cold-call-relationship-cue"),
         directOpenerDuration: $("#direct-opener-duration"),
         permissionOpenerDuration: $("#permission-opener-duration"),
         coldCallReason: $("#cold-call-reason"),
@@ -2910,6 +3206,9 @@
         coldCallNoResponse: $("#cold-call-no-response"),
         coldCallNoResponseCue: $("#cold-call-no-response-cue"),
         coldCallQuestion: $("#cold-call-question"),
+        coldCallQuestionCost: $("#cold-call-question-cost"),
+        coldCallQuestionRisk: $("#cold-call-question-risk"),
+        coldCallQuestionScale: $("#cold-call-question-scale"),
         deliveryCues: $("#delivery-cues"),
         timerDisplay: $("#timer-display"),
         timerToggle: $("#timer-toggle")
@@ -2940,7 +3239,9 @@
           personaId: selection.personaId,
           round,
           openerStyle,
-          practiceMode
+          practiceMode,
+          questionFocus,
+          relationshipContext
         };
         localStorage.setItem(VIEW_STATE_KEY, JSON.stringify(viewState));
         publishSyncMessage({ type: "view", viewState });
@@ -2978,12 +3279,20 @@
         const nextPracticeMode = PRACTICE_MODES.has(viewState.practiceMode)
           ? viewState.practiceMode
           : practiceMode;
+        const nextQuestionFocus = QUESTION_FOCUSES.has(viewState.questionFocus)
+          ? viewState.questionFocus
+          : questionFocus;
+        const nextRelationshipContext = RELATIONSHIP_CONTEXT_IDS.has(viewState.relationshipContext)
+          ? viewState.relationshipContext
+          : relationshipContext;
         if (
           selection.productId === viewState.productId &&
           selection.personaId === viewState.personaId &&
           round === nextRound &&
           openerStyle === nextOpenerStyle &&
-          practiceMode === nextPracticeMode
+          practiceMode === nextPracticeMode &&
+          questionFocus === nextQuestionFocus &&
+          relationshipContext === nextRelationshipContext
         ) {
           return;
         }
@@ -2994,6 +3303,8 @@
         round = nextRound;
         openerStyle = nextOpenerStyle;
         practiceMode = nextPracticeMode;
+        questionFocus = nextQuestionFocus;
+        relationshipContext = nextRelationshipContext;
         const selectionChanged = ensureSelection();
         if (selectionChanged) publishViewState();
         renderScenario();
@@ -3095,6 +3406,22 @@
           : "Random draw ready.");
       }
 
+      function setQuestionFocus(focus, publish = true) {
+        const nextFocus = QUESTION_FOCUSES.has(focus) ? focus : "cost";
+        if (questionFocus === nextFocus) return;
+        questionFocus = nextFocus;
+        if (activeView === "guide") renderSellerGuide();
+        if (publish) publishViewState();
+      }
+
+      function setRelationshipContext(contextId, publish = true) {
+        const nextContext = RELATIONSHIP_CONTEXT_IDS.has(contextId) ? contextId : "new-contact";
+        if (relationshipContext === nextContext) return;
+        relationshipContext = nextContext;
+        renderScenario();
+        if (publish) publishViewState();
+      }
+
       function fillSelect(select, options, selectedId) {
         select.replaceChildren();
         options.forEach((item) => {
@@ -3104,6 +3431,28 @@
           option.selected = item.id === selectedId;
           select.append(option);
         });
+      }
+
+      function fillRelationshipSelect(select) {
+        const entries = Object.entries(RELATIONSHIP_CONTEXTS);
+        const currentIds = [...select.options].map((option) => option.value);
+        if (currentIds.join("|") !== entries.map(([id]) => id).join("|")) {
+          select.replaceChildren();
+          entries.forEach(([id, context]) => {
+            const option = document.createElement("option");
+            option.value = id;
+            option.textContent = context.label;
+            select.append(option);
+          });
+        }
+        select.value = relationshipContext;
+      }
+
+      function renderRelationshipContext() {
+        const context = RELATIONSHIP_CONTEXTS[relationshipContext];
+        [elements.relationshipContext, elements.guideRelationshipContext].forEach(fillRelationshipSelect);
+        elements.relationshipContextHelp.textContent = context.help;
+        elements.guideRelationshipContextHelp.textContent = context.help;
       }
 
       function renderPracticeMode() {
@@ -3139,6 +3488,7 @@
             ? `Choose customer persona. Current persona: ${persona?.name || "none"}.`
             : `Reroll customer persona. Current persona: ${persona?.name || "none"}.`
         );
+        renderRelationshipContext();
       }
 
       function setSpinning(dimensions, spinning) {
@@ -3203,6 +3553,19 @@
         });
       }
 
+      function retryScenario() {
+        resetTimer();
+        round += 1;
+        renderScenario();
+        publishViewState();
+        showToast("Same scenario ready. Timer reset to 03:00.");
+      }
+
+      function newRandomScenarioFromGuide() {
+        practiceMode = "random";
+        randomizeAll();
+      }
+
       function renderScenario() {
         ensureSelection();
         const product = productById(selection.productId);
@@ -3264,8 +3627,28 @@
         return clean ? `${clean.charAt(0).toUpperCase()}${clean.slice(1)}.` : "";
       }
 
+      function punctuatedQuestion(value) {
+        return /[?]$/.test(value)
+          ? value
+          : `${stripTrailingPunctuation(value)}?`;
+      }
+
+      function questionVariantsForColdCall(coldCall) {
+        if (validQuestionVariants(coldCall.perspectiveQuestions)) {
+          return coldCall.perspectiveQuestions;
+        }
+        const fallback = coldCall.perspectiveQuestion;
+        return {
+          cost: fallback,
+          risk: fallback,
+          scale: fallback
+        };
+      }
+
       function buildColdCallSections(coldCall, guide = data.guide) {
         const permissionBased = openerStyle === "permission";
+        const context = RELATIONSHIP_CONTEXTS[relationshipContext];
+        const questions = questionVariantsForColdCall(coldCall);
         return {
           opener: permissionBased ? guide.permissionOpenerGreeting : guide.directOpener,
           openerCue: permissionBased ? guide.permissionOpenerCue : "",
@@ -3274,13 +3657,18 @@
           permissionOpenerGreeting: guide.permissionOpenerGreeting,
           permissionOpenerCue: guide.permissionOpenerCue,
           permissionOpenerRequest: guide.permissionOpenerRequest,
+          relationshipBridge: context.bridge,
+          relationshipCue: context.cue,
           conversationInvitation: guide.conversationInvitation,
           noResponsePermission: guide.noResponsePermission,
           noResponseCue: guide.noResponseCue,
           reason: `The reason I’m calling is that many conversations with ${stripTrailingPunctuation(coldCall.peerGroup)} surface challenges with ${stripTrailingPunctuation(coldCall.potentialGap)}. ${sentence(coldCall.desiredOutcome)}`,
-          question: /[?]$/.test(coldCall.perspectiveQuestion)
-            ? coldCall.perspectiveQuestion
-            : `${stripTrailingPunctuation(coldCall.perspectiveQuestion)}?`
+          questions: {
+            cost: punctuatedQuestion(questions.cost),
+            risk: punctuatedQuestion(questions.risk),
+            scale: punctuatedQuestion(questions.scale)
+          },
+          question: punctuatedQuestion(questions[questionFocus])
         };
       }
 
@@ -3298,14 +3686,21 @@
         elements.coldCallPermissionGreeting.textContent = sections.permissionOpenerGreeting;
         elements.coldCallPermissionCue.textContent = sections.permissionOpenerCue;
         elements.coldCallPermissionRequest.textContent = sections.permissionOpenerRequest;
+        elements.coldCallRelationshipBridge.textContent = sections.relationshipBridge;
+        elements.coldCallRelationshipBridge.hidden = !sections.relationshipBridge;
+        elements.coldCallRelationshipCue.textContent = sections.relationshipCue;
         elements.coldCallReason.textContent = sections.reason;
         elements.coldCallInvitation.textContent = sections.conversationInvitation;
         elements.coldCallNoResponse.textContent = sections.noResponsePermission;
         elements.coldCallNoResponseCue.textContent = sections.noResponseCue;
         elements.coldCallQuestion.textContent = sections.question;
+        elements.coldCallQuestionCost.textContent = sections.questions.cost;
+        elements.coldCallQuestionRisk.textContent = sections.questions.risk;
+        elements.coldCallQuestionScale.textContent = sections.questions.scale;
         elements.directOpenerDuration.textContent =
           `~${estimatedSpokenSeconds([
             sections.directOpener,
+            sections.relationshipBridge,
             sections.reason,
             sections.conversationInvitation,
             sections.question
@@ -3314,12 +3709,16 @@
           `~${estimatedSpokenSeconds([
             sections.permissionOpenerGreeting,
             sections.permissionOpenerRequest,
+            sections.relationshipBridge,
             sections.reason,
             sections.conversationInvitation,
             sections.question
           ])} sec`;
         $$('input[name="opener-style"]').forEach((input) => {
           input.checked = input.value === openerStyle;
+        });
+        $$('input[name="question-focus"]').forEach((input) => {
+          input.checked = input.value === questionFocus;
         });
       }
 
@@ -3330,6 +3729,7 @@
         const guide = data.guide || makeDefaultGuide();
         const coldCall = mapping?.coldCall || makeDefaultColdCall(product, persona);
 
+        renderRelationshipContext();
         elements.guideRoundBadge.textContent = `Round ${String(round).padStart(2, "0")}`;
         elements.guideProduct.textContent = product?.name || "Add a product";
         elements.guidePersona.textContent = persona?.name || "Add a compatible persona";
@@ -3690,6 +4090,7 @@
           const product = productById(item?.productId || data.products[0].id);
           const persona = personaById(item?.personaId || data.personas[0].id);
           const coldCall = item?.coldCall || makeDefaultColdCall(product, persona);
+          const questionVariants = questionVariantsForColdCall(coldCall);
           const selectedProductId = item?.productId || data.products[0].id;
           const productField = selectField("productId", "Product", data.products, selectedProductId);
           const personaField = selectField(
@@ -3731,9 +4132,17 @@
               multiline: true,
               help: "State one tangible business or operational consequence, beginning naturally with “That...”"
             }),
-            textField("coldCallQuestion", "Cold call: poke the bear question", coldCall.perspectiveQuestion, {
+            textField("coldCallQuestionCost", "Poke the bear: cost question", questionVariants.cost, {
               multiline: true,
-              help: "Surface one specific blind spot. Prefer a neutral “How do you know?” question that makes the customer examine the current approach."
+              help: "Make the customer assess the time, capacity, or operating cost created by the problem."
+            }),
+            textField("coldCallQuestionRisk", "Poke the bear: risk question", questionVariants.risk, {
+              multiline: true,
+              help: "Make the customer examine a risk or blind spot without diagnosing their environment."
+            }),
+            textField("coldCallQuestionScale", "Poke the bear: scale question", questionVariants.scale, {
+              multiline: true,
+              help: "Make the customer consider how broadly the problem affects teams, repositories, or applications."
             })
           );
         }
@@ -3842,6 +4251,15 @@
           const product = productById(productId);
           const persona = personaById(personaId);
           const defaultColdCall = makeDefaultColdCall(product, persona);
+          const perspectiveQuestions = {
+            cost: formValue(formData, "coldCallQuestionCost"),
+            risk: formValue(formData, "coldCallQuestionRisk"),
+            scale: formValue(formData, "coldCallQuestionScale")
+          };
+          if (!validQuestionVariants(perspectiveQuestions)) {
+            showToast("Complete all three poke-the-bear question variants.");
+            return;
+          }
           const item = {
             id: existing?.id || uid("mapping"),
             productId,
@@ -3853,7 +4271,8 @@
               peerGroup: formValue(formData, "coldCallPeerGroup"),
               potentialGap: formValue(formData, "coldCallGap"),
               desiredOutcome: formValue(formData, "coldCallOutcome"),
-              perspectiveQuestion: formValue(formData, "coldCallQuestion"),
+              perspectiveQuestion: perspectiveQuestions.cost,
+              perspectiveQuestions,
               usePermission: existing?.coldCall?.usePermission || false
             }
           };
@@ -4030,7 +4449,13 @@
       });
       elements.shareButton.addEventListener("click", shareApp);
       elements.randomize.addEventListener("click", randomizeAll);
+      elements.retryScenario.addEventListener("click", retryScenario);
       elements.openGuideButton.addEventListener("click", () => setAppView("guide", true));
+      elements.guideRetryScenario.addEventListener("click", retryScenario);
+      elements.guideNewScenario.addEventListener("click", newRandomScenarioFromGuide);
+      [elements.relationshipContext, elements.guideRelationshipContext].forEach((select) => {
+        select.addEventListener("change", () => setRelationshipContext(select.value));
+      });
       $$('input[name="practice-mode"]').forEach((input) => {
         input.addEventListener("change", () => {
           if (input.checked) setPracticeMode(input.value);
@@ -4059,6 +4484,11 @@
       $$('input[name="opener-style"]').forEach((input) => {
         input.addEventListener("change", () => {
           if (input.checked) setOpenerStyle(input.value);
+        });
+      });
+      $$('input[name="question-focus"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) setQuestionFocus(input.value);
         });
       });
       $("#product-reel").addEventListener("click", () => {
@@ -4136,7 +4566,17 @@
       const initialSelectionChanged = ensureSelection();
       const openerPreferenceNeedsMigration = !OPENER_STYLES.has(storedOpenerStyle);
       const practiceModeNeedsMigration = !PRACTICE_MODES.has(storedPracticeMode);
-      if (initialSelectionChanged || openerPreferenceNeedsMigration || practiceModeNeedsMigration) publishViewState();
+      const questionFocusNeedsMigration = !QUESTION_FOCUSES.has(storedQuestionFocus);
+      const relationshipContextNeedsMigration = !RELATIONSHIP_CONTEXT_IDS.has(storedRelationshipContext);
+      if (
+        initialSelectionChanged ||
+        openerPreferenceNeedsMigration ||
+        practiceModeNeedsMigration ||
+        questionFocusNeedsMigration ||
+        relationshipContextNeedsMigration
+      ) {
+        publishViewState();
+      }
       renderAll();
       renderTimer();
 

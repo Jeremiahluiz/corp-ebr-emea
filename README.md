@@ -10,7 +10,7 @@ Use this sales hub to prepare customer conversations, sharpen competitive positi
 
 ### [GitHub Scenario Lab](role-play-game.html)
 
-Open the sales role-play trainer at [jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html](https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html). It includes a Scenario Builder and a Cold Call Guide for existing GitHub customers. The guide provides a scenario-specific 20–30 second, “poke the bear” practice script with timing, delivery coaching, and lightweight SPIN follow-ups. The app can be installed, receives published updates automatically, and includes offline fallback. Editor changes and the active scenario sync live between open tabs in the same browser. Export/import JSON is still required between separate browsers or laptops.
+Open the sales role-play trainer at [jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html](https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html). It includes randomized and Free Play scenario selection plus a Cold Call Guide for existing GitHub customers. Reps can choose relationship context, practice cost, risk, or scale “poke the bear” questions, and retry the same scenario with a three-minute timer. The app can be installed, receives published updates automatically, and includes offline fallback. Editor changes, practice preferences, and the active scenario sync live between open tabs in the same browser. Export/import JSON is still required between separate browsers or laptops.
 
 ## Team Operations & Weekly Cadence
 

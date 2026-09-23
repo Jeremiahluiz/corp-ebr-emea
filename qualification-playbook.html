@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qualification that creates momentum</title>
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: #24272c;
+      --panel-2: #191b1f;
+      --line: #3d424b;
+      --text: #f5f7fa;
+      --muted: #9ba3af;
+      --blue: #6aa6ff;
+      --green: #68cb65;
+      --purple: #b586ff;
+      --amber: #d5a63f;
+      --red: #ff7777;
+      --cyan: #62d4e8;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    a { color: inherit; }
+    button { font: inherit; }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(106, 166, 255, .08), transparent 25%),
+        radial-gradient(circle at 10% 90%, rgba(181, 134, 255, .06), transparent 28%),
+        var(--bg);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(18px, 2.2vh, 28px);
+      padding: clamp(32px, 5vw, 78px);
+      opacity: 0;
+      transform: translateX(55px) scale(.99);
+      pointer-events: none;
+      transition: opacity .42s ease, transform .42s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: clamp(12px, 1vw, 16px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      border-radius: 99px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      max-width: 1320px;
+      font-size: clamp(48px, 6vw, 92px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 850;
+    }
+    h2 {
+      max-width: 1350px;
+      font-size: clamp(38px, 4.25vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      font-weight: 830;
+    }
+    h3 {
+      font-size: clamp(20px, 1.55vw, 28px);
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+    .subtitle {
+      max-width: 1120px;
+      color: var(--muted);
+      font-size: clamp(18px, 1.65vw, 29px);
+      line-height: 1.4;
+      margin-top: 18px;
+    }
+    .accent-blue { color: var(--blue); }
+    .accent-green { color: var(--green); }
+    .accent-purple { color: var(--purple); }
+    .accent-amber { color: var(--amber); }
+    .accent-red { color: var(--red); }
+
+    .hero {
+      display: grid;
+      align-content: center;
+      gap: 28px;
+      max-width: 1450px;
+    }
+
+    .hero-mark {
+      width: min(820px, 70vw);
+      height: 8px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber));
+      box-shadow: 0 0 36px rgba(106, 166, 255, .24);
+    }
+
+    .pause-slide {
+      place-items: center;
+      text-align: center;
+    }
+    .pause-slide .pause-content {
+      display: grid;
+      place-items: center;
+      gap: 30px;
+      max-width: 1320px;
+    }
+    .pause-slide h2 {
+      font-size: clamp(54px, 7vw, 112px);
+      line-height: .98;
+    }
+    .pause-prompt {
+      color: var(--muted);
+      font-size: clamp(17px, 1.5vw, 25px);
+      letter-spacing: .02em;
+    }
+    .pause-icon {
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--tone, var(--blue)) 45%, transparent);
+      border-radius: 25px;
+      color: var(--tone, var(--blue));
+      background: color-mix(in srgb, var(--tone, var(--blue)) 10%, transparent);
+      font-size: 38px;
+      box-shadow: 0 0 48px color-mix(in srgb, var(--tone, var(--blue)) 13%, transparent);
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: clamp(14px, 1.4vw, 24px);
+      min-height: 0;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(22px, 2vw, 34px);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(43,46,52,.96), rgba(30,32,37,.96));
+      box-shadow: 0 18px 45px rgba(0,0,0,.16);
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0, color-mix(in srgb, var(--tone, var(--blue)) 16%, transparent), transparent 36%);
+      pointer-events: none;
+    }
+    .card > * { position: relative; z-index: 1; }
+    .card-label {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .card-value {
+      font-size: clamp(28px, 2.7vw, 50px);
+      font-weight: 850;
+      color: var(--tone, var(--blue));
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .card-copy {
+      color: #d7dbe1;
+      font-size: clamp(16px, 1.25vw, 22px);
+      line-height: 1.45;
+      margin-top: 18px;
+    }
+
+    .quote {
+      font-size: clamp(30px, 3.35vw, 58px);
+      line-height: 1.13;
+      letter-spacing: -.04em;
+      font-weight: 720;
+      max-width: 1250px;
+    }
+    .quote::before {
+      content: "“";
+      color: var(--purple);
+      display: block;
+      font-size: 1.55em;
+      line-height: .55;
+      margin-bottom: 10px;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .list-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: start;
+      color: #d9dde4;
+      font-size: clamp(16px, 1.25vw, 22px);
+      line-height: 1.4;
+    }
+    .dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--tone, var(--blue)) 18%, transparent);
+      color: var(--tone, var(--blue));
+      font-weight: 900;
+    }
+
+    .framework {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 24px;
+      min-height: 0;
+    }
+    .framework-side {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+    .framework-row {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .letter {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--tone, var(--blue)) 18%, transparent);
+      color: var(--tone, var(--blue));
+      font-size: 23px;
+      font-weight: 900;
+    }
+    .framework-row p {
+      color: var(--muted);
+      line-height: 1.35;
+      margin-top: 5px;
+      font-size: clamp(14px, 1vw, 18px);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+    .flow-step {
+      min-height: 230px;
+      display: grid;
+      align-content: space-between;
+    }
+    .flow-number {
+      color: var(--tone);
+      font-size: 15px;
+      font-weight: 850;
+      letter-spacing: .1em;
+    }
+    .flow-step h3 { margin-top: 16px; }
+    .flow-step p {
+      color: var(--muted);
+      line-height: 1.42;
+      margin-top: 14px;
+      font-size: clamp(15px, 1.08vw, 19px);
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      min-height: 0;
+    }
+    .question {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 17px;
+      align-items: start;
+      padding: clamp(18px, 1.6vw, 26px);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #25282d, #1d1f23);
+      border-radius: 18px;
+    }
+    .question-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      background: color-mix(in srgb, var(--tone) 17%, transparent);
+      color: var(--tone);
+    }
+    .question p {
+      color: #d4d8df;
+      font-size: clamp(15px, 1.05vw, 19px);
+      line-height: 1.42;
+      margin-top: 7px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: clamp(14px, 1.05vw, 19px);
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      padding: clamp(14px, 1.25vw, 22px);
+      text-align: left;
+      border-right: 1px solid #30343a;
+      border-bottom: 1px solid #30343a;
+      vertical-align: top;
+      line-height: 1.35;
+    }
+    th {
+      color: var(--blue);
+      background: #25282d;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .88em;
+    }
+    td { background: #202328; color: #e2e5e9; }
+    tbody tr:nth-child(even) td { background: #272a2f; }
+    tr:last-child td { border-bottom: 0; }
+    th:last-child, td:last-child { border-right: 0; }
+    td strong { color: #fff; }
+
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 780;
+    }
+    .signal::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: currentColor;
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .books {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .methodology-layout {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 16px;
+      min-height: 0;
+    }
+    .methodology-columns {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      min-height: 0;
+    }
+    .mini-flow {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .mini-step {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.035);
+    }
+    .mini-step strong {
+      display: block;
+      color: var(--tone, var(--blue));
+      font-size: 14px;
+      letter-spacing: .06em;
+      margin-bottom: 5px;
+    }
+    .mini-step span {
+      color: #d5d9df;
+      font-size: clamp(13px, .9vw, 16px);
+      line-height: 1.32;
+    }
+    .reference-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .reference-link {
+      display: grid;
+      gap: 4px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--tone) 35%, var(--line));
+      background: color-mix(in srgb, var(--tone) 7%, #1b1d21);
+      text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .reference-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--tone);
+    }
+    .reference-link strong {
+      color: var(--tone);
+      font-size: clamp(14px, 1vw, 18px);
+    }
+    .reference-link span {
+      color: var(--muted);
+      font-size: clamp(11px, .78vw, 14px);
+    }
+    .book {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 360px;
+    }
+    .book-tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 99px;
+      background: color-mix(in srgb, var(--tone) 16%, transparent);
+      color: var(--tone);
+      font-size: 12px;
+      letter-spacing: .08em;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    .book h3 {
+      font-size: clamp(25px, 2vw, 38px);
+      margin: 20px 0 12px;
+    }
+    .book p {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: clamp(15px, 1.05vw, 19px);
+    }
+    .book a {
+      width: fit-content;
+      text-decoration: none;
+      color: var(--tone);
+      font-weight: 800;
+      margin-top: 22px;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 3px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #727a85;
+      font-size: 13px;
+      letter-spacing: .02em;
+    }
+    .controls {
+      position: fixed;
+      z-index: 50;
+      right: 28px;
+      bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(22,24,28,.76);
+      backdrop-filter: blur(16px);
+    }
+    .controls button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 11px;
+      background: #2b2e34;
+      color: #fff;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .controls button:hover { transform: translateY(-2px); background: #3a3e46; }
+    .counter {
+      min-width: 62px;
+      text-align: center;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 60;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      transition: width .35s ease;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: clamp(13px, .9vw, 16px);
+      line-height: 1.4;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .pill {
+      padding: 9px 13px;
+      border: 1px solid color-mix(in srgb, var(--tone, var(--blue)) 45%, #343942);
+      border-radius: 999px;
+      color: var(--tone, var(--blue));
+      background: color-mix(in srgb, var(--tone, var(--blue)) 8%, transparent);
+      font-weight: 760;
+      font-size: clamp(13px, .9vw, 16px);
+    }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .deck { height: auto; }
+      .slide {
+        position: relative;
+        min-height: 100vh;
+        display: none;
+        padding: 28px 22px 90px;
+      }
+      .slide.active { display: grid; }
+      .grid-4, .flow { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .grid-3, .books { grid-template-columns: 1fr; }
+      .grid-2, .framework, .question-grid { grid-template-columns: 1fr; }
+      .framework-side { gap: 10px; }
+      table { font-size: 12px; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+    <section class="slide active">
+      <header><div class="eyebrow">Sales development playbook</div></header>
+      <div class="hero">
+        <div class="hero-mark"></div>
+        <h1>Qualification that <span class="accent-blue">creates momentum</span></h1>
+        <p class="subtitle">A practical guide to understanding the customer, finding real business value, and deciding the right next action.</p>
+        <div class="pill-row">
+          <span class="pill" style="--tone:var(--green)">MEDDPICC</span>
+          <span class="pill" style="--tone:var(--amber)">BANT</span>
+          <span class="pill" style="--tone:var(--purple)">SPIN</span>
+          <span class="pill" style="--tone:var(--cyan)">Challenger</span>
+        </div>
+      </div>
+      <footer class="footer"><span>GitHub EBR / Sales Development</span><span>Qualification enablement</span></footer>
+    </section>
+
+    <section class="slide pause-slide">
+      <div class="pause-content">
+        <div class="pause-icon" style="--tone:var(--blue)">?</div>
+        <div class="eyebrow">Conversation starter</div>
+        <h2>Why do we want to <span class="accent-blue">qualify?</span></h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">The point</div>
+        <h2>Qualification is not about proving the buyer is worthy of our time</h2>
+        <p class="subtitle">It is about proving that a meaningful change is worth the customer’s time.</p>
+      </header>
+      <div class="grid-4">
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">Understand</div>
+          <div class="card-value">Context</div>
+          <p class="card-copy">How software is built today, which tools are in place, and where teams collaborate.</p>
+        </article>
+        <article class="card" style="--tone:var(--green)">
+          <div class="card-label">Expose</div>
+          <div class="card-value">Impact</div>
+          <p class="card-copy">What the current state costs in time, risk, developer effort, and missed priorities.</p>
+        </article>
+        <article class="card" style="--tone:var(--purple)">
+          <div class="card-label">Align</div>
+          <div class="card-value">Priority</div>
+          <p class="card-copy">Why this matters now and which executive or operational goal it supports.</p>
+        </article>
+        <article class="card" style="--tone:var(--amber)">
+          <div class="card-label">Advance</div>
+          <div class="card-value">Action</div>
+          <p class="card-copy">Agree on a specific next step with an owner, purpose, and timeframe.</p>
+        </article>
+      </div>
+      <footer class="footer"><span>Outcome: shared understanding, not form completion</span><span>02</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Why qualify?</div>
+        <h2>Good qualification protects <span class="accent-green">customer time</span> and <span class="accent-blue">seller focus</span></h2>
+      </header>
+      <div class="grid-2">
+        <article class="card" style="--tone:var(--green)">
+          <div class="card-label">For the customer</div>
+          <div class="list">
+            <div class="list-item"><span class="dot">1</span><span>Connect technical friction to an outcome leadership already cares about.</span></div>
+            <div class="list-item"><span class="dot">2</span><span>Clarify trade-offs, stakeholders, and the cost of leaving the current state unchanged.</span></div>
+            <div class="list-item"><span class="dot">3</span><span>Create a credible path from conversation to evaluation, decision, and adoption.</span></div>
+          </div>
+        </article>
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">For the account team</div>
+          <div class="list">
+            <div class="list-item"><span class="dot">1</span><span>Prioritize accounts where there is a real problem, reachable value, and a reason to act.</span></div>
+            <div class="list-item"><span class="dot">2</span><span>Bring AEs and specialists evidence, not vague interest or unverified seat estimates.</span></div>
+            <div class="list-item"><span class="dot">3</span><span>Forecast based on customer evidence and next events, not seller optimism.</span></div>
+          </div>
+        </article>
+      </div>
+      <footer class="footer"><span>Qualification reduces wasted motion on both sides</span><span>03</span></footer>
+    </section>
+
+    <section class="slide pause-slide">
+      <div class="pause-content">
+        <div class="pause-icon" style="--tone:var(--green)">?</div>
+        <div class="eyebrow" style="color:var(--green)">Conversation starter</div>
+        <h2>What makes a <span class="accent-green">good qualification?</span></h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">What good looks like</div>
+        <h2>A qualified opportunity has evidence across four dimensions</h2>
+      </header>
+      <div class="grid-4">
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">Problem</div>
+          <div class="card-value">Specific</div>
+          <p class="card-copy">A concrete gap in delivery, security, collaboration, governance, or developer experience.</p>
+        </article>
+        <article class="card" style="--tone:var(--green)">
+          <div class="card-label">Impact</div>
+          <div class="card-value">Material</div>
+          <p class="card-copy">The gap affects an agreed metric, priority, deadline, cost, or risk profile.</p>
+        </article>
+        <article class="card" style="--tone:var(--purple)">
+          <div class="card-label">People</div>
+          <div class="card-value">Connected</div>
+          <p class="card-copy">We understand who feels the pain, who shapes the decision, and who can mobilize change.</p>
+        </article>
+        <article class="card" style="--tone:var(--amber)">
+          <div class="card-label">Progress</div>
+          <div class="card-value">Mutual</div>
+          <p class="card-copy">The customer agrees to a logical next event because it helps them make a better decision.</p>
+        </article>
+      </div>
+      <footer class="footer"><span>Interest alone is not qualification</span><span>04</span></footer>
+    </section>
+
+    <section class="slide pause-slide">
+      <div class="pause-content">
+        <div class="pause-icon" style="--tone:var(--purple)">?</div>
+        <div class="eyebrow" style="color:var(--purple)">Conversation starter</div>
+        <h2>What qualification methodologies do we use <span class="accent-purple">internally at GitHub?</span></h2>
+      </div>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Framework choice</div>
+        <h2>BANT opens the door. MEDDPICC tells us whether a complex deal can move.</h2>
+      </header>
+      <div class="framework">
+        <article class="card" style="--tone:var(--amber)">
+          <div class="card-label">BANT | fast initial signal</div>
+          <div class="framework-side">
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">B</span><div><h3>Budget</h3><p>Is funding available, planned, or dependent on a business case?</p></div></div>
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">A</span><div><h3>Authority</h3><p>Who can approve, block, or influence this change?</p></div></div>
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">N</span><div><h3>Need</h3><p>What important problem are they trying to solve?</p></div></div>
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">T</span><div><h3>Timing</h3><p>What event or deadline creates urgency?</p></div></div>
+          </div>
+        </article>
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">MEDDPICC | complex deal evidence</div>
+          <div class="grid-2" style="gap:12px">
+            <div class="framework-row" style="--tone:var(--green)"><span class="letter">M</span><div><h3>Metrics</h3><p>Quantified value.</p></div></div>
+            <div class="framework-row" style="--tone:var(--green)"><span class="letter">E</span><div><h3>Economic buyer</h3><p>Final authority.</p></div></div>
+            <div class="framework-row" style="--tone:var(--blue)"><span class="letter">D</span><div><h3>Decision criteria</h3><p>How options are judged.</p></div></div>
+            <div class="framework-row" style="--tone:var(--blue)"><span class="letter">D</span><div><h3>Decision process</h3><p>How approval happens.</p></div></div>
+            <div class="framework-row" style="--tone:var(--purple)"><span class="letter">P</span><div><h3>Paper process</h3><p>Legal and procurement.</p></div></div>
+            <div class="framework-row" style="--tone:var(--purple)"><span class="letter">I</span><div><h3>Implicate pain</h3><p>Why change matters.</p></div></div>
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">C</span><div><h3>Champion</h3><p>Internal mobilizer.</p></div></div>
+            <div class="framework-row" style="--tone:var(--amber)"><span class="letter">C</span><div><h3>Competition</h3><p>Vendor, build, or no action.</p></div></div>
+          </div>
+        </article>
+      </div>
+      <footer class="footer"><span>Use frameworks as memory aids, not interrogation scripts</span><span>05</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">In the conversation</div>
+        <h2>SPIN creates discovery. Challenger adds a point of view.</h2>
+      </header>
+      <div class="methodology-layout">
+        <div class="methodology-columns">
+          <article class="card" style="--tone:var(--blue)">
+            <div class="card-label">Discovery methodology</div>
+            <div class="card-value">SPIN</div>
+            <p class="card-copy">Use structured questions to move from the customer’s situation to problems, business implications, and the value of change.</p>
+          </article>
+          <article class="card" style="--tone:var(--purple)">
+            <div class="card-label">Insight methodology</div>
+            <div class="card-value">Challenger</div>
+            <p class="card-copy">Bring a relevant point of view that reframes the problem, connects to the customer’s priorities, and guides a useful next step.</p>
+          </article>
+        </div>
+        <div>
+          <div class="card-label" style="margin:0 0 10px 2px">Recommended reading to go deeper</div>
+          <div class="reference-strip">
+            <a class="reference-link" style="--tone:var(--blue)" href="https://www.amazon.nl/qualified-sales-leader-john-mcmahon/s?k=qualified+sales+leader+john+mcmahon" target="_blank" rel="noreferrer"><strong>The Qualified Sales Leader ↗</strong><span>John McMahon · MEDDICC and deal evidence</span></a>
+            <a class="reference-link" style="--tone:var(--green)" href="https://www.amazon.nl/-/en/SPIN-Selling-Neil-Rackham/dp/0070511136" target="_blank" rel="noreferrer"><strong>SPIN Selling ↗</strong><span>Neil Rackham · research-based discovery</span></a>
+            <a class="reference-link" style="--tone:var(--purple)" href="https://www.amazon.nl/Challenger-Sale-Control-Customer-Conversation/dp/0670922854" target="_blank" rel="noreferrer"><strong>The Challenger Sale ↗</strong><span>Dixon and Adamson · commercial insight</span></a>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><span>Curiosity develops the need. Insight changes how the customer sees it.</span><span>06</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Qualification questions</div>
+        <h2>Start with the customer’s operating environment</h2>
+      </header>
+      <div class="question-grid">
+        <article class="question" style="--tone:var(--blue)">
+          <span class="question-icon">⌘</span>
+          <div><h3>Current tools</h3><p>Where does version control happen today? GitHub, GitLab, Bitbucket, or multiple platforms? Which AI tools are developers using, such as Copilot, Cursor, Claude, or internal solutions?</p></div>
+        </article>
+        <article class="question" style="--tone:var(--green)">
+          <span class="question-icon">◎</span>
+          <div><h3>Scale and collaboration</h3><p>How many developers, contractors, and external teams collaborate across those platforms? How many repositories and business units are involved?</p></div>
+        </article>
+        <article class="question" style="--tone:var(--amber)">
+          <span class="question-icon">△</span>
+          <div><h3>Current gaps</h3><p>What is not on GitHub today, and why? Where are controls inconsistent? How is security handled across the SDLC? Where does AI lack governance or adoption?</p></div>
+        </article>
+        <article class="question" style="--tone:var(--purple)">
+          <span class="question-icon">↗</span>
+          <div><h3>Ongoing priorities</h3><p>Which initiatives matter this year: cloud migration, platform consolidation, AI rollout, application security, developer experience, cost reduction, or faster delivery?</p></div>
+        </article>
+      </div>
+      <footer class="footer"><span>Ask for names, numbers, workflows, and examples</span><span>08</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Avoid these traps</div>
+        <h2>Five habits that create false qualification</h2>
+      </header>
+      <div class="grid-3">
+        <article class="card" style="--tone:var(--red)"><div class="card-label">01</div><h3>Checklist interrogation</h3><p class="card-copy">Running through framework fields without following the customer’s story.</p></article>
+        <article class="card" style="--tone:var(--amber)"><div class="card-label">02</div><h3>Premature pitching</h3><p class="card-copy">Mapping every answer to a feature before understanding impact and priority.</p></article>
+        <article class="card" style="--tone:var(--purple)"><div class="card-label">03</div><h3>Accepting vague language</h3><p class="card-copy">Treating “security is important” or “AI is strategic” as sufficient evidence.</p></article>
+        <article class="card" style="--tone:var(--blue)"><div class="card-label">04</div><h3>Single-threading</h3><p class="card-copy">Confusing a helpful contact with authority, influence, or a tested champion.</p></article>
+        <article class="card" style="--tone:var(--green)"><div class="card-label">05</div><h3>Seller-only next steps</h3><p class="card-copy">Sending decks and waiting instead of agreeing a customer-owned decision event.</p></article>
+        <article class="card" style="--tone:var(--cyan)"><div class="card-label">Reset</div><h3>Stay curious longer</h3><p class="card-copy">Summarize what you heard, test it, and ask what you have missed.</p></article>
+      </div>
+      <footer class="footer"><span>Framework rigor should improve the conversation, not replace it</span><span>11</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Takeaways</div>
+        <h2>If you only remember 3 things from today</h2>
+      </header>
+      <div class="grid-3">
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">01 · Why qualify?</div>
+          <div class="card-value">Focus</div>
+          <p class="card-copy">Protect customer time and seller effort by proving there is a meaningful change worth pursuing.</p>
+        </article>
+        <article class="card" style="--tone:var(--purple)">
+          <div class="card-label">02 · Who to qualify?</div>
+          <div class="card-value">People</div>
+          <p class="card-copy">Qualify the problem with users, the impact with business stakeholders, and the decision with authority.</p>
+        </article>
+        <article class="card" style="--tone:var(--green)">
+          <div class="card-label">03 · What matters most?</div>
+          <div class="card-value">Evidence</div>
+          <p class="card-copy">A specific problem, material impact, connected stakeholders, and a mutual reason to move forward.</p>
+        </article>
+      </div>
+      <footer class="footer"><span>Leave with more truth and a better decision.</span><span>14</span></footer>
+    </section>
+
+    <nav class="controls" aria-label="Presentation controls">
+      <button id="prev" aria-label="Previous slide">←</button>
+      <div class="counter"><span id="current">1</span> / <span id="total">12</span></div>
+      <button id="next" aria-label="Next slide">→</button>
+    </nav>
+    <div class="progress" id="progress"></div>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const current = document.getElementById('current');
+    const total = document.getElementById('total');
+    const progress = document.getElementById('progress');
+    let index = 0;
+
+    total.textContent = slides.length;
+    slides.forEach((slide, i) => {
+      if (i === 0) return;
+      const footerNumber = slide.querySelector('.footer span:last-child');
+      if (footerNumber) footerNumber.textContent = String(i + 1).padStart(2, '0');
+    });
+
+    function show(nextIndex) {
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      current.textContent = index + 1;
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      history.replaceState(null, '', `#${index + 1}`);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => show(index - 1));
+    document.getElementById('next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', event => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+      if (event.key.toLowerCase() === 'f') {
+        document.documentElement.requestFullscreen?.();
+      }
+    });
+
+    const hashIndex = Number(location.hash.slice(1)) - 1;
+    show(Number.isInteger(hashIndex) && hashIndex >= 0 ? hashIndex : 0);
+  </script>
+</body>
+</html>

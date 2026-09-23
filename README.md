@@ -51,7 +51,7 @@ Use this dashboard to review the team's current Salesforce activity and performa
 
 ## Onboarding & Enablement
 
-### [Qualification Playbook](qualification-playbook.html)
+### [Qualification Training Presentation](qualification-playbook.html)
 
 Open the presentation at [jeremiahluiz.github.io/corp-ebr-emea/qualification-playbook.html](https://jeremiahluiz.github.io/corp-ebr-emea/qualification-playbook.html) to prepare and run qualification enablement covering BANT, MEDDPICC, SPIN, Challenger, and practical discovery questions.
 

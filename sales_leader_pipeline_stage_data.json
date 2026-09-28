@@ -1,0 +1,345 @@
+{
+  "stages": [
+    "Problem Identification & Research",
+    "Qualified",
+    "Proposal & Negotiation",
+    "Business Selected",
+    "Verbal Agreement",
+    "Pending Acceptance",
+    "Closed Won",
+    "Closed Lost",
+    "Manage & Optimize",
+    "Omit"
+  ],
+  "entries": [
+    {
+      "ae": "Adil Ibrahim",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 58050,
+      "total": 58050
+    },
+    {
+      "ae": "Alexis Le Pays du Teilleul",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 4410,
+      "total": 4410
+    },
+    {
+      "ae": "Alvaro Coenen",
+      "stage": "Problem Identification & Research",
+      "licensed": 0,
+      "metered": 7125,
+      "total": 7125
+    },
+    {
+      "ae": "Amr Al Jarhi",
+      "stage": "Closed Won",
+      "licensed": 11508,
+      "metered": 0,
+      "total": 11508
+    },
+    {
+      "ae": "Amr Al Jarhi",
+      "stage": "Omit",
+      "licensed": 4704,
+      "metered": 7350,
+      "total": 12054
+    },
+    {
+      "ae": "Amr Al Jarhi",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 350500.05000000005,
+      "total": 350500.05000000005
+    },
+    {
+      "ae": "Amr Al Jarhi",
+      "stage": "Problem Identification & Research",
+      "licensed": 0,
+      "metered": 1143750,
+      "total": 1143750
+    },
+    {
+      "ae": "Antoine Vattaire",
+      "stage": "Closed Won",
+      "licensed": 9072,
+      "metered": 0,
+      "total": 9072
+    },
+    {
+      "ae": "Antoine Vattaire",
+      "stage": "Manage & Optimize",
+      "licensed": 0,
+      "metered": 1701,
+      "total": 1701
+    },
+    {
+      "ae": "Ben Fuller",
+      "stage": "Closed Won",
+      "licensed": 97650,
+      "metered": 0,
+      "total": 97650
+    },
+    {
+      "ae": "Blayney Scott",
+      "stage": "Manage & Optimize",
+      "licensed": 0,
+      "metered": 2106,
+      "total": 2106
+    },
+    {
+      "ae": "Camilla Cardinale",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 18000,
+      "total": 18000
+    },
+    {
+      "ae": "Carl Harris",
+      "stage": "Manage & Optimize",
+      "licensed": 0,
+      "metered": 5100,
+      "total": 5100
+    },
+    {
+      "ae": "Charlie Brown",
+      "stage": "Closed Won",
+      "licensed": 30750,
+      "metered": 0,
+      "total": 30750
+    },
+    {
+      "ae": "Charlie Brown",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 57000,
+      "total": 57000
+    },
+    {
+      "ae": "Emilio van der Zanden",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 50850,
+      "total": 50850
+    },
+    {
+      "ae": "Federica Ioris",
+      "stage": "Qualified",
+      "licensed": 20160,
+      "metered": 1140,
+      "total": 21300
+    },
+    {
+      "ae": "Gesa Gandetzky",
+      "stage": "Problem Identification & Research",
+      "licensed": 30996,
+      "metered": 0,
+      "total": 30996
+    },
+    {
+      "ae": "Gesa Gandetzky",
+      "stage": "Proposal & Negotiation",
+      "licensed": 20412,
+      "metered": 0,
+      "total": 20412
+    },
+    {
+      "ae": "Gesa Gandetzky",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 12870,
+      "total": 12870
+    },
+    {
+      "ae": "Gustaf Eriksson",
+      "stage": "Closed Won",
+      "licensed": 10788,
+      "metered": 0,
+      "total": 10788
+    },
+    {
+      "ae": "Gustaf Eriksson",
+      "stage": "Problem Identification & Research",
+      "licensed": 100800,
+      "metered": 0,
+      "total": 100800
+    },
+    {
+      "ae": "Gustaf Eriksson",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 94050,
+      "total": 94050
+    },
+    {
+      "ae": "Jean-Guillaume Lamagnere",
+      "stage": "Closed Lost",
+      "licensed": 2520,
+      "metered": 0,
+      "total": 2520
+    },
+    {
+      "ae": "Jean-Guillaume Lamagnere",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 4230,
+      "total": 4230
+    },
+    {
+      "ae": "Jean-Guillaume Lamagnere",
+      "stage": "Manage & Optimize",
+      "licensed": 0,
+      "metered": 9450,
+      "total": 9450
+    },
+    {
+      "ae": "Lennart Dany",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 37233,
+      "total": 37233
+    },
+    {
+      "ae": "Lennart Dany",
+      "stage": "Verbal Agreement",
+      "licensed": 0,
+      "metered": 1701,
+      "total": 1701
+    },
+    {
+      "ae": "Lennart Dany",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 5700,
+      "total": 5700
+    },
+    {
+      "ae": "Luca Schwarz",
+      "stage": "Problem Identification & Research",
+      "licensed": 187555.2,
+      "metered": 0,
+      "total": 187555.2
+    },
+    {
+      "ae": "Luca Schwarz",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 7350,
+      "total": 7350
+    },
+    {
+      "ae": "Massimo Cirillo",
+      "stage": "Omit",
+      "licensed": 2059.5,
+      "metered": 0,
+      "total": 2059.5
+    },
+    {
+      "ae": "Massimo Cirillo",
+      "stage": "Qualified",
+      "licensed": 29400,
+      "metered": 45,
+      "total": 29445
+    },
+    {
+      "ae": "Max Pritchard",
+      "stage": "Closed Won",
+      "licensed": 10625,
+      "metered": 0,
+      "total": 10625
+    },
+    {
+      "ae": "Max Pritchard",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 31350,
+      "total": 31350
+    },
+    {
+      "ae": "Onur Piskin",
+      "stage": "Qualified",
+      "licensed": 50400,
+      "metered": 6180,
+      "total": 56580
+    },
+    {
+      "ae": "Ruben Weinmiller",
+      "stage": "Qualified",
+      "licensed": 51956.8,
+      "metered": 72575.01000000001,
+      "total": 124531.81
+    },
+    {
+      "ae": "Ruben Weinmiller",
+      "stage": "Verbal Agreement",
+      "licensed": 0,
+      "metered": 23520,
+      "total": 23520
+    },
+    {
+      "ae": "Ruben Weinmiller",
+      "stage": "Manage & Optimize",
+      "licensed": 0,
+      "metered": 55671,
+      "total": 55671
+    },
+    {
+      "ae": "Ruben Weinmiller",
+      "stage": "Problem Identification & Research",
+      "licensed": 0,
+      "metered": 11700,
+      "total": 11700
+    },
+    {
+      "ae": "Sam Hansen",
+      "stage": "Proposal & Negotiation",
+      "licensed": 0,
+      "metered": 113070,
+      "total": 113070
+    },
+    {
+      "ae": "Sam Hansen",
+      "stage": "Verbal Agreement",
+      "licensed": 0,
+      "metered": 11970,
+      "total": 11970
+    },
+    {
+      "ae": "Sam Hansen",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 6300,
+      "total": 6300
+    },
+    {
+      "ae": "Shirley van Zon",
+      "stage": "Qualified",
+      "licensed": 152040,
+      "metered": 74880,
+      "total": 226920
+    },
+    {
+      "ae": "Shirley van Zon",
+      "stage": "Closed Lost",
+      "licensed": 0,
+      "metered": 300,
+      "total": 300
+    },
+    {
+      "ae": "Sindy Abreu",
+      "stage": "Problem Identification & Research",
+      "licensed": 4015.4,
+      "metered": 0,
+      "total": 4015.4
+    },
+    {
+      "ae": "Sindy Abreu",
+      "stage": "Qualified",
+      "licensed": 0,
+      "metered": 215700,
+      "total": 215700
+    }
+  ]
+}

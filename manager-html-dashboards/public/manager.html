@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-manager="{{MANAGER}}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{MANAGER}} | Weekly Performance</title>
+    <style>{{STYLES}}</style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FY27 Q1 MANAGER DASHBOARD</p>
+        <h1>{{MANAGER}} | Weekly Performance</h1>
+        <p id="scope">Loading saved dashboard...</p>
+      </div>
+      <a class="report-link" href="https://github.lightning.force.com/lightning/r/Report/00OhR000004gPpJUAU/view" target="_blank" rel="noopener">Open SQL held report</a>
+    </header>
+    <main>
+      <p class="status">Saved dashboard. Use the Salesforce report link for current SQL held data.</p>
+      <section class="cards">
+        <article><span>Events scheduled</span><strong id="qtd-scheduled">-</strong></article>
+        <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
+        <article><span>Licensed pipeline</span><strong id="qtd-licensed">-</strong></article>
+        <article><span>Metered / total</span><strong id="qtd-metered">-</strong><small id="qtd-pipeline">- total</small></article>
+      </section>
+      <section class="previous-week">
+        <div><span>Previous completed week</span><strong id="previous-label">-</strong></div>
+        <div><span>Scheduled</span><strong id="previous-scheduled">-</strong></div>
+        <div><span>SQL held</span><strong id="previous-sql">-</strong></div>
+        <div><span>Licensed</span><strong id="previous-licensed">-</strong></div>
+        <div><span>Metered</span><strong id="previous-metered">-</strong></div>
+        <div><span>Total pipeline</span><strong id="previous-pipeline">-</strong></div>
+      </section>
+      <section class="closed-won-card">
+        <span class="closed-won-label">Q1 EBR-attributed revenue</span>
+        <strong id="qtd-won" class="closed-won-value">-</strong>
+        <small class="closed-won-split"><span id="qtd-won-licensed">-</span> licensed Closed Won · <span id="qtd-won-metered">-</span> metered Commission ARR</small>
+        <p class="revenue-logic"><strong>Logic:</strong> Licensed counts Q1 Closed Won opportunities sourced by an EBR. Metered counts a matching GHE or GHAS Commission ARR increase only when it is observed after the milestone was created, once per account and product. Copilot, stale, mixed-product, and timing-unverified milestones are excluded.</p>
+        <small id="qtd-won-method">Metered credit requires two weekly account snapshots.</small>
+      </section>
+      <section class="charts">
+        <article class="panel"><div class="panel-title"><h2>Events scheduled</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>SQL held</h2><strong id="sql-total">-</strong></div><div id="sql-chart" class="bar-chart"></div></article>
+        <article class="panel pipeline-panel">
+          <div><div class="panel-title"><h2>Pipeline</h2><strong id="pipeline-total">-</strong></div><div id="pipeline-chart" class="bar-chart"></div></div>
+          <div class="funnel-wrap"><h2>Current stage funnel</h2><div id="funnel" class="funnel"></div></div>
+        </article>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><h2 id="breakdown-title">IC breakdown</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Scheduled</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
+            <tbody id="ic-table"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="featured">
+        <article class="panel"><div class="panel-title"><h2>Business Selected</h2><strong id="business-total">-</strong></div><div id="business-selected"></div></article>
+        <article class="panel"><div class="panel-title"><h2 id="closed-won-title">Closed Won pipeline</h2><strong id="closed-total">-</strong></div><div id="closed-won"></div></article>
+      </section>
+    </main>
+    <script>window.DASHBOARD = {{DASHBOARD_DATA}};</script>
+    <script>{{APP}}</script>
+  </body>
+</html>

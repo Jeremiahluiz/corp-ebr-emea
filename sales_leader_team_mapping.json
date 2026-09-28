@@ -1,0 +1,59 @@
+{
+  "SMB": {
+    "Fernando Munoz Drinot": [
+      {"ae": "Louis Leccia", "ebr": "Bouke Kingma"},
+      {"ae": "Lidiya Melnyk", "ebr": "Bouke Kingma"},
+      {"ae": "Amy James", "ebr": "Bouke Kingma"},
+      {"ae": "Jose Pezzi", "ebr": "Bouke Kingma"},
+      {"ae": "Frank Jensen", "ebr": "Bouke Kingma"}
+    ],
+    "Michael de Korte": [
+      {"ae": "Justin Goertz", "ebr": "Bouke Kingma"},
+      {"ae": "Charlotte Bakker", "ebr": "Bouke Kingma"},
+      {"ae": "Sam Hansen", "ebr": "Bouke Kingma"},
+      {"ae": "Magnus Jerono", "ebr": "Alexandra Chirica"},
+      {"ae": "Gesa Gandetzky", "ebr": "Alexandra Chirica"},
+      {"ae": "Thomas McCann", "ebr": "Alexandra Chirica"},
+      {"ae": "Onur Piskin", "ebr": "Alexandra Chirica"},
+      {"ae": "Federica Ioris", "ebr": "Alexandra Chirica"}
+    ],
+    "AJ Herve": [
+      {"ae": "Morgan Nicas", "ebr": "Renata Zhupanyn"},
+      {"ae": "Lambert Troubat", "ebr": "Renata Zhupanyn"},
+      {"ae": "Alessandra Seidita", "ebr": "Renata Zhupanyn"},
+      {"ae": "Alvaro Coenen", "ebr": "Renata Zhupanyn"},
+      {"ae": "Nesi Laros", "ebr": "Renata Zhupanyn"},
+      {"ae": "Massimo Cirillo", "ebr": "Renata Zhupanyn"}
+    ],
+    "Omur Sert": [
+      {"ae": "Alexis Le Pays du Teilleul", "ebr": "Anna Sobala"},
+      {"ae": "Amr Al Jarhi", "ebr": "Anna Sobala"},
+      {"ae": "Merel Blaak", "ebr": "Anna Sobala"},
+      {"ae": "Claudia Martin", "ebr": "Anna Sobala"},
+      {"ae": "Adil Ibrahim", "ebr": "Anna Sobala"},
+      {"ae": "Carl Harris", "ebr": "Tommy Hirvonen"}
+    ]
+  },
+  "Mid Market": {
+    "Dirk-Jan de Vries": [
+      {"ae": "Camilla Cardinale", "ebr": "Tommy Hirvonen"},
+      {"ae": "Gustaf Eriksson", "ebr": "Tommy Hirvonen"},
+      {"ae": "Charlie Brown", "ebr": "Tommy Hirvonen"},
+      {"ae": "Shirley van Zon", "ebr": "Daniel Spanjaard"},
+      {"ae": "Max Pritchard", "ebr": "Daniel Spanjaard"},
+      {"ae": "Emilio van der Zanden", "ebr": "Daniel Spanjaard"},
+      {"ae": "Deniz Evyapan", "ebr": "Daniel Spanjaard"},
+      {"ae": "Backfill Nicolas", "ebr": null}
+    ],
+    "Carmen Marced": [
+      {"ae": "Pedro Oom", "ebr": "Illane Hamache"},
+      {"ae": "Pierre Aigron", "ebr": "Illane Hamache"},
+      {"ae": "Marco Mazen", "ebr": "Illane Hamache"},
+      {"ae": "Sindy Abreu", "ebr": "Renato Taramona"},
+      {"ae": "Ruben Weinmiller", "ebr": "Renato Taramona"},
+      {"ae": "Luca Schwarz", "ebr": "Renato Taramona"},
+      {"ae": "Lennart Dany", "ebr": "Renato Taramona"},
+      {"ae": "Julia Sylvia Cardoso", "ebr": "Illane Hamache"}
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "entries": [
+    {
+      "opportunityId": "006hR000009tM4gQAE",
+      "opportunityName": "Graphcore 500 Seat 2027_Q1 Upgrade",
+      "ae": "Ben Fuller",
+      "stage": "Closed Won",
+      "licensed": 97650,
+      "metered": 0,
+      "total": 97650
+    },
+    {
+      "opportunityId": "006hR000004KJkcQAG",
+      "opportunityName": "Superbet Group 50 Seat 2027_Q1 Upgrade",
+      "ae": "Max Pritchard",
+      "stage": "Closed Won",
+      "licensed": 10625,
+      "metered": 0,
+      "total": 10625
+    },
+    {
+      "opportunityId": "006hR000006WMjXQAW",
+      "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "ae": "Charlie Brown",
+      "stage": "Closed Won",
+      "licensed": 10250,
+      "metered": 0,
+      "total": 10250
+    },
+    {
+      "opportunityId": "006hR000007uT4wQAE",
+      "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "ae": "Charlie Brown",
+      "stage": "Closed Won",
+      "licensed": 10250,
+      "metered": 0,
+      "total": 10250
+    },
+    {
+      "opportunityId": "006hR000008pDeXQAU",
+      "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "ae": "Charlie Brown",
+      "stage": "Closed Won",
+      "licensed": 10250,
+      "metered": 0,
+      "total": 10250
+    },
+    {
+      "opportunityId": "006hR000006EMlBQAW",
+      "opportunityName": "RSM France 40 Seat 2027_Q1 Order",
+      "ae": "Antoine Vattaire",
+      "stage": "Closed Won",
+      "licensed": 9072,
+      "metered": 0,
+      "total": 9072
+    },
+    {
+      "opportunityId": "006hR000009XWS9QAO",
+      "opportunityName": "Getinge AB (2nd Instance) 20 Seat 2027_Q1 Upgrade",
+      "ae": "Gustaf Eriksson",
+      "stage": "Closed Won",
+      "licensed": 4788,
+      "metered": 0,
+      "total": 4788
+    },
+    {
+      "opportunityId": "006hR000008dbntQAA",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade",
+      "ae": "Amr Al Jarhi",
+      "stage": "Closed Won",
+      "licensed": 4704,
+      "metered": 0,
+      "total": 4704
+    },
+    {
+      "opportunityId": "006hR000004TJD4QAO",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "ae": "Amr Al Jarhi",
+      "stage": "Closed Won",
+      "licensed": 2268,
+      "metered": 0,
+      "total": 2268
+    },
+    {
+      "opportunityId": "006hR000007gkiLQAQ",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "ae": "Amr Al Jarhi",
+      "stage": "Closed Won",
+      "licensed": 2268,
+      "metered": 0,
+      "total": 2268
+    },
+    {
+      "opportunityId": "006hR00000BF8a3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "ae": "Amr Al Jarhi",
+      "stage": "Closed Won",
+      "licensed": 2268,
+      "metered": 0,
+      "total": 2268
+    },
+    {
+      "opportunityId": "006hR0000065A9lQAE",
+      "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "ae": "Gustaf Eriksson",
+      "stage": "Closed Won",
+      "licensed": 2000,
+      "metered": 0,
+      "total": 2000
+    },
+    {
+      "opportunityId": "006hR0000087fkzQAA",
+      "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "ae": "Gustaf Eriksson",
+      "stage": "Closed Won",
+      "licensed": 2000,
+      "metered": 0,
+      "total": 2000
+    },
+    {
+      "opportunityId": "006hR000009jwx7QAA",
+      "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "ae": "Gustaf Eriksson",
+      "stage": "Closed Won",
+      "licensed": 2000,
+      "metered": 0,
+      "total": 2000
+    }
+  ]
+}

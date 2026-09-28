@@ -1,0 +1,143 @@
+{
+  "source": {
+    "name": "GHE-GHAS Consumption Dashboard",
+    "reportUrl": "https://app.powerbi.com/groups/me/reports/35552d49-7b01-475f-a7d1-42b877e58992/b6c53aa03c9d3473c549?experience=power-bi",
+    "visual": "GHE-GHAS Metered Commission Account Level Summary"
+  },
+  "snapshots": [
+    {
+      "asOfDate": "2026-08-31",
+      "importedAt": "2026-09-21T00:00:00.000Z",
+      "accounts": [
+        {
+          "accountId": "0015c00002p2HCBAA2",
+          "accountName": "KaizenGaming",
+          "commissionArr": 185601
+        },
+        {
+          "accountId": "0010V00002Lr0OoQAJ",
+          "accountName": "Uniper",
+          "commissionArr": 91463
+        },
+        {
+          "accountId": "0010V00002JVA56QAH",
+          "accountName": "MediaSaturn IT Services",
+          "commissionArr": 24719
+        },
+        {
+          "accountId": "001d0000027T0nIAAS",
+          "accountName": "ICA Sverige AB",
+          "commissionArr": 21697
+        },
+        {
+          "accountId": "0013o00002S5bABAAZ",
+          "accountName": "Epiroc Rock Drills AB",
+          "commissionArr": 12506
+        }
+      ]
+    },
+    {
+      "asOfDate": "2026-09-19",
+      "importedAt": "2026-09-21T15:44:37.006Z",
+      "source": "rev_source.salesforce_account_monthly_mrr_fact, annualized GHE + GHAS metered MRR; Uniper retained from Power BI visual",
+      "accounts": [
+        {
+          "accountId": "0010V00002JVA56QAH",
+          "accountName": "MediaSaturn IT Services",
+          "commissionArr": 241308.72,
+          "gheCommissionArr": 241308.72,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "0010V00002O1lfBQAR",
+          "accountName": "MCLAREN GROUP LTD",
+          "commissionArr": 59540.28,
+          "gheCommissionArr": 0,
+          "ghasCommissionArr": 59540.28
+        },
+        {
+          "accountId": "0013o00002S5bABAAZ",
+          "accountName": "Epiroc Rock Drills AB",
+          "commissionArr": 95955.48,
+          "gheCommissionArr": 0,
+          "ghasCommissionArr": 95955.48
+        },
+        {
+          "accountId": "0013o00002XTONmAAP",
+          "accountName": "Bankdata - JN Data (MSFT EA)",
+          "commissionArr": 70047.96,
+          "gheCommissionArr": 26125.32,
+          "ghasCommissionArr": 43922.64
+        },
+        {
+          "accountId": "0013o00002ZJwAyAAL",
+          "accountName": "TTTech Computertechnik AG",
+          "commissionArr": 75701.76,
+          "gheCommissionArr": 75701.76,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "0015c00002p2HCBAA2",
+          "accountName": "KaizenGaming",
+          "commissionArr": 187423.56,
+          "gheCommissionArr": 187423.56,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "001Kg00000AJty2IAD",
+          "accountName": "Eventim Tech GmbH",
+          "commissionArr": 9063.96,
+          "gheCommissionArr": 9063.96,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "001Kg00000C3dC4IAJ",
+          "accountName": "Skyline Communications",
+          "commissionArr": 26848.92,
+          "gheCommissionArr": 26848.92,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "001Kg00000EN83SIAT",
+          "accountName": "goaudits-ltd",
+          "commissionArr": 7958.4,
+          "gheCommissionArr": 7958.4,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "001Kg00000EPcHEIA1",
+          "accountName": "Scandic Hotels",
+          "commissionArr": 3528,
+          "gheCommissionArr": 3528,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "001d0000027T0nIAAS",
+          "accountName": "ICA Sverige AB",
+          "commissionArr": 129910.08,
+          "gheCommissionArr": 0,
+          "ghasCommissionArr": 129910.08
+        },
+        {
+          "accountId": "001d000002Am6TwAAJ",
+          "accountName": "PostNord",
+          "commissionArr": 474450.48,
+          "gheCommissionArr": 178708.2,
+          "ghasCommissionArr": 295742.28
+        },
+        {
+          "accountId": "001hR000006NsNdQAK",
+          "accountName": "INEOS Group",
+          "commissionArr": 276,
+          "gheCommissionArr": 276,
+          "ghasCommissionArr": 0
+        },
+        {
+          "accountId": "0010V00002Lr0OoQAJ",
+          "accountName": "Uniper",
+          "commissionArr": 91463
+        }
+      ]
+    }
+  ]
+}

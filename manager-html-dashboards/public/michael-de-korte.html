@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-manager="Michael de Korte">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Michael de Korte | Weekly Performance</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <a class="back" href="/">All managers</a>
+        <h1>Michael de Korte | Weekly Performance</h1>
+        <p id="scope">Loading saved dashboard...</p>
+      </div>
+      <button id="refresh" type="button">Refresh from Salesforce</button>
+    </header>
+    <main>
+      <p id="status" class="status" role="status">Loading saved dashboard...</p>
+      <section class="cards">
+        <article><span>Events scheduled</span><strong id="qtd-scheduled">-</strong></article>
+        <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
+        <article><span>Licensed pipeline</span><strong id="qtd-licensed">-</strong></article>
+        <article><span>Metered / total</span><strong id="qtd-metered">-</strong><small id="qtd-pipeline">- total</small></article>
+      </section>
+      <section class="previous-week">
+        <div><span>Previous completed week</span><strong id="previous-label">-</strong></div>
+        <div><span>Scheduled</span><strong id="previous-scheduled">-</strong></div>
+        <div><span>SQL held</span><strong id="previous-sql">-</strong></div>
+        <div><span>Licensed</span><strong id="previous-licensed">-</strong></div>
+        <div><span>Metered</span><strong id="previous-metered">-</strong></div>
+        <div><span>Total pipeline</span><strong id="previous-pipeline">-</strong></div>
+      </section>
+      <section class="closed-won-card">
+        <span>Q1 closed-won revenue</span>
+        <button id="qtd-won" class="value-button" type="button">-</button>
+        <small>EBR-attributed. Click for Salesforce records.</small>
+      </section>
+      <section class="charts">
+        <article class="panel"><div class="panel-title"><h2>Events scheduled</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>SQL held</h2><strong id="sql-total">-</strong></div><div id="sql-chart" class="bar-chart"></div></article>
+        <article class="panel pipeline-panel">
+          <div><div class="panel-title"><h2>Pipeline</h2><strong id="pipeline-total">-</strong></div><div id="pipeline-chart" class="bar-chart"></div></div>
+          <div class="funnel-wrap"><h2>Current stage funnel</h2><div id="funnel" class="funnel"></div></div>
+        </article>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><h2>IC breakdown</h2><span>Click a metric for Salesforce records</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>AE / IC</th><th>EBR</th><th>Scheduled</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Closed won</th></tr></thead>
+            <tbody id="ic-table"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="featured">
+        <article class="panel"><div class="panel-title"><h2>Business Selected</h2><strong id="business-total">-</strong></div><div id="business-selected"></div></article>
+        <article class="panel"><div class="panel-title"><h2>Closed Won pipeline</h2><strong id="closed-total">-</strong></div><div id="closed-won"></div></article>
+      </section>
+    </main>
+    <dialog id="records-dialog">
+      <header><div><p class="eyebrow">SALESFORCE RECORDS</p><h2 id="dialog-title">Records</h2></div><button id="close-dialog" type="button">Close</button></header>
+      <div id="record-list" class="record-list"></div>
+    </dialog>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

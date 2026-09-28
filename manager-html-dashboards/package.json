@@ -1,0 +1,9 @@
+{
+  "name": "ebr-manager-html-dashboards",
+  "private": true,
+  "scripts": {
+    "generate": "node generate-pages.js",
+    "check": "node --check generate-pages.js && node --check src/dashboard.js && node --check public/app.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

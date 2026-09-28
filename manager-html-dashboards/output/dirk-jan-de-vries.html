@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" data-manager="Dirk-Jan de Vries">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dirk-Jan de Vries | Weekly Performance</title>
+    <style>:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2328;
+  background: #f6f8fa;
+  --blue: #0969da;
+  --green: #1a7f37;
+  --purple: #8250df;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f6f8fa; }
+a { color: var(--blue); }
+button, input, select { font: inherit; }
+.topbar { padding: 28px 5vw; color: #fff; background: linear-gradient(110deg, #24292f, #3b1f75); display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+.topbar h1 { margin: 14px 0 8px; font-size: clamp(28px, 4vw, 46px); }
+.topbar p { margin: 0; color: #d8c7ff; }
+.report-link { min-height: 44px; padding: 11px 16px; border: 1px solid #8c959f; border-radius: 8px; background: #fff; color: #1f2328; font-weight: 750; text-decoration: none; }
+main { width: min(1500px, 94vw); margin: 22px auto 60px; display: grid; gap: 22px; }
+.status { min-height: 24px; margin: 0; color: #57606a; }
+.status.error { color: #cf222e; font-weight: 700; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cards article, .panel, .previous-week, .closed-won-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 8px 24px rgba(31,35,40,.08); }
+.cards article { padding: 22px; border-top: 6px solid var(--blue); }
+.cards article:nth-child(2) { border-top-color: var(--green); }
+.cards article:nth-child(3), .cards article:nth-child(4) { border-top-color: var(--purple); }
+.cards span, .previous-week span, .closed-won-label { display: block; color: #57606a; font-size: 13px; font-weight: 750; text-transform: uppercase; letter-spacing: .5px; }
+.cards strong { display: block; margin-top: 12px; font-size: 36px; }
+.cards small { display: block; margin-top: 5px; font-size: 18px; font-weight: 700; }
+.previous-week { padding: 18px 24px; background: #fff8c5; border-color: #d4a72c; display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: 18px; align-items: center; }
+.previous-week strong { display: block; margin-top: 7px; color: #633c01; font-size: 23px; }
+.closed-won-card { padding: 20px 24px; background: #dafbe1; border-color: #2da44e; display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; align-items: center; }
+.closed-won-card small { color: #347d39; }
+.closed-won-value { color: var(--green); font-size: 36px; font-weight: 800; grid-row: span 2; }
+.closed-won-split span { font-weight: 750; }
+.revenue-logic { grid-column: 1 / -1; margin: 8px 0 0; padding-top: 10px; border-top: 1px solid rgba(45, 164, 78, .35); color: #24292f; font-size: 13px; line-height: 1.45; }
+#qtd-won-method { grid-column: 1 / -1; }
+.charts { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.panel { padding: 22px; min-width: 0; }
+.pipeline-panel { grid-column: 1 / -1; display: grid; grid-template-columns: 1.65fr 1fr; gap: 28px; }
+.panel-title { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+.panel-title h2, .funnel-wrap h2 { margin: 0; font-size: 22px; }
+.panel-title > strong { color: var(--purple); font-size: 21px; }
+.panel-title > span { color: #656d76; font-size: 13px; }
+.bar-chart { height: 285px; display: flex; align-items: end; gap: 7px; padding: 40px 4px 30px; border-bottom: 1px solid var(--border); }
+.bar-column { flex: 1; min-width: 20px; height: 100%; display: flex; flex-direction: column; justify-content: end; align-items: center; position: relative; }
+.bar-value { margin-bottom: 5px; font-size: 11px; font-weight: 750; white-space: nowrap; }
+.bar { width: 72%; min-height: 2px; border-radius: 5px 5px 0 0; background: var(--blue); }
+#sql-chart .bar { background: var(--green); }
+#pipeline-chart .bar { background: var(--purple); }
+.bar-label { position: absolute; bottom: -22px; color: #656d76; font-size: 10px; }
+.funnel { display: grid; justify-items: center; gap: 3px; padding-top: 20px; }
+.funnel-stage { height: 44px; clip-path: polygon(5% 0,95% 0,88% 100%,12% 100%); background: var(--purple); color: #fff; display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 12px; font-weight: 750; }
+.funnel-stage:nth-child(even) { background: #6639ba; }
+.table-wrap { overflow-x: auto; margin-top: 16px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 13px 10px; border-bottom: 1px solid #eaeef2; text-align: right; white-space: nowrap; }
+th { color: #57606a; font-size: 12px; text-transform: uppercase; }
+th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: left; }
+.featured { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.feature-row { display: grid; grid-template-columns: 1fr auto; gap: 8px 18px; padding: 14px 0; border-bottom: 1px solid #eaeef2; }
+.feature-row small { color: #656d76; }
+.empty { padding: 24px 0; color: #656d76; }
+.eyebrow { margin: 0 0 5px; color: #656d76; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+.directory { min-height: 100vh; display: grid; place-items: center; padding: 30px; background: linear-gradient(135deg, #24292f, #3b1f75); }
+.directory-card { width: min(800px, 95vw); padding: 34px; border-radius: 20px; background: #fff; }
+.directory-card h1 { margin: 0 0 12px; }
+.manager-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.manager-links a { padding: 18px; border: 1px solid var(--border); border-radius: 10px; text-decoration: none; font-weight: 750; display: flex; justify-content: space-between; }
+.manager-links span { color: #656d76; font-weight: 500; }
+@media (max-width: 900px) {
+  .topbar { align-items: start; flex-direction: column; }
+  .cards, .charts, .featured, .manager-links { grid-template-columns: 1fr; }
+  .pipeline-panel { grid-column: auto; grid-template-columns: 1fr; }
+  .previous-week { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FY27 Q1 MANAGER DASHBOARD</p>
+        <h1>Dirk-Jan de Vries | Weekly Performance</h1>
+        <p id="scope">Loading saved dashboard...</p>
+      </div>
+      <a class="report-link" href="https://github.lightning.force.com/lightning/r/Report/00OhR000004gPpJUAU/view" target="_blank" rel="noopener">Open SQL held report</a>
+    </header>
+    <main>
+      <p class="status">Saved dashboard. Use the Salesforce report link for current SQL held data.</p>
+      <section class="cards">
+        <article><span>Events scheduled</span><strong id="qtd-scheduled">-</strong></article>
+        <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
+        <article><span>Licensed pipeline</span><strong id="qtd-licensed">-</strong></article>
+        <article><span>Metered / total</span><strong id="qtd-metered">-</strong><small id="qtd-pipeline">- total</small></article>
+      </section>
+      <section class="previous-week">
+        <div><span>Previous completed week</span><strong id="previous-label">-</strong></div>
+        <div><span>Scheduled</span><strong id="previous-scheduled">-</strong></div>
+        <div><span>SQL held</span><strong id="previous-sql">-</strong></div>
+        <div><span>Licensed</span><strong id="previous-licensed">-</strong></div>
+        <div><span>Metered</span><strong id="previous-metered">-</strong></div>
+        <div><span>Total pipeline</span><strong id="previous-pipeline">-</strong></div>
+      </section>
+      <section class="closed-won-card">
+        <span class="closed-won-label">Q1 EBR-attributed revenue</span>
+        <strong id="qtd-won" class="closed-won-value">-</strong>
+        <small class="closed-won-split"><span id="qtd-won-licensed">-</span> licensed Closed Won · <span id="qtd-won-metered">-</span> metered Commission ARR</small>
+        <p class="revenue-logic"><strong>Logic:</strong> Licensed counts Q1 Closed Won opportunities sourced by an EBR. Metered counts a matching GHE or GHAS Commission ARR increase only when it is observed after the milestone was created, once per account and product. Copilot, stale, mixed-product, and timing-unverified milestones are excluded.</p>
+        <small id="qtd-won-method">Metered credit requires two weekly account snapshots.</small>
+      </section>
+      <section class="charts">
+        <article class="panel"><div class="panel-title"><h2>Events scheduled</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>SQL held</h2><strong id="sql-total">-</strong></div><div id="sql-chart" class="bar-chart"></div></article>
+        <article class="panel pipeline-panel">
+          <div><div class="panel-title"><h2>Pipeline</h2><strong id="pipeline-total">-</strong></div><div id="pipeline-chart" class="bar-chart"></div></div>
+          <div class="funnel-wrap"><h2>Current stage funnel</h2><div id="funnel" class="funnel"></div></div>
+        </article>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><h2 id="breakdown-title">IC breakdown</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Scheduled</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
+            <tbody id="ic-table"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="featured">
+        <article class="panel"><div class="panel-title"><h2>Business Selected</h2><strong id="business-total">-</strong></div><div id="business-selected"></div></article>
+        <article class="panel"><div class="panel-title"><h2 id="closed-won-title">Closed Won pipeline</h2><strong id="closed-total">-</strong></div><div id="closed-won"></div></article>
+      </section>
+    </main>
+    <script>window.DASHBOARD = {"manager":"Dirk-Jan de Vries","segment":"Mid Market","quarter":{"start":"2026-07-01","end":"2026-10-01"},"generatedAt":"2026-09-28T10:54:46.796Z","weeks":["2026-06-29","2026-07-06","2026-07-13","2026-07-20","2026-07-27","2026-08-03","2026-08-10","2026-08-17","2026-08-24","2026-08-31","2026-09-07","2026-09-14","2026-09-21","2026-09-28"],"qtd":{"scheduled":56,"sql":36,"licensed":305003,"metered":326430,"pipeline":631433,"licensedClosedWon":41496.35,"meteredClosedWon":167753.36,"meteredUniqueAccountUplift":167753.36,"closedWon":209249.71},"weekly":{"2026-06-29":{"scheduled":{"value":0,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-07-06":{"scheduled":{"value":1,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":10625,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":10625,"records":[]}},"2026-07-13":{"scheduled":{"value":3,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":2850,"records":[]},"pipeline":{"value":2850,"records":[]}},"2026-07-20":{"scheduled":{"value":0,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-07-27":{"scheduled":{"value":3,"records":[]},"sql":{"value":2,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":34200,"records":[]},"pipeline":{"value":34200,"records":[]}},"2026-08-03":{"scheduled":{"value":5,"records":[]},"sql":{"value":6,"records":[]},"licensed":{"value":12250,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":12250,"records":[]}},"2026-08-10":{"scheduled":{"value":7,"records":[]},"sql":{"value":4,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":70800,"records":[]},"pipeline":{"value":70800,"records":[]}},"2026-08-17":{"scheduled":{"value":4,"records":[]},"sql":{"value":7,"records":[]},"licensed":{"value":10250,"records":[]},"metered":{"value":122130,"records":[]},"pipeline":{"value":132380,"records":[]}},"2026-08-24":{"scheduled":{"value":8,"records":[]},"sql":{"value":7,"records":[]},"licensed":{"value":154040,"records":[]},"metered":{"value":11400,"records":[]},"pipeline":{"value":165440,"records":[]}},"2026-08-31":{"scheduled":{"value":6,"records":[]},"sql":{"value":3,"records":[]},"licensed":{"value":10250,"records":[]},"metered":{"value":49050,"records":[]},"pipeline":{"value":59300,"records":[]}},"2026-09-07":{"scheduled":{"value":7,"records":[]},"sql":{"value":4,"records":[]},"licensed":{"value":6788,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":6788,"records":[]}},"2026-09-14":{"scheduled":{"value":10,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":100800,"records":[]},"metered":{"value":18000,"records":[]},"pipeline":{"value":118800,"records":[]}},"2026-09-21":{"scheduled":{"value":1,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":18000,"records":[]},"pipeline":{"value":18000,"records":[]}},"2026-09-28":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}}},"ics":[{"ae":"Camilla Cardinale","ebr":"Tommy Hirvonen","scheduled":{"value":0,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":18000,"records":[]},"pipeline":{"value":18000,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}},{"ae":"Gustaf Eriksson","ebr":"Tommy Hirvonen","scheduled":{"value":13,"records":[]},"sql":{"value":7,"records":[]},"licensed":{"value":111588,"records":[]},"metered":{"value":94050,"records":[]},"pipeline":{"value":205638,"records":[]},"licensedClosedWon":{"value":3528.48,"records":[]},"meteredClosedWon":{"value":108213.08,"records":[]},"closedWon":{"value":111741.56,"records":[]}},{"ae":"Charlie Brown","ebr":"Tommy Hirvonen","scheduled":{"value":16,"records":[]},"sql":{"value":11,"records":[]},"licensed":{"value":30750,"records":[]},"metered":{"value":57000,"records":[]},"pipeline":{"value":87750,"records":[]},"licensedClosedWon":{"value":30399.379999999997,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":30399.379999999997,"records":[]}},{"ae":"Shirley van Zon","ebr":"Daniel Spanjaard","scheduled":{"value":8,"records":[]},"sql":{"value":3,"records":[]},"licensed":{"value":152040,"records":[]},"metered":{"value":75180,"records":[]},"pipeline":{"value":227220,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}},{"ae":"Max Pritchard","ebr":"Daniel Spanjaard","scheduled":{"value":9,"records":[]},"sql":{"value":6,"records":[]},"licensed":{"value":10625,"records":[]},"metered":{"value":31350,"records":[]},"pipeline":{"value":41975,"records":[]},"licensedClosedWon":{"value":7568.49,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":7568.49,"records":[]}},{"ae":"Emilio van der Zanden","ebr":"Daniel Spanjaard","scheduled":{"value":9,"records":[]},"sql":{"value":9,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":50850,"records":[]},"pipeline":{"value":50850,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":59540.28,"records":[]},"closedWon":{"value":59540.28,"records":[]}},{"ae":"Deniz Evyapan","ebr":"Daniel Spanjaard","scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}},{"ae":"Backfill Nicolas","ebr":null,"scheduled":{"value":0,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}}],"stages":[{"stage":"Problem Identification & Research","value":100800,"records":[]},{"stage":"Qualified","value":478170,"records":[]},{"stage":"Closed Won","value":52163,"records":[]},{"stage":"Closed Lost","value":300,"records":[]}],"featured":{"Business Selected":[],"Closed Won":[{"label":"Superbet Group 50 Seat 2027_Q1 Upgrade","subtitle":"AE: Max Pritchard","amount":10625},{"label":"Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade","subtitle":"AE: Charlie Brown","amount":10250},{"label":"Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade","subtitle":"AE: Charlie Brown","amount":10250},{"label":"Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade","subtitle":"AE: Charlie Brown","amount":10250},{"label":"Getinge AB (2nd Instance) 20 Seat 2027_Q1 Upgrade","subtitle":"AE: Gustaf Eriksson","amount":4788},{"label":"Stillfront Group AB 10 Seat 2027_Q1 Upgrade","subtitle":"AE: Gustaf Eriksson","amount":2000},{"label":"Stillfront Group AB 10 Seat 2027_Q1 Upgrade","subtitle":"AE: Gustaf Eriksson","amount":2000},{"label":"Stillfront Group AB 10 Seat 2027_Q1 Upgrade","subtitle":"AE: Gustaf Eriksson","amount":2000}]},"breakdownType":"ic","tableTitle":"IC breakdown","tablePrimaryHeader":"AE / IC","tableSecondaryHeader":"EBR","meteredSnapshotStatus":{"status":"ready","baselineAsOfDate":"2026-08-31","previousAsOfDate":"2026-08-31","latestAsOfDate":"2026-09-19"},"snapshot":true};</script>
+    <script>const data = window.DASHBOARD;
+const byId = (id) => document.getElementById(id);
+const money = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0
+});
+const compact = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
+  maximumFractionDigits: 1
+});
+const escapeHtml = (value) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+
+function weekLabel(start) {
+  const end = new Date(`${start}T00:00:00Z`);
+  end.setUTCDate(end.getUTCDate() + 6);
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC"
+  });
+  return `${formatter.format(new Date(`${start}T00:00:00Z`))}-${formatter.format(end)}`;
+}
+
+function renderChart(id, metricName, formatter) {
+  const values = data.weeks.map((week) => data.weekly[week]?.[metricName]?.value || 0);
+  const max = Math.max(1, ...values);
+  byId(id).innerHTML = data.weeks
+    .map((week, index) => {
+      const value = values[index];
+      const height = Math.max(1, (value / max) * 205);
+      return `<div class="bar-column">
+        <span class="bar-value">${escapeHtml(formatter(value))}</span>
+        <span class="bar" style="height:${height}px"></span>
+        <span class="bar-label">${escapeHtml(week.slice(5).replace("-", "/"))}</span>
+      </div>`;
+    })
+    .join("");
+}
+
+function renderFunnel() {
+  if (!data.stages.length) {
+    byId("funnel").innerHTML = '<p class="empty">No mapped pipeline.</p>';
+    return;
+  }
+  byId("funnel").innerHTML = data.stages
+    .map((stage, index) => {
+      const width =
+        data.stages.length === 1
+          ? 100
+          : 100 - (index * 52) / (data.stages.length - 1);
+      return `<div class="funnel-stage" style="width:${width}%">
+        <span>${escapeHtml(stage.stage)}</span>
+        <strong>${escapeHtml(compact.format(stage.value))}</strong>
+      </div>`;
+    })
+    .join("");
+}
+
+function renderTable() {
+  byId("ic-table").innerHTML = data.ics
+    .map(
+      (row) => `<tr>
+        <td>${escapeHtml(row.ae)}</td>
+        <td>${escapeHtml(row.ebr || "Unassigned")}</td>
+        <td>${row.scheduled.value}</td>
+        <td>${row.sql.value}</td>
+        <td>${escapeHtml(money.format(row.licensed.value))}</td>
+        <td>${escapeHtml(money.format(row.metered.value))}</td>
+        <td>${escapeHtml(money.format(row.pipeline.value))}</td>
+        <td>${escapeHtml(money.format(row.licensedClosedWon.value))}</td>
+        <td>${escapeHtml(money.format(row.meteredClosedWon.value))}</td>
+        <td>${escapeHtml(money.format(row.closedWon.value))}</td>
+      </tr>`
+    )
+    .join("");
+}
+
+function renderFeatured(containerId, totalId, records) {
+  const grouped = new Map();
+  for (const record of records) {
+    const key = `${record.label}:${record.subtitle}`;
+    const current = grouped.get(key) || { ...record, amount: 0 };
+    current.amount += Number(record.amount || 0);
+    grouped.set(key, current);
+  }
+  const entries = [...grouped.values()].sort((a, b) => b.amount - a.amount);
+  byId(totalId).textContent = compact.format(
+    entries.reduce((sum, record) => sum + record.amount, 0)
+  );
+  byId(containerId).innerHTML = entries.length
+    ? entries
+        .map(
+          (record) => `<div class="feature-row">
+            <div><strong>${escapeHtml(record.label)}</strong><br><small>${escapeHtml(record.subtitle)}</small></div>
+            <strong>${escapeHtml(money.format(record.amount))}</strong>
+          </div>`
+        )
+        .join("")
+    : '<p class="empty">No opportunities in this stage.</p>';
+}
+
+byId("scope").textContent =
+  `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} | CET`;
+byId("breakdown-title").textContent = data.tableTitle || "IC breakdown";
+byId("breakdown-primary").textContent = data.tablePrimaryHeader || "AE / IC";
+byId("breakdown-secondary").textContent = data.tableSecondaryHeader || "EBR";
+byId("closed-won-title").textContent =
+  data.closedWonPanelTitle || "Closed Won pipeline";
+byId("qtd-scheduled").textContent = data.qtd.scheduled;
+byId("qtd-sql").textContent = data.qtd.sql;
+byId("qtd-licensed").textContent = compact.format(data.qtd.licensed);
+byId("qtd-metered").textContent = `${compact.format(data.qtd.metered)} metered`;
+byId("qtd-pipeline").textContent = `${compact.format(data.qtd.pipeline)} total`;
+byId("qtd-won").textContent = compact.format(data.qtd.closedWon);
+byId("qtd-won-licensed").textContent = compact.format(
+  data.qtd.licensedClosedWon || 0
+);
+byId("qtd-won-metered").textContent = compact.format(
+  data.qtd.meteredClosedWon || 0
+);
+if (data.meteredSnapshotStatus?.status === "ready") {
+  byId("qtd-won-method").textContent =
+    `Measurement window: ${data.meteredSnapshotStatus.baselineAsOfDate} to ${data.meteredSnapshotStatus.latestAsOfDate}.`;
+}
+
+const generatedWeek = (() => {
+  const date = new Date(data.generatedAt);
+  const day = date.getUTCDay();
+  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
+  return date.toISOString().slice(0, 10);
+})();
+const previousWeekDate = new Date(`${generatedWeek}T00:00:00Z`);
+previousWeekDate.setUTCDate(previousWeekDate.getUTCDate() - 7);
+const previousWeek = previousWeekDate.toISOString().slice(0, 10);
+const previous = data.weekly[previousWeek] || {
+  scheduled: { value: 0 },
+  sql: { value: 0 },
+  licensed: { value: 0 },
+  metered: { value: 0 },
+  pipeline: { value: 0 }
+};
+byId("previous-label").textContent = weekLabel(previousWeek);
+byId("previous-scheduled").textContent = previous.scheduled.value;
+byId("previous-sql").textContent = previous.sql.value;
+byId("previous-licensed").textContent = compact.format(previous.licensed.value);
+byId("previous-metered").textContent = compact.format(previous.metered.value);
+byId("previous-pipeline").textContent = compact.format(previous.pipeline.value);
+
+byId("scheduled-total").textContent = data.qtd.scheduled;
+byId("sql-total").textContent = data.qtd.sql;
+byId("pipeline-total").textContent = compact.format(data.qtd.pipeline);
+renderChart("scheduled-chart", "scheduled", String);
+renderChart("sql-chart", "sql", String);
+renderChart("pipeline-chart", "pipeline", (value) => (value ? compact.format(value) : "0"));
+renderFunnel();
+renderTable();
+renderFeatured("business-selected", "business-total", data.featured["Business Selected"]);
+renderFeatured("closed-won", "closed-total", data.featured["Closed Won"]);
+</script>
+  </body>
+</html>

@@ -1,0 +1,1790 @@
+{
+  "weeks": [
+    "2026-06-29",
+    "2026-07-06",
+    "2026-07-13",
+    "2026-07-20",
+    "2026-07-27",
+    "2026-08-03",
+    "2026-08-10",
+    "2026-08-17",
+    "2026-08-24",
+    "2026-08-31",
+    "2026-09-07",
+    "2026-09-14",
+    "2026-09-21",
+    "2026-09-28"
+  ],
+  "pipelineStages": [
+    "Problem Identification & Research",
+    "Qualified",
+    "Proposal & Negotiation",
+    "Business Selected",
+    "Verbal Agreement",
+    "Pending Acceptance",
+    "Closed Won",
+    "Closed Lost",
+    "Manage & Optimize",
+    "Omit"
+  ],
+  "segments": {
+    "SMB": {
+      "leaders": {
+        "Fernando Munoz Drinot": {
+          "scheduled": 5,
+          "sql": 1,
+          "licensed": 0,
+          "metered": 0,
+          "licensedClosedWon": 0,
+          "meteredClosedWon": 0,
+          "closedWon": 0,
+          "stagePipeline": {},
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": []
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-06": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-13": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 0,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-03": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-10": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-17": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-24": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-31": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-07": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-14": {
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-21": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-28": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Louis Leccia",
+              "ebr": "Bouke Kingma",
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Lidiya Melnyk",
+              "ebr": "Bouke Kingma",
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Amy James",
+              "ebr": "Bouke Kingma",
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Jose Pezzi",
+              "ebr": "Bouke Kingma",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Frank Jensen",
+              "ebr": "Bouke Kingma",
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            }
+          ]
+        },
+        "Michael de Korte": {
+          "scheduled": 35,
+          "sql": 21,
+          "licensed": 121968,
+          "metered": 151530,
+          "licensedClosedWon": 0,
+          "meteredClosedWon": 0,
+          "closedWon": 0,
+          "stagePipeline": {
+            "Qualified": 77880,
+            "Problem Identification & Research": 30996,
+            "Proposal & Negotiation": 133482,
+            "Pending Acceptance": 19170,
+            "Verbal Agreement": 11970
+          },
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": []
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 1,
+              "sql": 4,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-06": {
+              "scheduled": 0,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-13": {
+              "scheduled": 5,
+              "sql": 3,
+              "licensed": 64008,
+              "metered": 12840,
+              "pipeline": 76848
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 3,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-03": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-10": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-17": {
+              "scheduled": 3,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 112500,
+              "pipeline": 112500
+            },
+            "2026-08-24": {
+              "scheduled": 3,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 1170,
+              "pipeline": 1170
+            },
+            "2026-08-31": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-07": {
+              "scheduled": 3,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 570,
+              "pipeline": 570
+            },
+            "2026-09-14": {
+              "scheduled": 8,
+              "sql": 5,
+              "licensed": 20160,
+              "metered": 23310,
+              "pipeline": 43470
+            },
+            "2026-09-21": {
+              "scheduled": 7,
+              "sql": 2,
+              "licensed": 37800,
+              "metered": 1140,
+              "pipeline": 38940
+            },
+            "2026-09-28": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Justin Goertz",
+              "ebr": "Bouke Kingma",
+              "scheduled": 3,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Charlotte Bakker",
+              "ebr": "Bouke Kingma",
+              "scheduled": 3,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Sam Hansen",
+              "ebr": "Bouke Kingma",
+              "scheduled": 8,
+              "sql": 6,
+              "licensed": 0,
+              "metered": 131340,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Proposal & Negotiation": 113070,
+                "Verbal Agreement": 11970,
+                "Pending Acceptance": 6300
+              }
+            },
+            {
+              "ae": "Magnus Jerono",
+              "ebr": "Alexandra Chirica",
+              "scheduled": 3,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Gesa Gandetzky",
+              "ebr": "Alexandra Chirica",
+              "scheduled": 5,
+              "sql": 4,
+              "licensed": 51408,
+              "metered": 12870,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Problem Identification & Research": 30996,
+                "Proposal & Negotiation": 20412,
+                "Pending Acceptance": 12870
+              }
+            },
+            {
+              "ae": "Thomas McCann",
+              "ebr": "Alexandra Chirica",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Onur Piskin",
+              "ebr": "Alexandra Chirica",
+              "scheduled": 8,
+              "sql": 7,
+              "licensed": 50400,
+              "metered": 6180,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 56580
+              }
+            },
+            {
+              "ae": "Federica Ioris",
+              "ebr": "Alexandra Chirica",
+              "scheduled": 5,
+              "sql": 3,
+              "licensed": 20160,
+              "metered": 1140,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 21300
+              }
+            }
+          ]
+        },
+        "AJ Herve": {
+          "scheduled": 14,
+          "sql": 5,
+          "licensed": 31459.5,
+          "metered": 7170,
+          "licensedClosedWon": 2520,
+          "meteredClosedWon": 0,
+          "closedWon": 2520,
+          "stagePipeline": {
+            "Problem Identification & Research": 7125,
+            "Omit": 2059.5,
+            "Qualified": 29445
+          },
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": []
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 0,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-06": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-13": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-03": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-10": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-17": {
+              "scheduled": 2,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-24": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-31": {
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-07": {
+              "scheduled": 6,
+              "sql": 2,
+              "licensed": 31459.5,
+              "metered": 0,
+              "pipeline": 31459.5
+            },
+            "2026-09-14": {
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 7125,
+              "pipeline": 7125
+            },
+            "2026-09-21": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 45,
+              "pipeline": 45
+            },
+            "2026-09-28": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Morgan Nicas",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Lambert Troubat",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Alessandra Seidita",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Alvaro Coenen",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 5,
+              "sql": 3,
+              "licensed": 0,
+              "metered": 7125,
+              "licensedClosedWon": 2520,
+              "meteredClosedWon": 0,
+              "closedWon": 2520,
+              "stagePipeline": {
+                "Problem Identification & Research": 7125
+              }
+            },
+            {
+              "ae": "Nesi Laros",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Massimo Cirillo",
+              "ebr": "Renata Zhupanyn",
+              "scheduled": 7,
+              "sql": 2,
+              "licensed": 31459.5,
+              "metered": 45,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Omit": 2059.5,
+                "Qualified": 29445
+              }
+            }
+          ]
+        },
+        "Omur Sert": {
+          "scheduled": 18,
+          "sql": 16,
+          "licensed": 16212,
+          "metered": 1569160.05,
+          "licensedClosedWon": 6849.57,
+          "meteredClosedWon": 0,
+          "closedWon": 6849.57,
+          "stagePipeline": {
+            "Qualified": 58050,
+            "Pending Acceptance": 354910.05000000005,
+            "Closed Won": 11508,
+            "Omit": 12054,
+            "Problem Identification & Research": 1143750,
+            "Manage & Optimize": 5100
+          },
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": [
+              {
+                "opportunityId": "006hR000008dbntQAA",
+                "opportunityName": "Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade",
+                "ae": "Amr Al Jarhi",
+                "stage": "Closed Won",
+                "licensed": 4704,
+                "metered": 0,
+                "total": 4704
+              },
+              {
+                "opportunityId": "006hR000004TJD4QAO",
+                "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+                "ae": "Amr Al Jarhi",
+                "stage": "Closed Won",
+                "licensed": 2268,
+                "metered": 0,
+                "total": 2268
+              },
+              {
+                "opportunityId": "006hR000007gkiLQAQ",
+                "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+                "ae": "Amr Al Jarhi",
+                "stage": "Closed Won",
+                "licensed": 2268,
+                "metered": 0,
+                "total": 2268
+              },
+              {
+                "opportunityId": "006hR00000BF8a3QAD",
+                "opportunityName": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+                "ae": "Amr Al Jarhi",
+                "stage": "Closed Won",
+                "licensed": 2268,
+                "metered": 0,
+                "total": 2268
+              }
+            ]
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 1140,
+              "pipeline": 1140
+            },
+            "2026-07-06": {
+              "scheduled": 0,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-13": {
+              "scheduled": 4,
+              "sql": 3,
+              "licensed": 2268,
+              "metered": 0,
+              "pipeline": 2268
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 2,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-03": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-10": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-08-17": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 2268,
+              "metered": 0,
+              "pipeline": 2268
+            },
+            "2026-08-24": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 4704,
+              "metered": 7350,
+              "pipeline": 12054
+            },
+            "2026-08-31": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-07": {
+              "scheduled": 0,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-14": {
+              "scheduled": 2,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 56910,
+              "pipeline": 56910
+            },
+            "2026-09-21": {
+              "scheduled": 6,
+              "sql": 3,
+              "licensed": 6972,
+              "metered": 1503760.05,
+              "pipeline": 1510732.05
+            },
+            "2026-09-28": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Alexis Le Pays du Teilleul",
+              "ebr": "Anna Sobala",
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 4410,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Pending Acceptance": 4410
+              }
+            },
+            {
+              "ae": "Amr Al Jarhi",
+              "ebr": "Anna Sobala",
+              "scheduled": 12,
+              "sql": 11,
+              "licensed": 16212,
+              "metered": 1501600.05,
+              "licensedClosedWon": 6849.57,
+              "meteredClosedWon": 0,
+              "closedWon": 6849.57,
+              "stagePipeline": {
+                "Closed Won": 11508,
+                "Omit": 12054,
+                "Pending Acceptance": 350500.05000000005,
+                "Problem Identification & Research": 1143750
+              }
+            },
+            {
+              "ae": "Merel Blaak",
+              "ebr": "Anna Sobala",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Claudia Martin",
+              "ebr": "Anna Sobala",
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Adil Ibrahim",
+              "ebr": "Anna Sobala",
+              "scheduled": 3,
+              "sql": 3,
+              "licensed": 0,
+              "metered": 58050,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 58050
+              }
+            },
+            {
+              "ae": "Carl Harris",
+              "ebr": "Tommy Hirvonen",
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 5100,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Manage & Optimize": 5100
+              }
+            }
+          ]
+        }
+      }
+    },
+    "Mid Market": {
+      "leaders": {
+        "Dirk-Jan de Vries": {
+          "scheduled": 56,
+          "sql": 36,
+          "licensed": 305003,
+          "metered": 326430,
+          "licensedClosedWon": 41496.35,
+          "meteredClosedWon": 167753.36,
+          "closedWon": 209249.71,
+          "stagePipeline": {
+            "Qualified": 478170,
+            "Closed Won": 52163,
+            "Problem Identification & Research": 100800,
+            "Closed Lost": 300
+          },
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": [
+              {
+                "opportunityId": "006hR000004KJkcQAG",
+                "opportunityName": "Superbet Group 50 Seat 2027_Q1 Upgrade",
+                "ae": "Max Pritchard",
+                "stage": "Closed Won",
+                "licensed": 10625,
+                "metered": 0,
+                "total": 10625
+              },
+              {
+                "opportunityId": "006hR000006WMjXQAW",
+                "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+                "ae": "Charlie Brown",
+                "stage": "Closed Won",
+                "licensed": 10250,
+                "metered": 0,
+                "total": 10250
+              },
+              {
+                "opportunityId": "006hR000007uT4wQAE",
+                "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+                "ae": "Charlie Brown",
+                "stage": "Closed Won",
+                "licensed": 10250,
+                "metered": 0,
+                "total": 10250
+              },
+              {
+                "opportunityId": "006hR000008pDeXQAU",
+                "opportunityName": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+                "ae": "Charlie Brown",
+                "stage": "Closed Won",
+                "licensed": 10250,
+                "metered": 0,
+                "total": 10250
+              },
+              {
+                "opportunityId": "006hR000009XWS9QAO",
+                "opportunityName": "Getinge AB (2nd Instance) 20 Seat 2027_Q1 Upgrade",
+                "ae": "Gustaf Eriksson",
+                "stage": "Closed Won",
+                "licensed": 4788,
+                "metered": 0,
+                "total": 4788
+              },
+              {
+                "opportunityId": "006hR0000065A9lQAE",
+                "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+                "ae": "Gustaf Eriksson",
+                "stage": "Closed Won",
+                "licensed": 2000,
+                "metered": 0,
+                "total": 2000
+              },
+              {
+                "opportunityId": "006hR0000087fkzQAA",
+                "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+                "ae": "Gustaf Eriksson",
+                "stage": "Closed Won",
+                "licensed": 2000,
+                "metered": 0,
+                "total": 2000
+              },
+              {
+                "opportunityId": "006hR000009jwx7QAA",
+                "opportunityName": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+                "ae": "Gustaf Eriksson",
+                "stage": "Closed Won",
+                "licensed": 2000,
+                "metered": 0,
+                "total": 2000
+              }
+            ]
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-06": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 10625,
+              "metered": 0,
+              "pipeline": 10625
+            },
+            "2026-07-13": {
+              "scheduled": 3,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 2850,
+              "pipeline": 2850
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 3,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 34200,
+              "pipeline": 34200
+            },
+            "2026-08-03": {
+              "scheduled": 5,
+              "sql": 6,
+              "licensed": 12250,
+              "metered": 0,
+              "pipeline": 12250
+            },
+            "2026-08-10": {
+              "scheduled": 7,
+              "sql": 4,
+              "licensed": 0,
+              "metered": 70800,
+              "pipeline": 70800
+            },
+            "2026-08-17": {
+              "scheduled": 4,
+              "sql": 7,
+              "licensed": 10250,
+              "metered": 122130,
+              "pipeline": 132380
+            },
+            "2026-08-24": {
+              "scheduled": 8,
+              "sql": 7,
+              "licensed": 154040,
+              "metered": 11400,
+              "pipeline": 165440
+            },
+            "2026-08-31": {
+              "scheduled": 6,
+              "sql": 3,
+              "licensed": 10250,
+              "metered": 49050,
+              "pipeline": 59300
+            },
+            "2026-09-07": {
+              "scheduled": 7,
+              "sql": 4,
+              "licensed": 6788,
+              "metered": 0,
+              "pipeline": 6788
+            },
+            "2026-09-14": {
+              "scheduled": 10,
+              "sql": 0,
+              "licensed": 100800,
+              "metered": 18000,
+              "pipeline": 118800
+            },
+            "2026-09-21": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 18000,
+              "pipeline": 18000
+            },
+            "2026-09-28": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Camilla Cardinale",
+              "ebr": "Tommy Hirvonen",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 18000,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 18000
+              }
+            },
+            {
+              "ae": "Gustaf Eriksson",
+              "ebr": "Tommy Hirvonen",
+              "scheduled": 13,
+              "sql": 7,
+              "licensed": 111588,
+              "metered": 94050,
+              "licensedClosedWon": 3528.48,
+              "meteredClosedWon": 108213.08,
+              "closedWon": 111741.56,
+              "stagePipeline": {
+                "Closed Won": 10788,
+                "Problem Identification & Research": 100800,
+                "Qualified": 94050
+              }
+            },
+            {
+              "ae": "Charlie Brown",
+              "ebr": "Tommy Hirvonen",
+              "scheduled": 16,
+              "sql": 11,
+              "licensed": 30750,
+              "metered": 57000,
+              "licensedClosedWon": 30399.379999999997,
+              "meteredClosedWon": 0,
+              "closedWon": 30399.379999999997,
+              "stagePipeline": {
+                "Closed Won": 30750,
+                "Qualified": 57000
+              }
+            },
+            {
+              "ae": "Shirley van Zon",
+              "ebr": "Daniel Spanjaard",
+              "scheduled": 8,
+              "sql": 3,
+              "licensed": 152040,
+              "metered": 75180,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 226920,
+                "Closed Lost": 300
+              }
+            },
+            {
+              "ae": "Max Pritchard",
+              "ebr": "Daniel Spanjaard",
+              "scheduled": 9,
+              "sql": 6,
+              "licensed": 10625,
+              "metered": 31350,
+              "licensedClosedWon": 7568.49,
+              "meteredClosedWon": 0,
+              "closedWon": 7568.49,
+              "stagePipeline": {
+                "Closed Won": 10625,
+                "Qualified": 31350
+              }
+            },
+            {
+              "ae": "Emilio van der Zanden",
+              "ebr": "Daniel Spanjaard",
+              "scheduled": 9,
+              "sql": 9,
+              "licensed": 0,
+              "metered": 50850,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 59540.28,
+              "closedWon": 59540.28,
+              "stagePipeline": {
+                "Qualified": 50850
+              }
+            },
+            {
+              "ae": "Deniz Evyapan",
+              "ebr": "Daniel Spanjaard",
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Backfill Nicolas",
+              "ebr": null,
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            }
+          ]
+        },
+        "Carmen Marced": {
+          "scheduled": 37,
+          "sql": 30,
+          "licensed": 243527.40000000002,
+          "metered": 431150.01,
+          "licensedClosedWon": 4300.71,
+          "meteredClosedWon": 0,
+          "closedWon": 4300.71,
+          "stagePipeline": {
+            "Qualified": 384814.81,
+            "Verbal Agreement": 25221,
+            "Pending Acceptance": 5700,
+            "Problem Identification & Research": 203270.6,
+            "Manage & Optimize": 55671
+          },
+          "featuredAccounts": {
+            "Business Selected": [],
+            "Closed Won": []
+          },
+          "weekly": {
+            "2026-06-29": {
+              "scheduled": 0,
+              "sql": 2,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-06": {
+              "scheduled": 11,
+              "sql": 6,
+              "licensed": 0,
+              "metered": 38934,
+              "pipeline": 38934
+            },
+            "2026-07-13": {
+              "scheduled": 0,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-20": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-07-27": {
+              "scheduled": 5,
+              "sql": 5,
+              "licensed": 0,
+              "metered": 45545.01,
+              "pipeline": 45545.01
+            },
+            "2026-08-03": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 22800,
+              "pipeline": 22800
+            },
+            "2026-08-10": {
+              "scheduled": 3,
+              "sql": 2,
+              "licensed": 145555.2,
+              "metered": 22800,
+              "pipeline": 168355.2
+            },
+            "2026-08-17": {
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 4015.4,
+              "metered": 0,
+              "pipeline": 4015.4
+            },
+            "2026-08-24": {
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 5700,
+              "pipeline": 5700
+            },
+            "2026-08-31": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            },
+            "2026-09-07": {
+              "scheduled": 7,
+              "sql": 6,
+              "licensed": 51956.8,
+              "metered": 60300,
+              "pipeline": 112256.8
+            },
+            "2026-09-14": {
+              "scheduled": 5,
+              "sql": 5,
+              "licensed": 0,
+              "metered": 235071,
+              "pipeline": 235071
+            },
+            "2026-09-21": {
+              "scheduled": 3,
+              "sql": 1,
+              "licensed": 42000,
+              "metered": 0,
+              "pipeline": 42000
+            },
+            "2026-09-28": {
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "pipeline": 0
+            }
+          },
+          "ics": [
+            {
+              "ae": "Pedro Oom",
+              "ebr": "Illane Hamache",
+              "scheduled": 1,
+              "sql": 1,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Pierre Aigron",
+              "ebr": "Illane Hamache",
+              "scheduled": 1,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Marco Mazen",
+              "ebr": "Illane Hamache",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            },
+            {
+              "ae": "Sindy Abreu",
+              "ebr": "Renato Taramona",
+              "scheduled": 9,
+              "sql": 7,
+              "licensed": 4015.4,
+              "metered": 215700,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Problem Identification & Research": 4015.4,
+                "Qualified": 215700
+              }
+            },
+            {
+              "ae": "Ruben Weinmiller",
+              "ebr": "Renato Taramona",
+              "scheduled": 16,
+              "sql": 11,
+              "licensed": 51956.8,
+              "metered": 163466.01,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Qualified": 124531.81,
+                "Verbal Agreement": 23520,
+                "Manage & Optimize": 55671,
+                "Problem Identification & Research": 11700
+              }
+            },
+            {
+              "ae": "Luca Schwarz",
+              "ebr": "Renato Taramona",
+              "scheduled": 5,
+              "sql": 5,
+              "licensed": 187555.2,
+              "metered": 7350,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {
+                "Problem Identification & Research": 187555.2,
+                "Qualified": 7350
+              }
+            },
+            {
+              "ae": "Lennart Dany",
+              "ebr": "Renato Taramona",
+              "scheduled": 5,
+              "sql": 6,
+              "licensed": 0,
+              "metered": 44634,
+              "licensedClosedWon": 4300.71,
+              "meteredClosedWon": 0,
+              "closedWon": 4300.71,
+              "stagePipeline": {
+                "Qualified": 37233,
+                "Verbal Agreement": 1701,
+                "Pending Acceptance": 5700
+              }
+            },
+            {
+              "ae": "Julia Sylvia Cardoso",
+              "ebr": "Illane Hamache",
+              "scheduled": 0,
+              "sql": 0,
+              "licensed": 0,
+              "metered": 0,
+              "licensedClosedWon": 0,
+              "meteredClosedWon": 0,
+              "closedWon": 0,
+              "stagePipeline": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  "unmapped": {
+    "scheduled": [
+      {
+        "week": "2026-06-29",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-08-10",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-08-10",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 5
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Data Syncer",
+        "value": 1
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-08-31",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-08-31",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-09-14",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-09-21",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-09-21",
+        "ebr": "Alexandra Chirica",
+        "ae": "UNMAPPED",
+        "value": 1
+      },
+      {
+        "week": "2026-08-03",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 9
+      },
+      {
+        "week": "2026-09-07",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Renato Taramona",
+        "ae": "Thilo Suessmuth",
+        "value": 1
+      },
+      {
+        "week": "2026-07-27",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 2
+      }
+    ],
+    "sql": [
+      {
+        "week": "2026-06-29",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Data Syncer",
+        "value": 1
+      },
+      {
+        "week": "2026-06-29",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 10
+      },
+      {
+        "week": "2026-06-29",
+        "ebr": "Renato Taramona",
+        "ae": "Joanne Boyd-Kidd",
+        "value": 1
+      },
+      {
+        "week": "2026-08-31",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-09-07",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-09-07",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-08-03",
+        "ebr": "Anna Sobala",
+        "ae": "Data Syncer",
+        "value": 1
+      },
+      {
+        "week": "2026-08-03",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 10
+      },
+      {
+        "week": "2026-08-10",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Data Syncer",
+        "value": 1
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-24",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-07-27",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 2
+      }
+    ],
+    "licensed": [
+      {
+        "week": "2026-07-27",
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 2520
+      },
+      {
+        "week": "2026-08-03",
+        "ebr": "Anna Sobala",
+        "ae": "Antoine Vattaire",
+        "value": 9072
+      },
+      {
+        "week": "2026-09-07",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Ben Fuller",
+        "value": 97650
+      }
+    ],
+    "metered": [
+      {
+        "week": "2026-06-29",
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 882
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 1710
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Renato Taramona",
+        "ae": "Antoine Vattaire",
+        "value": 1701
+      },
+      {
+        "week": "2026-07-27",
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 1638
+      },
+      {
+        "week": "2026-09-14",
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 9450
+      },
+      {
+        "week": "2026-09-21",
+        "ebr": "Bouke Kingma",
+        "ae": "Blayney Scott",
+        "value": 2106
+      }
+    ],
+    "closedWon": [],
+    "stagePipeline": [
+      {
+        "ae": "Antoine Vattaire",
+        "stage": "Closed Won",
+        "licensed": 9072,
+        "metered": 0,
+        "total": 9072
+      },
+      {
+        "ae": "Antoine Vattaire",
+        "stage": "Manage & Optimize",
+        "licensed": 0,
+        "metered": 1701,
+        "total": 1701
+      },
+      {
+        "ae": "Ben Fuller",
+        "stage": "Closed Won",
+        "licensed": 97650,
+        "metered": 0,
+        "total": 97650
+      },
+      {
+        "ae": "Blayney Scott",
+        "stage": "Manage & Optimize",
+        "licensed": 0,
+        "metered": 2106,
+        "total": 2106
+      },
+      {
+        "ae": "Jean-Guillaume Lamagnere",
+        "stage": "Closed Lost",
+        "licensed": 2520,
+        "metered": 0,
+        "total": 2520
+      },
+      {
+        "ae": "Jean-Guillaume Lamagnere",
+        "stage": "Qualified",
+        "licensed": 0,
+        "metered": 4230,
+        "total": 4230
+      },
+      {
+        "ae": "Jean-Guillaume Lamagnere",
+        "stage": "Manage & Optimize",
+        "licensed": 0,
+        "metered": 9450,
+        "total": 9450
+      }
+    ],
+    "featuredAccounts": [
+      {
+        "opportunityId": "006hR000009tM4gQAE",
+        "opportunityName": "Graphcore 500 Seat 2027_Q1 Upgrade",
+        "ae": "Ben Fuller",
+        "stage": "Closed Won",
+        "licensed": 97650,
+        "metered": 0,
+        "total": 97650
+      },
+      {
+        "opportunityId": "006hR000006EMlBQAW",
+        "opportunityName": "RSM France 40 Seat 2027_Q1 Order",
+        "ae": "Antoine Vattaire",
+        "stage": "Closed Won",
+        "licensed": 9072,
+        "metered": 0,
+        "total": 9072
+      }
+    ]
+  }
+}

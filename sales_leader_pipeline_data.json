@@ -1,0 +1,412 @@
+{
+  "licensed": {
+    "2026-07-06": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Max Pritchard",
+        "value": 10625
+      }
+    ],
+    "2026-07-13": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Gesa Gandetzky",
+        "value": 51408
+      },
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Onur Piskin",
+        "value": 12600
+      },
+      {
+        "ebr": "Bouke Kingma",
+        "ae": "Amr Al Jarhi",
+        "value": 2268
+      }
+    ],
+    "2026-07-27": [
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 2520
+      }
+    ],
+    "2026-08-03": [
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Antoine Vattaire",
+        "value": 9072
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Charlie Brown",
+        "value": 10250
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 2000
+      }
+    ],
+    "2026-08-10": [
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Luca Schwarz",
+        "value": 145555.2
+      }
+    ],
+    "2026-08-17": [
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Amr Al Jarhi",
+        "value": 2268
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sindy Abreu",
+        "value": 4015.4
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Charlie Brown",
+        "value": 10250
+      }
+    ],
+    "2026-08-24": [
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Amr Al Jarhi",
+        "value": 4704
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Shirley van Zon",
+        "value": 152040
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 2000
+      }
+    ],
+    "2026-08-31": [
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Charlie Brown",
+        "value": 10250
+      }
+    ],
+    "2026-09-07": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Ben Fuller",
+        "value": 97650
+      },
+      {
+        "ebr": "Renata Zhupanyn",
+        "ae": "Massimo Cirillo",
+        "value": 29400
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Massimo Cirillo",
+        "value": 2059.5
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 51956.8
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 6788
+      }
+    ],
+    "2026-09-14": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Federica Ioris",
+        "value": 20160
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 100800
+      }
+    ],
+    "2026-09-21": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Onur Piskin",
+        "value": 37800
+      },
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Amr Al Jarhi",
+        "value": 6972
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Luca Schwarz",
+        "value": 42000
+      }
+    ]
+  },
+  "metered": {
+    "2026-06-29": [
+      {
+        "ebr": "Bouke Kingma",
+        "ae": "Adil Ibrahim",
+        "value": 1140
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 882
+      }
+    ],
+    "2026-07-06": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 1710
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Antoine Vattaire",
+        "value": 1701
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Lennart Dany",
+        "value": 38934
+      }
+    ],
+    "2026-07-13": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Federica Ioris",
+        "value": 1140
+      },
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Gesa Gandetzky",
+        "value": 11700
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Emilio van der Zanden",
+        "value": 2850
+      }
+    ],
+    "2026-07-27": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Emilio van der Zanden",
+        "value": 2850
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Max Pritchard",
+        "value": 31350
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 1638
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Luca Schwarz",
+        "value": 7350
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 38195.01
+      }
+    ],
+    "2026-08-03": [
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sindy Abreu",
+        "value": 22800
+      }
+    ],
+    "2026-08-10": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Emilio van der Zanden",
+        "value": 16800
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 22800
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 54000
+      }
+    ],
+    "2026-08-17": [
+      {
+        "ebr": "Bouke Kingma",
+        "ae": "Sam Hansen",
+        "value": 112500
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Emilio van der Zanden",
+        "value": 25200
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Shirley van Zon",
+        "value": 74880
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 22050
+      }
+    ],
+    "2026-08-24": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Gesa Gandetzky",
+        "value": 1170
+      },
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Amr Al Jarhi",
+        "value": 7350
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Lennart Dany",
+        "value": 5700
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Charlie Brown",
+        "value": 11400
+      }
+    ],
+    "2026-08-31": [
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Emilio van der Zanden",
+        "value": 3150
+      },
+      {
+        "ebr": "Daniel Spanjaard",
+        "ae": "Shirley van Zon",
+        "value": 300
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Charlie Brown",
+        "value": 45600
+      }
+    ],
+    "2026-09-07": [
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 54600
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sam Hansen",
+        "value": 570
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sindy Abreu",
+        "value": 5700
+      }
+    ],
+    "2026-09-14": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Onur Piskin",
+        "value": 5040
+      },
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Adil Ibrahim",
+        "value": 56910
+      },
+      {
+        "ebr": "Bouke Kingma",
+        "ae": "Sam Hansen",
+        "value": 18270
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Alvaro Coenen",
+        "value": 7125
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Jean-Guillaume Lamagnere",
+        "value": 9450
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 47871
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sindy Abreu",
+        "value": 187200
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Camilla Cardinale",
+        "value": 18000
+      }
+    ],
+    "2026-09-21": [
+      {
+        "ebr": "Alexandra Chirica",
+        "ae": "Onur Piskin",
+        "value": 1140
+      },
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Alexis Le Pays du Teilleul",
+        "value": 4410
+      },
+      {
+        "ebr": "Anna Sobala",
+        "ae": "Amr Al Jarhi",
+        "value": 1494250.05
+      },
+      {
+        "ebr": "Bouke Kingma",
+        "ae": "Blayney Scott",
+        "value": 2106
+      },
+      {
+        "ebr": "Renata Zhupanyn",
+        "ae": "Massimo Cirillo",
+        "value": 45
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Carl Harris",
+        "value": 5100
+      },
+      {
+        "ebr": "Tommy Hirvonen",
+        "ae": "Gustaf Eriksson",
+        "value": 18000
+      }
+    ]
+  }
+}

@@ -1,0 +1,2219 @@
+{
+  "definition": {
+    "closeDate": "2026-07-01 through 2026-09-30",
+    "managerAttribution": "Opportunity owner AE mapped to the manager",
+    "ebrAttribution": "Users whose effective-dated historical role was EBR or SEBR when the opportunity, milestone, or quote was created",
+    "creationDateRestriction": "None",
+    "licensedMeasure": "Unique Opportunity.Amount",
+    "licensedDeduplication": "Opportunity.Id",
+    "meteredMeasure": "Restated account Commission ARR uplift between the fixed 2026-08-31 baseline and latest saved weekly Power BI snapshot",
+    "meteredQualification": "A GHE or GHAS account uplift was observed after a matching Q1 milestone was created by an effective-dated EBR or SEBR. Copilot, ambiguous mixed-product, stale, and unverified-timing milestones are excluded.",
+    "meteredDeduplication": "Each account and product uplift is credited once. When multiple milestones match, the earliest eligible milestone is retained."
+  },
+  "licensedOpportunities": [
+    {
+      "id": "006hR0000041ge1QAA",
+      "name": "LANXESS AG 45 Seat 2027_Q1 Upgrade",
+      "owner": "Lennart Dany",
+      "amount": 4300.71,
+      "opportunityCreatedDate": "2026-07-06",
+      "closeDate": "2026-07-06",
+      "attributionEbrs": [
+        "Renato Taramona"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000004KJkcQAG",
+      "name": "Superbet Group 50 Seat 2027_Q1 Upgrade",
+      "owner": "Max Pritchard",
+      "amount": 7568.49,
+      "opportunityCreatedDate": "2026-07-10",
+      "closeDate": "2026-07-13",
+      "attributionEbrs": [
+        "Daniel Spanjaard"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000004TJD4QAO",
+      "name": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 1963.53,
+      "opportunityCreatedDate": "2026-07-13",
+      "closeDate": "2026-07-15",
+      "attributionEbrs": [
+        "Bouke Kingma"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR0000065A9lQAE",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 663.01,
+      "opportunityCreatedDate": "2026-08-03",
+      "closeDate": "2026-08-04",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000006WMjXQAW",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 8031.51,
+      "opportunityCreatedDate": "2026-08-07",
+      "closeDate": "2026-08-07",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000006vulDQAQ",
+      "name": "Fortnox AB 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7371.98,
+      "opportunityCreatedDate": "2026-08-12",
+      "closeDate": "2026-08-12",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000007uT4wQAE",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7638.36,
+      "opportunityCreatedDate": "2026-08-21",
+      "closeDate": "2026-08-21",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR0000087fkzQAA",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 542.47,
+      "opportunityCreatedDate": "2026-08-24",
+      "closeDate": "2026-08-26",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000008pDeXQAU",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7357.53,
+      "opportunityCreatedDate": "2026-08-31",
+      "closeDate": "2026-08-31",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000008dbntQAA",
+      "name": "Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 3363.68,
+      "opportunityCreatedDate": "2026-08-28",
+      "closeDate": "2026-09-08",
+      "attributionEbrs": [
+        "Anna Sobala"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000003cagfQAA",
+      "name": "Reserve Bank of Zimbabwe 10 Seat 2027_Q1 Order",
+      "owner": "Alvaro Coenen",
+      "amount": 2520,
+      "opportunityCreatedDate": "2026-06-29",
+      "closeDate": "2026-09-10",
+      "attributionEbrs": [
+        "Renato Taramona"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000009jwx7QAA",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 460.27,
+      "opportunityCreatedDate": "2026-09-09",
+      "closeDate": "2026-09-10",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000009XWS9QAO",
+      "name": "Getinge AB (2nd Instance) 20 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 1862.73,
+      "opportunityCreatedDate": "2026-09-07",
+      "closeDate": "2026-09-16",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR00000BF8a3QAD",
+      "name": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 1522.36,
+      "opportunityCreatedDate": "2026-09-22",
+      "closeDate": "2026-09-24",
+      "attributionEbrs": [
+        "Anna Sobala"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "006hR0000041ge1QAA",
+      "name": "LANXESS AG 45 Seat 2027_Q1 Upgrade",
+      "owner": "Lennart Dany",
+      "amount": 4300.71,
+      "opportunityCreatedDate": "2026-07-06",
+      "closeDate": "2026-07-06",
+      "attributionEbrs": [
+        "Renato Taramona"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000004KJkcQAG",
+      "name": "Superbet Group 50 Seat 2027_Q1 Upgrade",
+      "owner": "Max Pritchard",
+      "amount": 7568.49,
+      "opportunityCreatedDate": "2026-07-10",
+      "closeDate": "2026-07-13",
+      "attributionEbrs": [
+        "Daniel Spanjaard"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000004TJD4QAO",
+      "name": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 1963.53,
+      "opportunityCreatedDate": "2026-07-13",
+      "closeDate": "2026-07-15",
+      "attributionEbrs": [
+        "Bouke Kingma"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR0000065A9lQAE",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 663.01,
+      "opportunityCreatedDate": "2026-08-03",
+      "closeDate": "2026-08-04",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000006WMjXQAW",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 8031.51,
+      "opportunityCreatedDate": "2026-08-07",
+      "closeDate": "2026-08-07",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000006vulDQAQ",
+      "name": "Fortnox AB 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7371.98,
+      "opportunityCreatedDate": "2026-08-12",
+      "closeDate": "2026-08-12",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000007uT4wQAE",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7638.36,
+      "opportunityCreatedDate": "2026-08-21",
+      "closeDate": "2026-08-21",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR0000087fkzQAA",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 542.47,
+      "opportunityCreatedDate": "2026-08-24",
+      "closeDate": "2026-08-26",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000008pDeXQAU",
+      "name": "Bolt Technology OÜ 50 Seat 2027_Q1 Upgrade",
+      "owner": "Charlie Brown",
+      "amount": 7357.53,
+      "opportunityCreatedDate": "2026-08-31",
+      "closeDate": "2026-08-31",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000008dbntQAA",
+      "name": "Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 3363.68,
+      "opportunityCreatedDate": "2026-08-28",
+      "closeDate": "2026-09-08",
+      "attributionEbrs": [
+        "Anna Sobala"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000003cagfQAA",
+      "name": "Reserve Bank of Zimbabwe 10 Seat 2027_Q1 Order",
+      "owner": "Alvaro Coenen",
+      "amount": 2520,
+      "opportunityCreatedDate": "2026-06-29",
+      "closeDate": "2026-09-10",
+      "attributionEbrs": [
+        "Renato Taramona"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000009jwx7QAA",
+      "name": "Stillfront Group AB 10 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 460.27,
+      "opportunityCreatedDate": "2026-09-09",
+      "closeDate": "2026-09-10",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR000009XWS9QAO",
+      "name": "Getinge AB (2nd Instance) 20 Seat 2027_Q1 Upgrade",
+      "owner": "Gustaf Eriksson",
+      "amount": 1862.73,
+      "opportunityCreatedDate": "2026-09-07",
+      "closeDate": "2026-09-16",
+      "attributionEbrs": [
+        "Tommy Hirvonen"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    },
+    {
+      "id": "006hR00000BF8a3QAD",
+      "name": "Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade",
+      "owner": "Amr Al Jarhi",
+      "amount": 1522.36,
+      "opportunityCreatedDate": "2026-09-22",
+      "closeDate": "2026-09-24",
+      "attributionEbrs": [
+        "Anna Sobala"
+      ],
+      "attributionRoutes": [
+        "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
+        "SBQQ__Quote__c.CreatedById"
+      ]
+    }
+  ],
+  "meteredCandidateMilestones": [
+    {
+      "id": "a5chR000001SX8XQAW",
+      "name": "NorskRegnesentral GHEC Metered November 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SX6vQAG",
+      "name": "NorskRegnesentral GHEC Metered December 2026",
+      "createdDate": "2026-09-18",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SX5JQAW",
+      "name": "NorskRegnesentral GHEC Metered September 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SX3hQAG",
+      "name": "NorskRegnesentral GHEC Metered October 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SX25QAG",
+      "name": "NorskRegnesentral GHEC Metered January 2027",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SWxFQAW",
+      "name": "NorskRegnesentral GHEC Metered September 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SWvdQAG",
+      "name": "NorskRegnesentral GitHub Copilot for Business September 2026",
+      "createdDate": "2026-09-18",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000001SWu1QAG",
+      "name": "NorskRegnesentral GitHub Copilot for Business September 2026",
+      "createdDate": "2026-09-18",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As1nlQAB",
+      "opportunityName": "NorskRegnesentral Metered September 2026",
+      "accountId": "0013o00002Ta4zqAAB",
+      "accountName": "NorskRegnesentral"
+    },
+    {
+      "id": "a5chR000000IuQLQA0",
+      "name": "Banqsoft AS GitHub Copilot for Business October 2026",
+      "createdDate": "2026-07-01",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR000003miwIQAQ",
+      "opportunityName": "20 seat Cfb Metered",
+      "accountId": "001Kg00000EPlSBIA1",
+      "accountName": "Banqsoft AS"
+    },
+    {
+      "id": "a5chR000001SXOfQAO",
+      "name": "SINTEF AS GHAS Metered October 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As4vJQAR",
+      "opportunityName": "SINTEF AS Metered December 2026",
+      "accountId": "0015c00002p4LgdAAE",
+      "accountName": "SINTEF AS"
+    },
+    {
+      "id": "a5chR000001SXN3QAO",
+      "name": "SINTEF AS GHAS Metered December 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As4vJQAR",
+      "opportunityName": "SINTEF AS Metered December 2026",
+      "accountId": "0015c00002p4LgdAAE",
+      "accountName": "SINTEF AS"
+    },
+    {
+      "id": "a5chR000001SXLRQA4",
+      "name": "SINTEF AS GHAS Metered September 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As4vJQAR",
+      "opportunityName": "SINTEF AS Metered December 2026",
+      "accountId": "0015c00002p4LgdAAE",
+      "accountName": "SINTEF AS"
+    },
+    {
+      "id": "a5chR000001SXJpQAO",
+      "name": "SINTEF AS GHAS Metered December 2026",
+      "createdDate": "2026-09-18",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As4vJQAR",
+      "opportunityName": "SINTEF AS Metered December 2026",
+      "accountId": "0015c00002p4LgdAAE",
+      "accountName": "SINTEF AS"
+    },
+    {
+      "id": "a5chR000001SXIDQA4",
+      "name": "SINTEF AS GHAS Metered November 2026",
+      "createdDate": "2026-09-18",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Adil Ibrahim",
+      "opportunityId": "006hR00000As4vJQAR",
+      "opportunityName": "SINTEF AS Metered December 2026",
+      "accountId": "0015c00002p4LgdAAE",
+      "accountName": "SINTEF AS"
+    },
+    {
+      "id": "a5chR000001YrvlQAC",
+      "name": "Midas GHAS Metered November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Alexis Le Pays du Teilleul",
+      "opportunityId": "006hR00000As3xdQAB",
+      "opportunityName": "Midas Metered December 2026",
+      "accountId": "001Kg00000AMMxmIAH",
+      "accountName": "Midas"
+    },
+    {
+      "id": "a5chR000001Yru9QAC",
+      "name": "Midas GHAS Metered October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Alexis Le Pays du Teilleul",
+      "opportunityId": "006hR00000As3xdQAB",
+      "opportunityName": "Midas Metered December 2026",
+      "accountId": "001Kg00000AMMxmIAH",
+      "accountName": "Midas"
+    },
+    {
+      "id": "a5chR000001YaJrQAK",
+      "name": "Midas GHAS Metered September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Alexis Le Pays du Teilleul",
+      "opportunityId": "006hR00000As3xdQAB",
+      "opportunityName": "Midas Metered December 2026",
+      "accountId": "001Kg00000AMMxmIAH",
+      "accountName": "Midas"
+    },
+    {
+      "id": "a5chR000001P1I5QAK",
+      "name": "RedArbor GitHub Copilot for Business October 2026",
+      "createdDate": "2026-09-14",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Alvaro Coenen",
+      "opportunityId": "006hR000003mJ1qQAE",
+      "opportunityName": "RedArbor Metered September 2026",
+      "accountId": "001hR000005fCw0QAE",
+      "accountName": "RedArbor"
+    },
+    {
+      "id": "a5chR000001ArKDQA0",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered December 2026",
+      "createdDate": "2026-08-28",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR000008cJ8HQAU",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001ArIbQAK",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered August 2026",
+      "createdDate": "2026-08-28",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR000008cJ8HQAU",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001ArGzQAK",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered September 2026",
+      "createdDate": "2026-08-28",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR000008cJ8HQAU",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001ArFNQA0",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered October 2026",
+      "createdDate": "2026-08-28",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR000008cJ8HQAU",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001ArDlQAK",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered November 2026",
+      "createdDate": "2026-08-28",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR000008cJ8HQAU",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl85QAC",
+      "name": "Velliv, Pension & Livsforsikring A/S GHEC Metered November 2026",
+      "createdDate": "2026-09-22",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl6TQAS",
+      "name": "Velliv, Pension & Livsforsikring A/S GHEC Metered December 2026",
+      "createdDate": "2026-09-22",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl4rQAC",
+      "name": "Velliv, Pension & Livsforsikring A/S GHEC Metered September 2026",
+      "createdDate": "2026-09-22",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl3FQAS",
+      "name": "Velliv, Pension & Livsforsikring A/S GHEC Metered January 2027",
+      "createdDate": "2026-09-22",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl1dQAC",
+      "name": "Velliv, Pension & Livsforsikring A/S GHEC Metered October 2026",
+      "createdDate": "2026-09-22",
+      "status": "Canceled",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Wl01QAC",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered January 2027",
+      "createdDate": "2026-09-22",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001WkyPQAS",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered September 2026",
+      "createdDate": "2026-09-22",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001WkwnQAC",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered December 2026",
+      "createdDate": "2026-09-22",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001WkvBQAS",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered November 2026",
+      "createdDate": "2026-09-22",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001WktZQAS",
+      "name": "Velliv, Pension & Livsforsikring A/S GHAS Metered October 2026",
+      "createdDate": "2026-09-22",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BEqq3QAD",
+      "opportunityName": "Velliv, Pension & Livsforsikring A/S Metered September 2026",
+      "accountId": "0015c00002jWOgkAAG",
+      "accountName": "Velliv, Pension & Livsforsikring A/S"
+    },
+    {
+      "id": "a5chR000001Yg13QAC",
+      "name": "Semler Copilot Tokens December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfzRQAS",
+      "name": "Semler Copilot Tokens November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfxpQAC",
+      "name": "Semler Copilot Tokens October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfwDQAS",
+      "name": "Semler Copilot Tokens September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfubQAC",
+      "name": "Semler Copilot Tokens January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfszQAC",
+      "name": "Semler GitHub Copilot Enterprise October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfrNQAS",
+      "name": "Semler GitHub Copilot Enterprise November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfplQAC",
+      "name": "Semler GitHub Copilot Enterprise December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001Yfo9QAC",
+      "name": "Semler GitHub Copilot Enterprise January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfkvQAC",
+      "name": "Semler GitHub Actions October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfjJQAS",
+      "name": "Semler GitHub Actions November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfhhQAC",
+      "name": "Semler GitHub Actions September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001Yfg5QAC",
+      "name": "Semler GitHub Actions January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfeTQAS",
+      "name": "Semler GitHub Actions December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfcrQAC",
+      "name": "Semler GHEC Metered October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfbFQAS",
+      "name": "Semler GHEC Metered September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfZdQAK",
+      "name": "Semler GHEC Metered January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfY1QAK",
+      "name": "Semler GHEC Metered December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfWPQA0",
+      "name": "Semler GHEC Metered November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfGHQA0",
+      "name": "Semler GHAS Metered November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfEfQAK",
+      "name": "Semler GHAS Metered January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfD3QAK",
+      "name": "Semler GHAS Metered December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YfBRQA0",
+      "name": "Semler GHAS Metered September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001Yf9pQAC",
+      "name": "Semler GHAS Metered October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YctWQAS",
+      "name": "Semler GitHub Copilot Enterprise September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BMLYwQAP",
+      "opportunityName": "Semler Metered September 2026",
+      "accountId": "001hR00000KRCPzQAP",
+      "accountName": "Semler"
+    },
+    {
+      "id": "a5chR000001YrpJQAS",
+      "name": "Alm Brand (correct account) Copilot Tokens September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrnhQAC",
+      "name": "Alm Brand (correct account) Copilot Tokens November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001Yrm5QAC",
+      "name": "Alm Brand (correct account) Copilot Tokens December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrkTQAS",
+      "name": "Alm Brand (correct account) Copilot Tokens October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrirQAC",
+      "name": "Alm Brand (correct account) Copilot Tokens January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrfdQAC",
+      "name": "Alm Brand (correct account) GitHub Copilot Enterprise January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001Yre1QAC",
+      "name": "Alm Brand (correct account) GitHub Copilot Enterprise November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrcPQAS",
+      "name": "Alm Brand (correct account) GitHub Copilot Enterprise September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YranQAC",
+      "name": "Alm Brand (correct account) GitHub Copilot Enterprise December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrXZQA0",
+      "name": "Alm Brand (correct account) GHEC Metered September 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrVxQAK",
+      "name": "Alm Brand (correct account) GHEC Metered November 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrULQA0",
+      "name": "Alm Brand (correct account) GHEC Metered December 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrSjQAK",
+      "name": "Alm Brand (correct account) GHEC Metered October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YrR7QAK",
+      "name": "Alm Brand (correct account) GHEC Metered January 2027",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001YaTWQA0",
+      "name": "Alm Brand (correct account) GitHub Copilot Enterprise October 2026",
+      "createdDate": "2026-09-23",
+      "status": "On Track",
+      "ebr": "Anna Sobala",
+      "owner": "Amr Al Jarhi",
+      "opportunityId": "006hR00000BQakfQAD",
+      "opportunityName": "Alm Brand (correct account) Metered January 2027",
+      "accountId": "0013o00002VXbiJAAT",
+      "accountName": "Alm Brand (correct account)"
+    },
+    {
+      "id": "a5chR000001RQU5QAO",
+      "name": "Bankdata - JN Data (MSFT EA) Code Quality (pcpm) February 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Camilla Cardinale",
+      "opportunityId": "006hR00000AjsGDQAZ",
+      "opportunityName": "Bankdata - JN Data (MSFT EA) Metered February 2027",
+      "accountId": "0013o00002XTONmAAP",
+      "accountName": "Bankdata - JN Data (MSFT EA)"
+    },
+    {
+      "id": "a5chR000001DGxdQAG",
+      "name": "Neste GitHub Copilot for Business April 2027",
+      "createdDate": "2026-09-01",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Charlie Brown",
+      "opportunityId": "006hR000008MlIEQA0",
+      "opportunityName": "Neste Metered February 2027",
+      "accountId": "0010V00002NEKYXQA5",
+      "accountName": "Neste"
+    },
+    {
+      "id": "a5chR000001DGw1QAG",
+      "name": "Neste GitHub Copilot for Business October 2027",
+      "createdDate": "2026-09-01",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Charlie Brown",
+      "opportunityId": "006hR000008MlIEQA0",
+      "opportunityName": "Neste Metered February 2027",
+      "accountId": "0010V00002NEKYXQA5",
+      "accountName": "Neste"
+    },
+    {
+      "id": "a5chR000001DGuPQAW",
+      "name": "Neste GitHub Copilot for Business July 2027",
+      "createdDate": "2026-09-01",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Charlie Brown",
+      "opportunityId": "006hR000008MlIEQA0",
+      "opportunityName": "Neste Metered February 2027",
+      "accountId": "0010V00002NEKYXQA5",
+      "accountName": "Neste"
+    },
+    {
+      "id": "a5chR000001DGsnQAG",
+      "name": "Neste GitHub Copilot for Business December 2026",
+      "createdDate": "2026-09-01",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Charlie Brown",
+      "opportunityId": "006hR000008MlIEQA0",
+      "opportunityName": "Neste Metered February 2027",
+      "accountId": "0010V00002NEKYXQA5",
+      "accountName": "Neste"
+    },
+    {
+      "id": "a5chR0000016z53QAA",
+      "name": "Neste GitHub Copilot for Business February 2027",
+      "createdDate": "2026-08-26",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Charlie Brown",
+      "opportunityId": "006hR000008MlIEQA0",
+      "opportunityName": "Neste Metered February 2027",
+      "accountId": "0010V00002NEKYXQA5",
+      "accountName": "Neste"
+    },
+    {
+      "id": "a5chR000000RxnBQAS",
+      "name": "INEOS Group GitHub Copilot for Business December 2026",
+      "createdDate": "2026-07-15",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR000004dwMnQAI",
+      "opportunityName": "INEOS Group Metered September 2026",
+      "accountId": "001hR000006NsNdQAK",
+      "accountName": "INEOS Group"
+    },
+    {
+      "id": "a5chR000000tuMXQAY",
+      "name": "MCLAREN GROUP LTD GHAS Metered December 2026",
+      "createdDate": "2026-08-13",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR0000073rrlQAA",
+      "opportunityName": "MCLAREN GROUP LTD Metered December 2026",
+      "accountId": "0010V00002O1lfBQAR",
+      "accountName": "MCLAREN GROUP LTD"
+    },
+    {
+      "id": "a5chR000000tuKvQAI",
+      "name": "MCLAREN GROUP LTD GHEC Metered December 2026",
+      "createdDate": "2026-08-13",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR0000073rrlQAA",
+      "opportunityName": "MCLAREN GROUP LTD Metered December 2026",
+      "accountId": "0010V00002O1lfBQAR",
+      "accountName": "MCLAREN GROUP LTD"
+    },
+    {
+      "id": "a5chR00000122unQAA",
+      "name": "Imperial Brands GHEC Metered December 2026",
+      "createdDate": "2026-08-20",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR000007mFqOQAU",
+      "opportunityName": "Imperial Brands Metered December 2026",
+      "accountId": "0015c00002wfVr4AAE",
+      "accountName": "Imperial Brands"
+    },
+    {
+      "id": "a5chR000000iF3NQAU",
+      "name": "Smith & Nephew GitHub Copilot for Business December 2026",
+      "createdDate": "2026-07-29",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR000005iKxpQAE",
+      "opportunityName": "Smith & Nephew Metered March 2027",
+      "accountId": "001d000001eqddNAAQ",
+      "accountName": "Smith & Nephew"
+    },
+    {
+      "id": "a5chR000001C8cLQAS",
+      "name": "Lesy České republiky, s.p. GHEC Metered June 2027",
+      "createdDate": "2026-08-31",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR000008pMLFQA2",
+      "opportunityName": "Lesy České republiky, s.p. Metered June 2027",
+      "accountId": "0015c00002ZRwKuAAL",
+      "accountName": "Lesy České republiky, s.p."
+    },
+    {
+      "id": "a5chR00000115MrQAI",
+      "name": "ICA Sverige AB GHAS Metered December 2026",
+      "createdDate": "2026-08-19",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006Kg000004E9LJIA0",
+      "opportunityName": "ICA Sverige AB Metered December 2026",
+      "accountId": "001d0000027T0nIAAS",
+      "accountName": "ICA Sverige AB"
+    },
+    {
+      "id": "a5chR000000syTpQAI",
+      "name": "PostNord Copilot Tokens December 2026",
+      "createdDate": "2026-08-12",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006hR000006wQgDQAU",
+      "opportunityName": "PostNord Metered December 2026",
+      "accountId": "001d000002Am6TwAAJ",
+      "accountName": "PostNord"
+    },
+    {
+      "id": "a5chR000000sySDQAY",
+      "name": "PostNord Copilot Tokens May 2026",
+      "createdDate": "2026-08-12",
+      "status": "Stale",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006hR000006wQgDQAU",
+      "opportunityName": "PostNord Metered December 2026",
+      "accountId": "001d000002Am6TwAAJ",
+      "accountName": "PostNord"
+    },
+    {
+      "id": "a5chR000000tG8zQAE",
+      "name": "Epiroc Rock Drills AB Copilot Tokens December 2026",
+      "createdDate": "2026-08-12",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006hR000006x3T6QAI",
+      "opportunityName": "Epiroc Rock Drills AB Metered December 2026",
+      "accountId": "0013o00002S5bABAAZ",
+      "accountName": "Epiroc Rock Drills AB"
+    },
+    {
+      "id": "a5chR000001azE7QAI",
+      "name": "AFRY (ÅF Pöyry AB) Copilot Tokens March 2027",
+      "createdDate": "2026-09-24",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006hR00000BNpptQAD",
+      "opportunityName": "AFRY (ÅF Pöyry AB) Metered March 2027",
+      "accountId": "0013o00002S5BmrAAF",
+      "accountName": "AFRY (ÅF Pöyry AB)"
+    },
+    {
+      "id": "a5chR000001bHe1QAE",
+      "name": "Deswik Mining Consultants (Australia Pty Ltd) Copilot Tokens March 2027",
+      "createdDate": "2026-09-24",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006hR00000BYjkLQAT",
+      "opportunityName": "Deswik Mining Consultants (Australia Pty Ltd) Metered March 2027",
+      "accountId": "0013o00002ZM4ISAA1",
+      "accountName": "Deswik Mining Consultants (Australia Pty Ltd)"
+    },
+    {
+      "id": "a5chR000000NEdNQAW",
+      "name": "CHAPTR-GmbH GHEC Metered September 2026",
+      "createdDate": "2026-07-10",
+      "status": "Completed",
+      "ebr": "Renato Taramona",
+      "owner": "Lennart Dany",
+      "opportunityId": "006hR000004K0BFQA0",
+      "opportunityName": "CHAPTR-GmbH Metered July 2026",
+      "accountId": "0015c000028Ft6WAAS",
+      "accountName": "CHAPTR-GmbH"
+    },
+    {
+      "id": "a5chR000000NEa9QAG",
+      "name": "ZEIT ONLINE GHEC Metered October 2026",
+      "createdDate": "2026-07-10",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Lennart Dany",
+      "opportunityId": "006hR000004BwMZQA0",
+      "opportunityName": "ZEIT ONLINE Metered September 2026",
+      "accountId": "001hR0000065aagQAA",
+      "accountName": "ZEIT ONLINE"
+    },
+    {
+      "id": "a5chR000000NEiDQAW",
+      "name": "Digital Science GHEC Metered November 2026",
+      "createdDate": "2026-07-10",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Lennart Dany",
+      "opportunityId": "006hR000004CI8XQAW",
+      "opportunityName": "Digital Science Metered September 2026",
+      "accountId": "001Kg00000C6qtnIAB",
+      "accountName": "Digital Science"
+    },
+    {
+      "id": "a5chR000000NElRQAW",
+      "name": "macmillan-learning GHEC Metered November 2026",
+      "createdDate": "2026-07-10",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Lennart Dany",
+      "opportunityId": "006hR000004JyatQAC",
+      "opportunityName": "macmillan-learning Metered September 2026",
+      "accountId": "001Kg00000ALYwFIAX",
+      "accountName": "macmillan-learning"
+    },
+    {
+      "id": "a5chR00000192GYQAY",
+      "name": "Hapag Lloyd AG GitHub Copilot for Business December 2026",
+      "createdDate": "2026-08-27",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Lennart Dany",
+      "opportunityId": "006hR000008UU46QAG",
+      "opportunityName": "Hapag Lloyd AG Metered December 2026",
+      "accountId": "0015c00002jWQKKAA4",
+      "accountName": "Hapag Lloyd AG"
+    },
+    {
+      "id": "a5chR000000iCGoQAM",
+      "name": "Sika Group GHAS Metered December 2026",
+      "createdDate": "2026-07-29",
+      "status": "Canceled",
+      "ebr": "Renato Taramona",
+      "owner": "Luca Schwarz",
+      "opportunityId": "006hR000005hf9tQAA",
+      "opportunityName": "Sika Group Metered July 2026",
+      "accountId": "0015c00002jUp02AAC",
+      "accountName": "Sika Group"
+    },
+    {
+      "id": "a5chR000000hCNhQAM",
+      "name": "NFU Mutual GitHub Copilot for Business January 2027",
+      "createdDate": "2026-07-27",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Max Pritchard",
+      "opportunityId": "006hR000005WUkrQAG",
+      "opportunityName": "NFU Mutual Metered January 2027",
+      "accountId": "001d000002Am6TAAAZ",
+      "accountName": "NFU Mutual"
+    },
+    {
+      "id": "a5chR000000hCM5QAM",
+      "name": "NFU Mutual GitHub Copilot for Business December 2026",
+      "createdDate": "2026-07-27",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Max Pritchard",
+      "opportunityId": "006hR000005WUkrQAG",
+      "opportunityName": "NFU Mutual Metered January 2027",
+      "accountId": "001d000002Am6TAAAZ",
+      "accountName": "NFU Mutual"
+    },
+    {
+      "id": "a5chR000000hCKTQA2",
+      "name": "NFU Mutual GitHub Copilot for Business October 2026",
+      "createdDate": "2026-07-27",
+      "status": "At Risk",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Max Pritchard",
+      "opportunityId": "006hR000005WUkrQAG",
+      "opportunityName": "NFU Mutual Metered January 2027",
+      "accountId": "001d000002Am6TAAAZ",
+      "accountName": "NFU Mutual"
+    },
+    {
+      "id": "a5chR000001QckDQAS",
+      "name": "dundr GHEC Metered September 2026",
+      "createdDate": "2026-09-16",
+      "status": "Completed",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006Kg00000516E1IAI",
+      "opportunityName": "dundr Metered June 2026",
+      "accountId": "001Kg00000EPkDtIAL",
+      "accountName": "dundr"
+    },
+    {
+      "id": "a5chR000001QcnRQAS",
+      "name": "Materna GitHub Copilot Enterprise February 2027",
+      "createdDate": "2026-09-16",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006Kg000004zO8CIAU",
+      "opportunityName": "Materna Metered August 2026",
+      "accountId": "0015c00002PWi4WAAT",
+      "accountName": "Materna"
+    },
+    {
+      "id": "a5chR000000iKnpQAE",
+      "name": "Uniper GHAS Metered September 2026",
+      "createdDate": "2026-07-29",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR000004fMThQAM",
+      "opportunityName": "Uniper Metered September 2026",
+      "accountId": "0010V00002Lr0OoQAJ",
+      "accountName": "Uniper"
+    },
+    {
+      "id": "a5chR000000iKizQAE",
+      "name": "VHV - Proxima GHEC Metered December 2026",
+      "createdDate": "2026-07-29",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR000005cMmHQAU",
+      "opportunityName": "VHV - Proxima Metered September 2026",
+      "accountId": "001hR000008dXTDQA2",
+      "accountName": "VHV - Proxima"
+    },
+    {
+      "id": "a5chR000000iKSrQAM",
+      "name": "PUMA SE Code Quality (pcpm) October 2026",
+      "createdDate": "2026-07-29",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR000005inVBQAY",
+      "opportunityName": "PUMA SE Metered October 2026",
+      "accountId": "001d000001eqdsqAAA",
+      "accountName": "PUMA SE"
+    },
+    {
+      "id": "a5chR000001KuK1QAK",
+      "name": "Eventim Tech GmbH GHEC Metered December 2026",
+      "createdDate": "2026-09-10",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006Kg000004BhtAIAS",
+      "opportunityName": "Eventim Tech GmbH Metered December 2026",
+      "accountId": "001Kg00000AJty2IAD",
+      "accountName": "Eventim Tech GmbH"
+    },
+    {
+      "id": "a5chR000001KuIPQA0",
+      "name": "Eventim Tech GmbH GHAS Metered December 2026",
+      "createdDate": "2026-09-10",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006Kg000004BhtAIAS",
+      "opportunityName": "Eventim Tech GmbH Metered December 2026",
+      "accountId": "001Kg00000AJty2IAD",
+      "accountName": "Eventim Tech GmbH"
+    },
+    {
+      "id": "a5chR000000iKUTQA2",
+      "name": "Deutsche Bundesbank GitHub Copilot for Business March 2027",
+      "createdDate": "2026-07-29",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR000005ionpQAA",
+      "opportunityName": "Deutsche Bundesbank Metered December 2026",
+      "accountId": "0010V00002DStZvQAL",
+      "accountName": "Deutsche Bundesbank"
+    },
+    {
+      "id": "a5chR000001QVAsQAO",
+      "name": "TTTech Computertechnik AG GitHub Copilot for Business December 2026",
+      "createdDate": "2026-09-16",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR00000AcxKiQAJ",
+      "opportunityName": "TTTech Computertechnik AG Metered December 2026",
+      "accountId": "0013o00002ZJwAyAAL",
+      "accountName": "TTTech Computertechnik AG"
+    },
+    {
+      "id": "a5chR000001SWM9QAO",
+      "name": "Advantest Global GHAS Metered December 2026",
+      "createdDate": "2026-09-18",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR00000AriEsQAJ",
+      "opportunityName": "Advantest Global Metered December 2026",
+      "accountId": "0013o00002Tb3RDAAZ",
+      "accountName": "Advantest Global"
+    },
+    {
+      "id": "a5chR000000sy0nQAA",
+      "name": "MediaSaturn IT Services Secret Protection for GHE Metered December 2026",
+      "createdDate": "2026-08-12",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Ruben Weinmiller",
+      "opportunityId": "006hR000006w8WPQAY",
+      "opportunityName": "MediaSaturn IT Services Metered January 2027",
+      "accountId": "0010V00002JVA56QAH",
+      "accountName": "MediaSaturn IT Services"
+    },
+    {
+      "id": "a5chR000001IL0bQAG",
+      "name": "Sibelga GitHub Copilot for Business October 2026",
+      "createdDate": "2026-09-08",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR000003caK5QAI",
+      "opportunityName": "Sibelga Metered June 2026",
+      "accountId": "001Kg00000EMisVIAT",
+      "accountName": "Sibelga"
+    },
+    {
+      "id": "a5chR00000114XFQAY",
+      "name": "Skyline Communications Copilot Tokens October 2026",
+      "createdDate": "2026-08-19",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR000007fAH7QAM",
+      "opportunityName": "Skyline 450k Tokens - September 2026",
+      "accountId": "001Kg00000C3dC4IAJ",
+      "accountName": "Skyline Communications"
+    },
+    {
+      "id": "a5chR000001PQgHQAW",
+      "name": "Allnex GmbH GitHub Copilot for Business November 2026",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR00000AUWhRQAX",
+      "opportunityName": "Allnex - 10 seat CB upgrade",
+      "accountId": "001hR00000IH4XHQA1",
+      "accountName": "Allnex GmbH"
+    },
+    {
+      "id": "a5chR000001PQl7QAG",
+      "name": "CluePoints GitHub Copilot for Business October 2026",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR00000AUYEbQAP",
+      "opportunityName": "CluePoints - 200 CB order metered",
+      "accountId": "001hR00000Ftr6kQAB",
+      "accountName": "CluePoints"
+    },
+    {
+      "id": "a5chR000001PQjVQAW",
+      "name": "CluePoints GitHub Copilot for Business November 2026",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR00000AUYEbQAP",
+      "opportunityName": "CluePoints - 200 CB order metered",
+      "accountId": "001hR00000Ftr6kQAB",
+      "accountName": "CluePoints"
+    },
+    {
+      "id": "a5chR000001PQtBQAW",
+      "name": "EVS Broadcast Equipment SA GHEC Metered July 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR00000AUagDQAT",
+      "opportunityName": "100 GHEC migration",
+      "accountId": "0015c00002p4X1SAAU",
+      "accountName": "EVS Broadcast Equipment SA"
+    },
+    {
+      "id": "a5chR000001PQrZQAW",
+      "name": "EVS Broadcast Equipment SA GHEC Metered October 2026",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Bouke Kingma",
+      "owner": "Sam Hansen",
+      "opportunityId": "006hR00000AUagDQAT",
+      "opportunityName": "100 GHEC migration",
+      "accountId": "0015c00002p4X1SAAU",
+      "accountName": "EVS Broadcast Equipment SA"
+    },
+    {
+      "id": "a5chR000001Bsm5QAC",
+      "name": "Picnic GitHub Actions June 2027",
+      "createdDate": "2026-08-31",
+      "status": "Canceled",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Shirley van Zon",
+      "opportunityId": "006hR000008oECuQAM",
+      "opportunityName": "Picnic Metered September 2026",
+      "accountId": "0015c00002COZI9AAP",
+      "accountName": "Picnic"
+    },
+    {
+      "id": "a5chR00000122zdQAA",
+      "name": "Barco N.V. GitHub Copilot Enterprise December 2026",
+      "createdDate": "2026-08-20",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Shirley van Zon",
+      "opportunityId": "006hR000007mmBBQAY",
+      "opportunityName": "Barco N.V. Metered December 2026",
+      "accountId": "001d000001t4ak3AAA",
+      "accountName": "Barco N.V."
+    },
+    {
+      "id": "a5chR000000lcBVQAY",
+      "name": "Grupo Cajamar GitHub Copilot for Business April 2027",
+      "createdDate": "2026-08-03",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "0065c00001SCkJ7AAL",
+      "opportunityName": "Grupo Cajamar Metered May 2025",
+      "accountId": "0015c00002PYeskAAD",
+      "accountName": "Grupo Cajamar"
+    },
+    {
+      "id": "a5chR000000lc9tQAA",
+      "name": "Grupo Cajamar GitHub Copilot for Business May 2027",
+      "createdDate": "2026-08-03",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "0065c00001SCkJ7AAL",
+      "opportunityName": "Grupo Cajamar Metered May 2025",
+      "accountId": "0015c00002PYeskAAD",
+      "accountName": "Grupo Cajamar"
+    },
+    {
+      "id": "a5chR000001Jb1hQAC",
+      "name": "Coca-Cola Icecek GitHub Copilot for Business March 2027",
+      "createdDate": "2026-09-09",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR000009jvEfQAI",
+      "opportunityName": "Coca-Cola Icecek Metered March 2027",
+      "accountId": "001d000001eqdjmAAA",
+      "accountName": "Coca-Cola Icecek"
+    },
+    {
+      "id": "a5chR000001RQDxQAO",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GHEC Metered June 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001RQCLQA4",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GitHub Copilot for Business June 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001RQAjQAO",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GitHub Copilot for Business January 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001RQ97QAG",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GitHub Copilot for Business March 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001RLuFQAW",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GHEC Metered March 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001RJcIQAW",
+      "name": "Kuveyt Turk Participation Bank (Turkey) GHEC Metered July 2027",
+      "createdDate": "2026-09-17",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AeHM9QAN",
+      "opportunityName": "Kuveyt Turk Participation Bank (Turkey) Metered July 2027",
+      "accountId": "0013o00002S5gQYAAZ",
+      "accountName": "Kuveyt Turk Participation Bank (Turkey)"
+    },
+    {
+      "id": "a5chR000001PSWnQAO",
+      "name": "KaizenGaming GitHub Copilot Enterprise September 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001PSVBQA4",
+      "name": "KaizenGaming GitHub Copilot Enterprise June 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001PSTZQA4",
+      "name": "KaizenGaming GitHub Copilot Enterprise March 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001PSRxQAO",
+      "name": "KaizenGaming GHEC Metered March 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001PSQLQA4",
+      "name": "KaizenGaming GHEC Metered September 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001PSOjQAO",
+      "name": "KaizenGaming GHEC Metered June 2027",
+      "createdDate": "2026-09-15",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AWAphQAH",
+      "opportunityName": "KaizenGaming Metered September 2027",
+      "accountId": "0015c00002p2HCBAA2",
+      "accountName": "KaizenGaming"
+    },
+    {
+      "id": "a5chR000001QcvVQAS",
+      "name": "Perk Platform SLU GitHub Copilot for Business March 2027",
+      "createdDate": "2026-09-16",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AdrbNQAR",
+      "opportunityName": "Perk Platform SLU Metered September 2027",
+      "accountId": "0015c00002AwdwYAAR",
+      "accountName": "Perk Platform SLU"
+    },
+    {
+      "id": "a5chR000001QcttQAC",
+      "name": "Perk Platform SLU GitHub Copilot for Business September 2027",
+      "createdDate": "2026-09-16",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AdrbNQAR",
+      "opportunityName": "Perk Platform SLU Metered September 2027",
+      "accountId": "0015c00002AwdwYAAR",
+      "accountName": "Perk Platform SLU"
+    },
+    {
+      "id": "a5chR000001QcsHQAS",
+      "name": "Perk Platform SLU GitHub Copilot for Business June 2027",
+      "createdDate": "2026-09-16",
+      "status": "On Track",
+      "ebr": "Renato Taramona",
+      "owner": "Sindy Abreu",
+      "opportunityId": "006hR00000AdrbNQAR",
+      "opportunityName": "Perk Platform SLU Metered September 2027",
+      "accountId": "0015c00002AwdwYAAR",
+      "accountName": "Perk Platform SLU"
+    }
+  ],
+  "meteredMilestones": [
+    {
+      "id": "a5chR00000115MrQAI",
+      "name": "ICA Sverige AB GHAS Metered December 2026",
+      "createdDate": "2026-08-19",
+      "status": "On Track",
+      "ebr": "Tommy Hirvonen",
+      "owner": "Gustaf Eriksson",
+      "opportunityId": "006Kg000004E9LJIA0",
+      "opportunityName": "ICA Sverige AB Metered December 2026",
+      "accountId": "001d0000027T0nIAAS",
+      "accountName": "ICA Sverige AB",
+      "product": "GHAS",
+      "amount": 108213.08,
+      "baselineCommissionArr": 21697,
+      "previousCommissionArr": 21697,
+      "latestCommissionArr": 129910.08,
+      "weekOverWeekDelta": 108213.08,
+      "restatedUplift": 108213.08
+    },
+    {
+      "id": "a5chR000000tuMXQAY",
+      "name": "MCLAREN GROUP LTD GHAS Metered December 2026",
+      "createdDate": "2026-08-13",
+      "status": "On Track",
+      "ebr": "Daniel Spanjaard",
+      "owner": "Emilio van der Zanden",
+      "opportunityId": "006hR0000073rrlQAA",
+      "opportunityName": "MCLAREN GROUP LTD Metered December 2026",
+      "accountId": "0010V00002O1lfBQAR",
+      "accountName": "MCLAREN GROUP LTD",
+      "product": "GHAS",
+      "amount": 59540.28,
+      "baselineCommissionArr": 0,
+      "previousCommissionArr": 0,
+      "latestCommissionArr": 59540.28,
+      "weekOverWeekDelta": 59540.28,
+      "restatedUplift": 59540.28
+    }
+  ],
+  "meteredUniqueAccounts": [
+    {
+      "accountId": "001d0000027T0nIAAS",
+      "product": "GHAS",
+      "accountName": "ICA Sverige AB",
+      "baselineCommissionArr": 21697,
+      "previousCommissionArr": 21697,
+      "latestCommissionArr": 129910.08,
+      "weekOverWeekDelta": 108213.08,
+      "restatedUplift": 108213.08
+    },
+    {
+      "accountId": "0010V00002O1lfBQAR",
+      "product": "GHAS",
+      "accountName": "MCLAREN GROUP LTD",
+      "baselineCommissionArr": 0,
+      "previousCommissionArr": 0,
+      "latestCommissionArr": 59540.28,
+      "weekOverWeekDelta": 59540.28,
+      "restatedUplift": 59540.28
+    }
+  ],
+  "meteredSnapshotStatus": {
+    "status": "ready",
+    "baselineAsOfDate": "2026-08-31",
+    "previousAsOfDate": "2026-08-31",
+    "latestAsOfDate": "2026-09-19"
+  },
+  "totalsByAeOwner": {
+    "Lennart Dany": 4300.71,
+    "Max Pritchard": 7568.49,
+    "Amr Al Jarhi": 6849.57,
+    "Gustaf Eriksson": 3528.48,
+    "Charlie Brown": 30399.379999999997,
+    "Alvaro Coenen": 2520
+  },
+  "meteredTotalsByAeOwner": {
+    "Gustaf Eriksson": 108213.08,
+    "Emilio van der Zanden": 59540.28
+  },
+  "licensedTotal": 55166.63,
+  "meteredCreditedTotal": 167753.36,
+  "meteredUniqueAccountUplift": 167753.36,
+  "teamTotal": 222919.99,
+  "opportunitiesCreatedBeforeQuarter": 1,
+  "recordsWithNullAmount": [],
+  "routeCounts": {
+    "Opportunity.CreatedById": 14,
+    "Opportunity.Stamped_SDR_EBR__c": 10,
+    "SBQQ__Quote__c.CreatedById": 14
+  },
+  "caveats": [
+    "Salesforce queried on 2026-09-28 for Q1 FY27 Closed Won opportunities owned by AEs in the six manager mappings.",
+    "Opportunity creation date, milestone creation date, and quote creation date are not restricted to the quarter.",
+    "Quotes and milestones qualify through their linked opportunity being IsWon=true with a Q1 FY27 CloseDate.",
+    "Historical EBR/SEBR role periods come from service_sales_analytics.sfdc_user_role_history.",
+    "Stamped_SDR_EBR__c is evaluated against the stamped user's role on the opportunity creation date because Salesforce field history is unavailable.",
+    "Sales Development Representative and Enterprise Inside Sales Representative roles are excluded.",
+    "An opportunity qualifying through more than one source route is counted once.",
+    "Metered credit requires the immutable 2026-08-31 Power BI account baseline and at least one later snapshot.",
+    "Accounts omitted from the Power BI Commission ARR summary are treated as zero because the visual only exports accounts with a displayed Commission ARR value.",
+    "Metered credit is restated against the latest snapshot and can shrink or disappear when account Commission ARR falls.",
+    "Each account/product uplift is counted once; ambiguous mixed-product accounts are excluded until a product-specific baseline is available."
+  ]
+}

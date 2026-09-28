@@ -407,6 +407,23 @@
         "ae": "Gustaf Eriksson",
         "value": 18000
       }
+    ],
+    "2026-09-28": [
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Luca Schwarz",
+        "value": 34200
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Ruben Weinmiller",
+        "value": 25200
+      },
+      {
+        "ebr": "Renato Taramona",
+        "ae": "Sindy Abreu",
+        "value": 73500
+      }
     ]
   }
 }

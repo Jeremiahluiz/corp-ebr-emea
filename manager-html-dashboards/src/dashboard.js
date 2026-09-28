@@ -270,6 +270,7 @@ function aggregateLive(managerName, quarter, source) {
   const dashboard = emptyDashboard(managerName, quarter, source.instanceUrl);
   const aeMap = new Map(dashboard.ics.map((row) => [normalize(row.ae), row]));
   const namesById = source.namesById;
+  const ebrNames = new Set(Object.values(namesById));
   const stageMap = new Map();
   const add = (name, ae, value, record, date) => {
     const row = aeMap.get(normalize(ae));
@@ -283,19 +284,24 @@ function aggregateLive(managerName, quarter, source) {
     return true;
   };
   for (const event of source.events) {
-    const ebr = namesById[event.CreatedById];
+    const createdByEbr = namesById[event.CreatedById];
+    const bookingEbr = event.Booker__c
+      ? namesById[event.Booker__c]
+      : event.Meeting_Set_By__c
+        ? (ebrNames.has(event.Meeting_Set_By__c) ? event.Meeting_Set_By__c : undefined)
+        : createdByEbr;
     const ae = event.Account?.Owner?.Name;
-    const record = {
+    const record = (ebr) => ({
       id: event.Id,
       label: event.Subject || "Salesforce Event",
       subtitle: `${event.Account?.Name || "No account"} · ${ebr}`,
       url: recordUrl(source.instanceUrl, "Event", event.Id)
-    };
-    if (inRange(event.CreatedDate, quarter.start, quarter.end) && !isAnnaJuly(ebr, event.CreatedDate)) {
-      add("scheduled", ae, 1, record, event.CreatedDate);
+    });
+    if (inRange(event.CreatedDate, quarter.start, quarter.end) && !isAnnaJuly(createdByEbr, event.CreatedDate)) {
+      add("scheduled", ae, 1, record(createdByEbr), event.CreatedDate);
     }
-    if (event.Meeting_Status__c === "Held" && inRange(event.StartDateTime, quarter.start, quarter.end) && !isAnnaJuly(ebr, event.StartDateTime)) {
-      add("sql", ae, 1, record, event.StartDateTime);
+    if (bookingEbr && event.Meeting_Status__c === "Held" && inRange(event.StartDateTime, quarter.start, quarter.end) && !isAnnaJuly(bookingEbr, event.StartDateTime)) {
+      add("sql", ae, 1, record(bookingEbr), event.StartDateTime);
     }
   }
   const attribution = new Map();

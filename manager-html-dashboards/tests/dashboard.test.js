@@ -43,6 +43,70 @@ test("Anna July scheduled exclusion does not remove an August held SQL", () => {
   assert.equal(dashboard.qtd.sql, 1);
 });
 
+test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ownership", () => {
+  const dashboard = aggregateLive(
+    "Dirk-Jan de Vries",
+    { start: "2026-07-01", end: "2026-10-01" },
+    {
+      instanceUrl: "https://example.my.salesforce.com",
+      namesById: { daniel: "Daniel Spanjaard", tommy: "Tommy Hirvonen" },
+      events: [
+        {
+          Id: "00U-compass",
+          Subject: "Compass Group <> GitHub Enterprise",
+          CreatedById: "daniel",
+          Booker__c: "daniel",
+          CreatedDate: "2026-06-01T10:00:00Z",
+          StartDateTime: "2026-09-21T11:00:00Z",
+          Meeting_Status__c: "Held",
+          Account: { Name: "Compass Group", Owner: { Name: "Emilio van der Zanden" } }
+        },
+        {
+          Id: "00U-ineos",
+          Subject: "INEOS & GitHub",
+          CreatedById: "hubot",
+          Booker__c: "daniel",
+          Meeting_Set_By__c: "Daniel Spanjaard",
+          CreatedDate: "2026-06-01T10:00:00Z",
+          StartDateTime: "2026-09-21T12:00:00Z",
+          Meeting_Status__c: "Held",
+          Account: { Name: "INEOS", Owner: { Name: "Emilio van der Zanden" } }
+        },
+        {
+          Id: "00U-sdr",
+          Subject: "OGD ICT <> GHE Copilot",
+          CreatedById: "sdr",
+          Booker__c: "sdr",
+          Meeting_Set_By__c: "Gillian Sheridan",
+          CreatedDate: "2026-06-01T10:00:00Z",
+          StartDateTime: "2026-09-24T12:00:00Z",
+          Meeting_Status__c: "Held",
+          Account: { Name: "OGD ICT", Owner: { Name: "Shirley van Zon" } }
+        },
+        {
+          Id: "00U-carl",
+          Subject: "Paf x GitHub Code Quality",
+          CreatedById: "tommy",
+          Booker__c: "tommy",
+          CreatedDate: "2026-06-01T10:00:00Z",
+          StartDateTime: "2026-09-24T12:00:00Z",
+          Meeting_Status__c: "Held",
+          Account: { Name: "Paf", Owner: { Name: "Carl Harris" } }
+        }
+      ],
+      directOpportunities: [],
+      wonDirect: [],
+      milestones: [],
+      quotes: [],
+      opportunityById: new Map(),
+      quoteOpportunityField: "SBQQ__Opportunity2__c"
+    }
+  );
+
+  assert.equal(dashboard.weekly["2026-09-21"].sql.value, 2);
+  assert.equal(dashboard.qtd.sql, 2);
+});
+
 test("licensed opportunity credit is deduplicated while milestones stay additive", () => {
   const opportunity = {
     Id: "0061",

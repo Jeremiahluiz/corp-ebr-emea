@@ -226,8 +226,8 @@
       "ae": "Luca Schwarz",
       "stage": "Qualified",
       "licensed": 0,
-      "metered": 7350,
-      "total": 7350
+      "metered": 41550,
+      "total": 41550
     },
     {
       "ae": "Massimo Cirillo",
@@ -293,6 +293,13 @@
       "total": 11700
     },
     {
+      "ae": "Ruben Weinmiller",
+      "stage": "Pending Acceptance",
+      "licensed": 0,
+      "metered": 25200,
+      "total": 25200
+    },
+    {
       "ae": "Sam Hansen",
       "stage": "Proposal & Negotiation",
       "licensed": 0,
@@ -338,8 +345,8 @@
       "ae": "Sindy Abreu",
       "stage": "Qualified",
       "licensed": 0,
-      "metered": 215700,
-      "total": 215700
+      "metered": 289200,
+      "total": 289200
     }
   ]
 }

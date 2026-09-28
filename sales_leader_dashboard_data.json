@@ -208,7 +208,7 @@
         },
         "Michael de Korte": {
           "scheduled": 35,
-          "sql": 21,
+          "sql": 22,
           "licensed": 121968,
           "metered": 151530,
           "licensedClosedWon": 0,
@@ -312,7 +312,7 @@
             },
             "2026-09-21": {
               "scheduled": 7,
-              "sql": 2,
+              "sql": 3,
               "licensed": 37800,
               "metered": 1140,
               "pipeline": 38940
@@ -342,7 +342,7 @@
               "ae": "Charlotte Bakker",
               "ebr": "Bouke Kingma",
               "scheduled": 3,
-              "sql": 0,
+              "sql": 1,
               "licensed": 0,
               "metered": 0,
               "licensedClosedWon": 0,
@@ -438,7 +438,7 @@
         },
         "AJ Herve": {
           "scheduled": 14,
-          "sql": 5,
+          "sql": 9,
           "licensed": 31459.5,
           "metered": 7170,
           "licensedClosedWon": 2520,
@@ -533,14 +533,14 @@
             },
             "2026-09-14": {
               "scheduled": 2,
-              "sql": 0,
+              "sql": 2,
               "licensed": 0,
               "metered": 7125,
               "pipeline": 7125
             },
             "2026-09-21": {
               "scheduled": 1,
-              "sql": 0,
+              "sql": 2,
               "licensed": 0,
               "metered": 45,
               "pipeline": 45
@@ -558,7 +558,7 @@
               "ae": "Morgan Nicas",
               "ebr": "Renata Zhupanyn",
               "scheduled": 2,
-              "sql": 0,
+              "sql": 1,
               "licensed": 0,
               "metered": 0,
               "licensedClosedWon": 0,
@@ -582,7 +582,7 @@
               "ae": "Alessandra Seidita",
               "ebr": "Renata Zhupanyn",
               "scheduled": 0,
-              "sql": 0,
+              "sql": 1,
               "licensed": 0,
               "metered": 0,
               "licensedClosedWon": 0,
@@ -620,7 +620,7 @@
               "ae": "Massimo Cirillo",
               "ebr": "Renata Zhupanyn",
               "scheduled": 7,
-              "sql": 2,
+              "sql": 4,
               "licensed": 31459.5,
               "metered": 45,
               "licensedClosedWon": 0,
@@ -635,7 +635,7 @@
         },
         "Omur Sert": {
           "scheduled": 18,
-          "sql": 16,
+          "sql": 19,
           "licensed": 16212,
           "metered": 1569160.05,
           "licensedClosedWon": 6849.57,
@@ -735,7 +735,7 @@
             },
             "2026-08-10": {
               "scheduled": 0,
-              "sql": 0,
+              "sql": 1,
               "licensed": 0,
               "metered": 0,
               "pipeline": 0
@@ -763,7 +763,7 @@
             },
             "2026-09-07": {
               "scheduled": 0,
-              "sql": 2,
+              "sql": 3,
               "licensed": 0,
               "metered": 0,
               "pipeline": 0
@@ -777,7 +777,7 @@
             },
             "2026-09-21": {
               "scheduled": 6,
-              "sql": 3,
+              "sql": 4,
               "licensed": 6972,
               "metered": 1503760.05,
               "pipeline": 1510732.05
@@ -850,7 +850,7 @@
               "ae": "Adil Ibrahim",
               "ebr": "Anna Sobala",
               "scheduled": 3,
-              "sql": 3,
+              "sql": 5,
               "licensed": 0,
               "metered": 58050,
               "licensedClosedWon": 0,
@@ -864,7 +864,7 @@
               "ae": "Carl Harris",
               "ebr": "Tommy Hirvonen",
               "scheduled": 1,
-              "sql": 1,
+              "sql": 2,
               "licensed": 0,
               "metered": 5100,
               "licensedClosedWon": 0,
@@ -882,7 +882,7 @@
       "leaders": {
         "Dirk-Jan de Vries": {
           "scheduled": 56,
-          "sql": 36,
+          "sql": 53,
           "licensed": 305003,
           "metered": 326430,
           "licensedClosedWon": 41496.35,
@@ -1016,7 +1016,7 @@
             },
             "2026-08-10": {
               "scheduled": 7,
-              "sql": 4,
+              "sql": 5,
               "licensed": 0,
               "metered": 70800,
               "pipeline": 70800
@@ -1030,35 +1030,35 @@
             },
             "2026-08-24": {
               "scheduled": 8,
-              "sql": 7,
+              "sql": 10,
               "licensed": 154040,
               "metered": 11400,
               "pipeline": 165440
             },
             "2026-08-31": {
               "scheduled": 6,
-              "sql": 3,
+              "sql": 6,
               "licensed": 10250,
               "metered": 49050,
               "pipeline": 59300
             },
             "2026-09-07": {
               "scheduled": 7,
-              "sql": 4,
+              "sql": 8,
               "licensed": 6788,
               "metered": 0,
               "pipeline": 6788
             },
             "2026-09-14": {
               "scheduled": 10,
-              "sql": 0,
+              "sql": 5,
               "licensed": 100800,
               "metered": 18000,
               "pipeline": 118800
             },
             "2026-09-21": {
               "scheduled": 1,
-              "sql": 1,
+              "sql": 2,
               "licensed": 0,
               "metered": 18000,
               "pipeline": 18000
@@ -1076,7 +1076,7 @@
               "ae": "Camilla Cardinale",
               "ebr": "Tommy Hirvonen",
               "scheduled": 0,
-              "sql": 0,
+              "sql": 1,
               "licensed": 0,
               "metered": 18000,
               "licensedClosedWon": 0,
@@ -1090,7 +1090,7 @@
               "ae": "Gustaf Eriksson",
               "ebr": "Tommy Hirvonen",
               "scheduled": 13,
-              "sql": 7,
+              "sql": 9,
               "licensed": 111588,
               "metered": 94050,
               "licensedClosedWon": 3528.48,
@@ -1106,7 +1106,7 @@
               "ae": "Charlie Brown",
               "ebr": "Tommy Hirvonen",
               "scheduled": 16,
-              "sql": 11,
+              "sql": 22,
               "licensed": 30750,
               "metered": 57000,
               "licensedClosedWon": 30399.379999999997,
@@ -1121,7 +1121,7 @@
               "ae": "Shirley van Zon",
               "ebr": "Daniel Spanjaard",
               "scheduled": 8,
-              "sql": 3,
+              "sql": 4,
               "licensed": 152040,
               "metered": 75180,
               "licensedClosedWon": 0,
@@ -1151,7 +1151,7 @@
               "ae": "Emilio van der Zanden",
               "ebr": "Daniel Spanjaard",
               "scheduled": 9,
-              "sql": 9,
+              "sql": 11,
               "licensed": 0,
               "metered": 50850,
               "licensedClosedWon": 0,
@@ -1188,17 +1188,17 @@
           ]
         },
         "Carmen Marced": {
-          "scheduled": 37,
-          "sql": 30,
+          "scheduled": 39,
+          "sql": 32,
           "licensed": 243527.40000000002,
-          "metered": 431150.01,
+          "metered": 564050.01,
           "licensedClosedWon": 4300.71,
           "meteredClosedWon": 0,
           "closedWon": 4300.71,
           "stagePipeline": {
-            "Qualified": 384814.81,
+            "Qualified": 492514.81,
             "Verbal Agreement": 25221,
-            "Pending Acceptance": 5700,
+            "Pending Acceptance": 30900,
             "Problem Identification & Research": 203270.6,
             "Manage & Optimize": 55671
           },
@@ -1293,17 +1293,17 @@
             },
             "2026-09-21": {
               "scheduled": 3,
-              "sql": 1,
+              "sql": 2,
               "licensed": 42000,
               "metered": 0,
               "pipeline": 42000
             },
             "2026-09-28": {
-              "scheduled": 0,
-              "sql": 0,
+              "scheduled": 2,
+              "sql": 1,
               "licensed": 0,
-              "metered": 0,
-              "pipeline": 0
+              "metered": 132900,
+              "pipeline": 132900
             }
           },
           "ics": [
@@ -1347,24 +1347,24 @@
               "ae": "Sindy Abreu",
               "ebr": "Renato Taramona",
               "scheduled": 9,
-              "sql": 7,
+              "sql": 8,
               "licensed": 4015.4,
-              "metered": 215700,
+              "metered": 289200,
               "licensedClosedWon": 0,
               "meteredClosedWon": 0,
               "closedWon": 0,
               "stagePipeline": {
                 "Problem Identification & Research": 4015.4,
-                "Qualified": 215700
+                "Qualified": 289200
               }
             },
             {
               "ae": "Ruben Weinmiller",
               "ebr": "Renato Taramona",
-              "scheduled": 16,
+              "scheduled": 17,
               "sql": 11,
               "licensed": 51956.8,
-              "metered": 163466.01,
+              "metered": 188666.01,
               "licensedClosedWon": 0,
               "meteredClosedWon": 0,
               "closedWon": 0,
@@ -1372,22 +1372,23 @@
                 "Qualified": 124531.81,
                 "Verbal Agreement": 23520,
                 "Manage & Optimize": 55671,
-                "Problem Identification & Research": 11700
+                "Problem Identification & Research": 11700,
+                "Pending Acceptance": 25200
               }
             },
             {
               "ae": "Luca Schwarz",
               "ebr": "Renato Taramona",
-              "scheduled": 5,
-              "sql": 5,
+              "scheduled": 6,
+              "sql": 6,
               "licensed": 187555.2,
-              "metered": 7350,
+              "metered": 41550,
               "licensedClosedWon": 0,
               "meteredClosedWon": 0,
               "closedWon": 0,
               "stagePipeline": {
                 "Problem Identification & Research": 187555.2,
-                "Qualified": 7350
+                "Qualified": 41550
               }
             },
             {
@@ -1572,19 +1573,55 @@
         "value": 1
       },
       {
+        "week": "2026-08-17",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-17",
+        "ebr": "Bouke Kingma",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Daniel Spanjaard",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
+        "week": "2026-07-06",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 1
+      },
+      {
+        "week": "2026-07-27",
+        "ebr": "Renato Taramona",
+        "ae": "Digital Sales",
+        "value": 2
+      },
+      {
         "week": "2026-08-31",
         "ebr": "Bouke Kingma",
         "ae": "Digital Sales",
         "value": 1
       },
       {
-        "week": "2026-09-07",
-        "ebr": "Bouke Kingma",
-        "ae": "Digital Sales",
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Data Syncer",
         "value": 1
       },
       {
-        "week": "2026-09-07",
+        "week": "2026-08-24",
+        "ebr": "Anna Sobala",
+        "ae": "Digital Sales",
+        "value": 3
+      },
+      {
+        "week": "2026-08-24",
         "ebr": "Renato Taramona",
         "ae": "Digital Sales",
         "value": 1
@@ -1608,52 +1645,16 @@
         "value": 3
       },
       {
-        "week": "2026-08-17",
-        "ebr": "Anna Sobala",
-        "ae": "Digital Sales",
-        "value": 3
-      },
-      {
-        "week": "2026-08-17",
+        "week": "2026-09-07",
         "ebr": "Bouke Kingma",
         "ae": "Digital Sales",
         "value": 1
       },
       {
-        "week": "2026-08-24",
-        "ebr": "Anna Sobala",
-        "ae": "Data Syncer",
-        "value": 1
-      },
-      {
-        "week": "2026-08-24",
-        "ebr": "Anna Sobala",
-        "ae": "Digital Sales",
-        "value": 3
-      },
-      {
-        "week": "2026-08-24",
+        "week": "2026-09-07",
         "ebr": "Renato Taramona",
         "ae": "Digital Sales",
         "value": 1
-      },
-      {
-        "week": "2026-07-06",
-        "ebr": "Daniel Spanjaard",
-        "ae": "Digital Sales",
-        "value": 2
-      },
-      {
-        "week": "2026-07-06",
-        "ebr": "Renato Taramona",
-        "ae": "Digital Sales",
-        "value": 1
-      },
-      {
-        "week": "2026-07-27",
-        "ebr": "Renato Taramona",
-        "ae": "Digital Sales",
-        "value": 2
       }
     ],
     "licensed": [

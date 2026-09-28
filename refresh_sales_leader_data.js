@@ -11,6 +11,7 @@ const asOf = process.env.DASHBOARD_AS_OF || new Date().toISOString();
 const namesById = Object.fromEntries(
   Object.entries(EBR_USERS).map(([name, id]) => [id, name])
 );
+const ebrNames = new Set(Object.keys(EBR_USERS));
 const userIds = Object.values(EBR_USERS);
 
 function query(soql) {
@@ -60,6 +61,16 @@ function isAnnaJuly(ebr, value) {
   return ebr === "Anna Sobala" && date >= "2026-07-01" && date < "2026-08-01";
 }
 
+function eventBookingEbr(event) {
+  if (event.Booker__c) return namesById[event.Booker__c];
+  if (event.Meeting_Set_By__c) {
+    return ebrNames.has(event.Meeting_Set_By__c)
+      ? event.Meeting_Set_By__c
+      : undefined;
+  }
+  return namesById[event.CreatedById];
+}
+
 function addGrouped(target, week, ebr, ae, value) {
   if (!target[week]) target[week] = [];
   const existing = target[week].find(
@@ -90,8 +101,11 @@ function main() {
       `AND CreatedDate <= ${asOf}`
   );
   const held = query(
-    `SELECT Id, CreatedById, StartDateTime, Meeting_Status__c, Account.Owner.Name FROM Event ` +
-      `WHERE CreatedById IN (${ids}) AND Meeting_Status__c = 'Held' ` +
+    `SELECT Id, CreatedById, Booker__c, Meeting_Set_By__c, StartDateTime, ` +
+      `Meeting_Status__c, Account.Owner.Name FROM Event ` +
+      `WHERE Meeting_Status__c = 'Held' AND (` +
+      `Booker__c IN (${ids}) OR Meeting_Set_By__c IN (${Object.keys(EBR_USERS).map(quote).join(",")}) ` +
+      `OR (Booker__c = NULL AND Meeting_Set_By__c = NULL AND CreatedById IN (${ids}))) ` +
       `AND StartDateTime >= ${quarter.start}T00:00:00Z AND StartDateTime <= ${asOf}`
   );
 
@@ -108,7 +122,8 @@ function main() {
     );
   }
   for (const event of held) {
-    const ebr = namesById[event.CreatedById];
+    const ebr = eventBookingEbr(event);
+    if (!ebr) continue;
     if (isAnnaJuly(ebr, event.StartDateTime)) continue;
     addGrouped(
       activity.sql,
@@ -325,4 +340,3 @@ function main() {
 }
 
 if (require.main === module) main();
-

@@ -93,19 +93,21 @@ th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: l
     <main>
       <p class="status">Saved dashboard. Use the Salesforce report link for current SQL held data.</p>
       <section class="cards">
-        <article><span>Events scheduled</span><strong id="qtd-scheduled">-</strong></article>
+        <article><span>Events created</span><strong id="qtd-scheduled">-</strong></article>
         <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
         <article><span>Licensed pipeline</span><strong id="qtd-licensed">-</strong></article>
         <article><span>Metered / total</span><strong id="qtd-metered">-</strong><small id="qtd-pipeline">- total</small></article>
       </section>
       <section class="previous-week">
         <div><span>Previous completed week</span><strong id="previous-label">-</strong></div>
-        <div><span>Scheduled</span><strong id="previous-scheduled">-</strong></div>
+        <div><span>Events created</span><strong id="previous-scheduled">-</strong></div>
         <div><span>SQL held</span><strong id="previous-sql">-</strong></div>
         <div><span>Licensed</span><strong id="previous-licensed">-</strong></div>
         <div><span>Metered</span><strong id="previous-metered">-</strong></div>
         <div><span>Total pipeline</span><strong id="previous-pipeline">-</strong></div>
       </section>
+      <p id="sql-method" class="status"></p>
+      <p id="sql-coverage" class="status"></p>
       <section class="closed-won-card">
         <span class="closed-won-label">Q1 EBR-attributed revenue</span>
         <strong id="qtd-won" class="closed-won-value">-</strong>
@@ -114,7 +116,7 @@ th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: l
         <small id="qtd-won-method">Metered credit requires two weekly account snapshots.</small>
       </section>
       <section class="charts">
-        <article class="panel"><div class="panel-title"><h2>Events scheduled</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>Events created</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
         <article class="panel"><div class="panel-title"><h2>SQL held</h2><strong id="sql-total">-</strong></div><div id="sql-chart" class="bar-chart"></div></article>
         <article class="panel pipeline-panel">
           <div><div class="panel-title"><h2>Pipeline</h2><strong id="pipeline-total">-</strong></div><div id="pipeline-chart" class="bar-chart"></div></div>
@@ -125,7 +127,7 @@ th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: l
         <div class="panel-title"><h2 id="breakdown-title">IC breakdown</h2></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Scheduled</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
+            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Events created</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
             <tbody id="ic-table"></tbody>
           </table>
         </div>
@@ -135,7 +137,7 @@ th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: l
         <article class="panel"><div class="panel-title"><h2 id="closed-won-title">Closed Won pipeline</h2><strong id="closed-total">-</strong></div><div id="closed-won"></div></article>
       </section>
     </main>
-    <script>window.DASHBOARD = {"manager":"Richard Bellet","segment":"SMB","quarter":{"start":"2026-07-01","end":"2026-10-01"},"generatedAt":"2026-09-28T13:19:38.909Z","weeks":["2026-06-29","2026-07-06","2026-07-13","2026-07-20","2026-07-27","2026-08-03","2026-08-10","2026-08-17","2026-08-24","2026-08-31","2026-09-07","2026-09-14","2026-09-21","2026-09-28"],"qtd":{"scheduled":72,"sql":51,"licensed":169639.5,"metered":1727860.05,"pipeline":1897499.55,"licensedClosedWon":9369.57,"meteredClosedWon":0,"meteredUniqueAccountUplift":0,"closedWon":9369.57},"weekly":{"2026-06-29":{"scheduled":{"value":2,"records":[]},"sql":{"value":6,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":1140,"records":[]},"pipeline":{"value":1140,"records":[]}},"2026-07-06":{"scheduled":{"value":1,"records":[]},"sql":{"value":5,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-07-13":{"scheduled":{"value":9,"records":[]},"sql":{"value":6,"records":[]},"licensed":{"value":66276,"records":[]},"metered":{"value":12840,"records":[]},"pipeline":{"value":79116,"records":[]}},"2026-07-20":{"scheduled":{"value":0,"records":[]},"sql":{"value":2,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-07-27":{"scheduled":{"value":5,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-03":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-10":{"scheduled":{"value":0,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-17":{"scheduled":{"value":6,"records":[]},"sql":{"value":4,"records":[]},"licensed":{"value":2268,"records":[]},"metered":{"value":112500,"records":[]},"pipeline":{"value":114768,"records":[]}},"2026-08-24":{"scheduled":{"value":5,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":4704,"records":[]},"metered":{"value":8520,"records":[]},"pipeline":{"value":13224,"records":[]}},"2026-08-31":{"scheduled":{"value":4,"records":[]},"sql":{"value":2,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-09-07":{"scheduled":{"value":10,"records":[]},"sql":{"value":6,"records":[]},"licensed":{"value":31459.5,"records":[]},"metered":{"value":570,"records":[]},"pipeline":{"value":32029.5,"records":[]}},"2026-09-14":{"scheduled":{"value":14,"records":[]},"sql":{"value":9,"records":[]},"licensed":{"value":20160,"records":[]},"metered":{"value":87345,"records":[]},"pipeline":{"value":107505,"records":[]}},"2026-09-21":{"scheduled":{"value":14,"records":[]},"sql":{"value":9,"records":[]},"licensed":{"value":44772,"records":[]},"metered":{"value":1504945.05,"records":[]},"pipeline":{"value":1549717.05,"records":[]}},"2026-09-28":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}}},"ics":[{"ae":"AJ Herve","ebr":"Renata Zhupanyn","scheduled":{"value":14,"records":[]},"sql":{"value":9,"records":[]},"licensed":{"value":31459.5,"records":[]},"metered":{"value":7170,"records":[]},"pipeline":{"value":38629.5,"records":[]},"licensedClosedWon":{"value":2520,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":2520,"records":[]}},{"ae":"Omur Sert","ebr":"Anna Sobala, Tommy Hirvonen","scheduled":{"value":18,"records":[]},"sql":{"value":19,"records":[]},"licensed":{"value":16212,"records":[]},"metered":{"value":1569160.05,"records":[]},"pipeline":{"value":1585372.05,"records":[]},"licensedClosedWon":{"value":6849.57,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":6849.57,"records":[]}},{"ae":"Fernando Munoz Drinot","ebr":"Bouke Kingma","scheduled":{"value":5,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}},{"ae":"Michael de Korte","ebr":"Bouke Kingma, Alexandra Chirica","scheduled":{"value":35,"records":[]},"sql":{"value":22,"records":[]},"licensed":{"value":121968,"records":[]},"metered":{"value":151530,"records":[]},"pipeline":{"value":273498,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}}],"stages":[{"stage":"Problem Identification & Research","value":1181871,"records":[]},{"stage":"Qualified","value":165375,"records":[]},{"stage":"Proposal & Negotiation","value":133482,"records":[]},{"stage":"Verbal Agreement","value":11970,"records":[]},{"stage":"Pending Acceptance","value":374080.05000000005,"records":[]},{"stage":"Closed Won","value":11508,"records":[]},{"stage":"Manage & Optimize","value":5100,"records":[]},{"stage":"Omit","value":14113.5,"records":[]}],"featured":{"Business Selected":[],"Closed Won":[{"label":"Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Bouke Kingma · Omur Sert · Closed 2026-07-15","amount":1963.53},{"label":"Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Anna Sobala · Omur Sert · Closed 2026-09-08","amount":3363.68},{"label":"Reserve Bank of Zimbabwe 10 Seat 2027_Q1 Order","subtitle":"Licensed Closed Won · Renato Taramona · AJ Herve · Closed 2026-09-10","amount":2520},{"label":"Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Anna Sobala · Omur Sert · Closed 2026-09-24","amount":1522.36}]},"breakdownType":"manager","tableTitle":"Manager breakdown","tablePrimaryHeader":"Manager","tableSecondaryHeader":"EBR coverage","closedWonPanelTitle":"EBR-attributed revenue details","snapshot":true,"meteredSnapshotStatus":{"status":"ready","baselineAsOfDate":"2026-08-31","previousAsOfDate":"2026-08-31","latestAsOfDate":"2026-09-19"}};</script>
+    <script>window.DASHBOARD = {"manager":"Richard Bellet","segment":"SMB","quarter":{"start":"2026-07-01","end":"2026-10-01"},"generatedAt":"2026-09-28T15:34:53+02:00","weeks":["2026-06-29","2026-07-06","2026-07-13","2026-07-27","2026-08-03","2026-08-10","2026-08-17","2026-08-24","2026-08-31","2026-09-07","2026-09-14","2026-09-21","2026-09-28"],"qtd":{"scheduled":72,"sql":21,"licensed":169639.5,"metered":1727860.05,"pipeline":1897499.55,"licensedClosedWon":9369.57,"meteredClosedWon":0,"meteredUniqueAccountUplift":0,"closedWon":9369.57},"weekly":{"2026-06-29":{"scheduled":{"value":2,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":1140,"records":[]},"pipeline":{"value":1140,"records":[]}},"2026-07-06":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-07-13":{"scheduled":{"value":9,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":66276,"records":[]},"metered":{"value":12840,"records":[]},"pipeline":{"value":79116,"records":[]}},"2026-07-27":{"scheduled":{"value":5,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-03":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-10":{"scheduled":{"value":0,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-08-17":{"scheduled":{"value":6,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":2268,"records":[]},"metered":{"value":112500,"records":[]},"pipeline":{"value":114768,"records":[]}},"2026-08-24":{"scheduled":{"value":5,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":4704,"records":[]},"metered":{"value":8520,"records":[]},"pipeline":{"value":13224,"records":[]}},"2026-08-31":{"scheduled":{"value":4,"records":[]},"sql":{"value":1,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}},"2026-09-07":{"scheduled":{"value":10,"records":[]},"sql":{"value":2,"records":[]},"licensed":{"value":31459.5,"records":[]},"metered":{"value":570,"records":[]},"pipeline":{"value":32029.5,"records":[]}},"2026-09-14":{"scheduled":{"value":14,"records":[]},"sql":{"value":7,"records":[]},"licensed":{"value":20160,"records":[]},"metered":{"value":87345,"records":[]},"pipeline":{"value":107505,"records":[]}},"2026-09-21":{"scheduled":{"value":14,"records":[]},"sql":{"value":11,"records":[]},"licensed":{"value":44772,"records":[]},"metered":{"value":1504945.05,"records":[]},"pipeline":{"value":1549717.05,"records":[]}},"2026-09-28":{"scheduled":{"value":1,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]}}},"ics":[{"ae":"AJ Herve","ebr":"Renata Zhupanyn","scheduled":{"value":14,"records":[]},"sql":{"value":2,"records":[]},"licensed":{"value":31459.5,"records":[]},"metered":{"value":7170,"records":[]},"pipeline":{"value":38629.5,"records":[]},"licensedClosedWon":{"value":2520,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":2520,"records":[]}},{"ae":"Omur Sert","ebr":"Anna Sobala, Tommy Hirvonen","scheduled":{"value":18,"records":[]},"sql":{"value":9,"records":[]},"licensed":{"value":16212,"records":[]},"metered":{"value":1569160.05,"records":[]},"pipeline":{"value":1585372.05,"records":[]},"licensedClosedWon":{"value":6849.57,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":6849.57,"records":[]}},{"ae":"Fernando Munoz Drinot","ebr":"Bouke Kingma","scheduled":{"value":5,"records":[]},"sql":{"value":0,"records":[]},"licensed":{"value":0,"records":[]},"metered":{"value":0,"records":[]},"pipeline":{"value":0,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}},{"ae":"Michael de Korte","ebr":"Bouke Kingma, Alexandra Chirica","scheduled":{"value":35,"records":[]},"sql":{"value":10,"records":[]},"licensed":{"value":121968,"records":[]},"metered":{"value":151530,"records":[]},"pipeline":{"value":273498,"records":[]},"licensedClosedWon":{"value":0,"records":[]},"meteredClosedWon":{"value":0,"records":[]},"closedWon":{"value":0,"records":[]}}],"stages":[{"stage":"Problem Identification & Research","value":1181871,"records":[]},{"stage":"Qualified","value":165375,"records":[]},{"stage":"Proposal & Negotiation","value":133482,"records":[]},{"stage":"Verbal Agreement","value":11970,"records":[]},{"stage":"Pending Acceptance","value":374080.05000000005,"records":[]},{"stage":"Closed Won","value":11508,"records":[]},{"stage":"Manage & Optimize","value":5100,"records":[]},{"stage":"Omit","value":14113.5,"records":[]}],"featured":{"Business Selected":[],"Closed Won":[{"label":"Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Bouke Kingma · Omur Sert · Closed 2026-07-15","amount":1963.53},{"label":"Velliv, Pension & Livsforsikring A/S 0 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Anna Sobala · Omur Sert · Closed 2026-09-08","amount":3363.68},{"label":"Reserve Bank of Zimbabwe 10 Seat 2027_Q1 Order","subtitle":"Licensed Closed Won · Renato Taramona · AJ Herve · Closed 2026-09-10","amount":2520},{"label":"Velliv, Pension & Livsforsikring A/S 10 Seat 2027_Q1 Upgrade","subtitle":"Licensed Closed Won · Anna Sobala · Omur Sert · Closed 2026-09-24","amount":1522.36}]},"breakdownType":"manager","tableTitle":"Manager breakdown","tablePrimaryHeader":"Manager","tableSecondaryHeader":"EBR coverage","closedWonPanelTitle":"EBR-attributed revenue details","snapshot":true,"meteredSnapshotStatus":{"status":"ready","baselineAsOfDate":"2026-08-31","previousAsOfDate":"2026-08-31","latestAsOfDate":"2026-09-19"},"reportingPeriod":{"monday":"2026-09-21","sunday":"2026-09-27","startInclusive":"2026-09-21T00:00:00+02:00","endExclusive":"2026-09-28T00:00:00+02:00","timezone":"Europe/Amsterdam"},"enrichment":{"metered":{"status":"saved_snapshot","asOfDate":"2026-09-19","baselineAsOfDate":"2026-08-31"},"licensed":{"status":"saved_source","asOfDate":"2026-09-28"},"roleHistory":{"status":"saved_history","asOfDate":"2026-09-21"}},"sqlObservation":{"asOf":"2026-09-28T15:34:53+02:00","basis":"Conservative TracRTC status observations, not exact field-change timestamps. Earliest observed Held is counted once per Event only when a prior non-Held observation is in the same Amsterdam week, or the Event was created in that week. Cross-week and unsupported observations are excluded. EBR Booker, then Meeting Set By, then creator only when both are absent; current account-owner AE determines manager.","excluded":{"no_held_observation":165,"cross_week_interval":3,"missing_same_week_non_held_observation":5}}};</script>
     <script>const data = window.DASHBOARD;
 const byId = (id) => document.getElementById(id);
 const money = new Intl.NumberFormat("en-US", {
@@ -162,7 +164,7 @@ function weekLabel(start) {
   const formatter = new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "short",
-    timeZone: "UTC"
+    timeZone: "Europe/Amsterdam"
   });
   return `${formatter.format(new Date(`${start}T00:00:00Z`))}-${formatter.format(end)}`;
 }
@@ -246,7 +248,10 @@ function renderFeatured(containerId, totalId, records) {
 }
 
 byId("scope").textContent =
-  `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} | CET`;
+  `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} (exclusive) | Europe/Amsterdam | Refreshed ${data.generatedAt}`;
+byId("sql-method").textContent = data.sqlObservation.basis;
+byId("sql-coverage").textContent =
+  `SQL history coverage: ${Object.values(data.sqlObservation.excluded).reduce((sum, count) => sum + count, 0)} candidate events excluded from QTD because same-week Held evidence is missing, ambiguous, or crosses a week boundary.`;
 byId("breakdown-title").textContent = data.tableTitle || "IC breakdown";
 byId("breakdown-primary").textContent = data.tablePrimaryHeader || "AE / IC";
 byId("breakdown-secondary").textContent = data.tableSecondaryHeader || "EBR";
@@ -264,28 +269,19 @@ byId("qtd-won-licensed").textContent = compact.format(
 byId("qtd-won-metered").textContent = compact.format(
   data.qtd.meteredClosedWon || 0
 );
-if (data.meteredSnapshotStatus?.status === "ready") {
+if (data.enrichment) {
+  byId("qtd-won-method").textContent =
+    `Metered attributed revenue: saved snapshot as of ${data.enrichment.metered.asOfDate}, fixed baseline ${data.enrichment.metered.baselineAsOfDate}. Licensed Closed Won: saved Salesforce source as of ${data.enrichment.licensed.asOfDate}. Effective-dated EBR/SEBR role history as of ${data.enrichment.roleHistory.asOfDate}. Revenue is not refreshed by the activity refresh.`;
+} else if (data.meteredSnapshotStatus?.status === "ready") {
   byId("qtd-won-method").textContent =
     `Measurement window: ${data.meteredSnapshotStatus.baselineAsOfDate} to ${data.meteredSnapshotStatus.latestAsOfDate}.`;
 }
 
-const generatedWeek = (() => {
-  const date = new Date(data.generatedAt);
-  const day = date.getUTCDay();
-  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
-  return date.toISOString().slice(0, 10);
-})();
-const previousWeekDate = new Date(`${generatedWeek}T00:00:00Z`);
-previousWeekDate.setUTCDate(previousWeekDate.getUTCDate() - 7);
-const previousWeek = previousWeekDate.toISOString().slice(0, 10);
-const previous = data.weekly[previousWeek] || {
-  scheduled: { value: 0 },
-  sql: { value: 0 },
-  licensed: { value: 0 },
-  metered: { value: 0 },
-  pipeline: { value: 0 }
-};
-byId("previous-label").textContent = weekLabel(previousWeek);
+const previousWeek = data.reportingPeriod.monday;
+const previous = data.weekly[previousWeek];
+if (!previous) throw new Error(`Missing completed-week payload: ${previousWeek}`);
+byId("previous-label").textContent =
+  `${data.reportingPeriod.monday} to ${data.reportingPeriod.sunday} (Europe/Amsterdam)`;
 byId("previous-scheduled").textContent = previous.scheduled.value;
 byId("previous-sql").textContent = previous.sql.value;
 byId("previous-licensed").textContent = compact.format(previous.licensed.value);

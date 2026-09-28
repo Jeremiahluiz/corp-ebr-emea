@@ -7,6 +7,13 @@ const {
   monday
 } = require("../src/dashboard");
 
+const observation = (id, date, status) => ({
+  Id: `${id}-${date}-${status}`,
+  TracRTC__Object_Id__c: id,
+  TracRTC__Log_Date__c: date,
+  TracRTC__Record_End_State__c: JSON.stringify({ Id: id, Meeting_Status__c: status })
+});
+
 test("FY27 Q1 date boundaries are correct", () => {
   assert.deepEqual(fiscalQuarter("2026-09-15T08:00:00Z"), {
     start: "2026-07-01",
@@ -22,6 +29,11 @@ test("Anna July scheduled exclusion does not remove an August held SQL", () => {
     {
       instanceUrl: "https://example.my.salesforce.com",
       namesById: { anna: "Anna Sobala" },
+      asOf: "2026-09-28T12:00:00Z",
+      sqlObservationLogs: [
+        observation("00U1", "2026-08-03T10:00:00Z", "Set"),
+        observation("00U1", "2026-08-04T10:00:00Z", "Held")
+      ],
       events: [{
         Id: "00U1",
         Subject: "Customer meeting",
@@ -50,6 +62,11 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
     {
       instanceUrl: "https://example.my.salesforce.com",
       namesById: { daniel: "Daniel Spanjaard", tommy: "Tommy Hirvonen" },
+      asOf: "2026-09-28T12:00:00Z",
+      sqlObservationLogs: ["00U-compass", "00U-ineos", "00U-sdr", "00U-carl"].flatMap(id => [
+        observation(id, "2026-09-22T07:53:00Z", "Set"),
+        observation(id, "2026-09-24T12:29:00Z", "Held")
+      ]),
       events: [
         {
           Id: "00U-compass",

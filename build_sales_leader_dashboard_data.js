@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { monday, reportingPeriod } = require("./reporting-time");
 
 const mapping = JSON.parse(
   fs.readFileSync(path.join(__dirname, "sales_leader_team_mapping.json"), "utf8"),
@@ -33,19 +34,15 @@ const aliases = {
 };
 
 const normalized = (value) => aliases[normalize(value)] || normalize(value);
-const monday = (value) => {
-  const date = new Date(`${String(value).slice(0, 10)}T00:00:00Z`);
-  const day = date.getUTCDay();
-  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
-  return date.toISOString().slice(0, 10);
-};
-const currentWeek = monday(new Date().toISOString());
+const asOf = process.env.DASHBOARD_AS_OF || new Date().toISOString();
+const currentWeek = monday(asOf);
 const weeks = [...new Set([
   ...Object.keys(activity.scheduled),
   ...Object.keys(activity.sql),
   ...Object.keys(pipeline.licensed),
   ...Object.keys(pipeline.metered),
   currentWeek,
+  reportingPeriod(asOf).monday,
 ])].sort();
 
 const segments = {};
@@ -89,6 +86,7 @@ for (const [segment, leaders] of Object.entries(mapping)) {
       ics,
     };
     for (const ic of ics) {
+      if (aeIndex.has(normalized(ic.ae))) throw new Error(`Duplicate mapped AE: ${ic.ae}`);
       aeIndex.set(normalized(ic.ae), { segment, leaderName, ic });
     }
   }

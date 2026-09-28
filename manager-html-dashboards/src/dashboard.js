@@ -1,6 +1,8 @@
 const { DIRECTORS, EBR_USERS, MANAGERS, ROOT } = require("./config");
 const fs = require("fs");
 const path = require("path");
+const { datePart, monday, addDays } = require("../../reporting-time");
+const { deriveHeldCredits } = require("./held-sql");
 
 const STAGES = [
   "Problem Identification & Research",
@@ -16,21 +18,9 @@ const STAGES = [
 ];
 const normalize = (value) =>
   String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/gi, "").toLowerCase();
-const datePart = (value) => String(value || "").slice(0, 10);
 const number = (value) => Number(value || 0);
 const roundMoney = (value) =>
   Math.round((Number(value) + Number.EPSILON) * 100) / 100;
-const monday = (value) => {
-  const date = new Date(`${datePart(value)}T00:00:00Z`);
-  const day = date.getUTCDay();
-  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
-  return date.toISOString().slice(0, 10);
-};
-const addDays = (value, days) => {
-  const date = new Date(`${datePart(value)}T00:00:00Z`);
-  date.setUTCDate(date.getUTCDate() + days);
-  return date.toISOString().slice(0, 10);
-};
 const inRange = (value, start, end) => datePart(value) >= start && datePart(value) < end;
 const isAnnaJuly = (ebr, value) =>
   ebr === "Anna Sobala" && datePart(value) >= "2026-07-01" && datePart(value) < "2026-08-01";
@@ -41,7 +31,7 @@ const recordUrl = (instanceUrl, type, id) =>
     : `https://login.salesforce.com/${id}`;
 
 function fiscalQuarter(value = new Date()) {
-  const date = new Date(value);
+  const date = new Date(`${datePart(value)}T12:00:00Z`);
   const month = date.getUTCMonth();
   const year = date.getUTCFullYear();
   const fiscalStartYear = month >= 6 ? year : year - 1;
@@ -270,7 +260,9 @@ function aggregateLive(managerName, quarter, source) {
   const dashboard = emptyDashboard(managerName, quarter, source.instanceUrl);
   const aeMap = new Map(dashboard.ics.map((row) => [normalize(row.ae), row]));
   const namesById = source.namesById;
-  const ebrNames = new Set(Object.values(namesById));
+  if (source.events.length && !Array.isArray(source.sqlObservationLogs)) {
+    throw new Error("SQL observation logs are required; meeting start time is not an SQL credit date");
+  }
   const stageMap = new Map();
   const add = (name, ae, value, record, date) => {
     const row = aeMap.get(normalize(ae));
@@ -285,11 +277,6 @@ function aggregateLive(managerName, quarter, source) {
   };
   for (const event of source.events) {
     const createdByEbr = namesById[event.CreatedById];
-    const bookingEbr = event.Booker__c
-      ? namesById[event.Booker__c]
-      : event.Meeting_Set_By__c
-        ? (ebrNames.has(event.Meeting_Set_By__c) ? event.Meeting_Set_By__c : undefined)
-        : createdByEbr;
     const ae = event.Account?.Owner?.Name;
     const record = (ebr) => ({
       id: event.Id,
@@ -297,12 +284,19 @@ function aggregateLive(managerName, quarter, source) {
       subtitle: `${event.Account?.Name || "No account"} · ${ebr}`,
       url: recordUrl(source.instanceUrl, "Event", event.Id)
     });
-    if (inRange(event.CreatedDate, quarter.start, quarter.end) && !isAnnaJuly(createdByEbr, event.CreatedDate)) {
+    if (createdByEbr && inRange(event.CreatedDate, quarter.start, quarter.end) && !isAnnaJuly(createdByEbr, event.CreatedDate)) {
       add("scheduled", ae, 1, record(createdByEbr), event.CreatedDate);
     }
-    if (bookingEbr && event.Meeting_Status__c === "Held" && inRange(event.StartDateTime, quarter.start, quarter.end) && !isAnnaJuly(bookingEbr, event.StartDateTime)) {
-      add("sql", ae, 1, record(bookingEbr), event.StartDateTime);
-    }
+  }
+  const sql = deriveHeldCredits(source.events, source.sqlObservationLogs || [], {
+    namesById, quarter, asOf: source.asOf || process.env.DASHBOARD_AS_OF || new Date().toISOString()
+  });
+  for (const credit of sql.credits) {
+    add("sql", credit.ae, 1, {
+      id: credit.eventId, label: credit.subject || "Salesforce Event",
+      subtitle: `${credit.ebr} · Observed Held ${credit.observedHeldAt}`,
+      url: recordUrl(source.instanceUrl, "Event", credit.eventId)
+    }, credit.observedHeldAt);
   }
   const attribution = new Map();
   for (const opportunity of source.directOpportunities) {

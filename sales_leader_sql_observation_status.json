@@ -1,0 +1,234 @@
+{
+  "asOf": "2026-09-28T15:34:53+02:00",
+  "quarter": {
+    "start": "2026-07-01",
+    "end": "2026-10-01"
+  },
+  "coverageByAe": {
+    "Amr Al Jarhi": {
+      "no_held_observation": 16,
+      "missing_same_week_non_held_observation": 1
+    },
+    "Digital Sales": {
+      "no_held_observation": 215,
+      "missing_same_week_non_held_observation": 9
+    },
+    "Luca Schwarz": {
+      "no_held_observation": 7
+    },
+    "Lennart Dany": {
+      "no_held_observation": 7
+    },
+    "Alvaro Coenen": {
+      "no_held_observation": 9
+    },
+    "Ruben Weinmiller": {
+      "no_held_observation": 12
+    },
+    "Thilo Suessmuth": {
+      "no_held_observation": 1
+    },
+    "Emilio van der Zanden": {
+      "no_held_observation": 17,
+      "missing_same_week_non_held_observation": 2,
+      "cross_week_interval": 1
+    },
+    "Max Pritchard": {
+      "no_held_observation": 15,
+      "cross_week_interval": 1
+    },
+    "Alessandra Seidita": {
+      "no_held_observation": 9,
+      "cross_week_interval": 1
+    },
+    "Sam Hansen": {
+      "no_held_observation": 17,
+      "missing_same_week_non_held_observation": 1
+    },
+    "Sara Cocco": {
+      "no_held_observation": 6
+    },
+    "Amjad Issawi": {
+      "no_held_observation": 1
+    },
+    "Seiji Arimura": {
+      "no_held_observation": 1
+    },
+    "Gesa Gandetzky": {
+      "no_held_observation": 9
+    },
+    "Data Syncer": {
+      "no_held_observation": 16,
+      "missing_same_week_non_held_observation": 2
+    },
+    "Nesi Laros": {
+      "no_held_observation": 2
+    },
+    "Federica Ioris": {
+      "no_held_observation": 11
+    },
+    "Onur Piskin": {
+      "no_held_observation": 3
+    },
+    "Claudia Martin": {
+      "no_held_observation": 5
+    },
+    "Adil Ibrahim": {
+      "no_held_observation": 9,
+      "missing_same_week_non_held_observation": 1
+    },
+    "UNMAPPED": {
+      "no_held_observation": 164
+    },
+    "Ahmad Zreik": {
+      "no_held_observation": 4
+    },
+    "Marco Mazen": {
+      "no_held_observation": 1
+    },
+    "Ariana Song": {
+      "no_held_observation": 2
+    },
+    "Charlie Brown": {
+      "no_held_observation": 27,
+      "missing_same_week_non_held_observation": 9,
+      "cross_week_interval": 2
+    },
+    "Louis Leccia": {
+      "no_held_observation": 12
+    },
+    "Carl Harris": {
+      "no_held_observation": 2
+    },
+    "Camilla Cardinale": {
+      "no_held_observation": 9,
+      "missing_same_week_non_held_observation": 1
+    },
+    "Shirley van Zon": {
+      "no_held_observation": 14
+    },
+    "Alexis Le Pays du Teilleul": {
+      "no_held_observation": 5
+    },
+    "Arber Dumani": {
+      "no_held_observation": 1
+    },
+    "Thomas McCann": {
+      "no_held_observation": 6
+    },
+    "Anthony Seguillon": {
+      "no_held_observation": 2
+    },
+    "Charlotte Bakker": {
+      "no_held_observation": 7
+    },
+    "Koichi Shiraishi": {
+      "no_held_observation": 1
+    },
+    "Oli Gomersall": {
+      "no_held_observation": 4
+    },
+    "José Pezzi": {
+      "no_held_observation": 5
+    },
+    "Michael Domanski": {
+      "no_held_observation": 1
+    },
+    "Amy James": {
+      "no_held_observation": 4
+    },
+    "Ben Fuller": {
+      "no_held_observation": 1
+    },
+    "Liam Vogelsong": {
+      "no_held_observation": 1
+    },
+    "Magnus Jerono": {
+      "no_held_observation": 4
+    },
+    "Joanne Boyd-Kidd": {
+      "no_held_observation": 5
+    },
+    "Daniel Walsh": {
+      "no_held_observation": 4
+    },
+    "Morgan Nicas": {
+      "no_held_observation": 3,
+      "cross_week_interval": 1
+    },
+    "Corey Dolik": {
+      "no_held_observation": 1
+    },
+    "Camilo Villanueva Santiago": {
+      "no_held_observation": 3
+    },
+    "Nando Cuevas": {
+      "no_held_observation": 1
+    },
+    "Merel Blaak": {
+      "no_held_observation": 7
+    },
+    "Pedro Oom": {
+      "no_held_observation": 2
+    },
+    "Rhys Evans": {
+      "no_held_observation": 1
+    },
+    "Mercedes Echanove Velasco": {
+      "no_held_observation": 1
+    },
+    "Frank Jensen": {
+      "no_held_observation": 5
+    },
+    "Can Kayalioglu": {
+      "no_held_observation": 1
+    },
+    "Darius Tehrani": {
+      "no_held_observation": 1
+    },
+    "Lambert Troubat": {
+      "no_held_observation": 1
+    },
+    "Kenta Toyokawa": {
+      "no_held_observation": 1
+    },
+    "Massimo Cirillo": {
+      "no_held_observation": 8,
+      "missing_same_week_non_held_observation": 2,
+      "cross_week_interval": 1
+    },
+    "Kendall Weisiger": {
+      "no_held_observation": 1
+    },
+    "Oana Dinca": {
+      "no_held_observation": 1
+    },
+    "Mr Hubot": {
+      "no_held_observation": 2
+    },
+    "Sindy Abreu": {
+      "no_held_observation": 4
+    },
+    "Justin Goertz": {
+      "no_held_observation": 5
+    },
+    "Pierre Aigron": {
+      "no_held_observation": 4
+    },
+    "Gustaf Eriksson": {
+      "no_held_observation": 14,
+      "missing_same_week_non_held_observation": 5,
+      "cross_week_interval": 1
+    },
+    "Lidiya Melnyk": {
+      "no_held_observation": 6
+    },
+    "Deniz Evyapan": {
+      "no_held_observation": 4
+    },
+    "Petter Laurin": {
+      "no_held_observation": 1
+    }
+  },
+  "basis": "Conservative TracRTC status observations, not exact field-change timestamps. Earliest observed Held is counted once per Event only when a prior non-Held observation is in the same Amsterdam week, or the Event was created in that week. Cross-week and unsupported observations are excluded. EBR Booker, then Meeting Set By, then creator only when both are absent; current account-owner AE determines manager."
+}

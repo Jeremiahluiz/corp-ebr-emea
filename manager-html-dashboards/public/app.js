@@ -24,7 +24,7 @@ function weekLabel(start) {
   const formatter = new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "short",
-    timeZone: "UTC"
+    timeZone: "Europe/Amsterdam"
   });
   return `${formatter.format(new Date(`${start}T00:00:00Z`))}-${formatter.format(end)}`;
 }
@@ -108,7 +108,10 @@ function renderFeatured(containerId, totalId, records) {
 }
 
 byId("scope").textContent =
-  `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} | CET`;
+  `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} (exclusive) | Europe/Amsterdam | Refreshed ${data.generatedAt}`;
+byId("sql-method").textContent = data.sqlObservation.basis;
+byId("sql-coverage").textContent =
+  `SQL history coverage: ${Object.values(data.sqlObservation.excluded).reduce((sum, count) => sum + count, 0)} candidate events excluded from QTD because same-week Held evidence is missing, ambiguous, or crosses a week boundary.`;
 byId("breakdown-title").textContent = data.tableTitle || "IC breakdown";
 byId("breakdown-primary").textContent = data.tablePrimaryHeader || "AE / IC";
 byId("breakdown-secondary").textContent = data.tableSecondaryHeader || "EBR";
@@ -126,28 +129,19 @@ byId("qtd-won-licensed").textContent = compact.format(
 byId("qtd-won-metered").textContent = compact.format(
   data.qtd.meteredClosedWon || 0
 );
-if (data.meteredSnapshotStatus?.status === "ready") {
+if (data.enrichment) {
+  byId("qtd-won-method").textContent =
+    `Metered attributed revenue: saved snapshot as of ${data.enrichment.metered.asOfDate}, fixed baseline ${data.enrichment.metered.baselineAsOfDate}. Licensed Closed Won: saved Salesforce source as of ${data.enrichment.licensed.asOfDate}. Effective-dated EBR/SEBR role history as of ${data.enrichment.roleHistory.asOfDate}. Revenue is not refreshed by the activity refresh.`;
+} else if (data.meteredSnapshotStatus?.status === "ready") {
   byId("qtd-won-method").textContent =
     `Measurement window: ${data.meteredSnapshotStatus.baselineAsOfDate} to ${data.meteredSnapshotStatus.latestAsOfDate}.`;
 }
 
-const generatedWeek = (() => {
-  const date = new Date(data.generatedAt);
-  const day = date.getUTCDay();
-  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
-  return date.toISOString().slice(0, 10);
-})();
-const previousWeekDate = new Date(`${generatedWeek}T00:00:00Z`);
-previousWeekDate.setUTCDate(previousWeekDate.getUTCDate() - 7);
-const previousWeek = previousWeekDate.toISOString().slice(0, 10);
-const previous = data.weekly[previousWeek] || {
-  scheduled: { value: 0 },
-  sql: { value: 0 },
-  licensed: { value: 0 },
-  metered: { value: 0 },
-  pipeline: { value: 0 }
-};
-byId("previous-label").textContent = weekLabel(previousWeek);
+const previousWeek = data.reportingPeriod.monday;
+const previous = data.weekly[previousWeek];
+if (!previous) throw new Error(`Missing completed-week payload: ${previousWeek}`);
+byId("previous-label").textContent =
+  `${data.reportingPeriod.monday} to ${data.reportingPeriod.sunday} (Europe/Amsterdam)`;
 byId("previous-scheduled").textContent = previous.scheduled.value;
 byId("previous-sql").textContent = previous.sql.value;
 byId("previous-licensed").textContent = compact.format(previous.licensed.value);

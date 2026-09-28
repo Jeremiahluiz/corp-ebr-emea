@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "generate": "node generate-pages.js",
-    "check": "node --check generate-pages.js && node --check src/dashboard.js && node --check public/app.js",
+    "check": "node --check ../reporting-time.js && node --check ../refresh_sales_leader_data.js && node --check ../build_sales_leader_dashboard_data.js && node --check generate-pages.js && node --check src/dashboard.js && node --check src/held-sql.js && node --check public/app.js",
     "test": "node --test tests/*.test.js"
   }
 }

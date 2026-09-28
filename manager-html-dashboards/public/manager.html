@@ -18,19 +18,21 @@
     <main>
       <p class="status">Saved dashboard. Use the Salesforce report link for current SQL held data.</p>
       <section class="cards">
-        <article><span>Events scheduled</span><strong id="qtd-scheduled">-</strong></article>
+        <article><span>Events created</span><strong id="qtd-scheduled">-</strong></article>
         <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
         <article><span>Licensed pipeline</span><strong id="qtd-licensed">-</strong></article>
         <article><span>Metered / total</span><strong id="qtd-metered">-</strong><small id="qtd-pipeline">- total</small></article>
       </section>
       <section class="previous-week">
         <div><span>Previous completed week</span><strong id="previous-label">-</strong></div>
-        <div><span>Scheduled</span><strong id="previous-scheduled">-</strong></div>
+        <div><span>Events created</span><strong id="previous-scheduled">-</strong></div>
         <div><span>SQL held</span><strong id="previous-sql">-</strong></div>
         <div><span>Licensed</span><strong id="previous-licensed">-</strong></div>
         <div><span>Metered</span><strong id="previous-metered">-</strong></div>
         <div><span>Total pipeline</span><strong id="previous-pipeline">-</strong></div>
       </section>
+      <p id="sql-method" class="status"></p>
+      <p id="sql-coverage" class="status"></p>
       <section class="closed-won-card">
         <span class="closed-won-label">Q1 EBR-attributed revenue</span>
         <strong id="qtd-won" class="closed-won-value">-</strong>
@@ -39,7 +41,7 @@
         <small id="qtd-won-method">Metered credit requires two weekly account snapshots.</small>
       </section>
       <section class="charts">
-        <article class="panel"><div class="panel-title"><h2>Events scheduled</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>Events created</h2><strong id="scheduled-total">-</strong></div><div id="scheduled-chart" class="bar-chart"></div></article>
         <article class="panel"><div class="panel-title"><h2>SQL held</h2><strong id="sql-total">-</strong></div><div id="sql-chart" class="bar-chart"></div></article>
         <article class="panel pipeline-panel">
           <div><div class="panel-title"><h2>Pipeline</h2><strong id="pipeline-total">-</strong></div><div id="pipeline-chart" class="bar-chart"></div></div>
@@ -50,7 +52,7 @@
         <div class="panel-title"><h2 id="breakdown-title">IC breakdown</h2></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Scheduled</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
+            <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Events created</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>
             <tbody id="ic-table"></tbody>
           </table>
         </div>

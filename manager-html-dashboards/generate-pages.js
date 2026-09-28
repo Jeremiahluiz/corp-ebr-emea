@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { PAGE_SLUGS, MANAGERS, DIRECTORS } = require("./src/config");
+const { PAGE_SLUGS } = require("./src/config");
 const { buildSnapshot } = require("./src/dashboard");
 const { timestamp, reportingPeriod } = require("../reporting-time");
 const sqlStatus = require("../sales_leader_sql_observation_status.json");
@@ -33,15 +33,6 @@ for (const [manager, slug] of Object.entries(PAGE_SLUGS)) {
     licensed: { status: "saved_source", asOfDate: licensedAsOf },
     roleHistory: { status: "saved_history", asOfDate: roleHistory.source.refreshedAt }
   };
-  const scopedManagers = DIRECTORS[manager]?.managers || [manager];
-  const aes = scopedManagers.flatMap(name => MANAGERS[name].assignments.map(a => a.ae));
-  const excluded = {};
-  for (const ae of aes) {
-    for (const [reason, count] of Object.entries(sqlStatus.coverageByAe[ae] || {})) {
-      excluded[reason] = (excluded[reason] || 0) + count;
-    }
-  }
-  dashboard.sqlObservation = { asOf: sqlStatus.asOf, basis: sqlStatus.basis, excluded };
   for (const row of dashboard.ics) {
     for (const name of ["scheduled", "sql", "licensed", "metered", "pipeline", "closedWon"]) {
       row[name].records = [];

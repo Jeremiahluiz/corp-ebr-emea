@@ -109,9 +109,6 @@ function renderFeatured(containerId, totalId, records) {
 
 byId("scope").textContent =
   `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} (exclusive) | Europe/Amsterdam | Refreshed ${data.generatedAt}`;
-byId("sql-method").textContent = data.sqlObservation.basis;
-byId("sql-coverage").textContent =
-  `SQL history coverage: ${Object.values(data.sqlObservation.excluded).reduce((sum, count) => sum + count, 0)} candidate events excluded from QTD because same-week Held evidence is missing, ambiguous, or crosses a week boundary.`;
 byId("breakdown-title").textContent = data.tableTitle || "IC breakdown";
 byId("breakdown-primary").textContent = data.tablePrimaryHeader || "AE / IC";
 byId("breakdown-secondary").textContent = data.tableSecondaryHeader || "EBR";

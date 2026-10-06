@@ -22,6 +22,12 @@ Use this presentation to prepare for and run the weekly team meeting. It is upda
 
 Use this dashboard to review the team's current Salesforce activity and performance in one place.
 
+## Quarterly snapshots
+
+### [Q1](quarterly-lookback-q1.html)
+
+Open the [Q1 quarterly lookback presentation](https://jeremiahluiz.github.io/corp-ebr-emea/quarterly-lookback-q1.html) to review team performance, celebrations, lessons, and priorities.
+
 ## Culture
 
 ### Chief Culture Officer

@@ -189,7 +189,7 @@
     <div class="shell">
       <div class="eyebrow">Personal Copilot skill</div>
       <h1>UK Team Weekly Update</h1>
-      <p class="lead">Generate Bouke Kingma's two-slide weekly UK sales update from reconciled Salesforce activity, Account Recommendations, Microsoft 365 context, and four short manual inputs.</p>
+      <p class="lead">Generate Bouke Kingma's two-section weekly UK sales update as a self-contained HTML page, ready to present in Google Chrome.</p>
       <div class="actions">
         <a class="button primary" href="./uk-team-weekly-update.zip" download>Download skill ZIP</a>
         <a class="button" href="#install">Installation guide</a>
@@ -199,9 +199,9 @@
 
   <div class="shell">
     <section class="quick-grid" aria-label="Skill summary">
-      <div class="quick-card"><strong>Two slides</strong><span>Fixed 16:9 executive-ready layout.</span></div>
+      <div class="quick-card"><strong>Two sections</strong><span>Presentation-style layout optimized for a 16:9 laptop screen.</span></div>
       <div class="quick-card"><strong>Reconciled metrics</strong><span>Activity totals are checked against the named Salesforce control report.</span></div>
-      <div class="quick-card"><strong>Downloadable PPTX</strong><span>Both slides are rendered and inspected before delivery.</span></div>
+      <div class="quick-card"><strong>Chrome-ready HTML</strong><span>One downloadable file with inline styling, navigation, and print support.</span></div>
     </section>
 
     <main id="install">
@@ -218,12 +218,13 @@
             <p>Download the package, then extract it. The archive contains one folder with this structure:</p>
             <pre class="package-tree"><code>uk-team-weekly-update/
 ├── SKILL.md
-├── README.md
-└── references/
-    ├── workflow.md
-    ├── slide-layout.md
-    └── validation.md</code></pre>
-            <div class="callout"><strong>Keep the full folder.</strong> Do not copy <code>SKILL.md</code> alone. The skill depends on all three files in <code>references/</code>.</div>
+            ├── PROMPT.md
+            ├── README.md
+            └── references/
+                ├── workflow.md
+                ├── page-layout.md
+                └── validation.md</code></pre>
+                        <div class="callout"><strong>Keep the full folder.</strong> Do not copy <code>SKILL.md</code> alone. The skill depends on the reusable prompt and all three files in <code>references/</code>.</div>
           </div>
         </article>
 
@@ -287,7 +288,7 @@ copilot skill enable uk-team-weekly-update</code></pre>
               <li>Access to the Salesforce report named <code>JR Corp EMEA EBR- Activities This Week</code>.</li>
               <li>WorkIQ and Microsoft 365 access.</li>
               <li>Access to the OneDrive or SharePoint prospecting tracker.</li>
-              <li>PowerPoint canvas support for creating and rendering the deck.</li>
+              <li>Google Chrome for opening and presenting the generated HTML page.</li>
             </ul>
             <p>No credentials or access rights are included in the ZIP.</p>
           </div>
@@ -304,7 +305,7 @@ copilot skill enable uk-team-weekly-update</code></pre>
               <li>What worked or did not work?</li>
               <li>What help is needed from the sales team this week?</li>
             </ol>
-            <p>Keep campaign, learning, and help answers brief. They are speaking prompts for the slides.</p>
+            <p>Keep campaign, learning, and help answers brief. They are speaking prompts for the presentation sections.</p>
           </div>
         </article>
 
@@ -330,9 +331,9 @@ copilot skill enable uk-team-weekly-update</code></pre>
         <article class="step">
           <div class="number">9</div>
           <div>
-            <h3>Review and download the PPTX</h3>
-            <p>The output is exactly two 16:9 slides. Slide 1 covers campaigns, learnings, Accounts, meetings booked, completed activities, and the AE table. Slide 2 covers current New Account Recommendations, common themes, up to three proposed actions, and a separate help section.</p>
-            <p>Both slides must be rendered and checked for clipping or overflow. Download the final <code>.pptx</code> artifact and open it in PowerPoint before the meeting.</p>
+            <h3>Review and download the HTML page</h3>
+            <p>The output is one self-contained <code>.html</code> file with two presentation sections. Section 1 covers campaigns, learnings, Accounts, meetings booked, completed activities, and the AE table. Section 2 covers current New Account Recommendations, common themes, up to three proposed actions, and a separate help section.</p>
+            <p>The page uses inline CSS and JavaScript only, supports scrolling and keyboard navigation, and prints as two clean pages. The skill opens the final local file in Google Chrome for visual review, then provides the actual HTML artifact as <code>UK-Team-Prospecting-Update-[LAST-WEEK-START]-to-[LAST-WEEK-END].html</code>.</p>
           </div>
         </article>
       </section>
@@ -342,8 +343,8 @@ copilot skill enable uk-team-weekly-update</code></pre>
       </div>
       <section class="quick-grid">
         <div class="quick-card"><strong>Skill is not listed</strong><span>Confirm the full folder is under <code>~/.copilot/skills/</code>, then start a new Copilot session.</span></div>
+        <div class="quick-card"><strong>Chrome does not open</strong><span>Open the downloaded <code>.html</code> file manually in Google Chrome. The skill must still provide the artifact and state the limitation.</span></div>
         <div class="quick-card"><strong>Metrics do not reconcile</strong><span>Check the completed week, activity owner, Task status/type, Account ownership, and report date filter. Do not approve an unresolved total as confirmed.</span></div>
-        <div class="quick-card"><strong>Source is unavailable</strong><span>Restore access or provide the requested tracker/report control. Any approved gap must be shown as a coverage note.</span></div>
       </section>
     </main>
   </div>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Installation and usage guide for the UK Team Weekly Update Copilot skill.">
+  <title>UK Team Weekly Update | Copilot Skill</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b14;
+      --surface: #0d1424;
+      --surface-2: #121c30;
+      --border: #273653;
+      --text: #f4f7fb;
+      --muted: #a9b7ce;
+      --accent: #68d8b5;
+      --accent-2: #7aa7ff;
+      --warning: #ffd37a;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 85% 5%, rgba(122, 167, 255, 0.14), transparent 28rem),
+        radial-gradient(circle at 15% 18%, rgba(104, 216, 181, 0.10), transparent 24rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent-2); }
+    a:hover { color: #a7c4ff; }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    code {
+      padding: 0.12rem 0.35rem;
+      border: 1px solid rgba(122, 167, 255, 0.22);
+      border-radius: 0.35rem;
+      background: rgba(122, 167, 255, 0.08);
+      font-size: 0.92em;
+    }
+    pre {
+      margin: 0.9rem 0 0;
+      padding: 1rem;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: #080d18;
+      color: #dce7fa;
+      line-height: 1.5;
+    }
+    pre code { padding: 0; border: 0; background: none; }
+
+    .shell { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    .hero { padding: 5rem 0 3.5rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    .eyebrow::before {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(104, 216, 181, 0.7);
+      content: "";
+    }
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+    .lead {
+      max-width: 780px;
+      margin: 1.5rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2rem; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.1rem;
+      padding: 0.75rem 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .button.primary {
+      border-color: transparent;
+      background: var(--accent);
+      color: #06130f;
+      box-shadow: 0 12px 40px rgba(104, 216, 181, 0.18);
+    }
+    .button:hover { transform: translateY(-1px); color: var(--text); }
+    .button.primary:hover { color: #06130f; background: #83e4c6; }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .quick-card, .step, .callout {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(18, 28, 48, 0.92), rgba(10, 16, 29, 0.92));
+      box-shadow: var(--shadow);
+    }
+    .quick-card { padding: 1.25rem; }
+    .quick-card strong { display: block; margin-bottom: 0.3rem; font-size: 1.05rem; }
+    .quick-card span { color: var(--muted); }
+
+    main { padding-bottom: 5rem; }
+    .section-heading { margin: 4rem 0 1.25rem; }
+    .section-heading h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -0.03em; }
+    .section-heading p { max-width: 760px; margin: 0.45rem 0 0; color: var(--muted); }
+    .steps { display: grid; gap: 1rem; }
+    .step {
+      display: grid;
+      grid-template-columns: 3.25rem 1fr;
+      gap: 1rem;
+      padding: 1.35rem;
+    }
+    .number {
+      display: grid;
+      width: 3.25rem;
+      height: 3.25rem;
+      place-items: center;
+      border: 1px solid rgba(104, 216, 181, 0.4);
+      border-radius: 0.85rem;
+      background: rgba(104, 216, 181, 0.08);
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .step h3 { margin: 0 0 0.45rem; font-size: 1.25rem; }
+    .step p { margin: 0.45rem 0; color: var(--muted); }
+    .step ul, .step ol { margin: 0.75rem 0 0; padding-left: 1.25rem; }
+    .step li + li { margin-top: 0.35rem; }
+
+    .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.15rem;
+      border-color: rgba(255, 211, 122, 0.45);
+      background: rgba(255, 211, 122, 0.07);
+      box-shadow: none;
+    }
+    .callout strong { color: var(--warning); }
+    .package-tree { white-space: pre; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .checklist { margin: 0; padding-left: 1.25rem; }
+    .checklist li + li { margin-top: 0.5rem; }
+    footer {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding-top: 3.5rem; }
+      .quick-grid, .two-col { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; }
+      .number { width: 2.75rem; height: 2.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">Personal Copilot skill</div>
+      <h1>UK Team Weekly Update</h1>
+      <p class="lead">Generate Bouke Kingma's two-slide weekly UK sales update from reconciled Salesforce activity, Account Recommendations, Microsoft 365 context, and four short manual inputs.</p>
+      <div class="actions">
+        <a class="button primary" href="./uk-team-weekly-update.zip" download>Download skill ZIP</a>
+        <a class="button" href="#install">Installation guide</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <section class="quick-grid" aria-label="Skill summary">
+      <div class="quick-card"><strong>Two slides</strong><span>Fixed 16:9 executive-ready layout.</span></div>
+      <div class="quick-card"><strong>Reconciled metrics</strong><span>Activity totals are checked against the named Salesforce control report.</span></div>
+      <div class="quick-card"><strong>Downloadable PPTX</strong><span>Both slides are rendered and inspected before delivery.</span></div>
+    </section>
+
+    <main id="install">
+      <div class="section-heading">
+        <h2>Install the skill</h2>
+        <p>Keep the package folder intact. The reference files contain required counting, attribution, layout, and validation rules.</p>
+      </div>
+
+      <section class="steps">
+        <article class="step">
+          <div class="number">1</div>
+          <div>
+            <h3>Download and extract the ZIP</h3>
+            <p>Download the package, then extract it. The archive contains one folder with this structure:</p>
+            <pre class="package-tree"><code>uk-team-weekly-update/
+├── SKILL.md
+├── README.md
+└── references/
+    ├── workflow.md
+    ├── slide-layout.md
+    └── validation.md</code></pre>
+            <div class="callout"><strong>Keep the full folder.</strong> Do not copy <code>SKILL.md</code> alone. The skill depends on all three files in <code>references/</code>.</div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">2</div>
+          <div>
+            <h3>Verify Copilot CLI</h3>
+            <p>Install Copilot CLI if needed, then sign in. Follow the <a href="https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli">official Copilot CLI installation guide</a>.</p>
+            <pre><code>copilot --version
+copilot login</code></pre>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">3</div>
+          <div>
+            <h3>Copy the folder into your personal skills directory</h3>
+            <div class="two-col">
+              <div>
+                <p><strong>macOS</strong></p>
+                <pre><code>mkdir -p ~/.copilot/skills
+cp -R ~/Downloads/uk-team-weekly-update \
+  ~/.copilot/skills/</code></pre>
+              </div>
+              <div>
+                <p><strong>Windows PowerShell</strong></p>
+                <pre><code>New-Item -ItemType Directory `
+  -Force "$HOME\.copilot\skills"
+Copy-Item -Recurse `
+  "$HOME\Downloads\uk-team-weekly-update" `
+  "$HOME\.copilot\skills\"</code></pre>
+              </div>
+            </div>
+            <p>For more detail, see GitHub's <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills">official guide to adding Copilot skills</a>.</p>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">4</div>
+          <div>
+            <h3>Verify and enable</h3>
+            <pre><code>copilot skill list
+copilot skill enable uk-team-weekly-update</code></pre>
+            <p>Restart Copilot CLI or open a new session after enabling the skill.</p>
+          </div>
+        </article>
+      </section>
+
+      <div class="section-heading">
+        <h2>Prepare the weekly update</h2>
+        <p>The skill defaults to the previous completed Monday through Sunday in CET.</p>
+      </div>
+
+      <section class="steps">
+        <article class="step">
+          <div class="number">5</div>
+          <div>
+            <h3>Confirm access</h3>
+            <ul class="checklist">
+              <li>Revenue MCP access to the required Salesforce objects.</li>
+              <li>Access to the Salesforce report named <code>JR Corp EMEA EBR- Activities This Week</code>.</li>
+              <li>WorkIQ and Microsoft 365 access.</li>
+              <li>Access to the OneDrive or SharePoint prospecting tracker.</li>
+              <li>PowerPoint canvas support for creating and rendering the deck.</li>
+            </ul>
+            <p>No credentials or access rights are included in the ZIP.</p>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">6</div>
+          <div>
+            <h3>Prepare four short answers</h3>
+            <p>The skill asks these questions one at a time:</p>
+            <ol>
+              <li>Is the prospecting tracker updated through the end of last week?</li>
+              <li>Which prospecting campaigns ran last week?</li>
+              <li>What worked or did not work?</li>
+              <li>What help is needed from the sales team this week?</li>
+            </ol>
+            <p>Keep campaign, learning, and help answers brief. They are speaking prompts for the slides.</p>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">7</div>
+          <div>
+            <h3>Run the skill</h3>
+            <pre><code>/uk-team-weekly-update</code></pre>
+            <p>You can optionally include a completed reporting week, the tracker URL, or manual inputs with the command.</p>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">8</div>
+          <div>
+            <h3>Let the skill reconcile the data</h3>
+            <p>The workflow includes only Bouke Kingma's completed email and call Tasks associated with Accounts owned by the five fixed UK AEs. Every distinct Task counts, including repeated touches. Only identical Task IDs or confirmed identical Outreach activity IDs are deduplicated.</p>
+            <p>Contact activity follows the Contact's Account. Lead activity follows the Lead's associated Salesforce Account, not free-text company data. Unique Accounts come from the same final Task population and are deduplicated separately by Salesforce Account ID.</p>
+            <p>The activity result is checked against <code>JR Corp EMEA EBR- Activities This Week</code> after the report is set to last week's dates. If report execution is unavailable, the skill asks for an export or control total instead of inventing data.</p>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="number">9</div>
+          <div>
+            <h3>Review and download the PPTX</h3>
+            <p>The output is exactly two 16:9 slides. Slide 1 covers campaigns, learnings, Accounts, meetings booked, completed activities, and the AE table. Slide 2 covers current New Account Recommendations, common themes, up to three proposed actions, and a separate help section.</p>
+            <p>Both slides must be rendered and checked for clipping or overflow. Download the final <code>.pptx</code> artifact and open it in PowerPoint before the meeting.</p>
+          </div>
+        </article>
+      </section>
+
+      <div class="section-heading">
+        <h2>Troubleshooting</h2>
+      </div>
+      <section class="quick-grid">
+        <div class="quick-card"><strong>Skill is not listed</strong><span>Confirm the full folder is under <code>~/.copilot/skills/</code>, then start a new Copilot session.</span></div>
+        <div class="quick-card"><strong>Metrics do not reconcile</strong><span>Check the completed week, activity owner, Task status/type, Account ownership, and report date filter. Do not approve an unresolved total as confirmed.</span></div>
+        <div class="quick-card"><strong>Source is unavailable</strong><span>Restore access or provide the requested tracker/report control. Any approved gap must be shown as a coverage note.</span></div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="shell">Internal installation guide for the <code>uk-team-weekly-update</code> personal Copilot skill.</div>
+  </footer>
+</body>
+</html>

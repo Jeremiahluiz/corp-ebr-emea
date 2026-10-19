@@ -218,57 +218,60 @@
             <p>Download the package, then extract it. The archive contains one folder with this structure:</p>
             <pre class="package-tree"><code>uk-team-weekly-update/
 ├── SKILL.md
-            ├── PROMPT.md
-            ├── README.md
-            └── references/
-                ├── workflow.md
-                ├── page-layout.md
-                └── validation.md</code></pre>
-                        <div class="callout"><strong>Keep the full folder.</strong> Do not copy <code>SKILL.md</code> alone. The skill depends on the reusable prompt and all three files in <code>references/</code>.</div>
+├── PROMPT.md
+├── README.md
+└── references/
+    ├── workflow.md
+    ├── page-layout.md
+    └── validation.md</code></pre>
+            <div class="callout"><strong>Keep the full folder.</strong> Do not copy <code>SKILL.md</code> alone. The skill depends on the reusable prompt and all three files in <code>references/</code>.</div>
           </div>
         </article>
 
         <article class="step">
           <div class="number">2</div>
           <div>
-            <h3>Verify Copilot CLI</h3>
-            <p>Install Copilot CLI if needed, then sign in. Follow the <a href="https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli">official Copilot CLI installation guide</a>.</p>
-            <pre><code>copilot --version
-copilot login</code></pre>
+            <h3>Open the GitHub Copilot app</h3>
+            <p>Open the GitHub Copilot app and sign in. In the sidebar, click <strong>Customize</strong>, then select <strong>Skills</strong>.</p>
+            <p>See GitHub's <a href="https://docs.github.com/en/copilot/how-tos/github-copilot-app/customize-github-copilot-app">official guide to customizing the GitHub Copilot app</a>.</p>
           </div>
         </article>
 
         <article class="step">
           <div class="number">3</div>
           <div>
-            <h3>Copy the folder into your personal skills directory</h3>
+            <h3>Add the local skill folder</h3>
+            <p>In <strong>Customize → Skills</strong>, use the available option to add a local skill folder. Select the extracted <code>uk-team-weekly-update</code> folder that directly contains <code>SKILL.md</code>.</p>
+            <p>The available controls can vary by app version. If no local-folder option is shown, use the manual filesystem fallback:</p>
             <div class="two-col">
               <div>
-                <p><strong>macOS</strong></p>
-                <pre><code>mkdir -p ~/.copilot/skills
-cp -R ~/Downloads/uk-team-weekly-update \
-  ~/.copilot/skills/</code></pre>
+                <p><strong>macOS fallback</strong></p>
+                <ol>
+                  <li>In Finder, choose <strong>Go → Go to Folder</strong>.</li>
+                  <li>Enter <code>~/.copilot</code>.</li>
+                  <li>Create a folder named <code>skills</code> if it is missing.</li>
+                  <li>Move the complete folder to <code>~/.copilot/skills/uk-team-weekly-update</code>.</li>
+                </ol>
               </div>
               <div>
-                <p><strong>Windows PowerShell</strong></p>
-                <pre><code>New-Item -ItemType Directory `
-  -Force "$HOME\.copilot\skills"
-Copy-Item -Recurse `
-  "$HOME\Downloads\uk-team-weekly-update" `
-  "$HOME\.copilot\skills\"</code></pre>
+                <p><strong>Windows fallback</strong></p>
+                <ol>
+                  <li>Open File Explorer.</li>
+                  <li>Enter <code>%USERPROFILE%\.copilot</code> in the address bar.</li>
+                  <li>Create a folder named <code>skills</code> if it is missing.</li>
+                  <li>Move the complete folder to <code>%USERPROFILE%\.copilot\skills\uk-team-weekly-update</code>.</li>
+                </ol>
               </div>
             </div>
-            <p>For more detail, see GitHub's <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills">official guide to adding Copilot skills</a>.</p>
+            <div class="callout"><strong>Avoid an extra nested folder.</strong> <code>SKILL.md</code> must be directly inside <code>uk-team-weekly-update</code>, not inside a second folder with the same name.</div>
           </div>
         </article>
 
         <article class="step">
           <div class="number">4</div>
           <div>
-            <h3>Verify and enable</h3>
-            <pre><code>copilot skill list
-copilot skill enable uk-team-weekly-update</code></pre>
-            <p>Restart Copilot CLI or open a new session after enabling the skill.</p>
+            <h3>Confirm the skill in the app</h3>
+            <p>Quit and reopen the GitHub Copilot app. Open <strong>Customize → Skills</strong>, confirm <code>uk-team-weekly-update</code> is installed and enabled, then start a new chat.</p>
           </div>
         </article>
       </section>
@@ -342,7 +345,7 @@ copilot skill enable uk-team-weekly-update</code></pre>
         <h2>Troubleshooting</h2>
       </div>
       <section class="quick-grid">
-        <div class="quick-card"><strong>Skill is not listed</strong><span>Confirm the full folder is under <code>~/.copilot/skills/</code>, then start a new Copilot session.</span></div>
+        <div class="quick-card"><strong>Skill is not listed</strong><span>Check <strong>Customize → Skills</strong>. Then confirm <code>SKILL.md</code> is directly inside the selected folder or the manual <code>.copilot/skills/uk-team-weekly-update</code> path, with no extra nested folder.</span></div>
         <div class="quick-card"><strong>Chrome does not open</strong><span>Open the downloaded <code>.html</code> file manually in Google Chrome. The skill must still provide the artifact and state the limitation.</span></div>
         <div class="quick-card"><strong>Metrics do not reconcile</strong><span>Check the completed week, activity owner, Task status/type, Account ownership, and report date filter. Do not approve an unresolved total as confirmed.</span></div>
       </section>

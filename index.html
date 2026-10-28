@@ -681,6 +681,7 @@ body {
     <nav class="nav">
       <button class="nav-btn active" data-section="products">Products & Intel</button>
       <button class="nav-btn" data-section="discovery">Discovery</button>
+      <button class="nav-btn" data-section="prospecting">Prospecting</button>
       <button class="nav-btn" data-section="quarterly-snapshots">Quarterly snapshots</button>
       <a class="nav-link" href="role-play-game.html">Scenario Lab</a>
       <a class="nav-link" href="qualification-playbook.html">Qualification Playbook</a>
@@ -1303,6 +1304,21 @@ body {
     </div>
   </div>
 
+  <!-- ==================== PROSPECTING ==================== -->
+  <div class="section" id="prospecting">
+    <div class="section-header">
+      <h1 class="section-title">Prospecting</h1>
+      <p class="section-subtitle">Copy-ready targeting resources for finding the right GitHub personas.</p>
+    </div>
+    <div class="product-landing">
+      <a class="product-landing-btn" href="linkedin-sales-navigator-boolean-searches.html">
+        <div class="plb-icon" style="background:rgba(88,166,255,0.15);">in</div>
+        <div class="plb-title">LinkedIn Sales Navigator Boolean Searches for GitHub Personas</div>
+        <div class="plb-desc">Nine Current job title searches plus an optional Keywords filter, formatted for direct copy and paste.</div>
+      </a>
+    </div>
+  </div>
+
   <!-- ==================== QUARTERLY SNAPSHOTS ==================== -->
   <div class="section" id="quarterly-snapshots">
     <div class="section-header">
@@ -1332,7 +1348,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 // Product landing buttons → detail views
-document.querySelectorAll('.product-landing-btn').forEach(btn => {
+document.querySelectorAll('.product-landing-btn[data-target]').forEach(btn => {
   btn.addEventListener('click', () => {
     document.getElementById('product-landing').style.display = 'none';
     document.getElementById(btn.dataset.target).classList.add('active');

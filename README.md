@@ -16,6 +16,12 @@ Open the sales role-play trainer at [jeremiahluiz.github.io/corp-ebr-emea/role-p
 
 Open the [Discovery Role-Play Scenarios presentation](https://jeremiahluiz.github.io/corp-ebr-emea/discovery-role-play-scenarios.html) to practice discovery conversations for AI strategy, platform consolidation, and application security.
 
+## Prospecting
+
+### [LinkedIn Sales Navigator Boolean Searches for GitHub Personas](linkedin-sales-navigator-boolean-searches.html)
+
+Use these copy-ready Current job title searches to find GitHub personas across engineering, platform, IT, security, data and AI, quality, product, open source, and commercial roles. Each category is a separate LinkedIn Sales Navigator search and can be combined with the optional Keywords filter.
+
 ## Team Operations & Weekly Cadence
 
 ### [Weekly team meeting presentation (PowerPoint)](https://onedrive.cloud.microsoft/:p:/a@dz2y5vs2/r/_layouts/15/Doc.aspx?sourcedoc=%7B76EEE691-DE61-4FD2-A535-7AAEF3334CFF%7D&file=EMEA%20CORP%20EBR.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1&ocdi=noRedirect)

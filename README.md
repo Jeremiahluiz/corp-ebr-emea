@@ -12,6 +12,10 @@ Use this sales hub to prepare customer conversations, sharpen competitive positi
 
 Open the sales role-play trainer at [jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html](https://jeremiahluiz.github.io/corp-ebr-emea/role-play-game.html). It includes randomized and Free Play scenario selection plus a Cold Call Guide for existing GitHub customers. Reps can choose relationship context, practice cost, risk, or scale “poke the bear” questions, and retry the same scenario with a three-minute timer. The app can be installed, receives published updates automatically, and includes offline fallback. Editor changes, practice preferences, and the active scenario sync live between open tabs in the same browser. Export/import JSON is still required between separate browsers or laptops.
 
+### [Discovery Role-Play Scenarios](discovery-role-play-scenarios.html)
+
+Open the [Discovery Role-Play Scenarios presentation](https://jeremiahluiz.github.io/corp-ebr-emea/discovery-role-play-scenarios.html) to practice discovery conversations for AI strategy, platform consolidation, and application security.
+
 ## Prospecting
 
 ### [LinkedIn Sales Navigator Boolean Searches for GitHub Personas](linkedin-sales-navigator-boolean-searches.html)

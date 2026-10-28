@@ -20,7 +20,7 @@ Open the [Discovery Role-Play Scenarios presentation](https://jeremiahluiz.githu
 
 ### [LinkedIn Sales Navigator Boolean Searches for GitHub Personas](linkedin-sales-navigator-boolean-searches.html)
 
-Use these copy-ready Current job title searches to find GitHub personas across engineering, platform, IT, security, data and AI, quality, product, open source, and commercial roles. Each category is a separate LinkedIn Sales Navigator search and can be combined with the optional Keywords filter.
+Use these copy-ready Current job title searches to find GitHub personas across engineering, platform, IT, security, data and AI, quality, product, open source, and commercial roles. Each category is split into upper management, middle management, and front-line management or individual contributor searches, with an optional Keywords filter.
 
 ## Team Operations & Weekly Cadence
 

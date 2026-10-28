@@ -120,7 +120,7 @@
 
     .brief-layout {
       display: grid;
-      grid-template-columns: .7fr 1.3fr;
+      grid-template-columns: .62fr .82fr 1.16fr;
       gap: clamp(18px, 2vw, 30px);
       align-items: stretch;
       min-height: 0;
@@ -166,6 +166,48 @@
       font-weight: 800;
       border-bottom: 1px solid currentColor;
       margin-top: 24px;
+    }
+    .scenario-card {
+      align-content: start !important;
+    }
+    .scenario-card h3 {
+      color: var(--tone, var(--blue));
+      font-size: clamp(24px, 2vw, 36px);
+      margin-bottom: 14px;
+    }
+    .scenario-note {
+      width: fit-content;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: var(--yellow);
+      background: rgba(253,224,71,.09);
+      border: 1px solid rgba(253,224,71,.28);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .scenario-list {
+      display: grid;
+      gap: 10px;
+    }
+    .scenario-item {
+      padding: 11px 13px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.035);
+    }
+    .scenario-item strong {
+      display: block;
+      color: #f1f3f6;
+      font-size: clamp(12px, .86vw, 15px);
+      margin-bottom: 3px;
+    }
+    .scenario-item span {
+      color: var(--muted);
+      font-size: clamp(11px, .75vw, 13px);
+      line-height: 1.32;
     }
 
     .left-stack, .right-stack {
@@ -426,6 +468,17 @@
           <p>For the role play, assume GitLab is the primary DevOps platform and GitHub Copilot has not yet been adopted.</p>
           <a href="https://www.indeed.com/about" target="_blank" rel="noreferrer">Indeed company overview ↗</a>
         </article>
+        <article class="card scenario-card" style="--tone:var(--blue)">
+          <div class="card-label">Scenario</div>
+          <h3>AI strategy is still forming</h3>
+          <div class="scenario-note">Fictional role-play data</div>
+          <div class="scenario-list">
+            <div class="scenario-item"><strong>GitLab footprint</strong><span>3,200 GitLab Ultimate seats and approximately 7,500 repositories.</span></div>
+            <div class="scenario-item"><strong>Developer AI</strong><span>No enterprise AI coding assistant. Teams are independently testing Cursor, Claude, and free tools.</span></div>
+            <div class="scenario-item"><strong>Current pressure</strong><span>Engineering leadership wants an AI position before the next annual planning cycle.</span></div>
+            <div class="scenario-item"><strong>Discovery tension</strong><span>Developer demand is growing, but security, data use, ownership, and success metrics remain unclear.</span></div>
+          </div>
+        </article>
       </div>
       <footer class="footer"><span>Role play: 12 minutes discovery · 5 minutes feedback</span><span>01</span></footer>
     </section>
@@ -448,6 +501,17 @@
           <p>Vodafone standardized repositories on GitHub Enterprise while retaining Microsoft Azure DevOps capabilities for areas such as project management and deployment. This makes it a strong scenario for discussing fragmentation, platform roles, and global collaboration.</p>
           <a href="https://github.com/customer-stories/vodafone" target="_blank" rel="noreferrer">GitHub customer story: Vodafone ↗</a>
         </article>
+        <article class="card scenario-card" style="--tone:var(--green)">
+          <div class="card-label">Scenario</div>
+          <h3>Three platforms, no clear target state</h3>
+          <div class="scenario-note">Fictional role-play data</div>
+          <div class="scenario-list">
+            <div class="scenario-item"><strong>GitHub Enterprise</strong><span>1,000 licensed users, 820 monthly active users, and 2,400 repositories.</span></div>
+            <div class="scenario-item"><strong>Azure DevOps</strong><span>Actively used by approximately 6,000 developers for Boards, Pipelines, and legacy repositories.</span></div>
+            <div class="scenario-item"><strong>GitLab</strong><span>1,200 users across four engineering groups following separate standards.</span></div>
+            <div class="scenario-item"><strong>Executive question</strong><span>Should Vodafone consolidate further, define clearer platform roles, or govern the mixed landscape?</span></div>
+          </div>
+        </article>
       </div>
       <footer class="footer"><span>Role play: 12 minutes discovery · 5 minutes feedback</span><span>02</span></footer>
     </section>
@@ -469,6 +533,17 @@
           <p>BarmeniaGothaer is a major German insurance group operating in a highly regulated environment. Its information security management system is certified to ISO/IEC 27001.</p>
           <p>The organization is also modernizing large-scale data and technology environments, creating a relevant setting for a conversation about application-security consistency, developer workflows, and risk governance.</p>
           <a href="https://www.barmeniagothaer.de/rechtliche-informationen/informationssicherheit/" target="_blank" rel="noreferrer">BarmeniaGothaer information security ↗</a>
+        </article>
+        <article class="card scenario-card" style="--tone:var(--purple)">
+          <div class="card-label">Scenario</div>
+          <h3>Security coverage is inconsistent</h3>
+          <div class="scenario-note">Fictional role-play data</div>
+          <div class="scenario-list">
+            <div class="scenario-item"><strong>GitHub footprint</strong><span>650 GitHub Enterprise users working across approximately 3,800 repositories.</span></div>
+            <div class="scenario-item"><strong>GHAS coverage</strong><span>220 active committers covered, mainly in customer-facing digital applications.</span></div>
+            <div class="scenario-item"><strong>Security gap</strong><span>Only 30% of repositories use consistent code, secret, and dependency scanning.</span></div>
+            <div class="scenario-item"><strong>CISO concern</strong><span>Findings move through multiple tools, and average critical remediation time is 45 days.</span></div>
+          </div>
         </article>
       </div>
       <footer class="footer"><span>Role play: 12 minutes discovery · 5 minutes feedback</span><span>03</span></footer>

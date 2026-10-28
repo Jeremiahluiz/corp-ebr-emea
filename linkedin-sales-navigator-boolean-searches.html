@@ -213,6 +213,55 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .level-list {
+      display: grid;
+    }
+
+    .level-search {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .level-search:last-child { border-bottom: 0; }
+
+    .level-header {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      border-right: 1px solid var(--border);
+      background: rgba(13, 17, 23, 0.46);
+    }
+
+    .level-title {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.35;
+    }
+
+    .level-description {
+      margin: -5px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .level-search .query {
+      min-width: 0;
+    }
+
+    .empty-query {
+      display: flex;
+      align-items: center;
+      min-height: 100%;
+      margin: 0;
+      padding: 20px;
+      color: var(--muted);
+      background: #090c10;
+      font-size: 0.9rem;
+    }
+
     .card-number {
       margin: 0 0 4px;
       color: var(--green);
@@ -300,6 +349,8 @@
         flex-direction: column;
       }
 
+      .level-search { grid-template-columns: 1fr; }
+      .level-header { border-right: 0; border-bottom: 1px solid var(--border); }
       .copy-button { width: 100%; }
     }
   </style>
@@ -323,15 +374,23 @@
   <main>
     <p class="eyebrow">Prospecting resource</p>
     <h1>LinkedIn Sales Navigator Boolean Searches for GitHub Personas</h1>
-    <p class="intro">Use each category as a separate LinkedIn Sales Navigator <strong>Current job title</strong> search. Add the optional Keywords filter when you want to narrow results toward GitHub, DevOps, platform engineering, application security, software supply chain, or AI relevance.</p>
+    <p class="intro">Use each category and role level as a separate LinkedIn Sales Navigator <strong>Current job title</strong> search. Add the optional Keywords filter as a separate dimension when you want to narrow results toward GitHub, DevOps, platform engineering, application security, software supply chain, or AI relevance.</p>
 
     <div class="instructions">
       <div class="instruction">
-        <strong>1. Search one category at a time</strong>
-        <p>Copy a full Boolean string into the Current job title filter. Do not combine all nine title categories in one search.</p>
+        <strong>1. Choose a category and level</strong>
+        <p>Copy one Boolean string into the Current job title filter. Run upper, middle, and front-line or IC searches separately.</p>
       </div>
       <div class="instruction">
-        <strong>2. Keep the Boolean syntax intact</strong>
+        <strong>2. Use OR between alternative titles</strong>
+        <p>One profile is unlikely to hold every alternative title, so AND is not appropriate inside a job-title group.</p>
+      </div>
+      <div class="instruction">
+        <strong>3. Use AND between dimensions</strong>
+        <p>Combine a Current job title group with the optional Keywords filter as separate Sales Navigator filters. This applies AND logic between the dimensions.</p>
+      </div>
+      <div class="instruction">
+        <strong>4. Keep the Boolean syntax intact</strong>
         <p>Preserve uppercase operators, quoted multi-word titles, and the surrounding parentheses when you paste.</p>
       </div>
     </div>
@@ -340,100 +399,313 @@
       <article class="search-card" id="engineering-software-development">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 1</p>
+            <p class="card-number">Persona category 1</p>
             <h2>Engineering and software development</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="engineering-query">Copy search</button>
         </div>
-        <pre class="query"><code id="engineering-query">("Software Developer" OR "Software Engineer" OR "Application Developer" OR "Full Stack Developer" OR "Full Stack Engineer" OR "Backend Developer" OR "Backend Engineer" OR "Frontend Developer" OR "Frontend Engineer" OR "Mobile Developer" OR "Mobile Engineer" OR "Cloud Developer" OR "API Developer" OR "Integration Developer" OR "Staff Software Engineer" OR "Principal Software Engineer" OR "Distinguished Engineer" OR "Technical Lead" OR "Tech Lead" OR "Lead Developer" OR "Lead Software Engineer" OR "Software Architect" OR "Application Architect" OR "Engineering Manager" OR "Software Engineering Manager" OR "Development Manager" OR "Director of Engineering" OR "Director of Software Engineering" OR "Head of Engineering" OR "Head of Software Development" OR "VP Engineering" OR "VP Software Engineering" OR "Chief Architect" OR CTO OR "Chief Technology Officer")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="engineering-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="engineering-upper-query">("VP Engineering" OR "VP Software Engineering" OR "Chief Architect" OR CTO OR "Chief Technology Officer")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="engineering-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="engineering-middle-query">("Director of Engineering" OR "Director of Software Engineering" OR "Head of Engineering" OR "Head of Software Development")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, leads, architects, engineers, and developers</p>
+              <button class="copy-button" type="button" data-copy="engineering-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="engineering-lower-query">("Software Developer" OR "Software Engineer" OR "Application Developer" OR "Full Stack Developer" OR "Full Stack Engineer" OR "Backend Developer" OR "Backend Engineer" OR "Frontend Developer" OR "Frontend Engineer" OR "Mobile Developer" OR "Mobile Engineer" OR "Cloud Developer" OR "API Developer" OR "Integration Developer" OR "Staff Software Engineer" OR "Principal Software Engineer" OR "Distinguished Engineer" OR "Technical Lead" OR "Tech Lead" OR "Lead Developer" OR "Lead Software Engineer" OR "Software Architect" OR "Application Architect" OR "Engineering Manager" OR "Software Engineering Manager" OR "Development Manager")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="platform-devops-infrastructure">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 2</p>
+            <p class="card-number">Persona category 2</p>
             <h2>Platform engineering, DevOps and infrastructure</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="platform-query">Copy search</button>
         </div>
-        <pre class="query"><code id="platform-query">("Platform Engineer" OR "Lead Platform Engineer" OR "Principal Platform Engineer" OR "Platform Architect" OR "Platform Engineering Manager" OR "Director of Platform Engineering" OR "Head of Platform Engineering" OR "Head of Platform" OR "VP Platform Engineering" OR "DevOps Engineer" OR "Lead DevOps Engineer" OR "DevOps Architect" OR "DevOps Manager" OR "Director of DevOps" OR "Head of DevOps" OR "DevSecOps Engineer" OR "Site Reliability Engineer" OR SRE OR "Reliability Engineer" OR "Production Engineer" OR "Cloud Engineer" OR "Cloud Platform Engineer" OR "Cloud Infrastructure Engineer" OR "Cloud Architect" OR "Infrastructure Engineer" OR "Infrastructure Architect" OR "Kubernetes Engineer" OR "Container Platform Engineer" OR "Infrastructure Automation Engineer" OR "Infrastructure as Code Engineer" OR "IaC Engineer" OR "CI/CD Engineer" OR "Build Engineer" OR "Build and Release Engineer" OR "Release Engineer" OR "Release Manager" OR "Developer Infrastructure Engineer" OR "Developer Productivity Engineer" OR "Developer Experience Engineer" OR "Developer Enablement Engineer" OR "Developer Tools Engineer" OR "Internal Developer Platform Engineer" OR "Cloud Operations Engineer")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="platform-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="platform-upper-query">("VP Platform Engineering")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="platform-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="platform-middle-query">("Director of Platform Engineering" OR "Head of Platform Engineering" OR "Head of Platform" OR "Director of DevOps" OR "Head of DevOps")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, leads, architects, engineers, and practitioners</p>
+              <button class="copy-button" type="button" data-copy="platform-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="platform-lower-query">("Platform Engineer" OR "Lead Platform Engineer" OR "Principal Platform Engineer" OR "Platform Architect" OR "Platform Engineering Manager" OR "DevOps Engineer" OR "Lead DevOps Engineer" OR "DevOps Architect" OR "DevOps Manager" OR "DevSecOps Engineer" OR "Site Reliability Engineer" OR SRE OR "Reliability Engineer" OR "Production Engineer" OR "Cloud Engineer" OR "Cloud Platform Engineer" OR "Cloud Infrastructure Engineer" OR "Cloud Architect" OR "Infrastructure Engineer" OR "Infrastructure Architect" OR "Kubernetes Engineer" OR "Container Platform Engineer" OR "Infrastructure Automation Engineer" OR "Infrastructure as Code Engineer" OR "IaC Engineer" OR "CI/CD Engineer" OR "Build Engineer" OR "Build and Release Engineer" OR "Release Engineer" OR "Release Manager" OR "Developer Infrastructure Engineer" OR "Developer Productivity Engineer" OR "Developer Experience Engineer" OR "Developer Enablement Engineer" OR "Developer Tools Engineer" OR "Internal Developer Platform Engineer" OR "Cloud Operations Engineer")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="it-enterprise-administration-governance">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 3</p>
+            <p class="card-number">Persona category 3</p>
             <h2>IT, enterprise administration and governance</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="it-query">Copy search</button>
         </div>
-        <pre class="query"><code id="it-query">(CIO OR "Chief Information Officer" OR CTO OR "Chief Technology Officer" OR "VP Information Technology" OR "VP IT" OR "VP Infrastructure" OR "VP Enterprise Applications" OR "Head of IT" OR "Head of Infrastructure" OR "Head of Cloud" OR "IT Director" OR "Director of Information Technology" OR "Director of IT Operations" OR "Director of Infrastructure" OR "Director of Cloud Operations" OR "IT Operations Manager" OR "Infrastructure Manager" OR "Enterprise Architect" OR "IT Architect" OR "Infrastructure Architect" OR "Cloud Architect" OR "GitHub Administrator" OR "GitHub Enterprise Administrator" OR "Enterprise Applications Manager" OR "Enterprise Applications Engineer" OR "Systems Administrator" OR "Cloud Administrator" OR "Platform Administrator" OR "Identity and Access Management Engineer" OR "IAM Engineer" OR "IAM Architect" OR "Identity Engineer" OR "IT Governance Manager" OR "IT Service Management Manager" OR "ITSM Manager" OR "Software Asset Manager" OR "Software Licensing Manager" OR "Developer Tools Administrator" OR "Source Control Administrator" OR "Migration Architect")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="it-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="it-upper-query">(CIO OR "Chief Information Officer" OR CTO OR "Chief Technology Officer" OR "VP Information Technology" OR "VP IT" OR "VP Infrastructure" OR "VP Enterprise Applications")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="it-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="it-middle-query">("Head of IT" OR "Head of Infrastructure" OR "Head of Cloud" OR "IT Director" OR "Director of Information Technology" OR "Director of IT Operations" OR "Director of Infrastructure" OR "Director of Cloud Operations")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, architects, administrators, and engineers</p>
+              <button class="copy-button" type="button" data-copy="it-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="it-lower-query">("IT Operations Manager" OR "Infrastructure Manager" OR "Enterprise Architect" OR "IT Architect" OR "Infrastructure Architect" OR "Cloud Architect" OR "GitHub Administrator" OR "GitHub Enterprise Administrator" OR "Enterprise Applications Manager" OR "Enterprise Applications Engineer" OR "Systems Administrator" OR "Cloud Administrator" OR "Platform Administrator" OR "Identity and Access Management Engineer" OR "IAM Engineer" OR "IAM Architect" OR "Identity Engineer" OR "IT Governance Manager" OR "IT Service Management Manager" OR "ITSM Manager" OR "Software Asset Manager" OR "Software Licensing Manager" OR "Developer Tools Administrator" OR "Source Control Administrator" OR "Migration Architect")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="application-security-cybersecurity">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 4</p>
+            <p class="card-number">Persona category 4</p>
             <h2>Application security and cybersecurity</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="security-query">Copy search</button>
         </div>
-        <pre class="query"><code id="security-query">(CISO OR "Chief Information Security Officer" OR "Chief Security Officer" OR "VP Security" OR "VP Cybersecurity" OR "VP Information Security" OR "Head of Security" OR "Head of Cybersecurity" OR "Head of Information Security" OR "Director of Security" OR "Director of Cybersecurity" OR "Director of Information Security" OR "Security Engineering Director" OR "Application Security Director" OR "Head of Application Security" OR "Application Security Manager" OR "AppSec Manager" OR "Application Security Engineer" OR "AppSec Engineer" OR "Product Security Director" OR "Product Security Manager" OR "Product Security Engineer" OR "Software Security Engineer" OR "Security Engineer" OR "Security Architect" OR "Cybersecurity Architect" OR "Cloud Security Engineer" OR "Cloud Security Architect" OR "DevSecOps Engineer" OR "DevSecOps Architect" OR "Security Automation Engineer" OR "Security Operations Engineer" OR "SecOps Engineer" OR "Vulnerability Management Manager" OR "Vulnerability Management Engineer" OR "Security Researcher" OR "Penetration Tester" OR "Offensive Security Engineer" OR "Detection Engineer" OR "Incident Response Manager" OR "Software Supply Chain Security Engineer" OR "Supply Chain Security Engineer" OR "Open Source Security Engineer" OR "Security Governance Manager" OR "GRC Manager" OR "Technology Risk Manager" OR "Security Compliance Manager")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="security-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="security-upper-query">(CISO OR "Chief Information Security Officer" OR "Chief Security Officer" OR "VP Security" OR "VP Cybersecurity" OR "VP Information Security")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="security-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="security-middle-query">("Head of Security" OR "Head of Cybersecurity" OR "Head of Information Security" OR "Director of Security" OR "Director of Cybersecurity" OR "Director of Information Security" OR "Security Engineering Director" OR "Application Security Director" OR "Head of Application Security" OR "Product Security Director")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, architects, engineers, researchers, and practitioners</p>
+              <button class="copy-button" type="button" data-copy="security-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="security-lower-query">("Application Security Manager" OR "AppSec Manager" OR "Application Security Engineer" OR "AppSec Engineer" OR "Product Security Manager" OR "Product Security Engineer" OR "Software Security Engineer" OR "Security Engineer" OR "Security Architect" OR "Cybersecurity Architect" OR "Cloud Security Engineer" OR "Cloud Security Architect" OR "DevSecOps Engineer" OR "DevSecOps Architect" OR "Security Automation Engineer" OR "Security Operations Engineer" OR "SecOps Engineer" OR "Vulnerability Management Manager" OR "Vulnerability Management Engineer" OR "Security Researcher" OR "Penetration Tester" OR "Offensive Security Engineer" OR "Detection Engineer" OR "Incident Response Manager" OR "Software Supply Chain Security Engineer" OR "Supply Chain Security Engineer" OR "Open Source Security Engineer" OR "Security Governance Manager" OR "GRC Manager" OR "Technology Risk Manager" OR "Security Compliance Manager")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="data-ai-machine-learning">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 5</p>
+            <p class="card-number">Persona category 5</p>
             <h2>Data, AI and machine learning</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="data-ai-query">Copy search</button>
         </div>
-        <pre class="query"><code id="data-ai-query">(CDO OR "Chief Data Officer" OR CDAO OR "Chief Data and Analytics Officer" OR CAIO OR "Chief AI Officer" OR "VP Data" OR "VP Data Engineering" OR "VP Data Science" OR "VP Artificial Intelligence" OR "VP Machine Learning" OR "Head of Data" OR "Head of Data Engineering" OR "Head of Data Science" OR "Head of AI" OR "Head of Machine Learning" OR "Head of Generative AI" OR "Director of Data Engineering" OR "Director of Data Science" OR "Director of AI" OR "Director of Machine Learning" OR "Data Engineering Manager" OR "Data Science Manager" OR "Machine Learning Manager" OR "AI Engineering Manager" OR "Data Platform Manager" OR "Data Engineer" OR "Lead Data Engineer" OR "Principal Data Engineer" OR "Data Platform Engineer" OR "Data Infrastructure Engineer" OR "Analytics Engineer" OR "Data Architect" OR "Data Scientist" OR "Machine Learning Engineer" OR "ML Engineer" OR "MLOps Engineer" OR "Machine Learning Platform Engineer" OR "ML Platform Engineer" OR "AI Engineer" OR "Generative AI Engineer" OR "GenAI Engineer" OR "LLM Engineer" OR "NLP Engineer" OR "Computer Vision Engineer" OR "Applied AI Engineer" OR "AI Platform Engineer" OR "AI Infrastructure Engineer" OR "AI Research Engineer" OR "Research Scientist" OR "Machine Learning Scientist" OR "Applied Scientist" OR "Model Governance Lead" OR "Responsible AI Lead" OR "AI Security Engineer" OR "AI Architect" OR "Machine Learning Architect")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="data-ai-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="data-ai-upper-query">(CDO OR "Chief Data Officer" OR CDAO OR "Chief Data and Analytics Officer" OR CAIO OR "Chief AI Officer" OR "VP Data" OR "VP Data Engineering" OR "VP Data Science" OR "VP Artificial Intelligence" OR "VP Machine Learning")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="data-ai-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="data-ai-middle-query">("Head of Data" OR "Head of Data Engineering" OR "Head of Data Science" OR "Head of AI" OR "Head of Machine Learning" OR "Head of Generative AI" OR "Director of Data Engineering" OR "Director of Data Science" OR "Director of AI" OR "Director of Machine Learning")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, leads, architects, engineers, and scientists</p>
+              <button class="copy-button" type="button" data-copy="data-ai-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="data-ai-lower-query">("Data Engineering Manager" OR "Data Science Manager" OR "Machine Learning Manager" OR "AI Engineering Manager" OR "Data Platform Manager" OR "Data Engineer" OR "Lead Data Engineer" OR "Principal Data Engineer" OR "Data Platform Engineer" OR "Data Infrastructure Engineer" OR "Analytics Engineer" OR "Data Architect" OR "Data Scientist" OR "Machine Learning Engineer" OR "ML Engineer" OR "MLOps Engineer" OR "Machine Learning Platform Engineer" OR "ML Platform Engineer" OR "AI Engineer" OR "Generative AI Engineer" OR "GenAI Engineer" OR "LLM Engineer" OR "NLP Engineer" OR "Computer Vision Engineer" OR "Applied AI Engineer" OR "AI Platform Engineer" OR "AI Infrastructure Engineer" OR "AI Research Engineer" OR "Research Scientist" OR "Machine Learning Scientist" OR "Applied Scientist" OR "Model Governance Lead" OR "Responsible AI Lead" OR "AI Security Engineer" OR "AI Architect" OR "Machine Learning Architect")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="testing-quality-reliability">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 6</p>
+            <p class="card-number">Persona category 6</p>
             <h2>Testing, quality and reliability</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="quality-query">Copy search</button>
         </div>
-        <pre class="query"><code id="quality-query">("Quality Assurance Engineer" OR "QA Engineer" OR "QA Automation Engineer" OR "Quality Engineer" OR "Software Quality Engineer" OR "Test Engineer" OR "Test Automation Engineer" OR "Automation Test Engineer" OR "Software Development Engineer in Test" OR SDET OR "Performance Test Engineer" OR "Performance Engineer" OR "Reliability Test Engineer" OR "Security Test Engineer" OR "Test Architect" OR "QA Architect" OR "QA Lead" OR "Test Lead" OR "QA Manager" OR "Quality Engineering Manager" OR "Director of Quality Engineering" OR "Head of Quality Engineering")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+            </div>
+            <p class="empty-query">No credible C-level or VP title appears in the existing testing, quality, and reliability list.</p>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="quality-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="quality-middle-query">("Director of Quality Engineering" OR "Head of Quality Engineering")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, leads, architects, engineers, and testers</p>
+              <button class="copy-button" type="button" data-copy="quality-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="quality-lower-query">("Quality Assurance Engineer" OR "QA Engineer" OR "QA Automation Engineer" OR "Quality Engineer" OR "Software Quality Engineer" OR "Test Engineer" OR "Test Automation Engineer" OR "Automation Test Engineer" OR "Software Development Engineer in Test" OR SDET OR "Performance Test Engineer" OR "Performance Engineer" OR "Reliability Test Engineer" OR "Security Test Engineer" OR "Test Architect" OR "QA Architect" OR "QA Lead" OR "Test Lead" OR "QA Manager" OR "Quality Engineering Manager")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="product-program-engineering-operations">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 7</p>
+            <p class="card-number">Persona category 7</p>
             <h2>Product, program and engineering operations</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="product-query">Copy search</button>
         </div>
-        <pre class="query"><code id="product-query">("Chief Product Officer" OR "VP Product" OR "Head of Product" OR "Director of Product" OR "Product Manager" OR "Technical Product Manager" OR "Developer Platform Product Manager" OR "Platform Product Manager" OR "AI Product Manager" OR "Security Product Manager" OR "Product Operations Manager" OR "Technical Program Manager" OR "Engineering Program Manager" OR "Program Manager" OR "Agile Delivery Manager" OR "Scrum Master" OR "Release Train Engineer" OR "Engineering Operations Manager" OR "Development Operations Manager" OR "R&amp;D Operations Manager" OR "PMO Director" OR "Digital Transformation Director")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+              <button class="copy-button" type="button" data-copy="product-upper-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="product-upper-query">("Chief Product Officer" OR "VP Product")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="product-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="product-middle-query">("Head of Product" OR "Director of Product" OR "PMO Director" OR "Digital Transformation Director")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, program leaders, and delivery practitioners</p>
+              <button class="copy-button" type="button" data-copy="product-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="product-lower-query">("Product Manager" OR "Technical Product Manager" OR "Developer Platform Product Manager" OR "Platform Product Manager" OR "AI Product Manager" OR "Security Product Manager" OR "Product Operations Manager" OR "Technical Program Manager" OR "Engineering Program Manager" OR "Program Manager" OR "Agile Delivery Manager" OR "Scrum Master" OR "Release Train Engineer" OR "Engineering Operations Manager" OR "Development Operations Manager" OR "R&amp;D Operations Manager")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="open-source-developer-relations-community">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 8</p>
+            <p class="card-number">Persona category 8</p>
             <h2>Open source, developer relations and community</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="open-source-query">Copy search</button>
         </div>
-        <pre class="query"><code id="open-source-query">("Open Source Program Manager" OR "OSPO Manager" OR "Head of Open Source" OR "Director of Open Source" OR "Open Source Strategist" OR "Open Source Lead" OR "Open Source Engineer" OR "Open Source Maintainer" OR "Developer Advocate" OR "Senior Developer Advocate" OR "Developer Relations Engineer" OR "Developer Relations Manager" OR "Head of Developer Relations" OR "Director of Developer Relations" OR DevRel OR "Technical Community Manager" OR "Developer Community Manager" OR "Community Engineer" OR "Technical Evangelist" OR "Developer Evangelist")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+            </div>
+            <p class="empty-query">No credible C-level or VP title appears in the existing open source, developer relations, and community list.</p>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="open-source-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="open-source-middle-query">("Head of Open Source" OR "Director of Open Source" OR "Head of Developer Relations" OR "Director of Developer Relations")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, leads, engineers, advocates, maintainers, and community practitioners</p>
+              <button class="copy-button" type="button" data-copy="open-source-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="open-source-lower-query">("Open Source Program Manager" OR "OSPO Manager" OR "Open Source Strategist" OR "Open Source Lead" OR "Open Source Engineer" OR "Open Source Maintainer" OR "Developer Advocate" OR "Senior Developer Advocate" OR "Developer Relations Engineer" OR "Developer Relations Manager" OR DevRel OR "Technical Community Manager" OR "Developer Community Manager" OR "Community Engineer" OR "Technical Evangelist" OR "Developer Evangelist")</code></pre>
+          </section>
+        </div>
       </article>
 
       <article class="search-card" id="commercial-sourcing-governance">
         <div class="card-header">
           <div>
-            <p class="card-number">Current job title search 9</p>
+            <p class="card-number">Persona category 9</p>
             <h2>Commercial, sourcing and governance</h2>
           </div>
-          <button class="copy-button" type="button" data-copy="commercial-query">Copy search</button>
         </div>
-        <pre class="query"><code id="commercial-query">("Technology Procurement Manager" OR "IT Procurement Manager" OR "Strategic Sourcing Manager" OR "Software Category Manager" OR "Technology Category Manager" OR "Vendor Manager" OR "Vendor Management Director" OR "Software Asset Manager" OR "IT Asset Manager" OR "Software Licensing Manager" OR "Technology Finance Director" OR "FinOps Manager" OR "Enterprise Risk Manager" OR "Third Party Risk Manager" OR "Compliance Director" OR "Privacy Engineer" OR "Technology Compliance Manager" OR "Information Governance Manager" OR "Legal Operations Manager")</code></pre>
+        <div class="level-list">
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Upper management</h3>
+              <p class="level-description">C-level and VP titles</p>
+            </div>
+            <p class="empty-query">No credible C-level or VP title appears in the existing commercial, sourcing, and governance list.</p>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Middle management</h3>
+              <p class="level-description">Director and Head-of titles</p>
+              <button class="copy-button" type="button" data-copy="commercial-middle-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="commercial-middle-query">("Vendor Management Director" OR "Technology Finance Director" OR "Compliance Director")</code></pre>
+          </section>
+          <section class="level-search">
+            <div class="level-header">
+              <h3 class="level-title">Front-line management and individual contributors</h3>
+              <p class="level-description">Managers, engineers, and governance practitioners</p>
+              <button class="copy-button" type="button" data-copy="commercial-lower-query">Copy search</button>
+            </div>
+            <pre class="query"><code id="commercial-lower-query">("Technology Procurement Manager" OR "IT Procurement Manager" OR "Strategic Sourcing Manager" OR "Software Category Manager" OR "Technology Category Manager" OR "Vendor Manager" OR "Software Asset Manager" OR "IT Asset Manager" OR "Software Licensing Manager" OR "FinOps Manager" OR "Enterprise Risk Manager" OR "Third Party Risk Manager" OR "Privacy Engineer" OR "Technology Compliance Manager" OR "Information Governance Manager" OR "Legal Operations Manager")</code></pre>
+          </section>
+        </div>
       </article>
     </div>
 

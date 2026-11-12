@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EMEA Corp EBR Quarterly Lookback</title>
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: #24272c;
+      --panel-2: #191b1f;
+      --line: #3d424b;
+      --text: #f5f7fa;
+      --muted: #9ba3af;
+      --blue: #6aa6ff;
+      --green: #68cb65;
+      --purple: #b586ff;
+      --amber: #d5a63f;
+      --red: #ff7777;
+      --cyan: #62d4e8;
+      --yellow: #fde047;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    button { font: inherit; }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(106, 166, 255, .08), transparent 25%),
+        radial-gradient(circle at 10% 90%, rgba(181, 134, 255, .06), transparent 28%),
+        var(--bg);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(18px, 2.2vh, 28px);
+      padding: clamp(32px, 5vw, 78px);
+      opacity: 0;
+      transform: translateX(55px) scale(.99);
+      pointer-events: none;
+      transition: opacity .42s ease, transform .42s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: clamp(12px, 1vw, 16px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      border-radius: 99px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      max-width: 1320px;
+      font-size: clamp(48px, 6vw, 92px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 850;
+    }
+    h2 {
+      max-width: 1350px;
+      font-size: clamp(38px, 4.25vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      font-weight: 830;
+    }
+    h3 {
+      font-size: clamp(20px, 1.55vw, 28px);
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+
+    .subtitle {
+      max-width: 1120px;
+      color: var(--muted);
+      font-size: clamp(18px, 1.65vw, 29px);
+      line-height: 1.4;
+      margin-top: 18px;
+    }
+
+    .accent-blue { color: var(--blue); }
+    .accent-green { color: var(--green); }
+    .accent-purple { color: var(--purple); }
+    .accent-amber { color: var(--amber); }
+    .accent-red { color: var(--red); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: clamp(30px, 5vw, 80px);
+      align-items: center;
+    }
+
+    .hero-copy { display: grid; gap: 28px; }
+    .hero-mark {
+      width: min(760px, 65vw);
+      height: 8px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber));
+      box-shadow: 0 0 36px rgba(106, 166, 255, .24);
+    }
+
+    .agenda {
+      display: grid;
+      gap: 12px;
+      padding: clamp(22px, 2vw, 34px);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(43,46,52,.96), rgba(30,32,37,.96));
+    }
+
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 13px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: #dce0e6;
+      font-size: clamp(15px, 1.12vw, 20px);
+    }
+    .agenda-item:last-child { border-bottom: 0; }
+    .agenda-number {
+      color: var(--tone, var(--blue));
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: clamp(14px, 1.4vw, 24px);
+      min-height: 0;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(20px, 1.8vw, 32px);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(43,46,52,.96), rgba(30,32,37,.96));
+      box-shadow: 0 18px 45px rgba(0,0,0,.16);
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0, color-mix(in srgb, var(--tone, var(--blue)) 16%, transparent), transparent 36%);
+      pointer-events: none;
+    }
+    .card > * { position: relative; z-index: 1; }
+    .card-label {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+    .card-value {
+      font-size: clamp(28px, 2.7vw, 50px);
+      font-weight: 850;
+      color: var(--tone, var(--blue));
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .card-copy {
+      color: #d7dbe1;
+      font-size: clamp(14px, 1.05vw, 19px);
+      line-height: 1.42;
+      margin-top: 15px;
+    }
+
+    .score-layout {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 20px;
+      min-height: 0;
+    }
+    .score-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+    .score-value {
+      min-width: 120px;
+      font-size: clamp(34px, 3.2vw, 58px);
+      font-weight: 880;
+      letter-spacing: -.05em;
+      color: var(--tone);
+    }
+    .score-detail strong {
+      display: block;
+      font-size: clamp(18px, 1.35vw, 24px);
+      margin-bottom: 6px;
+    }
+    .score-detail span { color: var(--muted); font-size: clamp(14px, 1vw, 18px); }
+    .gap {
+      color: var(--red);
+      font-size: clamp(14px, 1vw, 18px);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .meter {
+      height: 12px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: #34383f;
+      margin-top: 13px;
+    }
+    .meter span {
+      display: block;
+      width: var(--value);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 65%, #fff), var(--tone));
+      box-shadow: 0 0 20px color-mix(in srgb, var(--tone) 35%, transparent);
+    }
+
+    .sql-trend-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+      min-height: 210px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .trend-head strong {
+      display: block;
+      font-size: clamp(22px, 1.8vw, 34px);
+      letter-spacing: -.04em;
+    }
+    .trend-badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(104,203,101,.12);
+      border: 1px solid rgba(104,203,101,.34);
+      font-weight: 850;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .trend-chart {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      align-items: end;
+      min-height: 116px;
+      padding: 6px 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      background:
+        linear-gradient(to top, transparent 49%, rgba(255,255,255,.07) 50%, transparent 51%);
+    }
+    .month-group {
+      height: 108px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(18px, 30px));
+      justify-content: center;
+      align-items: end;
+      gap: 5px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+    .month-bars {
+      display: contents;
+    }
+    .trend-bar {
+      height: calc(var(--value) * .82px);
+      min-height: 4px;
+      border-radius: 5px 5px 0 0;
+      position: relative;
+    }
+    .trend-bar.actual {
+      background: linear-gradient(to top, #37c977, #6ee7a2);
+      box-shadow: 0 0 14px rgba(104,203,101,.18);
+    }
+    .trend-bar.target { background: #858b94; }
+    .trend-bar span {
+      position: absolute;
+      left: 50%;
+      top: -17px;
+      transform: translateX(-50%);
+      color: #dce0e6;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .month-label {
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .trend-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.3;
+    }
+    .trend-legend { white-space: nowrap; }
+    .trend-key::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 5px 0 8px;
+      border-radius: 2px;
+      background: var(--key);
+    }
+
+    .leaderboard {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      min-height: 0;
+    }
+    .rank-list {
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+    .rank-row {
+      display: grid;
+      grid-template-columns: 46px minmax(120px, 1fr) 110px 110px 120px;
+      gap: 12px;
+      align-items: center;
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+      font-size: clamp(13px, .94vw, 17px);
+    }
+    .rank-row.header {
+      background: transparent;
+      border-color: transparent;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-size: 11px;
+      font-weight: 800;
+      padding-top: 0;
+      padding-bottom: 2px;
+    }
+    .rank-number { color: var(--tone, var(--muted)); font-weight: 900; }
+    .rank-name { font-weight: 800; }
+    .ramp-tag {
+      display: inline-flex;
+      margin-left: 8px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: var(--purple);
+      background: rgba(181, 134, 255, .12);
+      border: 1px solid rgba(181, 134, 255, .35);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+    .rank-metric { color: #c7ccd4; font-variant-numeric: tabular-nums; }
+    .attainment {
+      justify-self: end;
+      min-width: 74px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      text-align: center;
+      color: var(--tone);
+      background: color-mix(in srgb, var(--tone) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent);
+      font-weight: 900;
+    }
+
+    .celebration-stack {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .celebration-card {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .celebration-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 28%;
+      border: 3px solid var(--tone);
+      box-shadow: 0 0 24px color-mix(in srgb, var(--tone) 25%, transparent);
+      background: var(--panel-2);
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      min-height: 0;
+    }
+    .lesson-list { display: grid; gap: 14px; }
+    .lesson {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .lesson strong {
+      display: block;
+      color: var(--tone);
+      font-size: clamp(18px, 1.3vw, 24px);
+      margin-bottom: 7px;
+    }
+    .lesson p { color: #d4d8df; line-height: 1.4; font-size: clamp(14px, 1vw, 18px); }
+    .strengths-card {
+      padding: clamp(17px, 1.45vw, 25px);
+    }
+    .strengths-card .lesson-list { gap: 9px; }
+    .strengths-card .lesson {
+      padding: 12px 16px;
+      border-radius: 14px;
+    }
+    .strengths-card .lesson strong {
+      font-size: clamp(15px, 1.05vw, 20px);
+      margin-bottom: 4px;
+    }
+    .strengths-card .lesson p {
+      font-size: clamp(12px, .84vw, 15px);
+      line-height: 1.3;
+    }
+
+    .prompt-card {
+      border-color: color-mix(in srgb, var(--yellow) 35%, var(--line));
+      background: linear-gradient(145deg, rgba(253,224,71,.08), rgba(30,32,37,.96));
+    }
+    .prompt-card .card-label { color: var(--yellow); }
+    .reveal-card {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(34px) scale(.98);
+      filter: blur(5px);
+      transition:
+        opacity .5s ease,
+        transform .55s cubic-bezier(.2,.8,.2,1),
+        filter .5s ease,
+        visibility 0s linear .55s;
+    }
+    .reveal-card.revealed {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+      transition-delay: 0s;
+    }
+
+    .workstream {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      min-height: 260px;
+    }
+    .workstream-number {
+      color: var(--tone);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .1em;
+      margin-bottom: 14px;
+    }
+    .workstream p {
+      color: var(--muted);
+      line-height: 1.42;
+      margin-top: 14px;
+      font-size: clamp(14px, 1vw, 18px);
+    }
+    .placeholder {
+      align-self: end;
+      margin-top: 20px;
+      color: var(--yellow);
+      border-top: 1px solid rgba(253,224,71,.28);
+      padding-top: 13px;
+      font-weight: 760;
+      font-size: clamp(13px, .9vw, 16px);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #727a85;
+      font-size: 13px;
+      letter-spacing: .02em;
+    }
+    .controls {
+      position: fixed;
+      z-index: 50;
+      right: 28px;
+      bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(22,24,28,.76);
+      backdrop-filter: blur(16px);
+    }
+    .controls button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 11px;
+      background: #2b2e34;
+      color: #fff;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .controls button:hover { transform: translateY(-2px); background: #3a3e46; }
+    .counter {
+      min-width: 62px;
+      text-align: center;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 60;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      transition: width .35s ease;
+    }
+
+    @media (max-width: 1000px) {
+      body { overflow: auto; }
+      .deck { height: auto; }
+      .slide {
+        position: relative;
+        min-height: 100vh;
+        display: none;
+        padding: 28px 22px 90px;
+      }
+      .slide.active { display: grid; }
+      .hero, .leaderboard, .lesson-layout { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .rank-row { grid-template-columns: 38px 1fr 80px 80px 90px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+    <section class="slide active">
+      <header><div class="eyebrow">EMEA Corp EBR · Quarterly business review</div></header>
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="hero-mark"></div>
+          <h1>Q1 lookback.<br><span class="accent-blue">Q2 focus.</span></h1>
+          <p class="subtitle">Celebrate the performance, learn from the gaps, and align on the work that will move the team forward.</p>
+        </div>
+        <aside class="agenda">
+          <div class="card-label">Agenda</div>
+          <div class="agenda-item" style="--tone:var(--blue)"><span class="agenda-number">01</span><span>Q1 team performance</span></div>
+          <div class="agenda-item" style="--tone:var(--green)"><span class="agenda-number">02</span><span>Leaderboard and celebrations</span></div>
+          <div class="agenda-item" style="--tone:var(--amber)"><span class="agenda-number">03</span><span>What worked and opportunities</span></div>
+          <div class="agenda-item" style="--tone:var(--purple)"><span class="agenda-number">04</span><span>Q2 priorities and commitments</span></div>
+        </aside>
+      </div>
+      <footer class="footer"><span>GitHub EBR / Sales Development</span><span>01</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow">Q1 lookback · Team scorecard</div>
+        <h2>Pipeline grew and shifted toward <span class="accent-blue">GHE and Copilot.</span></h2>
+        <p class="subtitle">Q1 generated $3.76M versus approximately $2.4M in Q4, an increase of roughly $1.36M or 57%.</p>
+      </header>
+      <div class="score-layout">
+        <div class="grid-3">
+          <article class="card sql-trend-card" style="--tone:var(--green)">
+            <div class="trend-head">
+              <div>
+                <div class="card-label" style="margin-bottom:5px">Monthly SQL trend</div>
+                <strong>205 SQLs in Q1</strong>
+              </div>
+              <span class="trend-badge">104% adjusted</span>
+            </div>
+            <div class="trend-chart" aria-label="Monthly SQL actual versus raw dashboard quota">
+              <div class="month-group">
+                <div class="month-bars">
+                  <div class="trend-bar actual" style="--value:53"><span>53</span></div>
+                  <div class="trend-bar target" style="--value:66"><span>66</span></div>
+                </div>
+                <div class="month-label">Jul</div>
+              </div>
+              <div class="month-group">
+                <div class="month-bars">
+                  <div class="trend-bar actual" style="--value:60"><span>60</span></div>
+                  <div class="trend-bar target" style="--value:77"><span>77</span></div>
+                </div>
+                <div class="month-label">Aug</div>
+              </div>
+              <div class="month-group">
+                <div class="month-bars">
+                  <div class="trend-bar actual" style="--value:92"><span>92</span></div>
+                  <div class="trend-bar target" style="--value:77"><span>77</span></div>
+                </div>
+                <div class="month-label">Sep</div>
+              </div>
+            </div>
+            <div class="trend-foot">
+              <span class="trend-legend"><span class="trend-key" style="--key:#68cb65">Actual</span><span class="trend-key" style="--key:#858b94">Raw quota</span></span>
+              <span>Quarterly attainment uses the ramp-adjusted target of 198.</span>
+            </div>
+          </article>
+          <article class="card score-card" style="--tone:var(--amber)">
+            <div class="score-value">94%</div>
+            <div class="score-detail">
+              <strong>$3.76M / $3.99M</strong>
+              <span>Pipeline actual versus target</span>
+              <div class="meter" style="--tone:var(--amber)"><span style="--value:94%"></span></div>
+            </div>
+            <div class="gap">$228K gap</div>
+          </article>
+          <article class="card score-card" style="--tone:var(--blue)">
+            <div class="score-value">99%</div>
+            <div class="score-detail">
+              <strong>Blended attainment</strong>
+              <span>SQL and pipeline team attainment</span>
+              <div class="meter" style="--tone:var(--blue)"><span style="--value:99%"></span></div>
+            </div>
+            <div class="gap">1 pt to plan</div>
+          </article>
+        </div>
+        <div class="grid-4 reveal-card" aria-label="Product pipeline comparison cards. Advance once to reveal.">
+          <article class="card" style="--tone:var(--blue)">
+            <div class="card-label">GHE pipeline</div>
+            <div class="card-value">2.1×</div>
+            <p class="card-copy">$1.7M in Q1 versus $0.8M in Q4. GHE became the largest product pipeline.</p>
+          </article>
+          <article class="card strengths-card" style="--tone:var(--green)">
+            <div class="card-label">Copilot pipeline</div>
+            <div class="card-value">2.8×</div>
+            <p class="card-copy">$1.1M in Q1 versus $0.4M in Q4, the largest relative product increase.</p>
+          </article>
+          <article class="card" style="--tone:var(--amber)">
+            <div class="card-label">GHAS pipeline</div>
+            <div class="card-value">−33%</div>
+            <p class="card-copy">$0.8M in Q1 versus $1.2M in Q4. The product mix became less dependent on GHAS.</p>
+          </article>
+          <article class="card" style="--tone:var(--purple)">
+            <div class="card-label">Opportunity mix</div>
+            <div class="card-value">48%</div>
+            <p class="card-copy">Metered represented about $1.82M in Q1, up from $0.71M and roughly 30% of Q4 pipeline.</p>
+          </article>
+        </div>
+      </div>
+      <footer class="footer"><span>Product and opportunity-type values are rounded from the Q1 and Q4 pipeline screenshots</span><span>02</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow" style="color:var(--green)">Celebrations · Blended attainment leaderboard</div>
+        <h2>Recognizing the people who <span class="accent-green">set the pace</span></h2>
+      </header>
+      <div class="leaderboard">
+        <div class="rank-list">
+          <div class="rank-row header"><span>Rank</span><span>EBR</span><span>SQL</span><span>Pipeline</span><span>Blended</span></div>
+          <div class="rank-row" style="--tone:var(--amber)"><span class="rank-number">01</span><span class="rank-name">Anna</span><span class="rank-metric">155%</span><span class="rank-metric">154%</span><span class="attainment">154%</span></div>
+          <div class="rank-row" style="--tone:var(--green)"><span class="rank-number">02</span><span class="rank-name">Renato</span><span class="rank-metric">158%</span><span class="rank-metric">127%</span><span class="attainment">142%</span></div>
+          <div class="rank-row" style="--tone:var(--blue)"><span class="rank-number">03</span><span class="rank-name">Tommy</span><span class="rank-metric">136%</span><span class="rank-metric">139%</span><span class="attainment">138%</span></div>
+          <div class="rank-row" style="--tone:var(--purple)"><span class="rank-number">04</span><span class="rank-name">Daniel</span><span class="rank-metric">91%</span><span class="rank-metric">101%</span><span class="attainment">96%</span></div>
+          <div class="rank-row" style="--tone:var(--purple)"><span class="rank-number">05</span><span class="rank-name">Renata <span class="ramp-tag">Ramp</span></span><span class="rank-metric">45%</span><span class="rank-metric">108%</span><span class="attainment">77%</span></div>
+          <div class="rank-row" style="--tone:var(--red)"><span class="rank-number">06</span><span class="rank-name">Bouke</span><span class="rank-metric">67%</span><span class="rank-metric">21%</span><span class="attainment">44%</span></div>
+          <div class="rank-row" style="--tone:var(--red)"><span class="rank-number">07</span><span class="rank-name">Alexandra</span><span class="rank-metric">52%</span><span class="rank-metric">34%</span><span class="attainment">43%</span></div>
+        </div>
+        <div class="celebration-stack">
+          <article class="card celebration-card" style="--tone:var(--amber)">
+            <img class="celebration-avatar" src="avatars/anna.png" alt="Anna">
+            <div><div class="card-label">Top blended attainment</div><h3>Anna · 154%</h3><p class="card-copy">Exceeded both SQL and pipeline target by more than 50%.</p></div>
+          </article>
+          <article class="card celebration-card" style="--tone:var(--green)">
+            <img class="celebration-avatar" src="avatars/renato.png" alt="Renato">
+            <div><div class="card-label">Highest SQL attainment</div><h3>Renato · 158%</h3><p class="card-copy">Delivered 52 SQLs, the highest volume across the team.</p></div>
+          </article>
+          <article class="card celebration-card" style="--tone:var(--blue)">
+            <img class="celebration-avatar" src="avatars/tommy.png" alt="Tommy">
+            <div><div class="card-label">Highest pipeline generated</div><h3>Tommy · $946K</h3><p class="card-copy">Finished at 139% of pipeline target.</p></div>
+          </article>
+        </div>
+      </div>
+      <footer class="footer"><span>Leaderboard ranked by blended attainment</span><span>03</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow" style="color:var(--amber)">Q1 lessons · Strengths and opportunities</div>
+        <h2>Build on what worked. Focus improvement where it can create the <span class="accent-amber">biggest lift.</span></h2>
+      </header>
+      <div class="lesson-layout">
+        <article class="card" style="--tone:var(--green)">
+          <div class="card-label">What worked well</div>
+          <div class="lesson-list">
+            <div class="lesson" style="--tone:var(--green)"><strong>AE collaboration and feedback</strong><p>Collaboration improved significantly across the quarter, with further opportunity to strengthen the partnership.</p></div>
+            <div class="lesson" style="--tone:var(--blue)"><strong>Planning and forecasting discipline</strong><p>Stronger planning and forecasting helped the team overachieve in September.</p></div>
+            <div class="lesson" style="--tone:var(--amber)"><strong>Learning and calling sessions</strong><p>Regular sessions built skills, created shared momentum, and made calling more enjoyable.</p></div>
+            <div class="lesson" style="--tone:var(--cyan)"><strong>Peer support accelerated onboarding</strong><p>Buddies and experienced EBRs invested time in helping Renato, Renata, Anna, Tommy, and Illane ramp into new or newly promoted EBR roles. Their impact deserves recognition.</p></div>
+            <div class="lesson" style="--tone:var(--purple)"><strong>Adaptability through change</strong><p>The team embraced a new narrative, new ways of selling, new leadership, and a significant wave of onboarding.</p></div>
+          </div>
+        </article>
+        <article class="card prompt-card reveal-card" aria-label="Opportunities for improvement. Advance once to reveal.">
+          <div class="card-label">Opportunities for improvement</div>
+          <h3>Where can we create the next lift?</h3>
+          <div class="lesson-list" style="margin-top:18px">
+            <div class="lesson" style="--tone:var(--yellow)"><strong>Increase urgency on low-hanging fruit</strong><p>Act faster on Account Recommender signals and inbound leads while customer intent is high.</p></div>
+            <div class="lesson" style="--tone:var(--yellow)"><strong>Strengthen sales acumen and seller workflow</strong><p>Make calling and LinkedIn consistent parts of our daily prospecting activity.</p></div>
+            <div class="lesson" style="--tone:var(--yellow)"><strong>Raise prospecting quality</strong><p>Improve qualification, messaging, and our overall expertise in the Sales Development discipline.</p></div>
+          </div>
+        </article>
+      </div>
+      <footer class="footer"><span>Carry the strengths forward and make the improvement areas actionable</span><span>04</span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div class="eyebrow" style="color:var(--purple)">Q2 look forward · Work to be done</div>
+        <h2>Move our ongoing projects forward and identify <span class="accent-purple">where we can accelerate</span></h2>
+      </header>
+      <div class="lesson-layout">
+        <article class="card" style="--tone:var(--blue)">
+          <div class="card-label">01 · Ongoing projects</div>
+          <div class="lesson-list">
+            <div class="lesson" style="--tone:var(--blue)"><strong>Outreach clean-up and content taskforce</strong><p>Improve sequence quality, remove outdated content, and make the right messaging easier to find and use.</p></div>
+            <div class="lesson" style="--tone:var(--green)"><strong>EBR and AE reporting</strong><p>Use the project board to create clearer visibility, ownership, and collaboration across shared account activity.</p></div>
+            <div class="lesson" style="--tone:var(--purple)"><strong>Decrease time to money</strong><p>Use the 360 dashboard to understand our priorities and act faster on the opportunities with the strongest signals.</p></div>
+          </div>
+        </article>
+        <article class="card reveal-card" style="--tone:var(--amber)" aria-label="Open conversation questions. Advance once to reveal.">
+          <div class="card-label">02 · Open conversation</div>
+          <h3>What would help us move faster?</h3>
+          <div class="lesson-list" style="margin-top:18px">
+            <div class="lesson" style="--tone:var(--amber)"><strong>Where can we accelerate?</strong><p>Which opportunities, workflows, or team practices could create impact sooner?</p></div>
+            <div class="lesson" style="--tone:var(--cyan)"><strong>What support do you need?</strong><p>What help from leadership, peers, AEs, or cross-functional teams would improve execution?</p></div>
+            <div class="lesson" style="--tone:var(--red)"><strong>What roadblocks do you see?</strong><p>What is slowing progress or making the work harder than it needs to be?</p></div>
+          </div>
+        </article>
+      </div>
+      <footer class="footer"><span>Focus the work, surface the blockers, and agree where support will have the most impact</span><span>05</span></footer>
+    </section>
+
+    <nav class="controls" aria-label="Presentation controls">
+      <button id="prev" aria-label="Previous slide">←</button>
+      <div class="counter"><span id="current">1</span> / <span id="total">5</span></div>
+      <button id="next" aria-label="Next slide">→</button>
+    </nav>
+    <div class="progress" id="progress"></div>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const current = document.getElementById('current');
+    const total = document.getElementById('total');
+    const progress = document.getElementById('progress');
+    let index = 0;
+
+    total.textContent = slides.length;
+
+    function show(nextIndex) {
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        if (i === index) slide.querySelectorAll('.reveal-card').forEach(card => card.classList.remove('revealed'));
+      });
+      current.textContent = index + 1;
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      history.replaceState(null, '', `#${index + 1}`);
+    }
+
+    function advance() {
+      const hiddenCard = slides[index].querySelector('.reveal-card:not(.revealed)');
+      if (hiddenCard) {
+        hiddenCard.classList.add('revealed');
+        return;
+      }
+      show(index + 1);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => show(index - 1));
+    document.getElementById('next').addEventListener('click', advance);
+    document.addEventListener('keydown', event => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        advance();
+      }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+      if (event.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.();
+    });
+
+    const hashSlide = Number(location.hash.replace('#', ''));
+    show(Number.isFinite(hashSlide) && hashSlide > 0 ? hashSlide - 1 : 0);
+  </script>
+</body>
+</html>

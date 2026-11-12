@@ -28,3 +28,12 @@ test("public presentation renders the conservative SQL methodology", () => {
   assert.match(template, /id="sql-methodology"/);
   assert.match(app, /byId\("sql-methodology"\)\.textContent = data\.sqlMethodology/);
 });
+
+test("public presentation distinguishes Event creation from Held SQL attribution", () => {
+  const template = fs.readFileSync(path.join(__dirname, "../public/manager.html"), "utf8");
+  assert.match(template, /EBR-created Events/);
+  assert.match(template, /Held SQLs/);
+  assert.match(template, /independent activity measures, not a same-period conversion funnel/);
+  assert.match(template, /Event CreatedDate and EBR CreatedBy/);
+  assert.match(template, /Meeting Set By, Opportunity Owner, and the observed Held date/);
+});

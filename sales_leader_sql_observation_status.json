@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-12T10:18:42+01:00",
+  "asOf": "2026-11-12T10:56:39+01:00",
   "quarter": {
     "start": "2026-10-01",
     "end": "2027-01-01"
@@ -82,7 +82,7 @@
       "earliest_tracrtc_held_observation": 1
     },
     "Sindy Abreu": {
-      "earliest_tracrtc_held_observation": 3
+      "earliest_tracrtc_held_observation": 4
     },
     "Petter Laurin": {
       "earliest_tracrtc_held_observation": 1

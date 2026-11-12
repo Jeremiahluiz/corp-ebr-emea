@@ -147,6 +147,44 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
   assert.equal(dashboard.qtd.sql, 2);
 });
 
+test("Hubot-created meetings can be Held SQLs without being EBR-created Events", () => {
+  const dashboard = aggregateLive(
+    "Carmen Marced",
+    { start: "2026-10-01", end: "2027-01-01" },
+    {
+      instanceUrl: "https://example.my.salesforce.com",
+      namesById: { illane: "Illane Hamache" },
+      asOf: "2026-11-12T10:56:39+01:00",
+      sqlObservationLogs: [
+        observation("00U-pedro", "2026-10-21T08:39:49Z", "Held")
+      ],
+      events: [{
+        Id: "00U-pedro",
+        Subject: "Customer discovery",
+        CreatedById: "engagement-hubot",
+        CreatedDate: "2026-09-29T19:09:12Z",
+        StartDateTime: "2026-10-02T10:00:00Z",
+        Type: "Meeting",
+        Meeting_Set_By__c: "Illane Hamache",
+        Meeting_Status__c: "Held",
+        Set_By__c: "EBR",
+        WhatId: "006-pedro",
+        OpportunityOwnerName: "Pedro Oom",
+        Account: { Name: "Customer", Owner: { Name: "Pedro Oom" } }
+      }],
+      directOpportunities: [],
+      wonDirect: [],
+      milestones: [],
+      quotes: [],
+      opportunityById: new Map(),
+      quoteOpportunityField: "SBQQ__Opportunity2__c"
+    }
+  );
+  const pedro = dashboard.ics.find(row => row.ae === "Pedro Oom");
+  assert.equal(pedro.scheduled.value, 0);
+  assert.equal(pedro.sql.value, 1);
+});
+
 test("licensed opportunity credit is deduplicated while milestones stay additive", () => {
   const opportunity = {
     Id: "0061",

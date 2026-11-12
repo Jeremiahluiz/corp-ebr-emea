@@ -99,7 +99,8 @@ function meteredMilestoneKey(milestone) {
 function main() {
   const ids = userIds.map(quote).join(",");
   const scheduled = query(
-    `SELECT Id, CreatedById, CreatedDate, Account.Owner.Name FROM Event ` +
+    `SELECT Id, Subject, CreatedById, CreatedBy.Name, CreatedDate, StartDateTime, ` +
+      `Booker__c, Meeting_Set_By__c, AccountId, Account.Name, Account.Owner.Name FROM Event ` +
       `WHERE CreatedById IN (${ids}) AND CreatedDate >= ${quarterStart} ` +
       `AND ${createdUpperBound}`
   );
@@ -445,6 +446,54 @@ function main() {
         revenueSeparation: "Metered pipeline is not metered Commission ARR revenue and does not alter the immutable revenue baseline."
       },
       ...pipelineAudit
+    }, null, 2)}\n`);
+  const scheduledAudit = scheduled.map(event => ({
+    eventId: event.Id,
+    subject: event.Subject || null,
+    createdDate: timestamp(event.CreatedDate),
+    startDate: event.StartDateTime ? timestamp(event.StartDateTime) : null,
+    creatorId: event.CreatedById,
+    creatorName: event.CreatedBy?.Name || null,
+    ebr: namesById[event.CreatedById] || null,
+    bookerId: event.Booker__c || null,
+    meetingSetBy: event.Meeting_Set_By__c || null,
+    accountId: event.AccountId || null,
+    accountName: event.Account?.Name || null,
+    currentAccountOwner: event.Account?.Owner?.Name || null,
+    week: monday(event.CreatedDate),
+    included: !isAnnaJuly(namesById[event.CreatedById], event.CreatedDate),
+    reason: isAnnaJuly(namesById[event.CreatedById], event.CreatedDate)
+      ? "anna_july_exclusion" : "ebr_created_event"
+  }));
+  const scheduledCountByAeEbr = {};
+  for (const event of scheduledAudit.filter(event => event.included)) {
+    const key = `${event.currentAccountOwner || "UNMAPPED"}\u0000${event.ebr}`;
+    scheduledCountByAeEbr[key] = (scheduledCountByAeEbr[key] || 0) + 1;
+  }
+  const sqlCountByAeEbr = {};
+  for (const credit of sqlObservations.credits) {
+    const key = `${credit.ae}\u0000${credit.ebr}`;
+    sqlCountByAeEbr[key] = (sqlCountByAeEbr[key] || 0) + 1;
+  }
+  const sqlAboveEvents = Object.entries(sqlCountByAeEbr)
+    .map(([key, sql]) => {
+      const [ae, ebr] = key.split("\u0000");
+      const eventsCreated = scheduledCountByAeEbr[key] || 0;
+      return { ae, ebr, eventsCreated, sql, delta: sql - eventsCreated };
+    })
+    .filter(row => row.delta > 0)
+    .sort((left, right) => left.ae.localeCompare(right.ae) || left.ebr.localeCompare(right.ebr));
+  fs.writeFileSync(path.join(auditDirectory, "activity-semantics-audit.json"),
+    `${JSON.stringify({
+      asOf: timestamp(asOf),
+      quarter,
+      metricDefinitions: {
+        eventsCreated: "Event.CreatedDate in the reporting period, attributed only when Event.CreatedById is a configured EBR; current Account Owner determines the AE row.",
+        sqlHeld: "Report-compatible Held activity, attributed by Meeting Set By EBR to Opportunity Owner; weekly placement uses earliest observed Held, with report Start fallback.",
+        relationship: "Independent activity measures, not a same-cohort conversion funnel. SQL can exceed EBR-created Events for an AE and period."
+      },
+      scheduledEvents: scheduledAudit,
+      sqlAboveEvents
     }, null, 2)}\n`);
   const coverageByAe = {};
   for (const record of sqlObservations.credits) {

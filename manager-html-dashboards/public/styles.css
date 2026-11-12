@@ -18,6 +18,7 @@ button, input, select { font: inherit; }
 main { width: min(1500px, 94vw); margin: 22px auto 60px; display: grid; gap: 22px; }
 .status { min-height: 24px; margin: 0; color: #57606a; }
 .status.error { color: #cf222e; font-weight: 700; }
+.metric-note { margin: -10px 0 0; padding: 14px 16px; border-left: 4px solid var(--blue); background: #ddf4ff; color: #24292f; line-height: 1.45; }
 .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .cards article, .panel, .previous-week, .closed-won-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 8px 24px rgba(31,35,40,.08); }
 .cards article { padding: 22px; border-top: 6px solid var(--blue); }

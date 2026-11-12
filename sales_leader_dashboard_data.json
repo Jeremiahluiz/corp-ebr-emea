@@ -870,16 +870,16 @@
           ]
         },
         "Carmen Marced": {
-          "scheduled": 18,
-          "sql": 22,
+          "scheduled": 19,
+          "sql": 23,
           "licensed": 306542.82,
-          "metered": 201951,
+          "metered": 213651,
           "licensedClosedWon": 4300.71,
           "meteredClosedWon": 0,
           "closedWon": 4300.71,
           "stagePipeline": {
             "Closed Won": 5040,
-            "Qualified": 151009.82,
+            "Qualified": 162709.82,
             "Problem Identification & Research": 281293,
             "Pending Acceptance": 63,
             "Business Selected": 2850,
@@ -954,11 +954,11 @@
               "pipeline": 0
             },
             "2026-11-09": {
-              "scheduled": 1,
-              "sql": 2,
+              "scheduled": 2,
+              "sql": 3,
               "licensed": 0,
-              "metered": 14700,
-              "pipeline": 14700
+              "metered": 26400,
+              "pipeline": 26400
             }
           },
           "ics": [
@@ -1010,15 +1010,15 @@
             {
               "ae": "Sindy Abreu",
               "ebr": "Renato Taramona",
-              "scheduled": 3,
-              "sql": 3,
+              "scheduled": 4,
+              "sql": 4,
               "licensed": 0,
-              "metered": 31800,
+              "metered": 43500,
               "licensedClosedWon": 0,
               "meteredClosedWon": 0,
               "closedWon": 0,
               "stagePipeline": {
-                "Qualified": 31800
+                "Qualified": 43500
               }
             },
             {

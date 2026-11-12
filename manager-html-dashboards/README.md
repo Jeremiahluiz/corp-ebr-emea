@@ -19,7 +19,7 @@ Viewers authenticate through their own Salesforce account. KPI values, chart bar
 
 ## Metric rules
 
-- Scheduled events use `Event.CreatedDate` and EBR `CreatedById`.
+- EBR-created Events use `Event.CreatedDate`, configured EBR `CreatedById`, and current Account Owner for the AE row.
 - SQL reproduces the Salesforce report scope: configured `Meeting_Set_By__c`, activity `Type = Meeting`, `Meeting_Status__c = Held`, `Set_By__c = EBR`, fiscal-quarter Start date, and an Opportunity relation.
 - Each activity is credited once. Weekly credit uses the earliest available `TracRTC__History_Log__c` Held observation in Europe/Amsterdam. When observation history has no Held row, the report-compatible Start date is recorded as an explicit fallback instead of silently dropping a valid report row. QTD eligibility remains tied to the report's fiscal-quarter Start filter.
 - Opportunity Owner determines AE and manager scope, matching the Salesforce report. Current Account Owner is retained in the private audit. AE and EBR must match the team mapping; out-of-manager or mismatched rows remain explicit in `unmapped` instead of being reassigned to another EBR.
@@ -30,6 +30,8 @@ Viewers authenticate through their own Salesforce account. KPI values, chart bar
 - Anna Sobala's July 2026 activity and pipeline attribution are excluded.
 
 The HTML values are a saved snapshot. The linked SQL report is the route to current Salesforce data.
+
+EBR-created Events and Held SQLs are independent activity measures, not a same-cohort conversion funnel. A Held SQL can appear in a later week than Event creation, and Engagement Hubot-created Events can count as SQL through `Meeting_Set_By__c` without counting as EBR-created Events.
 
 ## Refresh and validation
 

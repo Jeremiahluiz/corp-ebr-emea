@@ -167,7 +167,7 @@
           "scheduled": 30,
           "sql": 11,
           "licensed": 80640,
-          "metered": 66735.23999999999,
+          "metered": 66450.23999999999,
           "licensedClosedWon": 0,
           "meteredClosedWon": 0,
           "closedWon": 0,
@@ -175,7 +175,7 @@
             "Problem Identification & Research": 80640,
             "Qualified": 48765.24,
             "Pending Acceptance": 44190,
-            "Proposal & Negotiation": 1140,
+            "Proposal & Negotiation": 855,
             "Manage & Optimize": 7560,
             "Verbal Agreement": 570
           },
@@ -188,8 +188,8 @@
               "scheduled": 9,
               "sql": 1,
               "licensed": 12600,
-              "metered": 1140,
-              "pipeline": 13740
+              "metered": 855,
+              "pipeline": 13455
             },
             "2026-10-05": {
               "scheduled": 5,
@@ -269,13 +269,13 @@
               "scheduled": 14,
               "sql": 6,
               "licensed": 68040,
-              "metered": 25800.239999999998,
+              "metered": 25515.239999999998,
               "licensedClosedWon": 0,
               "meteredClosedWon": 0,
               "closedWon": 0,
               "stagePipeline": {
                 "Problem Identification & Research": 68040,
-                "Proposal & Negotiation": 1140,
+                "Proposal & Negotiation": 855,
                 "Qualified": 16530.239999999998,
                 "Manage & Optimize": 7560,
                 "Verbal Agreement": 570
@@ -499,12 +499,12 @@
           "scheduled": 7,
           "sql": 18,
           "licensed": 35700,
-          "metered": 142405.02000000002,
+          "metered": 141155.01,
           "licensedClosedWon": 6849.57,
           "meteredClosedWon": 0,
           "closedWon": 6849.57,
           "stagePipeline": {
-            "Pending Acceptance": 107695.02,
+            "Pending Acceptance": 106445.01000000001,
             "Qualified": 41928,
             "Closed Won": 6972,
             "Proposal & Negotiation": 11400,
@@ -557,8 +557,8 @@
               "scheduled": 1,
               "sql": 2,
               "licensed": 0,
-              "metered": 116005.02,
-              "pipeline": 116005.02
+              "metered": 114755.01000000001,
+              "pipeline": 114755.01000000001
             },
             "2026-11-02": {
               "scheduled": 0,
@@ -596,13 +596,13 @@
               "scheduled": 1,
               "sql": 6,
               "licensed": 6972,
-              "metered": 57355.020000000004,
+              "metered": 56105.01,
               "licensedClosedWon": 6849.57,
               "meteredClosedWon": 0,
               "closedWon": 6849.57,
               "stagePipeline": {
                 "Closed Won": 6972,
-                "Pending Acceptance": 57355.020000000004
+                "Pending Acceptance": 56105.01
               }
             },
             {

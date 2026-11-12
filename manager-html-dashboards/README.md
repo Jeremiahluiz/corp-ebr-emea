@@ -24,7 +24,7 @@ Viewers authenticate through their own Salesforce account. KPI values, chart bar
 - Each activity is credited once. Weekly credit uses the earliest available `TracRTC__History_Log__c` Held observation in Europe/Amsterdam. When observation history has no Held row, the report-compatible Start date is recorded as an explicit fallback instead of silently dropping a valid report row. QTD eligibility remains tied to the report's fiscal-quarter Start filter.
 - Opportunity Owner determines AE and manager scope, matching the Salesforce report. Current Account Owner is retained in the private audit. AE and EBR must match the team mapping; out-of-manager or mismatched rows remain explicit in `unmapped` instead of being reassigned to another EBR.
 - Licensed pipeline is deduplicated by opportunity and credited through an EBR-created opportunity or quote.
-- Metered pipeline is additive and uses `Total_Expected_Change__c * 3`.
+- Metered pipeline is additive across distinct Product Milestones and uses `Total_Expected_Change__c * 3`. Exact duplicate source records with the same creator, timestamp, opportunity, product, milestone name and amount are counted once and audited.
 - Licensed closed-won revenue uses unique Q1 won opportunities attributed through an EBR-created opportunity, quote, or linked milestone.
 - Metered closed-won revenue requires a product-aligned GHE or GHAS Commission ARR increase observed after milestone creation. Each account/product uplift is counted once; Copilot, stale, mixed-product, and unverified-timing milestones are excluded.
 - Anna Sobala's July 2026 activity and pipeline attribution are excluded.

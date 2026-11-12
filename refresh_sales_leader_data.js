@@ -84,6 +84,18 @@ function licensedAmount(opportunity) {
   );
 }
 
+function meteredMilestoneKey(milestone) {
+  return [
+    milestone.CreatedById,
+    milestone.CreatedDate,
+    milestone.Opportunity__c,
+    milestone.Opportunity_Product__c || "",
+    milestone.Product__c || "",
+    milestone.Name || "",
+    number(milestone.Total_Expected_Change__c)
+  ].join("\u0000");
+}
+
 function main() {
   const ids = userIds.map(quote).join(",");
   const scheduled = query(
@@ -174,8 +186,12 @@ function main() {
     "Id",
     "Name",
     "CreatedById",
+    "CreatedBy.Name",
     "CreatedDate",
     "Owner.Name",
+    "AccountId",
+    "Account.Name",
+    "Account.Owner.Name",
     "StageName",
     "Type",
     "Quote_Flag__c",
@@ -187,12 +203,13 @@ function main() {
   ].join(",");
   const direct = query(
     `SELECT ${opportunityFields} FROM Opportunity WHERE CreatedById IN (${ids}) ` +
-      `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound} ` +
-      `AND Type IN ('Order','Upgrade') AND Quote_Flag__c = 'Approved'`
+      `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound}`
   );
   const quotes = query(
-    `SELECT Id, CreatedById, CreatedDate, SBQQ__Opportunity2__c, ` +
+    `SELECT Id, CreatedById, CreatedBy.Name, CreatedDate, SBQQ__Opportunity2__c, ` +
       `SBQQ__Opportunity2__r.Name, SBQQ__Opportunity2__r.Owner.Name, ` +
+      `SBQQ__Opportunity2__r.AccountId, SBQQ__Opportunity2__r.Account.Name, ` +
+      `SBQQ__Opportunity2__r.Account.Owner.Name, ` +
       `SBQQ__Opportunity2__r.StageName, SBQQ__Opportunity2__r.Type, ` +
       `SBQQ__Opportunity2__r.Quote_Flag__c, ` +
       `SBQQ__Opportunity2__r.License_New_ARR_10__c, ` +
@@ -204,38 +221,79 @@ function main() {
       `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound}`
   );
   const milestones = query(
-    `SELECT Id, CreatedById, CreatedDate, Opportunity__c, Total_Expected_Change__c, ` +
-      `Opportunity__r.Name, Opportunity__r.Owner.Name, Opportunity__r.StageName ` +
+    `SELECT Id, Name, CreatedById, CreatedBy.Name, CreatedDate, Opportunity__c, ` +
+      `Opportunity_Product__c, Opportunity_Product__r.Name, Product__c, Product__r.Name, ` +
+      `Expected_Quantity__c, UBB_Quantity_Type__c, UBB_Status__c, ` +
+      `Total_Expected_Change__c, Forecasted_Change__c, Opportunity__r.Name, ` +
+      `Opportunity__r.Owner.Name, Opportunity__r.AccountId, Opportunity__r.Account.Name, ` +
+      `Opportunity__r.Account.Owner.Name, Opportunity__r.StageName ` +
       `FROM Product_Milestone__c WHERE CreatedById IN (${ids}) ` +
       `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound}`
   );
 
   const licensedByOpportunity = new Map();
+  const pipelineAudit = { licensed: [], metered: [] };
+  const auditLicensed = (sourceObject, sourceRecord, opportunity, ebr, creditDate, reason) => {
+    pipelineAudit.licensed.push({
+      sourceObject,
+      sourceId: sourceRecord.Id,
+      opportunityId: opportunity?.Id || sourceRecord.SBQQ__Opportunity2__c || null,
+      opportunityName: opportunity?.Name || null,
+      accountId: opportunity?.AccountId || null,
+      accountName: opportunity?.Account?.Name || null,
+      currentAccountOwner: opportunity?.Account?.Owner?.Name || null,
+      ae: opportunity?.Owner?.Name || null,
+      ebr,
+      creatorId: sourceRecord.CreatedById,
+      creatorName: sourceRecord.CreatedBy?.Name || null,
+      createdDate: timestamp(creditDate),
+      stage: opportunity?.StageName || null,
+      opportunityType: opportunity?.Type || null,
+      quoteFlag: opportunity?.Quote_Flag__c || null,
+      amount: opportunity ? licensedAmount(opportunity) : 0,
+      included: reason === "included",
+      reason
+    });
+  };
   for (const opportunity of direct) {
     const ebr = namesById[opportunity.CreatedById];
-    if (isAnnaJuly(ebr, opportunity.CreatedDate)) continue;
+    let reason = "included";
+    if (isAnnaJuly(ebr, opportunity.CreatedDate)) reason = "anna_july_exclusion";
+    else if (!["Order", "Upgrade"].includes(opportunity.Type)) reason = "opportunity_type_not_eligible";
+    else if (opportunity.Quote_Flag__c !== "Approved") reason = "quote_not_approved";
+    else if (licensedAmount(opportunity) <= 0) reason = "non_positive_licensed_amount";
+    auditLicensed("Opportunity", opportunity, opportunity, ebr, opportunity.CreatedDate, reason);
+    if (reason !== "included") continue;
     licensedByOpportunity.set(opportunity.Id, {
       opportunity,
       ebr,
-      creditDate: opportunity.CreatedDate
+      creditDate: opportunity.CreatedDate,
+      sourceObject: "Opportunity",
+      sourceId: opportunity.Id
     });
   }
   for (const quoteRecord of quotes) {
-    if (licensedByOpportunity.has(quoteRecord.SBQQ__Opportunity2__c)) continue;
-    const opportunity = quoteRecord.SBQQ__Opportunity2__r;
+    const opportunity = quoteRecord.SBQQ__Opportunity2__r
+      ? { Id: quoteRecord.SBQQ__Opportunity2__c, ...quoteRecord.SBQQ__Opportunity2__r }
+      : null;
     const ebr = namesById[quoteRecord.CreatedById];
-    if (
-      !opportunity ||
-      !["Order", "Upgrade"].includes(opportunity.Type) ||
-      opportunity.Quote_Flag__c !== "Approved" ||
-      isAnnaJuly(ebr, quoteRecord.CreatedDate)
-    ) {
-      continue;
+    let reason = "included";
+    if (!opportunity) reason = "missing_opportunity";
+    else if (isAnnaJuly(ebr, quoteRecord.CreatedDate)) reason = "anna_july_exclusion";
+    else if (!["Order", "Upgrade"].includes(opportunity.Type)) reason = "opportunity_type_not_eligible";
+    else if (opportunity.Quote_Flag__c !== "Approved") reason = "quote_not_approved";
+    else if (licensedAmount(opportunity) <= 0) reason = "non_positive_licensed_amount";
+    else if (licensedByOpportunity.has(quoteRecord.SBQQ__Opportunity2__c)) {
+      reason = "duplicate_opportunity_attribution";
     }
+    auditLicensed("SBQQ__Quote__c", quoteRecord, opportunity, ebr, quoteRecord.CreatedDate, reason);
+    if (reason !== "included") continue;
     licensedByOpportunity.set(quoteRecord.SBQQ__Opportunity2__c, {
-      opportunity: { Id: quoteRecord.SBQQ__Opportunity2__c, ...opportunity },
+      opportunity,
       ebr,
-      creditDate: quoteRecord.CreatedDate
+      creditDate: quoteRecord.CreatedDate,
+      sourceObject: "SBQQ__Quote__c",
+      sourceId: quoteRecord.Id
     });
   }
 
@@ -292,11 +350,47 @@ function main() {
       opportunityName: opportunity.Name
     });
   }
+  const seenMilestones = new Map();
   for (const milestone of milestones) {
     const ebr = namesById[milestone.CreatedById];
-    if (isAnnaJuly(ebr, milestone.CreatedDate)) continue;
     const value = number(milestone.Total_Expected_Change__c) * 3;
-    if (value <= 0) continue;
+    const duplicateOf = seenMilestones.get(meteredMilestoneKey(milestone));
+    let reason = "included";
+    if (isAnnaJuly(ebr, milestone.CreatedDate)) reason = "anna_july_exclusion";
+    else if (value <= 0) reason = "non_positive_expected_change";
+    else if (!milestone.Opportunity__c || !milestone.Opportunity__r) reason = "missing_opportunity";
+    else if (duplicateOf) reason = "exact_duplicate_milestone";
+    pipelineAudit.metered.push({
+      sourceObject: "Product_Milestone__c",
+      sourceId: milestone.Id,
+      milestoneName: milestone.Name || null,
+      opportunityId: milestone.Opportunity__c || null,
+      opportunityName: milestone.Opportunity__r?.Name || null,
+      opportunityProductId: milestone.Opportunity_Product__c || null,
+      opportunityProductName: milestone.Opportunity_Product__r?.Name || null,
+      productId: milestone.Product__c || null,
+      productName: milestone.Product__r?.Name || null,
+      accountId: milestone.Opportunity__r?.AccountId || null,
+      accountName: milestone.Opportunity__r?.Account?.Name || null,
+      currentAccountOwner: milestone.Opportunity__r?.Account?.Owner?.Name || null,
+      ae: milestone.Opportunity__r?.Owner?.Name || null,
+      ebr,
+      creatorId: milestone.CreatedById,
+      creatorName: milestone.CreatedBy?.Name || null,
+      createdDate: timestamp(milestone.CreatedDate),
+      stage: milestone.Opportunity__r?.StageName || null,
+      milestoneStatus: milestone.UBB_Status__c || null,
+      expectedQuantity: number(milestone.Expected_Quantity__c),
+      quantityType: milestone.UBB_Quantity_Type__c || null,
+      expectedMonthlyChange: number(milestone.Total_Expected_Change__c),
+      forecastedChange: number(milestone.Forecasted_Change__c),
+      amount: value,
+      duplicateOf: duplicateOf || null,
+      included: reason === "included",
+      reason
+    });
+    if (reason !== "included") continue;
+    seenMilestones.set(meteredMilestoneKey(milestone), milestone.Id);
     addPipelineRecord("metered", {
       ebr,
       creditDate: milestone.CreatedDate,
@@ -341,6 +435,17 @@ function main() {
     `${JSON.stringify({ asOf: timestamp(asOf), queries: queryAudit }, null, 2)}\n`);
   fs.writeFileSync(path.join(auditDirectory, "held-sql-observation-audit.json"),
     `${JSON.stringify({ asOf: timestamp(asOf), ...sqlObservations }, null, 2)}\n`);
+  fs.writeFileSync(path.join(auditDirectory, "pipeline-attribution-audit.json"),
+    `${JSON.stringify({
+      asOf: timestamp(asOf),
+      quarter,
+      methodology: {
+        licensed: "One eligible Order or Upgrade opportunity with Approved quote flag, deduplicated across direct Opportunity and EBR-created Quote attribution.",
+        metered: "Positive Product Milestone expected monthly change multiplied by three. Distinct milestone months remain additive; exact duplicate source records are counted once.",
+        revenueSeparation: "Metered pipeline is not metered Commission ARR revenue and does not alter the immutable revenue baseline."
+      },
+      ...pipelineAudit
+    }, null, 2)}\n`);
   const coverageByAe = {};
   for (const record of sqlObservations.credits) {
     const coverage = coverageByAe[record.ae] ||= {};
@@ -399,4 +504,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { addGrouped, main };
+module.exports = { addGrouped, main, meteredMilestoneKey };

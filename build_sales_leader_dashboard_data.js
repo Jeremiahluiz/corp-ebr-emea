@@ -217,6 +217,7 @@ fs.writeFileSync(
 );
 
 const mappedTotals = {};
+const segmentTotals = {};
 for (const segment of Object.values(segments)) {
   for (const [leaderName, leader] of Object.entries(segment.leaders)) {
     mappedTotals[leaderName] = {
@@ -227,6 +228,43 @@ for (const segment of Object.values(segments)) {
     };
   }
 }
+for (const [segmentName, segment] of Object.entries(segments)) {
+  segmentTotals[segmentName] = Object.values(segment.leaders).reduce((total, leader) => ({
+    scheduled: total.scheduled + leader.scheduled,
+    sql: total.sql + leader.sql,
+    licensed: total.licensed + leader.licensed,
+    metered: total.metered + leader.metered
+  }), { scheduled: 0, sql: 0, licensed: 0, metered: 0 });
+}
+const sourcePipelineTotals = {};
+for (const metric of ["licensed", "metered"]) {
+  sourcePipelineTotals[metric] = Object.values(pipeline[metric]).flat()
+    .reduce((sum, record) => sum + record.qtdValue, 0);
+}
+const mappedPipelineTotals = Object.values(mappedTotals).reduce((total, leader) => ({
+  licensed: total.licensed + leader.licensed,
+  metered: total.metered + leader.metered
+}), { licensed: 0, metered: 0 });
+const unmappedPipelineTotals = {
+  licensed: unmapped.licensed.reduce((sum, record) => sum + record.qtdValue, 0),
+  metered: unmapped.metered.reduce((sum, record) => sum + record.qtdValue, 0)
+};
+const stagePipelineTotal = pipelineStages.entries.reduce((sum, record) => sum + record.total, 0);
+const nearlyEqual = (left, right) => Math.abs(left - right) < 0.005;
+for (const metric of ["licensed", "metered"]) {
+  if (!nearlyEqual(
+    sourcePipelineTotals[metric],
+    mappedPipelineTotals[metric] + unmappedPipelineTotals[metric]
+  )) {
+    throw new Error(`Pipeline reconciliation failed for ${metric}`);
+  }
+}
+if (!nearlyEqual(
+  stagePipelineTotal,
+  sourcePipelineTotals.licensed + sourcePipelineTotals.metered
+)) {
+  throw new Error("Pipeline stage reconciliation failed");
+}
 fs.mkdirSync(auditDirectory, { recursive: true });
 fs.writeFileSync(
   path.join(auditDirectory, "dashboard-attribution-audit.json"),
@@ -234,6 +272,13 @@ fs.writeFileSync(
     asOf,
     quarter: context.quarter,
     mappedTotals,
+    segmentTotals,
+    pipelineReconciliation: {
+      source: sourcePipelineTotals,
+      mapped: mappedPipelineTotals,
+      unmapped: unmappedPipelineTotals,
+      stages: stagePipelineTotal
+    },
     unmapped
   }, null, 2)}\n`
 );

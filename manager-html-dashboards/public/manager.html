@@ -9,7 +9,7 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">FY27 Q1 MANAGER DASHBOARD</p>
+        <p class="eyebrow">WEEKLY PERFORMANCE DASHBOARD</p>
         <h1>{{MANAGER}} | Weekly Performance</h1>
         <p id="scope">Loading saved dashboard...</p>
       </div>
@@ -17,6 +17,8 @@
     </header>
     <main>
       <p class="status">Saved dashboard. Use the Salesforce report link for current SQL held data.</p>
+      <p id="sql-methodology" class="status"></p>
+      <h2>Quarter-to-date activity and pipeline</h2>
       <section class="cards">
         <article><span>Events created</span><strong id="qtd-scheduled">-</strong></article>
         <article><span>SQL held</span><strong id="qtd-sql">-</strong></article>
@@ -48,6 +50,7 @@
       </section>
       <section class="panel">
         <div class="panel-title"><h2 id="breakdown-title">IC breakdown</h2></div>
+        <p>Activity and pipeline: current quarter to date. Attributed revenue: saved Q1 FY27 sources with as-of dates above.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th id="breakdown-primary">AE / IC</th><th id="breakdown-secondary">EBR</th><th>Events created</th><th>SQL</th><th>Licensed</th><th>Metered</th><th>Total</th><th>Licensed won</th><th>Metered won</th><th>Total won</th></tr></thead>

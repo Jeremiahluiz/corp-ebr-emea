@@ -3,23 +3,919 @@
     "cluster": "https://gh-analytics.eastus.kusto.windows.net/",
     "database": "service_sales_analytics",
     "table": "sfdc_user_role_history",
-    "refreshedAt": "2026-09-21",
-    "includedRoles": ["EBR", "SEBR"]
+    "refreshedAt": "2026-11-09T12:05:02+01:00",
+    "includedRoles": [
+      "EBR",
+      "SEBR"
+    ],
+    "intervalBasis": "new_role effective from change_date1 inclusive to next_change_date exclusive; all EBR/SEBR rows, no active-user filter"
   },
   "intervals": [
-    {"userId":"0053o000007ojbpAAA","validFrom":"2023-06-23T00:00:00Z","validTo":"2025-02-07T00:00:00Z","role":"EBR"},
-    {"userId":"0053o000008SoXoAAK","validFrom":"2024-09-16T00:00:00Z","validTo":"2024-10-08T00:00:00Z","role":"EBR"},
-    {"userId":"0053o000008SoXoAAK","validFrom":"2024-10-31T00:00:00Z","validTo":"2024-11-01T00:00:00Z","role":"EBR"},
-    {"userId":"0053o000008Su2TAAS","validFrom":"2023-06-23T00:00:00Z","validTo":"2024-02-08T00:00:00Z","role":"EBR"},
-    {"userId":"0053o00000977liAAA","validFrom":"2023-06-23T00:00:00Z","validTo":"2024-01-08T00:00:00Z","role":"EBR"},
-    {"userId":"0055c000009lLwRAAU","validFrom":"2023-06-23T00:00:00Z","validTo":"2024-02-08T00:00:00Z","role":"EBR"},
-    {"userId":"0055c000009ldONAAY","validFrom":"2023-06-23T00:00:00Z","validTo":"2024-09-03T00:00:00Z","role":"EBR"},
-    {"userId":"0055c00000B2k6oAAB","validFrom":"2026-08-21T00:00:00Z","validTo":null,"role":"EBR"},
-    {"userId":"0055c00000B37joAAB","validFrom":"2024-12-11T00:00:00Z","validTo":null,"role":"EBR"},
-    {"userId":"0055c00000B3ACxAAN","validFrom":"2025-01-14T00:00:00Z","validTo":"2026-04-08T00:00:00Z","role":"EBR"},
-    {"userId":"0055c00000B3ACxAAN","validFrom":"2026-04-09T00:00:00Z","validTo":"2026-04-10T00:00:00Z","role":"EBR"},
-    {"userId":"0055c00000B3BNXAA3","validFrom":"2025-02-04T00:00:00Z","validTo":null,"role":"EBR"},
-    {"userId":"0055c00000B3BzbAAF","validFrom":"2026-06-02T00:00:00Z","validTo":null,"role":"EBR"},
-    {"userId":"005Kg000000luT6IAI","validFrom":"2026-05-13T00:00:00Z","validTo":null,"role":"EBR"}
+    {
+      "userId": "0050V000006tDYSQA2",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0050V000006tY1GQAU",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0050V0000075uthQAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0050V000007eeamQAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0050V00000898xvQAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0050V0000089cKfQAI",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000007oZlsAAE",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000007ojbpAAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-02-07T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008BCkAAAW",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SJPaAAO",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-08-11T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o000008SJPcAAO",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SPKGAA4",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2023-09-20T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SQFdAAO",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-01-09T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o000008STilAAG",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SZlnAAG",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-10-31T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SZloAAG",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SagTAAS",
+      "validFrom": "2024-04-04T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Sc0eAAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SgmCAAS",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-09-03T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Sh5nAAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-02-05T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Sh5oAAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-09-06T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o000008SitoAAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SjLEAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SkRIAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Skr6AAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-02-05T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Skr7AAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Skr9AAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SkrBAAS",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SkuPAAS",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-07-12T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o000008SmuqAAC",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-03-14T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SmuqAAC",
+      "validFrom": "2024-03-14T00:00:00.000Z",
+      "validTo": "2024-04-01T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o000008SoXoAAK",
+      "validFrom": "2024-09-16T00:00:00.000Z",
+      "validTo": "2024-10-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SoXoAAK",
+      "validFrom": "2024-10-31T00:00:00.000Z",
+      "validTo": "2024-11-01T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SoXpAAK",
+      "validFrom": "2024-09-16T00:00:00.000Z",
+      "validTo": "2024-10-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SrJMAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-09-03T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SrJNAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SrJPAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-01-03T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008SrJQAA0",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o000008Su2TAAS",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-02-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o0000096sqPAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-01-06T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o0000096uAEAAY",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o0000096wwJAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o0000096wwLAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o00000975dTAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0053o00000977leAAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2023-09-20T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0053o00000977liAAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-01-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000008rbvKAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000008rbvPAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-05-29T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000008rbvPAAQ",
+      "validFrom": "2024-05-29T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0055c000008rbvUAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009Pad6AAC",
+      "validFrom": "2024-06-03T00:00:00.000Z",
+      "validTo": "2025-05-01T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PlsSAAS",
+      "validFrom": "2024-10-02T00:00:00.000Z",
+      "validTo": "2025-04-14T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PlsSAAS",
+      "validFrom": "2025-05-29T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009Poe4AAC",
+      "validFrom": "2025-02-04T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009Poe9AAC",
+      "validFrom": "2024-09-16T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PpRGAA0",
+      "validFrom": "2024-10-02T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PvV6AAK",
+      "validFrom": "2024-04-04T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PvoXAAS",
+      "validFrom": "2025-09-19T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PwP4AAK",
+      "validFrom": "2024-04-17T00:00:00.000Z",
+      "validTo": "2025-05-01T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PwQRAA0",
+      "validFrom": "2024-04-17T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009PwbAAAS",
+      "validFrom": "2024-04-18T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009STP6AAO",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009SZ43AAG",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-01-02T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009SZ44AAG",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-03-22T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009SZ44AAG",
+      "validFrom": "2024-03-22T00:00:00.000Z",
+      "validTo": "2025-04-11T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0055c000009SeVlAAK",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009SeVmAAK",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-01-06T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009St6MAAS",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-09-23T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009St6MAAS",
+      "validFrom": "2024-09-23T00:00:00.000Z",
+      "validTo": "2025-09-08T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0055c000009lBjcAAE",
+      "validFrom": "2023-09-05T00:00:00.000Z",
+      "validTo": "2025-05-01T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lLb4AAE",
+      "validFrom": "2024-04-08T00:00:00.000Z",
+      "validTo": "2025-10-01T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lLwRAAU",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-02-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lT6dAAE",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lT7lAAE",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-09-23T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lT7lAAE",
+      "validFrom": "2024-09-23T00:00:00.000Z",
+      "validTo": "2025-09-02T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0055c000009lY3yAAE",
+      "validFrom": "2024-04-04T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lc4lAAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lciHAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-01-02T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009ldONAAY",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2024-09-03T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009ldvHAAQ",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009lgesAAA",
+      "validFrom": "2024-04-08T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009m3GkAAI",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009m9d6AAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009mAZeAAM",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009mDnLAAU",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c000009mG4xAAE",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2025-01-03T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000AETAPAA5",
+      "validFrom": "2024-01-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000AEVo7AAH",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2hOKAAZ",
+      "validFrom": "2024-05-21T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2hOKAAZ",
+      "validFrom": "2026-03-31T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2iBCAAZ",
+      "validFrom": "2024-05-29T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "SEBR"
+    },
+    {
+      "userId": "0055c00000B2k6oAAB",
+      "validFrom": "2026-08-21T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2klXAAR",
+      "validFrom": "2024-06-25T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2mUxAAJ",
+      "validFrom": "2025-02-14T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2uvcAAB",
+      "validFrom": "2025-02-28T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B2yJ3AAJ",
+      "validFrom": "2025-07-07T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B36WtAAJ",
+      "validFrom": "2024-11-20T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B37joAAB",
+      "validFrom": "2024-12-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B37jtAAB",
+      "validFrom": "2024-12-11T00:00:00.000Z",
+      "validTo": "2026-03-19T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B39foAAB",
+      "validFrom": "2025-01-08T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ACxAAN",
+      "validFrom": "2025-01-14T00:00:00.000Z",
+      "validTo": "2026-04-08T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ACxAAN",
+      "validFrom": "2026-04-09T00:00:00.000Z",
+      "validTo": "2026-04-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3AD2AAN",
+      "validFrom": "2025-01-14T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3B1WAAV",
+      "validFrom": "2025-01-29T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3BNXAA3",
+      "validFrom": "2025-02-04T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ByOAAV",
+      "validFrom": "2025-11-05T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ByTAAV",
+      "validFrom": "2026-01-08T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ByYAAV",
+      "validFrom": "2025-10-14T00:00:00.000Z",
+      "validTo": "2026-07-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3BzbAAF",
+      "validFrom": "2026-06-02T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3CAeAAN",
+      "validFrom": "2025-02-13T00:00:00.000Z",
+      "validTo": "2026-05-04T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3CD9AAN",
+      "validFrom": "2025-02-13T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3ES1AAN",
+      "validFrom": "2025-03-19T00:00:00.000Z",
+      "validTo": "2026-05-04T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3EpUAAV",
+      "validFrom": "2025-03-26T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3EpZAAV",
+      "validFrom": "2025-03-26T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "0055c00000B3Fy3AAF",
+      "validFrom": "2025-04-10T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lGQjIAM",
+      "validFrom": "2025-04-29T00:00:00.000Z",
+      "validTo": "2026-05-04T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lcNUIAY",
+      "validFrom": "2025-11-07T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lfJkIAI",
+      "validFrom": "2026-05-05T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lfK4IAI",
+      "validFrom": "2025-11-19T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lfK9IAI",
+      "validFrom": "2026-05-05T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lfLgIAI",
+      "validFrom": "2025-11-24T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lgeUIAQ",
+      "validFrom": "2026-04-08T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lh80IAA",
+      "validFrom": "2025-11-27T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lhtQIAQ",
+      "validFrom": "2025-12-03T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lhtzIAA",
+      "validFrom": "2026-06-01T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lhw0IAA",
+      "validFrom": "2025-12-04T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lhwFIAQ",
+      "validFrom": "2025-12-04T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lmBUIAY",
+      "validFrom": "2026-02-06T00:00:00.000Z",
+      "validTo": "2026-02-09T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lmBUIAY",
+      "validFrom": "2026-07-22T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lmSBIAY",
+      "validFrom": "2026-02-09T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lsrQIAQ",
+      "validFrom": "2026-04-21T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000ltkkIAA",
+      "validFrom": "2026-05-05T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000luA9IAI",
+      "validFrom": "2026-05-11T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000luMyIAI",
+      "validFrom": "2026-05-12T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000luT6IAI",
+      "validFrom": "2026-05-13T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lutEIAQ",
+      "validFrom": "2026-05-21T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lutOIAQ",
+      "validFrom": "2026-06-01T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lutTIAQ",
+      "validFrom": "2026-06-01T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000luyxIAA",
+      "validFrom": "2026-05-22T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000luz2IAA",
+      "validFrom": "2026-05-22T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lvGIIAY",
+      "validFrom": "2026-05-25T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lvHkIAI",
+      "validFrom": "2026-05-27T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lvxlIAA",
+      "validFrom": "2026-06-03T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lvxqIAA",
+      "validFrom": "2026-06-03T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lxbwIAA",
+      "validFrom": "2026-06-17T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lxc1IAA",
+      "validFrom": "2026-06-17T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005Kg000000lxnJIAQ",
+      "validFrom": "2026-06-18T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005d0000003czPpAAI",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005d0000004i181AAA",
+      "validFrom": "2023-08-11T00:00:00.000Z",
+      "validTo": "2026-03-10T00:00:00.000Z",
+      "role": "EBR"
+    },
+    {
+      "userId": "005hR000003j4fFQAQ",
+      "validFrom": "2026-07-09T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    },
+    {
+      "userId": "005hR000007r3a1QAA",
+      "validFrom": "2026-09-03T00:00:00.000Z",
+      "validTo": null,
+      "role": "EBR"
+    }
   ]
 }

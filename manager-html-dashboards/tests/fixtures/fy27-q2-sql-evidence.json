@@ -1,0 +1,34 @@
+{
+  "source": "Salesforce report JR Corporate EBR - SQLs by Rep",
+  "reportId": "00OhR000004gPpJUAU",
+  "asOf": "2026-11-12T10:18:42.563+01:00",
+  "quarter": {
+    "start": "2026-10-01",
+    "end": "2027-01-01"
+  },
+  "records": [
+    {"eventId":"00UhR00000695ReUAI","ebr":"Illane Hamache","subject":"Sonepar - Github Copilot","startDateTime":"2026-10-01T15:00:00Z","observedHeldAt":"2026-10-19T14:15:19Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Sonepar Germany"},
+    {"eventId":"00UhR00000BZeqgUAD","ebr":"Illane Hamache","subject":"KATIM - GitHub // Discovery Call","startDateTime":"2026-10-02T10:00:00Z","observedHeldAt":"2026-10-21T08:39:49Z","opportunityOwner":"Pedro Oom","currentAccountOwner":"Pedro Oom","account":"KATIM"},
+    {"eventId":"00UhR00000BtHujUAF","ebr":"Illane Hamache","subject":"Berger-Levrault - GitHub // Revue de compte","startDateTime":"2026-10-14T13:30:00Z","observedHeldAt":"2026-10-28T18:00:16Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Berger-Levrault"},
+    {"eventId":"00UhR00000D4iivUAB","ebr":"Illane Hamache","subject":"Elm x GitHub - DevOps toolchain & GitHub Copilot","startDateTime":"2026-10-15T09:00:00Z","observedHeldAt":"2026-10-21T11:22:52Z","opportunityOwner":"Pedro Oom","currentAccountOwner":"Pedro Oom","account":"ELM"},
+    {"eventId":"00UhR00000D51SEUAZ","ebr":"Illane Hamache","subject":"Voodoo - GitHub // Intro & Security Review","startDateTime":"2026-10-15T08:00:00Z","observedHeldAt":"2026-10-30T15:09:27Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Voodoo"},
+    {"eventId":"00UhR00000DvHaxUAF","ebr":"Illane Hamache","subject":"Mistral AI - GitHub // Technical Support Services","startDateTime":"2026-10-01T12:00:00Z","observedHeldAt":"2026-10-19T14:06:28Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Mistral AI France"},
+    {"eventId":"00UhR00000DwhgDUAR","ebr":"Illane Hamache","subject":"Pennylane - GitHub // Account Review","startDateTime":"2026-10-05T14:00:00Z","observedHeldAt":"2026-10-21T08:24:06Z","opportunityOwner":"Morgan Nicas","currentAccountOwner":"Morgan Nicas","account":"Pennylane"},
+    {"eventId":"00UhR00000ETKJRUA5","ebr":"Illane Hamache","subject":"Betclic - GitHub // Les Assises meeting","startDateTime":"2026-10-09T15:00:00Z","observedHeldAt":"2026-10-19T15:06:41Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Betclic Group"},
+    {"eventId":"00UhR00000ETrGzUAL","ebr":"Illane Hamache","subject":"Servier - GitHub // Meeting Les Assises","startDateTime":"2026-10-09T15:00:00Z","observedHeldAt":"2026-10-19T15:06:53Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Servier"},
+    {"eventId":"00UhR00000EfRHDUA3","ebr":"Illane Hamache","subject":"STIME - GitHub // Meeting Les Assises","startDateTime":"2026-10-09T16:00:00Z","observedHeldAt":"2026-10-28T18:01:18Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Intermarche"},
+    {"eventId":"00UhR00000FzfLlUAJ","ebr":"Illane Hamache","subject":"Meeting GHAS Servier // Les Assises","startDateTime":"2026-10-09T18:00:00Z","observedHeldAt":"2026-10-28T18:16:43Z","opportunityOwner":"Pierre Aigron","currentAccountOwner":"Pierre Aigron","account":"Servier"},
+    {"eventId":"00UhR000007uRkgUAE","ebr":"Renato Taramona","subject":"Hapag Lloyd <> Copilot","startDateTime":"2026-10-13T14:00:00Z","observedHeldAt":"2026-10-13T12:46:39Z","opportunityOwner":"Lennart Dany","currentAccountOwner":"Lennart Dany","account":"Hapag Lloyd AG"},
+    {"eventId":"00UhR00000BIcLRUA1","ebr":"Renato Taramona","subject":"TTTECH <> GHE","startDateTime":"2026-10-01T11:00:00Z","observedHeldAt":"2026-10-27T10:15:16Z","opportunityOwner":"Ruben Weinmiller","currentAccountOwner":"Ruben Weinmiller","account":"TTTech Computertechnik AG"},
+    {"eventId":"00UhR00000DJf1ZUAT","ebr":"Renato Taramona","subject":"Symrise <> GHE","startDateTime":"2026-10-12T08:00:00Z","observedHeldAt":"2026-10-12T07:24:49Z","opportunityOwner":"Lennart Dany","currentAccountOwner":"Lennart Dany","account":"Symrise AG"},
+    {"eventId":"00UhR00000DKg0PUAT","ebr":"Renato Taramona","subject":"Rosen <> Copilot","startDateTime":"2026-10-12T12:00:00Z","observedHeldAt":"2026-10-12T13:13:04Z","opportunityOwner":"Luca Schwarz","currentAccountOwner":"Luca Schwarz","account":"ROSEN Group"},
+    {"eventId":"00UhR00000DvVqnUAF","ebr":"Renato Taramona","subject":"Architect <> Copilot","startDateTime":"2026-10-15T10:00:00Z","observedHeldAt":"2026-10-15T14:41:26Z","opportunityOwner":"Sindy Abreu","currentAccountOwner":"Sindy Abreu","account":"Kuveyt Turk Participation Bank (Turkey)"},
+    {"eventId":"00UhR00000E7a0KUAR","ebr":"Renato Taramona","subject":"Barmenia <> Copilot","startDateTime":"2026-10-16T09:00:00Z","observedHeldAt":"2026-10-27T10:13:46Z","opportunityOwner":"Ruben Weinmiller","currentAccountOwner":"Ruben Weinmiller","account":"Barmenia.Gothaer Finanzholding AG"},
+    {"eventId":"00UhR00000E7kFlUAJ","ebr":"Renato Taramona","subject":"Sartorious <> Copilot","startDateTime":"2026-10-16T09:00:00Z","observedHeldAt":"2026-10-27T10:13:25Z","opportunityOwner":"Ruben Weinmiller","currentAccountOwner":"Ruben Weinmiller","account":"Sartorius Corporate Administration GmbH"},
+    {"eventId":"00UhR00000E8AGfUAN","ebr":"Renato Taramona","subject":"KFW <> Copilot","startDateTime":"2026-10-16T10:00:00Z","observedHeldAt":"2026-10-27T10:14:50Z","opportunityOwner":"Ruben Weinmiller","currentAccountOwner":"Ruben Weinmiller","account":"KFWBankengruppe"},
+    {"eventId":"00UhR00000E8AmvUAF","ebr":"Renato Taramona","subject":"Karl Storz <> GHE","startDateTime":"2026-10-16T10:00:00Z","observedHeldAt":"2026-10-27T10:14:37Z","opportunityOwner":"Ruben Weinmiller","currentAccountOwner":"Ruben Weinmiller","account":"KARL STORZ SE & Co. KG"},
+    {"eventId":"00UhR00000FUWORUA5","ebr":"Renato Taramona","subject":"FCC <> Github","startDateTime":"2026-10-26T13:00:00Z","observedHeldAt":"2026-10-26T13:05:22Z","opportunityOwner":"Sindy Abreu","currentAccountOwner":"Sindy Abreu","account":"FCC"},
+    {"eventId":"00UhR00000Fg9cYUAR","ebr":"Renato Taramona","subject":"Symrise <> GHE","startDateTime":"2026-10-27T11:00:00Z","observedHeldAt":"2026-11-10T13:36:12Z","opportunityOwner":"Lennart Dany","currentAccountOwner":"Lennart Dany","account":"Symrise AG"},
+    {"eventId":"00UhR00000I0oIbUAJ","ebr":"Renato Taramona","subject":"Zorlu <> GHAS","startDateTime":"2026-11-11T10:00:00Z","observedHeldAt":"2026-11-11T10:05:40Z","opportunityOwner":"Sindy Abreu","currentAccountOwner":"Sindy Abreu","account":"Zorlu Teknoloji"}
+  ]
+}

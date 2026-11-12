@@ -109,6 +109,7 @@ function renderFeatured(containerId, totalId, records) {
 
 byId("scope").textContent =
   `${data.segment} | FY quarter ${data.quarter.start} to ${data.quarter.end} (exclusive) | Europe/Amsterdam | Refreshed ${data.generatedAt}`;
+byId("sql-methodology").textContent = data.sqlMethodology;
 byId("breakdown-title").textContent = data.tableTitle || "IC breakdown";
 byId("breakdown-primary").textContent = data.tablePrimaryHeader || "AE / IC";
 byId("breakdown-secondary").textContent = data.tableSecondaryHeader || "EBR";
@@ -135,10 +136,13 @@ if (data.enrichment) {
 }
 
 const previousWeek = data.reportingPeriod.monday;
-const previous = data.weekly[previousWeek];
+const previous = data.periodKind === "quarter"
+  ? Object.fromEntries(Object.entries(data.qtd).map(([name, value]) => [name, { value }]))
+  : data.weekly[previousWeek];
 if (!previous) throw new Error(`Missing completed-week payload: ${previousWeek}`);
-byId("previous-label").textContent =
-  `${data.reportingPeriod.monday} to ${data.reportingPeriod.sunday} (Europe/Amsterdam)`;
+byId("previous-label").textContent = data.periodKind === "quarter"
+  ? `${data.reportingPeriod.start} to ${data.reportingPeriod.endInclusive} (Europe/Amsterdam)`
+  : `${data.reportingPeriod.monday} to ${data.reportingPeriod.sunday} (Europe/Amsterdam)`;
 byId("previous-scheduled").textContent = previous.scheduled.value;
 byId("previous-sql").textContent = previous.sql.value;
 byId("previous-licensed").textContent = compact.format(previous.licensed.value);

@@ -1,24 +1,29 @@
 const fs = require("fs");
 const path = require("path");
 const { monday, reportingPeriod } = require("./reporting-time");
+const { reportContext, quarterWeeks } = require("./manager-html-dashboards/src/report-context");
+const asOf = process.env.DASHBOARD_AS_OF || new Date().toISOString();
+const context = reportContext(asOf);
+const { dataDirectory } = context;
+const auditDirectory = process.env.DASHBOARD_AUDIT_DIR || path.join(__dirname, ".dashboard-audit");
 
 const mapping = JSON.parse(
   fs.readFileSync(path.join(__dirname, "sales_leader_team_mapping.json"), "utf8"),
 );
 const activity = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "sales_leader_activity_data.json"), "utf8"),
+  fs.readFileSync(path.join(dataDirectory, "sales_leader_activity_data.json"), "utf8"),
 );
 const pipeline = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "sales_leader_pipeline_data.json"), "utf8"),
+  fs.readFileSync(path.join(dataDirectory, "sales_leader_pipeline_data.json"), "utf8"),
 );
 const closedWon = JSON.parse(
   fs.readFileSync(path.join(__dirname, "sales_leader_closed_won_data.json"), "utf8"),
 );
 const pipelineStages = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "sales_leader_pipeline_stage_data.json"), "utf8"),
+  fs.readFileSync(path.join(dataDirectory, "sales_leader_pipeline_stage_data.json"), "utf8"),
 );
 const featuredAccounts = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "sales_leader_featured_accounts.json"), "utf8"),
+  fs.readFileSync(path.join(dataDirectory, "sales_leader_featured_accounts.json"), "utf8"),
 );
 
 const normalize = (value) =>
@@ -34,9 +39,8 @@ const aliases = {
 };
 
 const normalized = (value) => aliases[normalize(value)] || normalize(value);
-const asOf = process.env.DASHBOARD_AS_OF || new Date().toISOString();
 const currentWeek = monday(asOf);
-const weeks = [...new Set([
+const weeks = context.snapshot ? quarterWeeks(context.quarter) : [...new Set([
   ...Object.keys(activity.scheduled),
   ...Object.keys(activity.sql),
   ...Object.keys(pipeline.licensed),
@@ -47,6 +51,7 @@ const weeks = [...new Set([
 
 const segments = {};
 const aeIndex = new Map();
+const aeEbrIndex = new Map();
 
 for (const [segment, leaders] of Object.entries(mapping)) {
   segments[segment] = { leaders: {} };
@@ -88,6 +93,7 @@ for (const [segment, leaders] of Object.entries(mapping)) {
     for (const ic of ics) {
       if (aeIndex.has(normalized(ic.ae))) throw new Error(`Duplicate mapped AE: ${ic.ae}`);
       aeIndex.set(normalized(ic.ae), { segment, leaderName, ic });
+      aeEbrIndex.set(`${normalized(ic.ae)}\u0000${normalized(ic.ebr)}`, { segment, leaderName, ic });
     }
   }
 }
@@ -103,17 +109,25 @@ const unmapped = {
 };
 
 function add(metric, week, record) {
-  const match = aeIndex.get(normalized(record.ae));
+  const match = aeEbrIndex.get(`${normalized(record.ae)}\u0000${normalized(record.ebr)}`);
   if (!match) {
-    unmapped[metric].push({ week, ...record });
+    const mappedAe = aeIndex.get(normalized(record.ae));
+    unmapped[metric].push({
+      week,
+      ...record,
+      reason: mappedAe ? "ae_ebr_mapping_mismatch" : "ae_not_mapped",
+      mappedManager: mappedAe?.leaderName || null,
+      mappedEbr: mappedAe?.ic.ebr || null
+    });
     return;
   }
   const leader = segments[match.segment].leaders[match.leaderName];
-  leader[metric] += record.value;
+  if (!Number.isFinite(record.qtdValue)) throw new Error("Refresh required: missing quarter-specific source value");
+  leader[metric] += record.qtdValue;
   leader.weekly[week][metric] += record.value;
   leader.weekly[week].pipeline =
     leader.weekly[week].licensed + leader.weekly[week].metered;
-  match.ic[metric] += record.value;
+  match.ic[metric] += record.qtdValue;
 }
 
 for (const metric of ["scheduled", "sql"]) {
@@ -192,11 +206,34 @@ for (const entry of featuredAccounts.entries) {
 }
 
 fs.writeFileSync(
-  path.join(__dirname, "sales_leader_dashboard_data.json"),
+  path.join(dataDirectory, "sales_leader_dashboard_data.json"),
   `${JSON.stringify({
+    quarter: context.quarter,
     weeks,
     pipelineStages: pipelineStages.stages,
     segments,
     unmapped,
   }, null, 2)}\n`,
+);
+
+const mappedTotals = {};
+for (const segment of Object.values(segments)) {
+  for (const [leaderName, leader] of Object.entries(segment.leaders)) {
+    mappedTotals[leaderName] = {
+      scheduled: leader.scheduled,
+      sql: leader.sql,
+      licensed: leader.licensed,
+      metered: leader.metered
+    };
+  }
+}
+fs.mkdirSync(auditDirectory, { recursive: true });
+fs.writeFileSync(
+  path.join(auditDirectory, "dashboard-attribution-audit.json"),
+  `${JSON.stringify({
+    asOf,
+    quarter: context.quarter,
+    mappedTotals,
+    unmapped
+  }, null, 2)}\n`
 );

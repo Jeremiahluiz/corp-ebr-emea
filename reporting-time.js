@@ -44,4 +44,11 @@ function reportingPeriod(value) {
   };
 }
 
-module.exports = { TIME_ZONE, datePart, monday, addDays, timestamp, midnight, reportingPeriod };
+function fiscalQuarter(value = new Date()) {
+  const date = new Date(`${datePart(value)}T12:00:00Z`);
+  const start = new Date(Date.UTC(date.getUTCFullYear(), Math.floor(date.getUTCMonth() / 3) * 3, 1));
+  const end = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + 3, 1));
+  return { start: datePart(start), end: datePart(end) };
+}
+
+module.exports = { TIME_ZONE, datePart, monday, addDays, timestamp, midnight, reportingPeriod, fiscalQuarter };

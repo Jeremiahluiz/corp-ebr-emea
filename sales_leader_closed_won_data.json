@@ -212,6 +212,7 @@
       ],
       "attributionRoutes": [
         "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
         "SBQQ__Quote__c.CreatedById"
       ]
     },
@@ -434,6 +435,7 @@
       ],
       "attributionRoutes": [
         "Opportunity.CreatedById",
+        "Opportunity.Stamped_SDR_EBR__c",
         "SBQQ__Quote__c.CreatedById"
       ]
     },
@@ -2200,11 +2202,11 @@
   "recordsWithNullAmount": [],
   "routeCounts": {
     "Opportunity.CreatedById": 14,
-    "Opportunity.Stamped_SDR_EBR__c": 10,
+    "Opportunity.Stamped_SDR_EBR__c": 11,
     "SBQQ__Quote__c.CreatedById": 14
   },
   "caveats": [
-    "Salesforce queried on 2026-09-28 for Q1 FY27 Closed Won opportunities owned by AEs in the six manager mappings.",
+    "Salesforce queried on 2026-11-09 for Q1 FY27 Closed Won opportunities owned by AEs in the six manager mappings.",
     "Opportunity creation date, milestone creation date, and quote creation date are not restricted to the quarter.",
     "Quotes and milestones qualify through their linked opportunity being IsWon=true with a Q1 FY27 CloseDate.",
     "Historical EBR/SEBR role periods come from service_sales_analytics.sfdc_user_role_history.",
@@ -2215,5 +2217,6 @@
     "Accounts omitted from the Power BI Commission ARR summary are treated as zero because the visual only exports accounts with a displayed Commission ARR value.",
     "Metered credit is restated against the latest snapshot and can shrink or disappear when account Commission ARR falls.",
     "Each account/product uplift is counted once; ambiguous mixed-product accounts are excluded until a product-specific baseline is available."
-  ]
+  ],
+  "licensedSourceAsOf": "2026-10-19T12:01:43+02:00"
 }

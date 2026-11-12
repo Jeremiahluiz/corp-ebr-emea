@@ -4,17 +4,20 @@ const { execFileSync } = require("child_process");
 const { EBR_USERS } = require("./manager-html-dashboards/src/config");
 const { deriveHeldCredits } = require("./manager-html-dashboards/src/held-sql");
 const { datePart, monday, midnight, timestamp } = require("./reporting-time");
+const { reportContext } = require("./manager-html-dashboards/src/report-context");
 
 const ROOT = __dirname;
 const cliPackage = "@salesforce/cli@2.150.6";
 const orgAlias = process.env.SF_ORG_ALIAS || "ebr-dashboard";
-const quarter = { start: "2026-07-01", end: "2026-10-01" };
 const asOf = process.env.DASHBOARD_AS_OF || new Date().toISOString();
+const { quarter, sourceStart, createdUpperBound, dataDirectory } = reportContext(asOf);
 const namesById = Object.fromEntries(
   Object.entries(EBR_USERS).map(([name, id]) => [id, name])
 );
 const userIds = Object.values(EBR_USERS);
-const quarterStart = new Date(midnight(quarter.start)).toISOString();
+const quarterStart = new Date(midnight(sourceStart)).toISOString();
+const reportQuarterStart = new Date(midnight(quarter.start)).toISOString();
+const reportQuarterEnd = new Date(midnight(quarter.end)).toISOString();
 const auditDirectory = process.env.DASHBOARD_AUDIT_DIR || path.join(ROOT, ".dashboard-audit");
 const queryAudit = [];
 
@@ -57,15 +60,17 @@ function isAnnaJuly(ebr, value) {
   return ebr === "Anna Sobala" && date >= "2026-07-01" && date < "2026-08-01";
 }
 
-function addGrouped(target, week, ebr, ae, value) {
+function addGrouped(target, week, ebr, ae, value, creditDate, qtdDate = creditDate) {
+  const qtdValue = datePart(qtdDate) >= quarter.start && datePart(qtdDate) < quarter.end ? value : 0;
   if (!target[week]) target[week] = [];
   const existing = target[week].find(
     (record) => record.ebr === ebr && record.ae === ae
   );
   if (existing) {
     existing.value += value;
+    existing.qtdValue += qtdValue;
   } else {
-    target[week].push({ ebr, ae: ae || "UNMAPPED", value });
+    target[week].push({ ebr, ae: ae || "UNMAPPED", value, qtdValue });
   }
 }
 
@@ -84,19 +89,51 @@ function main() {
   const scheduled = query(
     `SELECT Id, CreatedById, CreatedDate, Account.Owner.Name FROM Event ` +
       `WHERE CreatedById IN (${ids}) AND CreatedDate >= ${quarterStart} ` +
-      `AND CreatedDate <= ${asOf}`
+      `AND ${createdUpperBound}`
   );
   const sqlEvents = query(
-    `SELECT Id, Subject, CreatedDate, CreatedById, Booker__c, Meeting_Set_By__c, ` +
-      `Meeting_Status__c, Account.Owner.Name FROM Event ` +
-      `WHERE (` +
-      `Booker__c IN (${ids}) OR Meeting_Set_By__c IN (${Object.keys(EBR_USERS).map(quote).join(",")}) ` +
-      `OR (Booker__c = NULL AND Meeting_Set_By__c = NULL AND CreatedById IN (${ids}))) ` +
-      `AND LastModifiedDate >= ${quarterStart} AND CreatedDate <= ${asOf}`
+    `SELECT Id, Subject, CreatedDate, LastModifiedDate, ActivityDate, StartDateTime, ` +
+      `Type, skyplatform__Activity_Type__c, Meeting_Set_By__c, Set_By__c, Meeting_Status__c, ` +
+      `Booker__c, CreatedById, WhatId, AccountId, Account.Name, Account.Owner.Name FROM Event ` +
+      `WHERE Meeting_Set_By__c IN (${Object.keys(EBR_USERS).map(quote).join(",")}) ` +
+      `AND Meeting_Status__c = 'Held' AND Set_By__c = 'EBR' AND Type = 'Meeting' ` +
+      `AND StartDateTime >= ${reportQuarterStart} AND StartDateTime < ${reportQuarterEnd} ` +
+      `AND WhatId != NULL`
   );
+  const sqlTasks = query(
+    `SELECT Id, Subject, CreatedDate, LastModifiedDate, ActivityDate, Type, ` +
+      `Meeting_Set_By__c, Set_By__c, Meeting_Status__c, Booker__c, CreatedById, WhatId, ` +
+      `AccountId, Account.Name, Account.Owner.Name FROM Task ` +
+      `WHERE Meeting_Set_By__c IN (${Object.keys(EBR_USERS).map(quote).join(",")}) ` +
+      `AND Meeting_Status__c = 'Held' AND Set_By__c = 'EBR' AND Type = 'Meeting' ` +
+      `AND ActivityDate >= ${quarter.start} AND ActivityDate < ${quarter.end} AND WhatId != NULL`
+  );
+  for (const event of sqlEvents) event.ActivityObject = "Event";
+  for (const task of sqlTasks) task.ActivityObject = "Task";
+  const sqlActivities = [...sqlEvents, ...sqlTasks];
+  const opportunityIds = [...new Set(sqlActivities
+    .map(activity => activity.WhatId)
+    .filter(id => String(id).startsWith("006")))];
+  const sqlOpportunities = [];
+  for (let index = 0; index < opportunityIds.length; index += 100) {
+    const opportunityChunk = opportunityIds.slice(index, index + 100).map(quote).join(",");
+    sqlOpportunities.push(...query(
+      `SELECT Id, Name, Owner.Name, AccountId, Account.Name, Account.Owner.Name ` +
+      `FROM Opportunity WHERE Id IN (${opportunityChunk})`
+    ));
+  }
+  const sqlOpportunityById = new Map(sqlOpportunities.map(opportunity => [opportunity.Id, opportunity]));
+  for (const activityRecord of sqlActivities) {
+    const opportunity = sqlOpportunityById.get(activityRecord.WhatId);
+    activityRecord.OpportunityName = opportunity?.Name || null;
+    activityRecord.OpportunityOwnerName = opportunity?.Owner?.Name || null;
+    activityRecord.AccountName = opportunity?.Account?.Name || activityRecord.Account?.Name || null;
+    activityRecord.AccountOwnerName = opportunity?.Account?.Owner?.Name ||
+      activityRecord.Account?.Owner?.Name || null;
+  }
   const history = [];
-  for (let index = 0; index < sqlEvents.length; index += 100) {
-    const eventIds = sqlEvents.slice(index, index + 100).map(event => quote(event.Id)).join(",");
+  for (let index = 0; index < sqlActivities.length; index += 100) {
+    const eventIds = sqlActivities.slice(index, index + 100).map(event => quote(event.Id)).join(",");
     history.push(...query(
       `SELECT Id, TracRTC__Object_Id__c, TracRTC__Log_Date__c, ` +
       `TracRTC__Record_Start_State__c, TracRTC__Record_End_State__c ` +
@@ -104,7 +141,9 @@ function main() {
       `AND TracRTC__Log_Date__c <= ${asOf} ORDER BY TracRTC__Log_Date__c, Id`
     ));
   }
-  const sqlObservations = deriveHeldCredits(sqlEvents, history, { namesById, quarter, asOf });
+  const sqlObservations = deriveHeldCredits(sqlActivities, history, {
+    namesById, quarter, asOf
+  });
 
   const activity = { scheduled: {}, sql: {} };
   for (const event of scheduled) {
@@ -115,7 +154,8 @@ function main() {
       monday(event.CreatedDate),
       ebr,
       event.Account?.Owner?.Name,
-      1
+      1,
+      event.CreatedDate
     );
   }
   for (const credit of sqlObservations.credits) {
@@ -124,7 +164,9 @@ function main() {
       credit.week,
       credit.ebr,
       credit.ae,
-      1
+      1,
+      credit.creditDate,
+      credit.reportDate
     );
   }
 
@@ -145,7 +187,7 @@ function main() {
   ].join(",");
   const direct = query(
     `SELECT ${opportunityFields} FROM Opportunity WHERE CreatedById IN (${ids}) ` +
-      `AND CreatedDate >= ${quarterStart} AND CreatedDate <= ${asOf} ` +
+      `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound} ` +
       `AND Type IN ('Order','Upgrade') AND Quote_Flag__c = 'Approved'`
   );
   const quotes = query(
@@ -159,13 +201,13 @@ function main() {
       `SBQQ__Opportunity2__r.Support_New_ARR_10__c, ` +
       `SBQQ__Opportunity2__r.Support_Upsell_ARR_10__c ` +
       `FROM SBQQ__Quote__c WHERE CreatedById IN (${ids}) ` +
-      `AND CreatedDate >= ${quarterStart} AND CreatedDate <= ${asOf}`
+      `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound}`
   );
   const milestones = query(
     `SELECT Id, CreatedById, CreatedDate, Opportunity__c, Total_Expected_Change__c, ` +
       `Opportunity__r.Name, Opportunity__r.Owner.Name, Opportunity__r.StageName ` +
       `FROM Product_Milestone__c WHERE CreatedById IN (${ids}) ` +
-      `AND CreatedDate >= ${quarterStart} AND CreatedDate <= ${asOf}`
+      `AND CreatedDate >= ${quarterStart} AND ${createdUpperBound}`
   );
 
   const licensedByOpportunity = new Map();
@@ -206,8 +248,10 @@ function main() {
       monday(record.creditDate),
       record.ebr,
       record.ae,
-      record.value
+      record.value,
+      record.creditDate
     );
+    if (datePart(record.creditDate) < quarter.start || datePart(record.creditDate) >= quarter.end) return;
     const stageKey = `${record.ae || "UNMAPPED"}\u0000${record.stage || "Unknown"}`;
     const stage = stageByAe.get(stageKey) || {
       ae: record.ae || "UNMAPPED",
@@ -292,30 +336,30 @@ function main() {
     "Omit"
   ];
   fs.mkdirSync(auditDirectory, { recursive: true });
+  fs.mkdirSync(dataDirectory, { recursive: true });
   fs.writeFileSync(path.join(auditDirectory, "salesforce-query-audit.json"),
     `${JSON.stringify({ asOf: timestamp(asOf), queries: queryAudit }, null, 2)}\n`);
   fs.writeFileSync(path.join(auditDirectory, "held-sql-observation-audit.json"),
     `${JSON.stringify({ asOf: timestamp(asOf), ...sqlObservations }, null, 2)}\n`);
   const coverageByAe = {};
-  for (const record of sqlObservations.excluded) {
-    if (!["cross_week_interval", "missing_same_week_non_held_observation", "no_held_observation", "conflicting_observations", "invalid_creation_boundary"].includes(record.reason)) continue;
+  for (const record of sqlObservations.credits) {
     const coverage = coverageByAe[record.ae] ||= {};
-    coverage[record.reason] = (coverage[record.reason] || 0) + 1;
+    coverage[record.basis] = (coverage[record.basis] || 0) + 1;
   }
-  fs.writeFileSync(path.join(ROOT, "sales_leader_sql_observation_status.json"),
+  fs.writeFileSync(path.join(dataDirectory, "sales_leader_sql_observation_status.json"),
     `${JSON.stringify({ asOf: timestamp(asOf), quarter, coverageByAe,
-      basis: "Conservative TracRTC status observations, not exact field-change timestamps. Earliest observed Held is counted once per Event only when a prior non-Held observation is in the same Amsterdam week, or the Event was created in that week. Cross-week and unsupported observations are excluded. EBR Booker, then Meeting Set By, then creator only when both are absent; current account-owner AE determines manager."
+      basis: "Salesforce report-compatible Held activity scope: Meeting Set By is a configured EBR, Type is Meeting, Meeting Status is Held, Set By is EBR, Start is in the fiscal quarter, and the activity is related to an Opportunity. Weekly credit uses the earliest available TracRTC Held observation in Europe/Amsterdam. If no Held observation exists, the Salesforce report Start date is the explicit fallback. Opportunity Owner determines AE/manager scope; Account Owner is retained in the audit."
     }, null, 2)}\n`);
   fs.writeFileSync(
-    path.join(ROOT, "sales_leader_activity_data.json"),
+    path.join(dataDirectory, "sales_leader_activity_data.json"),
     `${JSON.stringify(activity, null, 2)}\n`
   );
   fs.writeFileSync(
-    path.join(ROOT, "sales_leader_pipeline_data.json"),
+    path.join(dataDirectory, "sales_leader_pipeline_data.json"),
     `${JSON.stringify(pipeline, null, 2)}\n`
   );
   fs.writeFileSync(
-    path.join(ROOT, "sales_leader_pipeline_stage_data.json"),
+    path.join(dataDirectory, "sales_leader_pipeline_stage_data.json"),
     `${JSON.stringify(
       { stages, entries: [...stageByAe.values()].sort((a, b) => a.ae.localeCompare(b.ae)) },
       null,
@@ -323,7 +367,7 @@ function main() {
     )}\n`
   );
   fs.writeFileSync(
-    path.join(ROOT, "sales_leader_featured_accounts.json"),
+    path.join(dataDirectory, "sales_leader_featured_accounts.json"),
     `${JSON.stringify(
       { entries: [...featuredByOpportunity.values()].sort((a, b) => b.total - a.total) },
       null,
@@ -336,7 +380,9 @@ function main() {
       asOf,
       scheduled: scheduled.length,
       held: sqlObservations.credits.length,
-      sqlCandidates: sqlEvents.length,
+      sqlCandidates: sqlActivities.length,
+      sqlEvents: sqlEvents.length,
+      sqlTasks: sqlTasks.length,
       historyRows: history.length,
       sqlExcluded: sqlObservations.excluded.length,
       licensedOpportunities: licensedByOpportunity.size,
@@ -352,3 +398,5 @@ function main() {
 }
 
 if (require.main === module) main();
+
+module.exports = { addGrouped, main };

@@ -1,12 +1,25 @@
 const { datePart, monday, timestamp } = require("../../reporting-time");
 
 function eventBookingEbr(event, namesById) {
-  if (event.Booker__c) return namesById[event.Booker__c];
-  if (event.Meeting_Set_By__c) {
-    return Object.values(namesById).includes(event.Meeting_Set_By__c)
-      ? event.Meeting_Set_By__c : undefined;
-  }
-  return namesById[event.CreatedById];
+  return Object.values(namesById).includes(event.Meeting_Set_By__c)
+    ? event.Meeting_Set_By__c : undefined;
+}
+
+function sourceDate(event) {
+  return event.StartDateTime || event.ActivityDate;
+}
+
+function reportEligibilityReason(event, ebr, quarter) {
+  if (!ebr) return "meeting_set_by_not_configured_ebr";
+  if (event.Type !== "Meeting") return "activity_type_not_meeting";
+  if (event.Meeting_Status__c !== "Held") return "meeting_status_not_held";
+  if (event.Set_By__c !== "EBR") return "set_by_not_ebr";
+  if (!String(event.WhatId || "").startsWith("006")) return "not_opportunity_related";
+  const date = sourceDate(event);
+  if (!date) return "missing_report_date";
+  const reportDate = datePart(date);
+  if (reportDate < quarter.start || reportDate >= quarter.end) return "outside_report_quarter";
+  return null;
 }
 
 function deriveHeldCredits(events, logs, { namesById, quarter, asOf }) {
@@ -39,44 +52,41 @@ function deriveHeldCredits(events, logs, { namesById, quarter, asOf }) {
     if (seen.has(event.Id)) throw new Error(`Duplicate SQL Event: ${event.Id}`);
     seen.add(event.Id);
     const ebr = eventBookingEbr(event, namesById);
-    const base = { eventId: event.Id, subject: event.Subject, ae: event.Account?.Owner?.Name || "UNMAPPED", ebr };
+    const reportDate = sourceDate(event);
+    const base = {
+      activityObject: event.ActivityObject || "Event",
+      eventId: event.Id,
+      subject: event.Subject,
+      opportunityId: event.WhatId || null,
+      opportunityName: event.OpportunityName || null,
+      accountId: event.AccountId || null,
+      accountName: event.Account?.Name || event.AccountName || null,
+      ae: event.OpportunityOwnerName || event.What?.Owner?.Name || "UNMAPPED",
+      currentAccountOwner: event.Account?.Owner?.Name || event.AccountOwnerName || "UNMAPPED",
+      ebr,
+      reportDate: reportDate ? timestamp(reportDate) : null
+    };
     const exclude = (reason, extra = {}) => excluded.push({ ...base, reason, ...extra });
-    if (!ebr) { exclude("not_ebr_booked"); continue; }
+    const ineligible = reportEligibilityReason(event, ebr, quarter);
+    if (ineligible) { exclude(ineligible); continue; }
     const observations = (observationsByEvent.get(event.Id) || [])
       .sort((a, b) => a.at - b.at || a.logId.localeCompare(b.logId));
     if (observations.some((o, i) => i && o.at === observations[i - 1].at && o.status !== observations[i - 1].status)) {
       exclude("conflicting_observations"); continue;
     }
     const firstHeldIndex = observations.findIndex(o => o.status === "Held");
-    if (firstHeldIndex < 0) { exclude("no_held_observation"); continue; }
-    const held = observations[firstHeldIndex];
-    const observedHeldAt = timestamp(held.at);
-    const heldDate = datePart(held.at);
-    const week = monday(held.at);
-    if (heldDate < quarter.start || heldDate >= quarter.end) {
-      exclude("outside_quarter", { observedHeldAt }); continue;
-    }
-    if (ebr === "Anna Sobala" && heldDate >= "2026-07-01" && heldDate < "2026-08-01") {
-      exclude("anna_july_exclusion", { observedHeldAt }); continue;
-    }
-    const prior = observations.slice(0, firstHeldIndex).at(-1);
-    const createdAt = new Date(event.CreatedDate).getTime();
-    if (!Number.isFinite(createdAt) || createdAt > held.at) {
-      exclude("invalid_creation_boundary", { observedHeldAt }); continue;
-    }
-    let basis;
-    if (prior) {
-      if (monday(prior.at) !== week) {
-        exclude("cross_week_interval", { priorNonHeldAt: timestamp(prior.at), observedHeldAt }); continue;
-      }
-      basis = "non_held_and_first_held_observed_in_same_week";
-    } else if (monday(createdAt) === week) {
-      basis = "created_and_first_held_observed_in_same_week";
-    } else {
-      exclude("missing_same_week_non_held_observation", { observedHeldAt }); continue;
-    }
+    const held = firstHeldIndex >= 0 ? observations[firstHeldIndex] : null;
+    const creditAt = held?.at ?? new Date(reportDate).getTime();
+    if (!Number.isFinite(creditAt)) { exclude("invalid_credit_date"); continue; }
+    const observedHeldAt = held ? timestamp(held.at) : null;
+    const creditDate = timestamp(creditAt);
+    const week = monday(creditAt);
+    const prior = firstHeldIndex > 0 ? observations[firstHeldIndex - 1] : null;
+    const basis = held
+      ? "earliest_tracrtc_held_observation"
+      : "report_start_fallback_missing_held_observation";
     credits.push({
-      ...base, week, observedHeldAt, basis, heldLogId: held.logId,
+      ...base, week, creditDate, observedHeldAt, basis, heldLogId: held?.logId || null,
       priorNonHeldAt: prior ? timestamp(prior.at) : null,
       priorLogId: prior?.logId || null, value: 1
     });

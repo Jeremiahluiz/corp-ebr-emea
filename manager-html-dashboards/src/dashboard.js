@@ -1,7 +1,7 @@
 const { DIRECTORS, EBR_USERS, MANAGERS, ROOT } = require("./config");
 const fs = require("fs");
 const path = require("path");
-const { datePart, monday, addDays } = require("../../reporting-time");
+const { datePart, monday, addDays, fiscalQuarter } = require("../../reporting-time");
 const { deriveHeldCredits } = require("./held-sql");
 
 const STAGES = [
@@ -29,17 +29,6 @@ const recordUrl = (instanceUrl, type, id) =>
   instanceUrl
     ? `${instanceUrl}/lightning/r/${type}/${id}/view`
     : `https://login.salesforce.com/${id}`;
-
-function fiscalQuarter(value = new Date()) {
-  const date = new Date(`${datePart(value)}T12:00:00Z`);
-  const month = date.getUTCMonth();
-  const year = date.getUTCFullYear();
-  const fiscalStartYear = month >= 6 ? year : year - 1;
-  const index = Math.floor(((month - 6 + 12) % 12) / 3);
-  const start = new Date(Date.UTC(fiscalStartYear, 6 + index * 3, 1));
-  const end = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + 3, 1));
-  return { start: datePart(start.toISOString()), end: datePart(end.toISOString()) };
-}
 
 function weeksInQuarter(quarter) {
   const result = [];
@@ -124,7 +113,7 @@ function buildDirectorSnapshot(directorName, data, closedWon, featured) {
     managerName,
     data.segments[director.segment].leaders[managerName]
   ]);
-  const quarter = { start: "2026-07-01", end: "2026-10-01" };
+  const quarter = data.quarter || fiscalQuarter(process.env.DASHBOARD_AS_OF);
   const dashboard = {
     manager: directorName,
     segment: director.segment,
@@ -294,9 +283,9 @@ function aggregateLive(managerName, quarter, source) {
   for (const credit of sql.credits) {
     add("sql", credit.ae, 1, {
       id: credit.eventId, label: credit.subject || "Salesforce Event",
-      subtitle: `${credit.ebr} · Observed Held ${credit.observedHeldAt}`,
+      subtitle: `${credit.ebr} · ${credit.observedHeldAt ? `Observed Held ${credit.observedHeldAt}` : `Report Start fallback ${credit.reportDate}`}`,
       url: recordUrl(source.instanceUrl, "Event", credit.eventId)
-    }, credit.observedHeldAt);
+    }, credit.creditDate);
   }
   const attribution = new Map();
   for (const opportunity of source.directOpportunities) {
@@ -418,16 +407,16 @@ function aggregateLive(managerName, quarter, source) {
   return dashboard;
 }
 
-function buildSnapshot(managerName) {
-  const data = JSON.parse(fs.readFileSync(path.join(ROOT, "sales_leader_dashboard_data.json"), "utf8"));
+function buildSnapshot(managerName, dataDirectory = ROOT) {
+  const data = JSON.parse(fs.readFileSync(path.join(dataDirectory, "sales_leader_dashboard_data.json"), "utf8"));
   const closedWon = JSON.parse(fs.readFileSync(path.join(ROOT, "sales_leader_closed_won_data.json"), "utf8"));
-  const featured = JSON.parse(fs.readFileSync(path.join(ROOT, "sales_leader_featured_accounts.json"), "utf8"));
+  const featured = JSON.parse(fs.readFileSync(path.join(dataDirectory, "sales_leader_featured_accounts.json"), "utf8"));
   if (DIRECTORS[managerName]) {
     return buildDirectorSnapshot(managerName, data, closedWon, featured);
   }
   const segment = Object.keys(data.segments).find((name) => data.segments[name].leaders[managerName]);
   const leader = data.segments[segment].leaders[managerName];
-  const quarter = { start: "2026-07-01", end: "2026-10-01" };
+  const quarter = data.quarter || fiscalQuarter(process.env.DASHBOARD_AS_OF);
   const dashboard = emptyDashboard(managerName, quarter, process.env.SF_INSTANCE_URL);
   dashboard.weeks = data.weeks;
   dashboard.weekly = Object.fromEntries(data.weeks.map((week) => [week, {

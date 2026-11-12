@@ -40,7 +40,12 @@ test("Anna July scheduled exclusion does not remove an August held SQL", () => {
         CreatedById: "anna",
         CreatedDate: "2026-07-30T10:00:00Z",
         StartDateTime: "2026-08-04T10:00:00Z",
+        Type: "Meeting",
+        Meeting_Set_By__c: "Anna Sobala",
         Meeting_Status__c: "Held",
+        Set_By__c: "EBR",
+        WhatId: "006-anna",
+        OpportunityOwnerName: "Amr Al Jarhi",
         Account: { Name: "Acme", Owner: { Name: "Amr Al Jarhi" } }
       }],
       directOpportunities: [],
@@ -75,7 +80,12 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
           Booker__c: "daniel",
           CreatedDate: "2026-06-01T10:00:00Z",
           StartDateTime: "2026-09-21T11:00:00Z",
+          Type: "Meeting",
+          Meeting_Set_By__c: "Daniel Spanjaard",
           Meeting_Status__c: "Held",
+          Set_By__c: "EBR",
+          WhatId: "006-compass",
+          OpportunityOwnerName: "Emilio van der Zanden",
           Account: { Name: "Compass Group", Owner: { Name: "Emilio van der Zanden" } }
         },
         {
@@ -86,7 +96,11 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
           Meeting_Set_By__c: "Daniel Spanjaard",
           CreatedDate: "2026-06-01T10:00:00Z",
           StartDateTime: "2026-09-21T12:00:00Z",
+          Type: "Meeting",
           Meeting_Status__c: "Held",
+          Set_By__c: "EBR",
+          WhatId: "006-ineos",
+          OpportunityOwnerName: "Emilio van der Zanden",
           Account: { Name: "INEOS", Owner: { Name: "Emilio van der Zanden" } }
         },
         {
@@ -97,7 +111,11 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
           Meeting_Set_By__c: "Gillian Sheridan",
           CreatedDate: "2026-06-01T10:00:00Z",
           StartDateTime: "2026-09-24T12:00:00Z",
+          Type: "Meeting",
           Meeting_Status__c: "Held",
+          Set_By__c: "EBR",
+          WhatId: "006-sdr",
+          OpportunityOwnerName: "Shirley van Zon",
           Account: { Name: "OGD ICT", Owner: { Name: "Shirley van Zon" } }
         },
         {
@@ -105,9 +123,14 @@ test("held SQL uses EBR Booker and Meeting Set By while preserving AE manager ow
           Subject: "Paf x GitHub Code Quality",
           CreatedById: "tommy",
           Booker__c: "tommy",
+          Meeting_Set_By__c: "Tommy Hirvonen",
           CreatedDate: "2026-06-01T10:00:00Z",
           StartDateTime: "2026-09-24T12:00:00Z",
+          Type: "Meeting",
           Meeting_Status__c: "Held",
+          Set_By__c: "EBR",
+          WhatId: "006-carl",
+          OpportunityOwnerName: "Carl Harris",
           Account: { Name: "Paf", Owner: { Name: "Carl Harris" } }
         }
       ],
